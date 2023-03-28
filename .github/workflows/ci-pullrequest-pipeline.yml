@@ -1,5 +1,5 @@
-name: Web Frontend CI Pipeline on PUSH
-on: [push]
+name: Web Frontend CI Pipeline on PULL REQUEST
+on: [pull_request]
 
 jobs:
   build-and-test-job:
