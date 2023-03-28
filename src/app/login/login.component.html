@@ -1,0 +1,30 @@
+<main>
+  <p>{{test}}</p>
+  <form [formGroup]="loginFormGroup">
+    <div>
+      <mat-form-field appearance="outline" >
+        <mat-label>E-Mail</mat-label>
+        <input matInput placeholder="Deine E-Mail-Adresse" formControlName="email">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" >
+        <mat-label>Passwort</mat-label>
+        <input matInput placeholder="Passwort" type="password" formControlName="password">
+      </mat-form-field>
+    </div>
+  </form>
+
+
+
+  <div *ngFor="let value of stringList">
+    <p>{{value}}</p>
+  </div>
+
+  <div *ngIf="bool">
+    <p>anzeigen</p>
+  </div>
+
+
+  <button (click)="getFormValue()" mat-button>SUBMIT</button>
+</main>
