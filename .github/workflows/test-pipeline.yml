@@ -1,4 +1,4 @@
-name: Web Frontend CI Pipeline on PUSH
+name: Test
 on: [push]
 
 jobs:

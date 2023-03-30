@@ -1,4 +1,4 @@
-name: Web Frontend CI Pipeline on PULL REQUEST
+name: Check Style
 on: [pull_request]
 
 jobs:
@@ -24,6 +24,3 @@ jobs:
       - name: Lint
         run: |
           npm run lint
-      - name: Test
-        run: |
-          npm run test
