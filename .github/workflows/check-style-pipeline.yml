@@ -2,7 +2,7 @@ name: Check Style
 on: [pull_request]
 
 jobs:
-  build-and-test-job:
+  check-style-job:
     runs-on: ubuntu-latest
     strategy:
       matrix:
