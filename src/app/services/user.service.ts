@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {User} from "../models/models";
 
-class User {
-
-  name: string = '';
-}
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataServiceService {
+export class UserService {
 
   constructor(
     private httpClient: HttpClient
@@ -18,8 +15,8 @@ export class DataServiceService {
 
 
 
-  getData(): Observable<User>{
-      return this.httpClient.get<User>('http://localhost:8080/irfc/user');
+  postLoginData(user: User): Observable<User>{
+      return this.httpClient.post<User>('http://localhost:8080/irfc/user', user);
   }
 
 }

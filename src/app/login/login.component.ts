@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {DataServiceService} from "../services/data-service.service";
+import {UserService} from "../services/user.service";
+import {Router} from "@angular/router";
+import {User} from "../models/models";
 
 
 @Component({
@@ -21,7 +23,8 @@ export class LoginComponent implements OnInit{
   })
 
   constructor(
-   private dataService: DataServiceService
+   private dataService: UserService,
+   private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -29,9 +32,22 @@ export class LoginComponent implements OnInit{
 
   }
 
-  getFormValue(){
-    let email = this.loginFormGroup.get('email')?.value;
-    let password = this.loginFormGroup.get('password')?.value;
+  login() {
+    var email = this.loginFormGroup.controls["email"].value;
+    var password = this.loginFormGroup.controls["password"].value;
 
+    //let email: string = this.loginFormGroup.get('email')?.value;
+    if(email && password){
+      const loggedinUser : User = {
+        email: email,
+        password: password
+      }
+      console.log(loggedinUser);
+    }else {
+      throw new Error("die übermittelten Daten bei Login sind null")
+    }
+
+    //make REST call
+  //this.router.navigate(['program-overview']);
   }
 }
