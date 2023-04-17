@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -14,7 +15,12 @@ import { ProgramComponent } from './program/program.component';
 import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ProgramComponent, DummyDialogComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    ProgramComponent,
+    DummyDialogComponent,
+  ],
 
   imports: [
     HttpClientModule,
