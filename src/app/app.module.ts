@@ -11,9 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
+import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ProgramComponent],
+  declarations: [AppComponent, LoginComponent, ProgramComponent, DummyDialogComponent],
+
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -22,6 +24,7 @@ import { ProgramComponent } from './program/program.component';
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
