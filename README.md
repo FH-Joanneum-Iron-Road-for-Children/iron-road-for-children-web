@@ -1,4 +1,12 @@
-# IronRoadForChildrenWeb
+<br>
+<h3 align="center">
+  <a href="https://github.com/FH-Joanneum-Iron-Road-for-Children/.github/blob/develop/profile/images/logo.png">
+  <img src="https://github.com/FH-Joanneum-Iron-Road-for-Children/.github/blob/develop/profile/images/logo.png" alt="IRFC Logo" width="250" style="border-radius: 50px;">
+  </a>
+</h3>
+<br>
+
+# Iron Road For Children Web (IRFC)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
 
