@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./dummy-dialog.component.css'],
 })
 export class DummyDialogComponent {
-  constructor() {}
+  // constructor() {}
 
   sendDataToRest() {
     //here comes the rest call
