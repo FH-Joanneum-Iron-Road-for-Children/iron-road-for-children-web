@@ -4,19 +4,31 @@
       <div>
         <mat-form-field appearance="outline">
           <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="Deine E-Mail-Adresse" formControlName="email">
+          <input
+            matInput
+            placeholder="Deine E-Mail-Adresse"
+            formControlName="email" />
         </mat-form-field>
       </div>
       <div>
         <mat-form-field appearance="outline">
           <mat-label>Passwort</mat-label>
-          <input matInput placeholder="Passwort" type="password" formControlName="password">
+          <input
+            matInput
+            placeholder="Passwort"
+            type="password"
+            formControlName="password" />
         </mat-form-field>
       </div>
     </form>
 
-    <button (click)="login()" mat-raised-button [disabled]="!loginFormGroup.valid">Login</button>
+    <button
+      (click)="login()"
+      mat-raised-button
+      [disabled]="!loginFormGroup.valid">
+      Login
+    </button>
   </div>
 
-
+  <button mat-flat-button (click)="openDummyDialog()">open Dialog</button>
 </main>
