@@ -1,4 +1,7 @@
-main {
-  margin-left: 20px;
-  margin-right: auto;
+.form {
+  margin-top: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
