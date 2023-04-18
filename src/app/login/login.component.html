@@ -17,6 +17,12 @@
     </form>
 
     <button (click)="login()" mat-raised-button [disabled]="!loginFormGroup.valid">Login</button>
+    <button (click)="onBtnClick()" mat-raised-button [disabled]="!loginFormGroup.valid">Voting hinzufügen</button>
+    <li class="nav-item">
+      <nav>
+        <a class="nav-link" href="#" routerLink="/voting" routerLinkActive="active">Home</a>
+      </nav>
+    </li>
   </div>
 
 

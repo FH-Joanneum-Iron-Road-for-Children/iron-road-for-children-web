@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, NgModule, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { User } from '../models/models';
 
 @Component({
@@ -44,9 +44,11 @@ export class LoginComponent implements OnInit {
 
     // onSubmit() {  
     //   this.router.navigate(['/login']) 
+  }
+  onBtnClick(){
+    // Navigate to /add-edit page
+    this.router.navigate(['/login']);
     }
-
-    
+};
     //make REST call
     //this.router.navigate(['program-overview']);
-  }
