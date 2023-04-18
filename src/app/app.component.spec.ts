@@ -16,6 +16,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
+  it('DUMMY TEST', () => {
+    
+    expect(1).toBe(1);
+  });
+
   it(`should have as title 'iron-road-for-children-web'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
