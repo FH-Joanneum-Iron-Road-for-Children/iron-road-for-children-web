@@ -8,11 +8,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
 import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
     LoginComponent,
     ProgramComponent,
     DummyDialogComponent,
+    NavigationComponent,
   ],
 
   imports: [
@@ -31,6 +34,7 @@ import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
