@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
+    "test": "ng test",
     "lint": "node ./node_modules/eslint/bin/eslint src --ext .js,.jsx,.ts,.tsx",
     "precommit": "pretty-quick --staged",
     "prepare": "husky install .husky"
