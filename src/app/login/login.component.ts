@@ -42,7 +42,11 @@ export class LoginComponent implements OnInit {
       throw new Error('die übermittelten Daten bei Login sind null');
     }
 
+    // onSubmit() {  
+    //   this.router.navigate(['/login']) 
+    }
+
+    
     //make REST call
     //this.router.navigate(['program-overview']);
   }
-}
