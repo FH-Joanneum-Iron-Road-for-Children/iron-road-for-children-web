@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
   }
   onBtnClick(){
     // Navigate to /add-edit page
-    this.router.navigate(['/login']);
+    this.router.navigate(['/voting']);
     }
 };
     //make REST call
