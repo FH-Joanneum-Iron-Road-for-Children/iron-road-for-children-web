@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { User } from '../models/models';
+import { MatDialog } from '@angular/material/dialog';
+import { DummyDialogComponent } from '../dummy-dialog/dummy-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,11 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.min(8)),
   });
 
-  constructor(private dataService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
 
   // you can remove this method but it is only used because of lint complaining that it is empty
   ngOnInit(): void {
@@ -43,7 +49,22 @@ export class LoginComponent implements OnInit {
     }
 
     //make REST call
-    //this.router.navigate(['program-overview']);
-    
+    //this is how to route to other components
+    this.router.navigate(['program']);
+  }
+
+  openDummyDialog() {
+    //opens the DialogComponent
+    //you can further edit the look with f.e. saying the width is max 250px and so on
+    //const refDialog =
+    this.dialog.open(DummyDialogComponent, {
+      disableClose: true,
+    });
+
+    //needed if you want to do something with the data after closing the dialog
+    //normally the rest call happens in the Dialog but it depends on the data
+    // refDialog.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
   }
 }
