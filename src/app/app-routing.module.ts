@@ -1,19 +1,26 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {RouterModule, Routes} from "@angular/router";
+
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { ProgramComponent } from './program/program.component';
 import { AddEditComponent } from './voting/add-edit/add-edit.component';
 
+//insert here more routes when needed
 const routes: Routes = [
-{path: 'voting', component: AddEditComponent}
+  {
+    path: '',
+    component: LoginComponent,
+  },
+  {
+    path: 'program',
+    component: ProgramComponent,
+  },
+  {path: 'voting', component: AddEditComponent},
 ];
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule,RouterModule.forRoot(routes)], 
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-
-export class AppRoutingModule {
-
-
-}
+export class AppRoutingModule {}
