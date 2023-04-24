@@ -15,6 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
 import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     MatButtonModule,
     MatDialogModule,
     MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

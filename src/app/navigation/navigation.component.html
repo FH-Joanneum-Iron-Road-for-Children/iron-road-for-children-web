@@ -1,35 +1,11 @@
-<p>navigation works!</p>
-<!-- angular material variante 1: wird nicht angezeigt -->
-<nav>
-  <mat-menu #appMenu="matMenu">
-    <ng-template matMenuContent>
-      <button mat-menu-item>Settings</button>
-      <button mat-menu-item>Help</button>
-    </ng-template>
-  </mat-menu>
-</nav>
-<div>
-  <h1>some text</h1>
-</div>
-
-<!-- variante 2: wird angezeigt -->
-<nav>
-  <a class="navbar-brand" href="/program">IRFC</a>
-  <ul class="navbar-nav">
-    <li class="nav-item active" routerLinkActive="active">
-      <a class="nav-link" routerLink="/program">Programm</a>
-    </li>
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" routerLink="/voting">Voting</a>
-    </li>
-  </ul>
-</nav>
-
-<!-- angular material variante 3: wird nicht angezeigt, ein import fehlt -->
 <mat-toolbar color="primary">
-  <span class="gap">Home</span>
-  <span class="gap">Programm</span>
-  <span class="gap">Voting</span>
-  <span class="filler"></span>
-  <span>Logout</span>
+  <div class="logo-container">
+    <mat-icon svgIcon="logo" class="logo"></mat-icon>
+  </div>
+  <div class="left-buttons">
+    <button mat-button>Program</button>
+    <button mat-button>Voting</button>
+  </div>
+  <div class="spacer"></div>
+  <button mat-button class="logout-button">Logout</button>
 </mat-toolbar>

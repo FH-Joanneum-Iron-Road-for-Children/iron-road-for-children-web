@@ -1,8 +1,22 @@
 import { Component } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
+import { MatToolbarModule } from '@angular/material/toolbar'; // Import the module
+import { MatIconRegistry } from '@angular/material/icon';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css'],
 })
-export class NavigationComponent {}
+export class NavigationComponent {
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+  ) {
+    this.matIconRegistry.addSvgIcon(
+      'logo',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo.svg')
+    );
+  }
+}
