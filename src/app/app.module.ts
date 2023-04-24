@@ -15,6 +15,10 @@ import { ProgramComponent } from './program/program.component';
 import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
 import { RouterLink } from '@angular/router';
 import { AddEventComponent } from './add-event/add-event.component';
+import { ProgramFiltersComponent } from './program/program-filters/program-filters.component';
+import { MatLegacyChipsModule } from '@angular/material/legacy-chips';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,7 @@ import { AddEventComponent } from './add-event/add-event.component';
     LoginComponent,
     ProgramComponent,
     DummyDialogComponent,
+    ProgramFiltersComponent,
     AddEventComponent,
   ],
 
@@ -35,6 +40,9 @@ import { AddEventComponent } from './add-event/add-event.component';
     MatButtonModule,
     MatDialogModule,
     RouterLink,
+    MatLegacyChipsModule,
+    MatChipsModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
