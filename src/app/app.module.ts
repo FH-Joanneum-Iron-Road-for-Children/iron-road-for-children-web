@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
 import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
+import { RouterLink } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
+    RouterLink,
   ],
   providers: [],
   bootstrap: [AppComponent],
