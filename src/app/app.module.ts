@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
 import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
 import { RouterLink } from '@angular/router';
+import { ProgramViewComponent } from './program-view/program-view.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { RouterLink } from '@angular/router';
     LoginComponent,
     ProgramComponent,
     DummyDialogComponent,
+    ProgramViewComponent,
   ],
 
   imports: [
