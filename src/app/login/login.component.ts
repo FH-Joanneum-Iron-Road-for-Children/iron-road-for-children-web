@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 
     //make REST call
     //this is how to route to other components
-    //this.router.navigate(['program-overview']);
+    this.router.navigate(['program']);
   }
 
   openDummyDialog() {
