@@ -16,20 +16,16 @@
           <input
             matInput
             placeholder="Passwort"
-            type="password"
+            type="password"d
             formControlName="password" />
         </mat-form-field>
       </div>
     </form>
 
-    <button
-      (click)="login()"
-      mat-raised-button
-      [disabled]="!loginFormGroup.valid">
-      Login
-    </button>
-    <button (click)="login()" mat-raised-button [disabled]="!loginFormGroup.valid">Login</button>
-    <button (click)="onBtnClick()" href="#" routerLink="/voting" routerLinkActive="active" mat-raised-button>Voting hinzufügen</button>
+
+    <button type="submit" (click)="login()" mat-raised-button [disabled]="!loginFormGroup.valid">Login</button>
+    <button (click)="onBtnClick()" mat-raised-button>Voting hinzufügen</button>
   </div>
   <button mat-flat-button (click)="openDummyDialog()">open Dialog</button>
 </main>
+b
