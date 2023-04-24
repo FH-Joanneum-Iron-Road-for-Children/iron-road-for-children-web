@@ -1,6 +1,30 @@
-<h1 mat-dialog-title>Dummy Dialog</h1>
+<h1 mat-dialog-title>Voting hinzufügen</h1>
 <div mat-dialog-content>Here belongs the content you would like to show</div>
 <div mat-dialog-actions>
+
+  <div class="form-field">
+    <mat-form-field class="no-padding"  appearance="fill">
+      <mat-label>Name des Votings</mat-label>
+      <input matInput placeholder="Placeholder">
+      
+      <mat-hint>Name des Votings</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="no-padding" appearance="fill">
+      <mat-label>Teilnehmer</mat-label> <!-- Placeholder innen-->
+      <input matInput placeholder="Placeholder">
+      
+      <mat-hint>Teilnehmer</mat-hint>
+    </mat-form-field>
+
+    <h2> Teilnehmer hinzufügen</h2>
+  </div>
+
+  <div class="great-box" >
+
+  </div>
+
+
   <!--  here are the action buttons with cancel the dialog simply closes and with save
 there is normally the rest call-->
   <button mat-dialog-close="true" mat-raised-button>Cancel</button>
