@@ -14,6 +14,10 @@ import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
 import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
 import { RouterLink } from '@angular/router';
+import { ProgramFiltersComponent } from './program/program-filters/program-filters.component';
+import { MatLegacyChipsModule } from '@angular/material/legacy-chips';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,7 @@ import { RouterLink } from '@angular/router';
     LoginComponent,
     ProgramComponent,
     DummyDialogComponent,
+    ProgramFiltersComponent,
   ],
 
   imports: [
@@ -33,6 +38,9 @@ import { RouterLink } from '@angular/router';
     MatButtonModule,
     MatDialogModule,
     RouterLink,
+    MatLegacyChipsModule,
+    MatChipsModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
