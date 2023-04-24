@@ -6,7 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./program-filters.component.css'],
 })
 export class ProgramFiltersComponent {
-  openDialogToEditCategory() {}
+  openDialogToEditCategory() {
+    //openDialog
+  }
 
-  goToAddEvent() {}
+  goToAddEvent() {
+    //navigate to Component
+  }
 }
