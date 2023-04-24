@@ -19,6 +19,7 @@ import { MatLegacyChipsModule } from '@angular/material/legacy-chips';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { ProgramViewComponent } from './program/program-view/program-view.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ProgramViewComponent } from './program/program-view/program-view.compon
     MatLegacyChipsModule,
     MatChipsModule,
     MatIconModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
