@@ -1,0 +1,30 @@
+<main>
+  <section>
+    <div>
+      <mat-chip-list class="row-filter-weekdays">
+        <mat-chip-option>Freitag Datum</mat-chip-option>
+        <mat-chip-option>Samstag Datum</mat-chip-option>
+        <mat-chip-option>Sonntag Datum</mat-chip-option>
+      </mat-chip-list>
+    </div>
+    <div class="row-add-buttons">
+      <button mat-raised-button (click)="openDialogToEditCategory()">
+        <mat-icon>add</mat-icon> Kategorie bearbeiten
+      </button>
+
+      <button mat-raised-button (click)="goToAddEvent()">
+        <mat-icon>add</mat-icon> Event hinzufügen
+      </button>
+    </div>
+  </section>
+
+  <section class="row-filters-categories">
+    <div>
+      <mat-chip-list>
+        <mat-chip-option>Musik</mat-chip-option>
+        <mat-chip-option>Tattoo</mat-chip-option>
+        <mat-chip-option>Ausfahrten</mat-chip-option>
+      </mat-chip-list>
+    </div>
+  </section>
+</main>
