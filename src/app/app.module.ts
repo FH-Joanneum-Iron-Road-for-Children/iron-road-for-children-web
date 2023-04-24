@@ -18,6 +18,7 @@ import { ProgramFiltersComponent } from './program/program-filters/program-filte
 import { MatLegacyChipsModule } from '@angular/material/legacy-chips';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { ProgramViewComponent } from './program/program-view/program-view.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
     ProgramComponent,
     DummyDialogComponent,
     ProgramFiltersComponent,
+    ProgramViewComponent,
   ],
 
   imports: [
