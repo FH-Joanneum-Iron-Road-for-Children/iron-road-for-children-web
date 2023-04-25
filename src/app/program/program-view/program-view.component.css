@@ -1,0 +1,20 @@
+.program-view {
+  margin-left: 150px;
+  margin-right: 150px;
+  display: flex;
+  /*justify-content: center;
+*/
+}
+
+#picture {
+  object-fit: cover;
+  object-position: left;
+  height: 10%;
+  width: 10%;
+  margin: 0;
+  padding: 0;
+}
+
+#actions {
+  justify-content: flex-end;
+}
