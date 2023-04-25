@@ -1,36 +1,24 @@
-.form-field {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-
-  .great-box {
-    display: flex;
-    width: 200px;
-    height: 200px;
-    background-color: gray;
-
-  }
-  h2 {
-  background-color: #555;
-  color: #FFF;
-  letter-spacing: 1px;
-  padding: 1%;
-  width: auto;
-}
-.alignleft {
-  float: left;
-  display: block;
-  text-align: left;
-  width: 48%;
-
+.wrapper-for-divs {
+  display: flex;
 }
 
-.alignright {
-  float: left;
-  width: 48%;
-  display: block;
-  text-align: right;
+.great-box {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  background-color: gray;
+}
+
+/*.alignleft {*/
+/*  float: left;*/
+/*  display: block;*/
+/*  text-align: left;*/
+/*  width: 48%;*/
+
+/*}*/
+
+.box-with-participants {
+  background-color: gray;
+  width: 200px;
+  height: 200px;
 }

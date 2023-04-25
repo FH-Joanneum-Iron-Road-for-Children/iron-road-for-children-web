@@ -1,33 +1,39 @@
 <h1 mat-dialog-title>Voting hinzufügen</h1>
-<div mat-dialog-content></div>
-<div mat-dialog-actions>
 
-  <div class="form-field">
-    <mat-form-field class="no-padding"  appearance="fill">
-      <mat-label>Name des Votings</mat-label>
-      <input matInput placeholder="Placeholder">
-      
-      <mat-hint>Name des Votings</mat-hint>
-    </mat-form-field>
+<div mat-dialog-content class="wrapper-for-divs">
+  <div>
+    <form [formGroup]="addEditFormGroup">
+      <mat-form-field class="no-padding" appearance="fill">
+        <mat-label>Name des Votings</mat-label>
+        <input matInput formControlName="votingName" />
 
-    <mat-form-field class="no-padding" appearance="fill">
-      <mat-label>Teilnehmer</mat-label> <!-- Placeholder innen-->
-      <input matInput placeholder="Placeholder">
-      
-      <mat-hint>Teilnehmer</mat-hint>
-    </mat-form-field>
+        <mat-hint>Name des Votings</mat-hint>
+      </mat-form-field>
 
-    <h2 class="alignright"> Teilnehmer hinzufügen</h2>
-  
+      <p>Teilnehmer hinzufügen</p>
+      <mat-form-field class="no-padding" appearance="fill">
+        <mat-label>Teilnehmer</mat-label>
+        <!-- Placeholder innen-->
+        <input matInput formControlName="participant" />
+
+        <mat-hint>Teilnehmer</mat-hint>
+      </mat-form-field>
+      <!--button für Teilnehmer hinzufügen-->
+    </form>
   </div>
 
-  <div class="great-box" >
-
+  <div *ngFor="let string of listOfStrings">
+    <div>
+      {{ string }}
+      <mat-icon>delete</mat-icon>
+    </div>
+    <br />
   </div>
+</div>
 
-
-  <!--  here are the action buttons with cancel the dialog simply closes and with save
+<!--  here are the action buttons with cancel the dialog simply closes and with save
 there is normally the rest call-->
+<div mat-dialog-actions>
   <button mat-dialog-close="true" mat-raised-button>Cancel</button>
   <button mat-raised-button (click)="sendDataToRest()">Save</button>
 </div>
