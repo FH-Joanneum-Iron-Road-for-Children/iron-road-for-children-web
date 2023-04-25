@@ -1,21 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProgramComponent } from './program.component';
+import { ProgramFiltersComponent } from './program-filters.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-describe('ProgramComponent', () => {
-  let component: ProgramComponent;
-  let fixture: ComponentFixture<ProgramComponent>;
+describe('ProgramFiltersComponent', () => {
+  let component: ProgramFiltersComponent;
+  let fixture: ComponentFixture<ProgramFiltersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProgramComponent],
+      declarations: [ProgramFiltersComponent],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProgramComponent);
+    fixture = TestBed.createComponent(ProgramFiltersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
