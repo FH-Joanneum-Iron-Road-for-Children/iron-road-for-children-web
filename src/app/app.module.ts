@@ -18,6 +18,8 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { ProgramFiltersComponent } from './program/program-filters/program-filters.component';
 import { MatLegacyChipsModule } from '@angular/material/legacy-chips';
 import { MatChipsModule } from '@angular/material/chips';
+import { NavigationComponent } from './navigation/navigation.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
@@ -28,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
     DummyDialogComponent,
     ProgramFiltersComponent,
     AddEventComponent,
+    NavigationComponent,
   ],
 
   imports: [
@@ -42,6 +45,7 @@ import { MatIconModule } from '@angular/material/icon';
     RouterLink,
     MatLegacyChipsModule,
     MatChipsModule,
+    MatToolbarModule,
     MatIconModule,
   ],
   providers: [],
