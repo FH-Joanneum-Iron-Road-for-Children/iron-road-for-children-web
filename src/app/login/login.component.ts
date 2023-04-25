@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { User } from '../models/models';
 import { MatDialog } from '@angular/material/dialog';
 import { DummyDialogComponent } from '../dummy-dialog/dummy-dialog.component';
+import { ProgramComponent } from '../program/program.component';
 
 @Component({
   selector: 'app-login',
