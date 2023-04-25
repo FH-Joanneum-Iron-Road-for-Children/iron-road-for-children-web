@@ -17,6 +17,8 @@ import { RouterLink } from '@angular/router';
 import { ProgramFiltersComponent } from './program/program-filters/program-filters.component';
 import { MatLegacyChipsModule } from '@angular/material/legacy-chips';
 import { MatChipsModule } from '@angular/material/chips';
+import { NavigationComponent } from './navigation/navigation.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.component';
 
@@ -28,6 +30,7 @@ import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.com
     DummyDialogComponent,
     ProgramFiltersComponent,
     DeleteDialogComponent,
+    NavigationComponent,
   ],
 
   imports: [
@@ -42,6 +45,7 @@ import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.com
     RouterLink,
     MatLegacyChipsModule,
     MatChipsModule,
+    MatToolbarModule,
     MatIconModule,
   ],
   providers: [],
