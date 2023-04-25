@@ -43,7 +43,6 @@ import { MatIconModule } from '@angular/material/icon';
     RouterLink,
     MatLegacyChipsModule,
     MatChipsModule,
-    MatMenuModule,
     MatToolbarModule,
     MatIconModule,
   ],
