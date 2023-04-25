@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {}
 
   // you can remove this method but it is only used because of lint complaining that it is empty

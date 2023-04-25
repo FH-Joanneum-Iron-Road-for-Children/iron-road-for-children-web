@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
@@ -50,5 +51,6 @@ import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.com
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [DummyDialogComponent, DeleteDialogComponent]
 })
 export class AppModule {}
