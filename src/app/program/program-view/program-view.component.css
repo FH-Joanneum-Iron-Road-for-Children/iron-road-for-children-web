@@ -2,6 +2,7 @@
   margin-left: 150px;
   margin-right: 150px;
   display: flex;
+
   /*justify-content: center;
 */
 }
@@ -16,5 +17,11 @@
 }
 
 #actions {
-  justify-content: flex-end;
+  justify-content: center;
+}
+
+#time {
+  display: flex;
+  justify-content: center;
+  margin: 35px;
 }

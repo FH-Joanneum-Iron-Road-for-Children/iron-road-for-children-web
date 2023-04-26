@@ -1,7 +1,7 @@
 <main>
   <section>
     <div>
-      <mat-card class="program-view" fxLayout="row" fxLayoutAlign="flex">
+      <mat-card class="program-view" fxLayout="row">
         <img
           mat-card-image
           id="picture"
@@ -10,11 +10,11 @@
 
         <mat-card-header>
           <mat-card-title>EVENT</mat-card-title>
+          <mat-card-subtitle>Stage</mat-card-subtitle>
         </mat-card-header>
-
-        <mat-card-content>Stage</mat-card-content>
-
-        <mat-card-actions id="actions" fxLayoutAlign="end">
+        <mat-card-content id="time">Time</mat-card-content>
+        <div fxFlex></div>
+        <mat-card-actions align="end">
           <button mat-icon-button>
             <mat-icon>mode_edit</mat-icon>
           </button>
@@ -34,9 +34,11 @@
           alt="Photo of a Shiba Inu" />
         <mat-card-header>
           <mat-card-title>EVENT</mat-card-title>
+          <mat-card-subtitle>Stage</mat-card-subtitle>
         </mat-card-header>
 
-        <mat-card-content>Stage</mat-card-content>
+        <mat-card-content id="time">Time</mat-card-content>
+        <div fxFlex></div>
         <mat-card-actions align="end">
           <button mat-icon-button>
             <mat-icon>mode_edit</mat-icon>
@@ -49,7 +51,7 @@
 
       <br />
 
-      <mat-card class="program-view">
+      <mat-card class="program-view" fxLayout="row">
         <img
           mat-card-image
           id="picture"
@@ -58,9 +60,11 @@
 
         <mat-card-header>
           <mat-card-title>EVENT</mat-card-title>
+          <mat-card-subtitle>Stage</mat-card-subtitle>
         </mat-card-header>
 
-        <mat-card-subtitle>Stage</mat-card-subtitle>
+        <mat-card-content id="time">Time</mat-card-content>
+        <div fxFlex></div>
         <mat-card-actions align="end">
           <button mat-icon-button>
             <mat-icon>mode_edit</mat-icon>
@@ -73,13 +77,19 @@
 
       <br />
 
-      <mat-card class="program-view">
-        <img />
+      <mat-card class="program-view" fxLayout="row">
+        <img
+          mat-card-image
+          id="picture"
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu" />
         <mat-card-header>
           <mat-card-title>EVENT</mat-card-title>
+          <mat-card-subtitle>Stage</mat-card-subtitle>
         </mat-card-header>
 
-        <mat-card-content>Stage</mat-card-content>
+        <mat-card-content id="time">Time</mat-card-content>
+        <div fxFlex></div>
         <mat-card-actions align="end">
           <button mat-icon-button>
             <mat-icon>mode_edit</mat-icon>
