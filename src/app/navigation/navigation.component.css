@@ -1,0 +1,52 @@
+.mat-toolbar-row {
+  color: black !important;
+}
+
+.mat-toolbar.mat-primary {
+  background: #ffffff;
+  color: #000000;
+}
+
+mat-toolbar {
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.logo {
+  font-size: 100px;
+  height: 100px;
+  width: 100px;
+  margin-right: 8px;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.left-buttons {
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.left-buttons button {
+  margin-right: 8px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.logout-button {
+  margin-left: 12px;
+}
+
+.left-buttons button:hover {
+  background-color: #fdd516;
+}

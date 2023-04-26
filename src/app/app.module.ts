@@ -17,6 +17,8 @@ import { RouterLink } from '@angular/router';
 import { ProgramFiltersComponent } from './program/program-filters/program-filters.component';
 import { MatLegacyChipsModule } from '@angular/material/legacy-chips';
 import { MatChipsModule } from '@angular/material/chips';
+import { NavigationComponent } from './navigation/navigation.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { ProgramViewComponent } from './program/program-view/program-view.component';
 import { MatCardModule } from '@angular/material/card';
@@ -30,6 +32,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DummyDialogComponent,
     ProgramFiltersComponent,
     ProgramViewComponent,
+    NavigationComponent,
   ],
 
   imports: [
@@ -44,6 +47,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     RouterLink,
     MatLegacyChipsModule,
     MatChipsModule,
+    MatToolbarModule,
     MatIconModule,
     MatCardModule,
     FlexLayoutModule,
