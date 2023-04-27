@@ -1,0 +1,106 @@
+<main>
+  <div class="row-btn">
+    <button (click)="editLocationsDialog()" mat-flat-button>
+      Locations bearbeiten
+    </button>
+    <button (click)="editCategoriesDialog()" mat-flat-button>
+      Kategorien bearbeiten
+    </button>
+  </div>
+  <h1 class="mat-display-1">Event hinzufügen</h1>
+
+  <div class="form">
+    <form [formGroup]="eventFormGroup">
+      <div class="row col-12">
+        <mat-form-field appearance="fill">
+          <mat-label>Titel</mat-label>
+          <input formControlName="title" matInput placeholder="Titel" />
+        </mat-form-field>
+      </div>
+
+      <div class="row col-12">
+        <mat-form-field appearance="fill">
+          <mat-label>Beschreibung</mat-label>
+          <input
+            formControlName="description"
+            matInput
+            placeholder="Beschreibung" />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Location</mat-label>
+          <mat-select [(value)]="location">
+            <mat-option [value]="1">Location</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Kategorie</mat-label>
+          <mat-select [(value)]="category">
+            <mat-option [value]="1">Musik</mat-option>
+            <mat-option [value]="2">Tattoo</mat-option>
+            <mat-option [value]="3">Ausfahrten</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Startdatum</mat-label>
+          <mat-select [(value)]="startDate">
+            <mat-option [value]="1">Freitag, XX.XX.XXXX</mat-option>
+            <mat-option [value]="2">Samstag, XX.XX.XXXX</mat-option>
+            <mat-option [value]="3">Sonntag, XX.XX.XXXX</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Startzeit</mat-label>
+          <input
+            [value]="startTime"
+            formControlName="startTime"
+            matInput
+            placeholder="Startzeit" />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Enddatum</mat-label>
+          <mat-select [(value)]="endDate">
+            <mat-option [value]="1">Freitag, XX.XX.XXXX</mat-option>
+            <mat-option [value]="2">Samstag, XX.XX.XXXX</mat-option>
+            <mat-option [value]="3">Sonntag, XX.XX.XXXX</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Endzeit</mat-label>
+          <input
+            [value]="endTime"
+            formControlName="endTime"
+            matInput
+            placeholder="Endzeit" />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <input class="file-input" type="file" />
+      </div>
+    </form>
+
+    <div class="btn-row">
+      <button (click)="cancel()" class="btn-secondary" mat-button>
+        Abbrechen
+      </button>
+      <button
+        (click)="submit()"
+        [disabled]="!eventFormGroup.valid"
+        mat-raised-button>
+        Speichern
+      </button>
+    </div>
+  </div>
+</main>
