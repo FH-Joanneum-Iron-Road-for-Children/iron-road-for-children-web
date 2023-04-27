@@ -22,6 +22,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { AddEventFormComponent } from './add-event/add-event-form/add-event-form.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
     ProgramFiltersComponent,
     AddEventComponent,
     NavigationComponent,
+    AddEventFormComponent,
   ],
 
   imports: [
