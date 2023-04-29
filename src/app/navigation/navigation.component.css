@@ -50,3 +50,7 @@ mat-toolbar {
 .left-buttons button:hover {
   background-color: #fdd516;
 }
+
+.active-link {
+  background-color: #fdd516;
+}

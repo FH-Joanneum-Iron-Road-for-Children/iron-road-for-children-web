@@ -1,11 +1,15 @@
 <mat-toolbar color="primary">
-  <a routerLink="/program" class="logo-container">
-    <mat-icon svgIcon="logo" class="logo"></mat-icon>
+  <a class="logo-container" routerLink="/program">
+    <mat-icon class="logo" svgIcon="logo"></mat-icon>
   </a>
   <div class="left-buttons">
-    <button routerLink="/program" mat-button>Program</button>
-    <button routerLink="/voting" mat-button>Voting</button>
+    <button mat-button routerLink="/program" routerLinkActive="active-link">
+      Program
+    </button>
+    <button mat-button routerLink="/voting" routerLinkActive="active-link">
+      Voting
+    </button>
   </div>
   <div class="spacer"></div>
-  <button routerLink="/" mat-button class="logout-button">Logout</button>
+  <button class="logout-button" mat-button routerLink="/">Logout</button>
 </mat-toolbar>
