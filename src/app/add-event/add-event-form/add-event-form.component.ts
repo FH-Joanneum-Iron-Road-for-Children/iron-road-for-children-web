@@ -14,15 +14,13 @@ export class AddEventFormComponent {
     title: new FormControl('', Validators.min(1)),
     description: new FormControl('', Validators.min(1)),
     location: new FormControl('', Validators.min(1)),
-    startDate: new FormControl('', Validators.min(1)),
-    endDate: new FormControl('', Validators.min(1)),
+    date: new FormControl('', Validators.min(1)),
     startTime: new FormControl('', Validators.min(1)),
     endTime: new FormControl('', Validators.min(1)),
   });
 
-  startDate: any;
+  date: any;
   startTime: any;
-  endDate: any;
   endTime: any;
   category: any;
   location: any;
