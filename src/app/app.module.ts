@@ -20,6 +20,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.component';
 import { ProgramViewComponent } from './program/program-view/program-view.component';
 import { MatCardModule } from '@angular/material/card';
 
@@ -31,6 +32,7 @@ import { MatCardModule } from '@angular/material/card';
     DummyDialogComponent,
     ProgramFiltersComponent,
     ProgramViewComponent,
+    DeleteDialogComponent,
     NavigationComponent,
   ],
 
@@ -52,5 +54,6 @@ import { MatCardModule } from '@angular/material/card';
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [DummyDialogComponent, DeleteDialogComponent],
 })
 export class AppModule {}
