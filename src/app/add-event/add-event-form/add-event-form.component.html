@@ -1,17 +1,17 @@
 <main>
   <section>
-    <h1 class="mat-display-1">Event hinzufügen</h1>
+    <h1>Event hinzufügen</h1>
     <div>
       <button
         (click)="editLocationsDialog()"
-        class="btn-secondary"
+        class="btn btn-secondary"
         mat-flat-button>
         <mat-icon>edit</mat-icon>
         Locations
       </button>
       <button
         (click)="editCategoriesDialog()"
-        class="btn-secondary"
+        class="btn btn-secondary"
         mat-flat-button>
         <mat-icon>edit</mat-icon>
         Kategorien
@@ -19,7 +19,7 @@
     </div>
   </section>
 
-  <section class="container">
+  <section>
     <div class="form">
       <form [formGroup]="eventFormGroup">
         <div class="one-col">
@@ -85,19 +85,16 @@
               placeholder="Endzeit" />
           </mat-form-field>
         </div>
-
-        <div>
-          <input class="file-input" type="file" />
-        </div>
       </form>
 
       <div>
-        <button (click)="cancel()" class="btn-secondary" mat-button>
+        <button (click)="cancel()" class="btn btn-secondary" mat-button>
           Abbrechen
         </button>
         <button
           (click)="submit()"
           [disabled]="!eventFormGroup.valid"
+          class="btn btn-primary"
           mat-button>
           Speichern
         </button>

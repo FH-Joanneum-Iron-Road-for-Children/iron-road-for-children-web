@@ -4,13 +4,40 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
 main {
-  margin-top: 40px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 99%;
+  margin: 40px auto 0 auto;
+  width: 98%;
+}
+
+/* buttons */
+button {
+  border-radius: 20px !important;
+}
+
+.btn {
+  margin: 0 0.5rem 0 0.5rem;
+  padding: 1rem !important;
+}
+
+.btn-primary {
+  background-color: #fed513 !important;
+}
+
+.btn-secondary {
+  background-color: lightgray !important;
+}
+
+/* input field background */
+.mat-mdc-text-field-wrapper {
+  background-color: #fff9dc !important;
+}
+
+h1 {
+  margin-top: 0;
 }

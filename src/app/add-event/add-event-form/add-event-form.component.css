@@ -3,26 +3,6 @@ section {
   justify-content: space-between;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-h1 {
-  margin-top: 0;
-}
-
-button {
-  border-radius: 20px !important;
-  background-color: #fed513 !important;
-  margin: 0 0.5rem 0 0.5rem;
-  padding: 1rem;
-}
-
-.btn-secondary {
-  background-color: lightgray !important;
-}
-
 .one-col {
   display: grid;
 }
