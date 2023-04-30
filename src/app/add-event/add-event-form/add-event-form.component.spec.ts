@@ -1,13 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddEventFormComponent } from './add-event-form.component';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AddEventFormComponent', () => {
   let component: AddEventFormComponent;
@@ -16,13 +11,8 @@ describe('AddEventFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddEventFormComponent],
-      providers: [
-        MatDialogModule,
-        MatDialog,
-        { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: {} },
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [{ provide: MatDialog, useValue: {} }],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AddEventFormComponent);
