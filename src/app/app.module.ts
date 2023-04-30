@@ -22,7 +22,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { ProgramViewComponent } from './program/program-view/program-view.component';
 import { MatCardModule } from '@angular/material/card';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -50,7 +49,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

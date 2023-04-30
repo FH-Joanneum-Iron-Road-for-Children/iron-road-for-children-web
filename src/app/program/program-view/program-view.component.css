@@ -2,12 +2,14 @@
   margin-left: 150px;
   margin-right: 150px;
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   background-color: #fffbfe;
-
-  /*justify-content: center;
-*/
 }
-
+#header {
+  flex-grow: 0.5;
+  align-self: center;
+}
 #picture {
   object-fit: cover;
   object-position: left;
@@ -18,11 +20,10 @@
 }
 
 #actions {
-  justify-content: center;
+  align-self: center;
 }
 
 #time {
-  display: flex;
-  justify-content: center;
-  margin: 35px;
+  align-self: center;
+  flex-grow: 2;
 }
