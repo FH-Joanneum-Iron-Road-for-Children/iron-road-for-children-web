@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
@@ -23,6 +24,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { AddEventFormComponent } from './add-event/add-event-form/add-event-form.component';
+import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { AddEventFormComponent } from './add-event/add-event-form/add-event-form
     DummyDialogComponent,
     ProgramFiltersComponent,
     AddEventComponent,
+    DeleteDialogComponent,
     NavigationComponent,
     AddEventFormComponent,
   ],
@@ -55,5 +58,6 @@ import { AddEventFormComponent } from './add-event/add-event-form/add-event-form
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [DummyDialogComponent, DeleteDialogComponent]
 })
 export class AppModule {}
