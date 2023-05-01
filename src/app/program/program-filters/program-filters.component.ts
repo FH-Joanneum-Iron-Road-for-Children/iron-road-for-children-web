@@ -12,7 +12,9 @@ export class ProgramFiltersComponent {
   constructor(public dialog: MatDialog, private router: Router) {}
 
   openDialogToEditCategory() {
-    this.dialog.open(CategoryDialogComponent);
+    this.dialog.open(CategoryDialogComponent, {
+      disableClose: true,
+    });
   }
 
   goToAddEvent() {
