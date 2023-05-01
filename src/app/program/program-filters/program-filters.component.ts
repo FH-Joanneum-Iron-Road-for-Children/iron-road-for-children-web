@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-program-filters',
@@ -6,11 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./program-filters.component.css'],
 })
 export class ProgramFiltersComponent {
+  constructor(private router: Router) {}
+
   openDialogToEditCategory() {
     //openDialog
   }
 
   goToAddEvent() {
-    //navigate to Component
+    this.router.navigate(['program/add']);
   }
 }
