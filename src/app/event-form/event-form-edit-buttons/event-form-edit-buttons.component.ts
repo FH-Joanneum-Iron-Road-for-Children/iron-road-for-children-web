@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DummyDialogComponent } from '../../dummy-dialog/dummy-dialog.component';
-import { CategoryDialogComponent } from '../../category-dialog/category-dialog.component';
+import { CategoryDialogComponent } from '../../event-dialog/category-dialog/category-dialog.component';
+
 @Component({
   selector: 'app-event-form-edit-buttons',
   templateUrl: './event-form-edit-buttons.component.html',

@@ -27,7 +27,8 @@ import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.com
 import { EventFormEditButtonsComponent } from './event-form/event-form-edit-buttons/event-form-edit-buttons.component';
 import { ProgramViewComponent } from './program/program-view/program-view.component';
 import { MatCardModule } from '@angular/material/card';
-import { CategoryDialogComponent } from './category-dialog/category-dialog.component';
+import { CategoryDialogComponent } from './event-dialog/category-dialog/category-dialog.component';
+import { EventDialogComponent } from './event-dialog/event-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { CategoryDialogComponent } from './category-dialog/category-dialog.compo
     CategoryDialogComponent,
     EventFormComponent,
     EventFormEditButtonsComponent,
+    EventDialogComponent,
   ],
 
   imports: [
