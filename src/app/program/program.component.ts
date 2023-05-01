@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -14,7 +15,7 @@ export class ProgramComponent implements OnInit {
     console.log('ngOnInit is called');
   }
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private router: Router) {}
 
   openDeleteDialog(): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
@@ -24,5 +25,9 @@ export class ProgramComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });
+  }
+
+  editEvent() {
+    this.router.navigate(['program/edit']);
   }
 }
