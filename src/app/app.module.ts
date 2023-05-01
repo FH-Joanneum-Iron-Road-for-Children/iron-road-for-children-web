@@ -26,6 +26,7 @@ import { NewVotingButtonComponent } from './voting/new-voting-button/new-voting-
 import { VotingElementComponent } from './voting/voting-element/voting-element.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
+import { VotingCardComponent } from './voting/voting-element/voting-card/voting-card.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatCardModule } from '@angular/material/card';
     VotingComponent,
     NewVotingButtonComponent,
     VotingElementComponent,
+    VotingCardComponent,
   ],
 
   imports: [

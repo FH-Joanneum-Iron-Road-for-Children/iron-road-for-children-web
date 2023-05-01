@@ -1,0 +1,13 @@
+<div class="card-holder">
+  <mat-card class="card">
+    <p style="margin: unset">{{ name }}</p>
+    <img src="favicon.ico" height="80px" class="cover" />
+    <p>{{ text }}</p>
+    <div class="flex alignment">
+      <button mat-raised-button class="button" (click)="closeCard()">
+        Close
+      </button>
+      <p>Stimmen:</p>
+    </div>
+  </mat-card>
+</div>
