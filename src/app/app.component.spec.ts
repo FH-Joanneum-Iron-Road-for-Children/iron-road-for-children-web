@@ -5,10 +5,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
+      declarations: [AppComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 
@@ -19,7 +17,6 @@ describe('AppComponent', () => {
   });
 
   it('DUMMY TEST', () => {
-    
     expect(1).toBe(1);
   });
 
