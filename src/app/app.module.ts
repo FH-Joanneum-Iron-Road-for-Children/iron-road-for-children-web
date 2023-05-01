@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
@@ -22,6 +21,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.component';
+import { ProgramViewComponent } from './program/program-view/program-view.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.com
     ProgramComponent,
     DummyDialogComponent,
     ProgramFiltersComponent,
+    ProgramViewComponent,
     DeleteDialogComponent,
     NavigationComponent,
   ],
@@ -48,9 +50,10 @@ import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.com
     MatChipsModule,
     MatToolbarModule,
     MatIconModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DummyDialogComponent, DeleteDialogComponent]
+  entryComponents: [DummyDialogComponent, DeleteDialogComponent],
 })
 export class AppModule {}
