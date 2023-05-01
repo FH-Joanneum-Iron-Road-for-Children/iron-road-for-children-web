@@ -25,6 +25,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { EventFormComponent } from './event-form/event-form.component';
 import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.component';
 import { EventFormEditButtonsComponent } from './event-form/event-form-edit-buttons/event-form-edit-buttons.component';
+import { ProgramViewComponent } from './program/program-view/program-view.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { EventFormEditButtonsComponent } from './event-form/event-form-edit-butt
     DummyDialogComponent,
     ProgramFiltersComponent,
     AddEventComponent,
+    ProgramViewComponent,
     DeleteDialogComponent,
     NavigationComponent,
     EventFormComponent,
@@ -56,6 +59,7 @@ import { EventFormEditButtonsComponent } from './event-form/event-form-edit-butt
     MatToolbarModule,
     MatIconModule,
     FormsModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
