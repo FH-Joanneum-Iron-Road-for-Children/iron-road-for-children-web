@@ -7,7 +7,7 @@
       <ul>
         <div *ngFor="let name of categories" class="list-item two-col">
           <li>{{ name }}</li>
-          <button (click)="removeCategory(name)" mat-icon-button>
+          <button (click)="removeCategory(name)" mat-icon-button tabindex="-1">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
@@ -19,7 +19,11 @@
         <div>
           <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
-            <input formControlName="categoryName" matInput placeholder="Name" />
+            <input
+              formControlName="categoryName"
+              matInput
+              placeholder="Name"
+              tabindex="0" />
           </mat-form-field>
         </div>
         <div class="center">
