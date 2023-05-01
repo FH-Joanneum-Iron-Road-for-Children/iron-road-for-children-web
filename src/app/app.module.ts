@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
@@ -22,6 +21,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,7 @@ import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.com
     ProgramFiltersComponent,
     DeleteDialogComponent,
     NavigationComponent,
+    EditEventComponent,
   ],
 
   imports: [
@@ -51,6 +52,6 @@ import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.com
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DummyDialogComponent, DeleteDialogComponent]
+  entryComponents: [DummyDialogComponent, DeleteDialogComponent],
 })
 export class AppModule {}
