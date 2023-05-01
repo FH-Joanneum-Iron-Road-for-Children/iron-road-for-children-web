@@ -2,7 +2,6 @@
 
 html,
 body {
-  height: 100%;
 }
 
 body {
@@ -12,7 +11,12 @@ body {
 
 main {
   margin: 40px auto 0 auto;
-  width: 98%;
+  width: 95%;
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* buttons */
@@ -20,9 +24,16 @@ button {
   border-radius: 20px !important;
 }
 
-.btn {
-  margin: 0 0.5rem 0 0.5rem;
+.btn:not(mat-chip-option) {
   padding: 1rem !important;
+}
+
+.btn:not(:first-of-type) {
+  margin-left: 0.5rem;
+}
+
+.btn:not(:last-of-type) {
+  margin-right: 0.5rem;
 }
 
 .btn-primary {
@@ -36,8 +47,4 @@ button {
 /* input field background */
 .mat-mdc-text-field-wrapper {
   background-color: #fff9dc !important;
-}
-
-h1 {
-  margin-top: 0;
 }

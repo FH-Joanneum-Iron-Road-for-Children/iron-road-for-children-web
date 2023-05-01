@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
@@ -23,8 +22,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { AddEventFormComponent } from './add-event/add-event-form/add-event-form.component';
+import { EventFormComponent } from './event-form/event-form.component';
 import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.component';
+import { EventFormEditButtonsComponent } from './event-form/event-form-edit-buttons/event-form-edit-buttons.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,8 @@ import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.com
     AddEventComponent,
     DeleteDialogComponent,
     NavigationComponent,
-    AddEventFormComponent,
+    EventFormComponent,
+    EventFormEditButtonsComponent,
   ],
 
   imports: [
@@ -58,6 +59,6 @@ import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.com
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DummyDialogComponent, DeleteDialogComponent]
+  entryComponents: [DummyDialogComponent, DeleteDialogComponent],
 })
 export class AppModule {}

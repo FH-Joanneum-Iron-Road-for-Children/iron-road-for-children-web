@@ -2,14 +2,13 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { DummyDialogComponent } from '../../dummy-dialog/dummy-dialog.component';
 
 @Component({
   selector: 'app-add-event-form',
-  templateUrl: './add-event-form.component.html',
-  styleUrls: ['./add-event-form.component.css'],
+  templateUrl: './event-form.component.html',
+  styleUrls: ['./event-form.component.css'],
 })
-export class AddEventFormComponent {
+export class EventFormComponent {
   eventFormGroup = new FormGroup({
     title: new FormControl('', Validators.min(1)),
     description: new FormControl('', Validators.min(1)),
@@ -33,17 +32,5 @@ export class AddEventFormComponent {
 
   submit() {
     this.router.navigate(['program']);
-  }
-
-  editCategoriesDialog() {
-    this.dialog.open(DummyDialogComponent, {
-      disableClose: true,
-    });
-  }
-
-  editLocationsDialog() {
-    this.dialog.open(DummyDialogComponent, {
-      disableClose: true,
-    });
   }
 }
