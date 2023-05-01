@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
+import { VotingComponent } from './voting/voting.component';
 
 //insert here more routes when needed
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'program',
     component: ProgramComponent,
+  },
+  {
+    path: 'voting',
+    component: VotingComponent,
   },
 ];
 

@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
@@ -22,6 +21,11 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.component';
+import { VotingComponent } from './voting/voting.component';
+import { NewVotingButtonComponent } from './voting/new-voting-button/new-voting-button.component';
+import { VotingElementComponent } from './voting/voting-element/voting-element.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,9 @@ import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.com
     ProgramFiltersComponent,
     DeleteDialogComponent,
     NavigationComponent,
+    VotingComponent,
+    NewVotingButtonComponent,
+    VotingElementComponent,
   ],
 
   imports: [
@@ -48,9 +55,11 @@ import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.com
     MatChipsModule,
     MatToolbarModule,
     MatIconModule,
+    MatSlideToggleModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DummyDialogComponent, DeleteDialogComponent]
+  entryComponents: [DummyDialogComponent, DeleteDialogComponent],
 })
 export class AppModule {}

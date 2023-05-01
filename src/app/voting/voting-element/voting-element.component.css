@@ -1,0 +1,22 @@
+.space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alignment {
+  display: flex;
+  align-items: center;
+}
+
+.card-holder {
+  display: flex;
+  margin-left: 0.5rem;
+}
+
+.card {
+  margin: 0.5rem;
+  background-color: #fdd516;
+  height: 180px;
+  width: 160px;
+}
