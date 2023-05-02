@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { EventDto } from '../models/models';
 
 @Component({
-  selector: 'app-add-event-form',
+  selector: 'app-event-form',
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.css'],
 })
-export class EventFormComponent {
+export class EventFormComponent implements OnInit {
+  @Input() event: EventDto | null = null;
+
   eventFormGroup = new FormGroup({
     title: new FormControl('', Validators.min(1)),
     description: new FormControl('', Validators.min(1)),
@@ -25,6 +28,10 @@ export class EventFormComponent {
   location: any;
 
   constructor(private router: Router, public dialog: MatDialog) {}
+
+  ngOnInit(): void {
+    console.log(this.event);
+  }
 
   cancel() {
     this.router.navigate(['program']);
