@@ -34,6 +34,13 @@
 <!--  here are the action buttons with cancel the dialog simply closes and with save
 there is normally the rest call-->
 <div mat-dialog-actions>
-  <button mat-dialog-close="true" mat-raised-button>Cancel</button>
-  <button mat-raised-button (click)="sendDataToRest()">Save</button>
+  <button mat-dialog-close="true" mat-button-rounded mat-raised-button 
+  style="margin-right: 10px; border-radius: 50px">Abbrechen</button>
+  <button mat-raised-button mat-button-rounded color="warn" (click)="sendDataToRest()" 
+  style="
+  margin-left: 10px;
+  border-radius: 50px;
+  background-color: #fdd516;
+  color: black;
+">Speichern</button>
 </div>
