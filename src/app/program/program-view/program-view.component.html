@@ -1,93 +1,23 @@
 <main>
   <section>
     <div>
-      <mat-card class="program-view">
-        <!--<img
+      <mat-card *ngFor="let event of events" class="program-view">
+        <img
+          alt="{{ event.image?.title }}"
+          class="picture"
           mat-card-image
-          id="picture"
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of a Shiba Inu" />-->
+          src="{{ event.image?.path }}" />
 
-        <mat-card-header id="header">
-          <mat-card-title>EVENT</mat-card-title>
-          <mat-card-subtitle>Stage</mat-card-subtitle>
+        <mat-card-header class="header">
+          <mat-card-title>{{ event.title }}</mat-card-title>
+          <mat-card-subtitle>{{ event.eventLocation?.name }}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content id="time">Time</mat-card-content>
+        <mat-card-content class="time"
+          >{{ event?.startDateTime }} bis
+          {{ event?.endDateTime }}</mat-card-content
+        >
 
-        <mat-card-actions id="actions">
-          <button mat-icon-button>
-            <mat-icon>mode_edit</mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-card>
-
-      <br />
-
-      <mat-card class="program-view" fxLayout="row">
-        <!--<img
-          mat-card-image
-          id="picture"
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of a Shiba Inu" />-->
-        <mat-card-header id="header">
-          <mat-card-title>EVENT</mat-card-title>
-          <mat-card-subtitle>Stage</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content id="time">Time</mat-card-content>
-
-        <mat-card-actions id="actions">
-          <button mat-icon-button>
-            <mat-icon>mode_edit</mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-card>
-
-      <br />
-
-      <mat-card class="program-view" fxLayout="row">
-        <!--<img
-          mat-card-image
-          id="picture"
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of a Shiba Inu" />-->
-
-        <mat-card-header id="header">
-          <mat-card-title>EVENT</mat-card-title>
-          <mat-card-subtitle>Stage</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content id="time">Time</mat-card-content>
-
-        <mat-card-actions id="actions">
-          <button mat-icon-button>
-            <mat-icon>mode_edit</mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-card>
-
-      <br />
-
-      <mat-card class="program-view" fxLayout="row">
-        <!--<img
-          mat-card-image
-          id="picture"
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of a Shiba Inu" />-->
-        <mat-card-header id="header">
-          <mat-card-title>EVENT</mat-card-title>
-          <mat-card-subtitle>Stage</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content id="time">Time</mat-card-content>
-
-        <mat-card-actions id="actions">
+        <mat-card-actions class="actions">
           <button mat-icon-button>
             <mat-icon>mode_edit</mat-icon>
           </button>
