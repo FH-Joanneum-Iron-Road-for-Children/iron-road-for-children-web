@@ -22,7 +22,7 @@ const routes: Routes = [
     component: AddEventComponent,
   },
   {
-    path: 'program/edit',
+    path: 'program/edit/:id',
     component: EditEventComponent,
   },
 ];
