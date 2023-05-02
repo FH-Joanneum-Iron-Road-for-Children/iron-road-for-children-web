@@ -11,7 +11,7 @@ import { EventDto } from '../models/models';
 export class EditEventComponent implements OnInit {
   id: any;
 
-  @Input() event: EventDto | null = null;
+  @Input() event!: EventDto;
 
   constructor(
     private route: ActivatedRoute,

@@ -1,4 +1,4 @@
-import { EventDto } from '../models/models';
+import { EventCategoryDto, EventDto, EventLocationDto } from '../models/models';
 
 export const EVENT_DATA: EventDto[] = [
   {
@@ -97,5 +97,43 @@ export const EVENT_DATA: EventDto[] = [
       name: 'Main Stage',
     },
     isEditable: true,
+  },
+];
+
+export const CATEGORY_DATA: EventCategoryDto[] = [
+  {
+    id: 1,
+    name: 'Musik',
+  },
+  {
+    id: 2,
+    name: 'Tattoo',
+  },
+  {
+    id: 3,
+    name: 'Food & Drinks',
+  },
+  {
+    id: 4,
+    name: 'Ausfahrten',
+  },
+];
+
+export const LOCATION_DATA: EventLocationDto[] = [
+  {
+    id: 1,
+    name: 'Main Stage',
+  },
+  {
+    id: 2,
+    name: 'Family Stage',
+  },
+  {
+    id: 3,
+    name: 'Iron Road Stage',
+  },
+  {
+    id: 4,
+    name: 'Rock Stage',
   },
 ];

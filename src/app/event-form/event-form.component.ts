@@ -2,7 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { EventDto } from '../models/models';
+import { EventCategoryDto, EventDto, EventLocationDto } from '../models/models';
+import {
+  CATEGORY_DATA,
+  EVENT_DATA,
+  LOCATION_DATA,
+} from '../test-data/test-data';
 
 @Component({
   selector: 'app-event-form',
@@ -10,7 +15,7 @@ import { EventDto } from '../models/models';
   styleUrls: ['./event-form.component.css'],
 })
 export class EventFormComponent implements OnInit {
-  @Input() event: EventDto | null = null;
+  @Input() event!: EventDto;
 
   eventFormGroup = new FormGroup({
     title: new FormControl('', Validators.min(1)),
@@ -21,11 +26,15 @@ export class EventFormComponent implements OnInit {
     endTime: new FormControl('', Validators.min(1)),
   });
 
-  date: any;
-  startTime: any;
-  endTime: any;
-  category: any;
-  location: any;
+  title: string | undefined;
+  date: string | undefined;
+  startTime: string | undefined;
+  endTime: string | undefined;
+  category: number | undefined;
+  location: number | undefined;
+
+  public categories: EventCategoryDto[] = CATEGORY_DATA;
+  public locations: EventLocationDto[] = LOCATION_DATA;
 
   constructor(private router: Router, public dialog: MatDialog) {}
 

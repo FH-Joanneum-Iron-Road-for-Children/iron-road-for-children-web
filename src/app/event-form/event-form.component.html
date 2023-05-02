@@ -22,16 +22,22 @@
         <mat-form-field appearance="fill">
           <mat-label>Location</mat-label>
           <mat-select [(value)]="location">
-            <mat-option [value]="1">Location</mat-option>
+            <mat-option
+              *ngFor="let location of locations"
+              [value]="location.id">
+              {{ location.name }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Kategorie</mat-label>
           <mat-select [(value)]="category">
-            <mat-option [value]="1">Musik</mat-option>
-            <mat-option [value]="2">Tattoo</mat-option>
-            <mat-option [value]="3">Ausfahrten</mat-option>
+            <mat-option
+              *ngFor="let category of categories"
+              [value]="category.id">
+              {{ category.name }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
