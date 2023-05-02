@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { EventDto } from '../../models/models';
-import { EVENT_DATA } from '../../services/test-data';
+import { EVENT_DATA } from '../../test-data/test-data';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
