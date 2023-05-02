@@ -18,10 +18,13 @@
         >
 
         <mat-card-actions class="actions">
-          <button mat-icon-button>
+          <button
+            [disabled]="!event.isEditable"
+            mat-icon-button
+            routerLink="/program/edit/{{ event.id }}">
             <mat-icon>mode_edit</mat-icon>
           </button>
-          <button mat-icon-button>
+          <button (click)="openDeleteDialog(event.id)" mat-icon-button>
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
