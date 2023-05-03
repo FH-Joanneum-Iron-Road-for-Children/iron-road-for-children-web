@@ -29,6 +29,7 @@ import { ProgramViewComponent } from './program/program-view/program-view.compon
 import { MatCardModule } from '@angular/material/card';
 import { CategoryDialogComponent } from './event-dialog/category-dialog/category-dialog.component';
 import { EventDialogComponent } from './event-dialog/event-dialog.component';
+import { LocationDialogComponent } from './event-dialog/location-dialog/location-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { EventDialogComponent } from './event-dialog/event-dialog.component';
     EventFormComponent,
     EventFormEditButtonsComponent,
     EventDialogComponent,
+    LocationDialogComponent,
   ],
 
   imports: [
