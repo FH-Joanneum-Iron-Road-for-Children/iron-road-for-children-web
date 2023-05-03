@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CategoryDialogComponent } from '../../event-dialog/category-dialog/category-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,10 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./program-filters.component.css'],
 })
 export class ProgramFiltersComponent {
-  constructor(private router: Router) {}
+  constructor(public dialog: MatDialog, private router: Router) {}
 
   openDialogToEditCategory() {
-    //openDialog
+    this.dialog.open(CategoryDialogComponent, {
+      disableClose: true,
+    });
   }
 
   goToAddEvent() {

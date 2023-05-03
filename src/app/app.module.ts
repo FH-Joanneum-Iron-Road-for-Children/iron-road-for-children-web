@@ -28,6 +28,8 @@ import { EventFormEditButtonsComponent } from './event-form/event-form-edit-butt
 import { ProgramViewComponent } from './program/program-view/program-view.component';
 import { MatCardModule } from '@angular/material/card';
 import { EditEventComponent } from './edit-event/edit-event.component';
+import { CategoryDialogComponent } from './event-dialog/category-dialog/category-dialog.component';
+import { EventDialogComponent } from './event-dialog/event-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,8 +42,10 @@ import { EditEventComponent } from './edit-event/edit-event.component';
     ProgramViewComponent,
     DeleteDialogComponent,
     NavigationComponent,
+    CategoryDialogComponent,
     EventFormComponent,
     EventFormEditButtonsComponent,
+    EventDialogComponent,
     EditEventComponent,
   ],
 
