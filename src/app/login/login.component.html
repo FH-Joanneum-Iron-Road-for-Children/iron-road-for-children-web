@@ -19,21 +19,9 @@
             type="password" />
         </mat-form-field>
       </div>
-    <button
     </form>
-      (click)="login()"
-      [disabled]="!loginFormGroup.valid"
-      class="btn-primary"
-      Login
-      mat-raised-button>
-    </button>
   </section>
-  <button (click)="openDummyDialog()" mat-flat-button>open Dialog</button>
-    <button type="submit" (click)="login()" mat-raised-button [disabled]="!loginFormGroup.valid">Login</button>
-    <div class="form-field">
-    <button (click)="onBtnClick()" mat-raised-button>Voting hinzufügen</button>
-  </div>
-  </div>
+  
   <button mat-flat-button (click)="openDummyDialog()">open Dialog</button>
 
   <button mat-flat-button routerLink="/program">open Programm</button>
