@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AddEditComponent } from './voting/add-edit/add-edit.component';
@@ -24,6 +23,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { EventFormComponent } from './event-form/event-form.component';
 import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.component';
+import { VotingComponent } from './voting/voting.component';
+import { NewVotingButtonComponent } from './voting/new-voting-button/new-voting-button.component';
+import { VotingElementComponent } from './voting/voting-element/voting-element.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { VotingCardComponent } from './voting/voting-element/voting-card/voting-card.component';
 import { EventFormEditButtonsComponent } from './event-form/event-form-edit-buttons/event-form-edit-buttons.component';
 import { MatCardModule } from '@angular/material/card';
 import { CategoryDialogComponent } from './event-dialog/category-dialog/category-dialog.component';
@@ -46,6 +50,10 @@ import {MatDialogModule} from "@angular/material/dialog";
     EventFormComponent,
     EventFormEditButtonsComponent,
     EventDialogComponent,
+    VotingComponent,
+    NewVotingButtonComponent,
+    VotingElementComponent,
+    VotingCardComponent,
   ],
 
   imports: [
@@ -64,6 +72,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatToolbarModule,
     MatIconModule,
     FormsModule,
+    MatCardModule,
+    MatSlideToggleModule,
     MatCardModule,
   ],
   providers: [],

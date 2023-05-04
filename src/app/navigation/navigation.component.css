@@ -4,11 +4,11 @@
 
 .mat-toolbar.mat-primary {
   background: #ffffff;
-  color: #000000;
 }
 
 mat-toolbar {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  color: black;
 }
 
 .logo-container {
@@ -50,4 +50,8 @@ mat-toolbar {
 .left-buttons button:hover,
 .active-link {
   background-color: #fed513;
+}
+
+.button-text-color {
+  color: #000000;
 }

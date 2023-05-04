@@ -4,6 +4,7 @@ import type { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
+import { VotingComponent } from './voting/voting.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { AddEditComponent } from './voting/add-edit/add-edit.component';
 
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'program',
     component: ProgramComponent,
+  },
+  {
+    path: 'voting',
+    component: VotingComponent,
   },
   {
     path: 'program/add',
