@@ -47,8 +47,9 @@ mat-toolbar {
   margin-left: 12px;
 }
 
-.left-buttons button:hover {
-  background-color: #fdd516;
+.left-buttons button:hover,
+.active-link {
+  background-color: #fed513;
 }
 
 .button-text-color {

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { CategoryDialogComponent } from '../../event-dialog/category-dialog/category-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-program-filters',
@@ -6,11 +9,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./program-filters.component.css'],
 })
 export class ProgramFiltersComponent {
+  constructor(public dialog: MatDialog, private router: Router) {}
+
   openDialogToEditCategory() {
-    //openDialog
+    this.dialog.open(CategoryDialogComponent, {
+      disableClose: true,
+    });
   }
 
   goToAddEvent() {
-    //navigate to Component
+    this.router.navigate(['program/add']);
   }
 }
