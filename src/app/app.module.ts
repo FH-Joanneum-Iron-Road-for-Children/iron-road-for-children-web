@@ -8,7 +8,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { AddEditComponent } from './voting/add-edit/add-edit.component';
 import {MatInputModule} from "@angular/material/input";
 import { ProgramComponent } from './program/program.component';
 import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
@@ -34,6 +33,7 @@ import { CategoryDialogComponent } from './event-dialog/category-dialog/category
 import { EventDialogComponent } from './event-dialog/event-dialog.component';
 import { ProgramViewComponent } from './program/program-view/program-view.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { AddEditComponent } from './voting/add-edit/add-edit.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +54,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     NewVotingButtonComponent,
     VotingElementComponent,
     VotingCardComponent,
+    AddEditComponent
   ],
 
   imports: [
