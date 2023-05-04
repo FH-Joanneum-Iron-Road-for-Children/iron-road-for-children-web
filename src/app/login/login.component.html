@@ -1,28 +1,34 @@
 <main>
-  <div class="form">
+  <section>
+    <img height="100" src="./assets/logo.svg" width="200" alt="IRFC Logo" />
+    <h1>Login</h1>
     <form [formGroup]="loginFormGroup">
       <div>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>E-Mail</mat-label>
-          <input
-            matInput
-            placeholder="Deine E-Mail-Adresse"
-            formControlName="email" />
+          <input formControlName="email" matInput placeholder="E-Mail" />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Passwort</mat-label>
           <input
+            formControlName="password"
             matInput
             placeholder="Passwort"
-            type="password"d
-            formControlName="password" />
+            type="password" />
         </mat-form-field>
       </div>
+    <button
     </form>
-
-
+      (click)="login()"
+      [disabled]="!loginFormGroup.valid"
+      class="btn-primary"
+      Login
+      mat-raised-button>
+    </button>
+  </section>
+  <button (click)="openDummyDialog()" mat-flat-button>open Dialog</button>
     <button type="submit" (click)="login()" mat-raised-button [disabled]="!loginFormGroup.valid">Login</button>
     <div class="form-field">
     <button (click)="onBtnClick()" mat-raised-button>Voting hinzufügen</button>

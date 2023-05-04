@@ -26,6 +26,8 @@ import { EventFormComponent } from './event-form/event-form.component';
 import { DeleteDialogComponent } from './program/delete-dialog/delete-dialog.component';
 import { EventFormEditButtonsComponent } from './event-form/event-form-edit-buttons/event-form-edit-buttons.component';
 import { MatCardModule } from '@angular/material/card';
+import { CategoryDialogComponent } from './event-dialog/category-dialog/category-dialog.component';
+import { EventDialogComponent } from './event-dialog/event-dialog.component';
 import { ProgramViewComponent } from './program/program-view/program-view.component';
 import {MatDialogModule} from "@angular/material/dialog";
 
@@ -38,11 +40,12 @@ import {MatDialogModule} from "@angular/material/dialog";
     ProgramFiltersComponent,
     AddEventComponent,
     ProgramViewComponent,
-    AddEditComponent,
     DeleteDialogComponent,
     NavigationComponent,
+    CategoryDialogComponent,
     EventFormComponent,
     EventFormEditButtonsComponent,
+    EventDialogComponent,
   ],
 
   imports: [
