@@ -2,15 +2,49 @@
 
 html,
 body {
-  height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
 main {
-  margin-top: 40px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 99%;
+  margin: 40px auto 0 auto;
+  width: 95%;
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* buttons */
+button {
+  border-radius: 20px !important;
+}
+
+.btn:not(mat-chip-option) {
+  padding: 1rem !important;
+}
+
+.btn:not(:first-of-type) {
+  margin-left: 0.5rem;
+}
+
+.btn:not(:last-of-type) {
+  margin-right: 0.5rem;
+}
+
+.btn-primary {
+  background-color: #fed513 !important;
+}
+
+.btn-secondary {
+  background-color: lightgray !important;
+}
+
+/* input field background */
+.mat-mdc-text-field-wrapper {
+  background-color: #fff9dc !important;
 }

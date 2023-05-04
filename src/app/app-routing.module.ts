@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { RouterModule, Routes } from '@angular/router';
+import type { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ProgramComponent } from './program/program.component';
+import { AddEventComponent } from './add-event/add-event.component';
 import { AddEditComponent } from './voting/add-edit/add-edit.component';
 
 //insert here more routes when needed
@@ -14,6 +16,10 @@ const routes: Routes = [
   {
     path: 'program',
     component: ProgramComponent,
+  },
+  {
+    path: 'program/add',
+    component: AddEventComponent,
   },
   {path: 'voting', component: AddEditComponent},
 ];
