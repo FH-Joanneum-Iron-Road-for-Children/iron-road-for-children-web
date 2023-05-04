@@ -14,12 +14,16 @@ export class EventFormEditButtonsComponent {
   editCategoriesDialog() {
     this.dialog.open(CategoryDialogComponent, {
       disableClose: true,
+      width: '45rem',
+      height: '30rem',
     });
   }
 
   editLocationsDialog() {
     this.dialog.open(LocationDialogComponent, {
       disableClose: true,
+      width: '45rem',
+      height: '30rem',
     });
   }
 }

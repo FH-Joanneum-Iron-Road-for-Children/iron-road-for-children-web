@@ -14,6 +14,8 @@ export class ProgramFiltersComponent {
   openDialogToEditCategory() {
     this.dialog.open(CategoryDialogComponent, {
       disableClose: true,
+      width: '45rem',
+      height: '30rem',
     });
   }
 
