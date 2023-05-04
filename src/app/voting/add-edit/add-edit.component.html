@@ -11,35 +11,77 @@
       </mat-form-field>
 
       <p>Teilnehmer hinzufügen</p>
-      <mat-form-field class="no-padding" appearance="fill">
-        <mat-label>Teilnehmer</mat-label>
-        <!-- Placeholder innen-->
-        <input matInput formControlName="participant" />
-
-        <mat-hint>Teilnehmer</mat-hint>
-      </mat-form-field>
       <!--button für Teilnehmer hinzufügen-->
+      <section class="center">
+        <form [formGroup]="itemFormGroup">
+          <div>
+            <mat-form-field appearance="fill">
+              <input
+                formControlName="name"
+                matInput
+                placeholder="Teilnehmer hinzufügen"
+                tabindex="0" />
+            </mat-form-field>
+          </div>
+          <mat-label>Name des Votings</mat-label>
+          <div class="center">
+            <button
+              (click)="addToList()"
+              class="btn btn-primary"
+              mat-raised-button>
+              Hinzufügen
+            </button>
+          </div>
+        </form>
+      </section>
     </form>
   </div>
 
-  <div *ngFor="let string of listOfStrings">
-    <div>
-      {{ string }}
-      <mat-icon>delete</mat-icon>
+  <div>
+    <div mat-dialog-content>
+      <div class="two-even-col">
+        <section class="left-align">
+          <ul>
+            <div *ngFor="let name of listOfBands" class="list-item two-col">
+              <li>{{ name }}</li>
+              <button
+                (click)="removeFromList(name)"
+                mat-icon-button
+                tabindex="-1">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </ul>
+        </section>
+      </div>
     </div>
-    <br />
+
+    <mat-icon>delete</mat-icon>
   </div>
+  <br />
 </div>
 
 <!--  here are the action buttons with cancel the dialog simply closes and with save
 there is normally the rest call-->
 <div mat-dialog-actions>
-  <button mat-dialog-close="true" mat-button-rounded mat-raised-button 
-  style="margin-right: 10px; border-radius: 50px">Abbrechen</button>
-  <button mat-raised-button mat-button-rounded color="warn" (click)="sendDataToRest()" 
-  style="
-  margin-left: 10px;
-  border-radius: 50px;
-  background-color: #fdd516;
-  color: black;">Speichern</button>
+  <button
+    mat-dialog-close="true"
+    mat-button-rounded
+    mat-raised-button
+    style="margin-right: 10px; border-radius: 50px">
+    Abbrechen
+  </button>
+  <button
+    mat-raised-button
+    mat-button-rounded
+    color="warn"
+    (click)="sendDataToRest()"
+    style="
+      margin-left: 10px;
+      border-radius: 50px;
+      background-color: #fdd516;
+      color: black;
+    ">
+    Speichern
+  </button>
 </div>
