@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DummyDialogComponent } from '../../dummy-dialog/dummy-dialog.component';
 import { CategoryDialogComponent } from '../../event-dialog/category-dialog/category-dialog.component';
+import { LocationDialogComponent } from '../../event-dialog/location-dialog/location-dialog.component';
 
 @Component({
   selector: 'app-event-form-edit-buttons',
@@ -18,7 +18,7 @@ export class EventFormEditButtonsComponent {
   }
 
   editLocationsDialog() {
-    this.dialog.open(DummyDialogComponent, {
+    this.dialog.open(LocationDialogComponent, {
       disableClose: true,
     });
   }

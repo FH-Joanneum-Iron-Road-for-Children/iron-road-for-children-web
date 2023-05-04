@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './location-dialog.component.html',
   styleUrls: ['./location-dialog.component.css'],
 })
-export class LocationDialogComponent {}
+export class LocationDialogComponent {
+  saveLocations() {}
+}
