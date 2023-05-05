@@ -19,9 +19,8 @@ export class NewVotingButtonComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
-  
+
   onVtnClick() {
     // Navigate to /add-edit page
     this.dialog.open(AddEditComponent, {
