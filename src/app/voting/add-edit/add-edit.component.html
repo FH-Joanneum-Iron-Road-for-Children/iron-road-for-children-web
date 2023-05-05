@@ -1,36 +1,32 @@
-<h1 mat-dialog-title-align="center">Voting hinzufügen</h1>
+<div class="center">
+  <h1 mat-dialog-title>Voting hinzufügen</h1>
+</div>
 
 <div mat-dialog-content class="wrapper-for-divs">
   <div>
+    <section class="center"></section>
     <form [formGroup]="addEditFormGroup">
-      <mat-form-field class="no-padding" appearance="fill">
+      <mat-form-field class="center" appearance="fill">
         <mat-label>Name des Votings</mat-label>
         <input matInput formControlName="votingName" />
 
         <mat-hint>Name des Votings</mat-hint>
       </mat-form-field>
 
-      <p>Teilnehmer hinzufügen</p>
+      <div class="left-align">
+        <h1 mat-dialog-title>Teilnehmer hinzufügen</h1>
+      </div>
       <!--button für Teilnehmer hinzufügen-->
       <section class="center">
         <form [formGroup]="itemFormGroup">
           <div>
             <mat-form-field appearance="fill">
-              <input
-                formControlName="name"
-                matInput
-                placeholder="Teilnehmer hinzufügen"
-                tabindex="0" />
+              <input formControlName="name" matInput placeholder="Teilnehmer" tabindex="0" />
             </mat-form-field>
           </div>
-          <mat-label>Name des Votings</mat-label>
+          <mat-label>Teilnehmer</mat-label>
           <div class="center">
-            <button
-              (click)="addToList()"
-              class="btn btn-primary"
-              mat-raised-button>
-              Hinzufügen
-            </button>
+            <button (click)="addToList()"class="btn btn-primary" mat-raised-button> Hinzufügen </button>
           </div>
         </form>
       </section>
@@ -44,10 +40,7 @@
           <ul>
             <div *ngFor="let name of listOfBands" class="list-item two-col">
               <li>{{ name }}</li>
-              <button
-                (click)="removeFromList(name)"
-                mat-icon-button
-                tabindex="-1">
+              <button (click)="removeFromList(name)" mat-icon-button tabindex="-1">
                 <mat-icon>delete</mat-icon>
               </button>
             </div>
@@ -55,33 +48,16 @@
         </section>
       </div>
     </div>
-
-    <mat-icon>delete</mat-icon>
   </div>
-  <br />
+  <br/>
 </div>
 
 <!--  here are the action buttons with cancel the dialog simply closes and with save
 there is normally the rest call-->
-<div mat-dialog-actions>
-  <button
-    mat-dialog-close="true"
-    mat-button-rounded
-    mat-raised-button
-    style="margin-right: 10px; border-radius: 50px">
-    Abbrechen
-  </button>
-  <button
-    mat-raised-button
-    mat-button-rounded
-    color="warn"
-    (click)="sendDataToRest()"
-    style="
-      margin-left: 10px;
-      border-radius: 50px;
-      background-color: #fdd516;
-      color: black;
-    ">
-    Speichern
-  </button>
+
+<div class="center" mat-dialog-actions>
+  <section>
+    <button class="btn btn-secondary" mat-dialog-close="true" mat-raised-button> Abbrechen </button>
+    <button (click)="saveCategories()" class="btn btn-primary" mat-dialog-close="true" mat-raised-button> Speichern </button>
+  </section>
 </div>

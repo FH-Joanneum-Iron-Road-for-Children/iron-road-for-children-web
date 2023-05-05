@@ -7,12 +7,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-edit.component.css'],
 })
 export class AddEditComponent {
-  addEditFormGroup = new FormGroup({
+    
+    addEditFormGroup = new FormGroup({
     votingName: new FormControl(''),
     participant: new FormControl(''),
   });
-
-  
 
   constructor() {}
 
@@ -41,6 +40,11 @@ export class AddEditComponent {
       this.listOfBands.splice(index, 1);
     }
   }
+
+  saveCategories() {
+    throw new Error('Method not implemented.');
+    }
+    
    
   sendDataToRest() {}
 }
