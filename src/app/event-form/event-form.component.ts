@@ -19,6 +19,10 @@ export class EventFormComponent implements OnInit {
     location: new FormControl('', Validators.min(1)),
     startDateTime: new FormControl('', Validators.min(1)),
     endDateTime: new FormControl('', Validators.min(1)),
+    file1: new FormControl('', Validators.required),
+    file2: new FormControl('', Validators.nullValidator),
+    file3: new FormControl('', Validators.nullValidator),
+    file4: new FormControl('', Validators.nullValidator),
   });
 
   title: string | undefined;
@@ -46,4 +50,6 @@ export class EventFormComponent implements OnInit {
   submit() {
     this.router.navigate(['program']);
   }
+
+  uploadFile(event: Event) {}
 }

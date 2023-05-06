@@ -90,19 +90,87 @@
           </ngx-mat-datetime-picker>
         </mat-form-field>
       </div>
+
+      <div>
+        <h4>Coverfoto</h4>
+        <button
+          class="upload-btn"
+          mat-flat-button
+          onclick="document.getElementById('file-input1').click()">
+          <mat-icon>upload</mat-icon>
+          Coverfoto
+        </button>
+        <input
+          (change)="uploadFile($event)"
+          formControlName="file1"
+          id="file-input1"
+          style="display: none"
+          type="file" />
+      </div>
+
+      <h4>Weitere Fotos</h4>
+      <div class="three-col">
+        <button
+          class="upload-btn"
+          mat-flat-button
+          onclick="document.getElementById('file-input2').click()">
+          <mat-icon>upload</mat-icon>
+          Foto
+        </button>
+        <input
+          (change)="uploadFile($event)"
+          formControlName="file2"
+          id="file-input2"
+          style="display: none"
+          type="file" />
+
+        <button
+          class="upload-btn"
+          mat-flat-button
+          onclick="document.getElementById('file-input3').click()">
+          <mat-icon>upload</mat-icon>
+          Foto
+        </button>
+        <input
+          (change)="uploadFile($event)"
+          formControlName="file3"
+          id="file-input3"
+          style="display: none"
+          type="file" />
+
+        <button
+          class="upload-btn"
+          mat-flat-button
+          onclick="document.getElementById('file-input4').click()">
+          <mat-icon>upload</mat-icon>
+          Foto
+        </button>
+        <input
+          (change)="uploadFile($event)"
+          formControlName="file4"
+          id="file-input4"
+          style="display: none"
+          type="file" />
+      </div>
+      <mat-hint>Nur .PNG, .JPG, .JPEG</mat-hint>
     </form>
 
-    <div>
-      <button (click)="cancel()" class="btn btn-secondary" mat-button>
-        Abbrechen
-      </button>
-      <button
-        (click)="submit()"
-        [disabled]="!eventFormGroup.valid"
-        class="btn btn-primary"
-        mat-button>
-        Speichern
-      </button>
+    <div class="center">
+      <div>
+        <button
+          (click)="cancel()"
+          class="btn btn-secondary form-btn"
+          mat-button>
+          Abbrechen
+        </button>
+        <button
+          (click)="submit()"
+          [disabled]="!eventFormGroup.valid"
+          class="btn btn-primary form-btn"
+          mat-button>
+          Speichern
+        </button>
+      </div>
     </div>
   </div>
 </section>

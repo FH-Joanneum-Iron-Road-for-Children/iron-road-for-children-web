@@ -1,3 +1,10 @@
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .one-col {
   display: grid;
 }
@@ -12,4 +19,21 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 2rem;
+}
+
+.upload-btn {
+  background-color: #fff9dc !important;
+  height: 7rem !important;
+  width: 10rem !important;
+  border-radius: 0 !important;
+  margin-bottom: 1rem;
+}
+
+.form-btn {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+mat-hint {
+  color: grey;
 }
