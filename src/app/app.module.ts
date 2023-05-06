@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,6 +30,14 @@ import { MatCardModule } from '@angular/material/card';
 import { EditEventComponent } from './edit-event/edit-event.component';
 import { CategoryDialogComponent } from './event-dialog/category-dialog/category-dialog.component';
 import { EventDialogComponent } from './event-dialog/event-dialog.component';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -66,6 +74,12 @@ import { EventDialogComponent } from './event-dialog/event-dialog.component';
     MatIconModule,
     FormsModule,
     MatCardModule,
+    NgxMatNativeDateModule,
+    NgxMatMomentModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
