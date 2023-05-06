@@ -2,8 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { EventCategoryDto, EventDto, EventLocationDto } from '../models/models';
-import { CATEGORY_DATA, LOCATION_DATA } from '../test-data/test-data';
+import {
+  EventCategoryDto,
+  EventDto,
+  EventLocationDto,
+} from '../../../models/models';
+import { CATEGORY_DATA, LOCATION_DATA } from '../../../test-data/test-data';
 
 @Component({
   selector: 'app-event-form',

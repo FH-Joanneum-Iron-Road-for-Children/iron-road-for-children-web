@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DummyDialogComponent } from '../../dummy-dialog/dummy-dialog.component';
+import { DummyDialogComponent } from '../../../../dummy-dialog/dummy-dialog.component';
 import { CategoryDialogComponent } from '../../event-dialog/category-dialog/category-dialog.component';
 
 @Component({

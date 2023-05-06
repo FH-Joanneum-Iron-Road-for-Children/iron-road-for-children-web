@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EventService } from '../services/event.service';
-import { EventDto } from '../models/models';
+import { EventService } from '../../../services/event.service';
+import { EventDto } from '../../../models/models';
 
 @Component({
   selector: 'app-edit-event',
