@@ -43,6 +43,12 @@ export class EventFormComponent implements OnInit {
     console.log(this.event);
   }
 
+  uploadFile(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const files = target.files as FileList;
+    console.log(files);
+  }
+
   cancel() {
     this.router.navigate(['program']);
   }
@@ -50,6 +56,4 @@ export class EventFormComponent implements OnInit {
   submit() {
     this.router.navigate(['program']);
   }
-
-  uploadFile(event: Event) {}
 }
