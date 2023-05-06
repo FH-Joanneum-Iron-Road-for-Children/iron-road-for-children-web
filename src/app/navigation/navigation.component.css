@@ -4,6 +4,7 @@
 
 .mat-toolbar.mat-primary {
   background: #ffffff;
+  color: #000000;
 }
 
 mat-toolbar {
@@ -50,8 +51,4 @@ mat-toolbar {
 .left-buttons button:hover,
 .active-link {
   background-color: #fed513;
-}
-
-.button-text-color {
-  color: #000000;
 }

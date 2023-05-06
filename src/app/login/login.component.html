@@ -20,10 +20,14 @@
         </mat-form-field>
       </div>
     </form>
+    <button
+      (click)="login()"
+      [disabled]="!loginFormGroup.valid"
+      class="btn-primary"
+      mat-raised-button>
+      Login
+    </button>
   </section>
-  
-  <button mat-flat-button (click)="openDummyDialog()">open Dialog</button>
-
+  <button (click)="openDummyDialog()" mat-flat-button>open Dialog</button>
   <button mat-flat-button routerLink="/program">open Programm</button>
 </main>
-
