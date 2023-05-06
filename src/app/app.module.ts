@@ -81,7 +81,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'de-AT' }],
   bootstrap: [AppComponent],
   entryComponents: [DummyDialogComponent, DeleteDialogComponent],
 })
