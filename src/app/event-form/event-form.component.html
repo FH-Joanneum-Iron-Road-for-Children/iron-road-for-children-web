@@ -42,32 +42,52 @@
         </mat-form-field>
       </div>
 
-      <div class="three-col">
-        <mat-form-field appearance="fill">
-          <mat-label>Datum</mat-label>
-          <mat-select [(value)]="date">
-            <mat-option [value]="1">Freitag, XX.XX.XXXX</mat-option>
-            <mat-option [value]="2">Samstag, XX.XX.XXXX</mat-option>
-            <mat-option [value]="3">Sonntag, XX.XX.XXXX</mat-option>
-          </mat-select>
+      <div class="two-col">
+        <mat-form-field>
+          <mat-label>Start</mat-label>
+          <input
+            [disabled]="false"
+            [ngxMatDatetimePicker]="picker"
+            matInput
+            placeholder="Start" />
+          <mat-datepicker-toggle
+            [for]="$any(picker)"
+            matSuffix></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker
+            #picker
+            [disableMinute]="false"
+            [enableMeridian]="false"
+            [hideTime]="false"
+            [showSeconds]="false"
+            [showSpinners]="true"
+            [stepHour]="1"
+            [stepMinute]="1"
+            [touchUi]="false">
+          </ngx-mat-datetime-picker>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Startzeit</mat-label>
+        <mat-form-field>
+          <mat-label>Ende</mat-label>
           <input
-            [value]="startTime"
-            formControlName="startTime"
+            [disabled]="false"
+            [ngxMatDatetimePicker]="picker2"
+            formControlName="endDateTime"
             matInput
-            placeholder="Startzeit" />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Endzeit</mat-label>
-          <input
-            [value]="endTime"
-            formControlName="endTime"
-            matInput
-            placeholder="Endzeit" />
+            placeholder="Ende" />
+          <mat-datepicker-toggle
+            [for]="$any(picker2)"
+            matSuffix></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker
+            #picker2
+            [disableMinute]="false"
+            [enableMeridian]="false"
+            [hideTime]="false"
+            [showSeconds]="false"
+            [showSpinners]="true"
+            [stepHour]="1"
+            [stepMinute]="1"
+            [touchUi]="false">
+          </ngx-mat-datetime-picker>
         </mat-form-field>
       </div>
     </form>

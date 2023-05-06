@@ -3,11 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { EventCategoryDto, EventDto, EventLocationDto } from '../models/models';
-import {
-  CATEGORY_DATA,
-  EVENT_DATA,
-  LOCATION_DATA,
-} from '../test-data/test-data';
+import { CATEGORY_DATA, LOCATION_DATA } from '../test-data/test-data';
 
 @Component({
   selector: 'app-event-form',
@@ -21,22 +17,23 @@ export class EventFormComponent implements OnInit {
     title: new FormControl('', Validators.min(1)),
     description: new FormControl('', Validators.min(1)),
     location: new FormControl('', Validators.min(1)),
-    date: new FormControl('', Validators.min(1)),
-    startTime: new FormControl('', Validators.min(1)),
-    endTime: new FormControl('', Validators.min(1)),
+    startDateTime: new FormControl('', Validators.min(1)),
+    endDateTime: new FormControl('', Validators.min(1)),
   });
 
   title: string | undefined;
-  date: string | undefined;
-  startTime: string | undefined;
-  endTime: string | undefined;
+  date: any;
   category: number | undefined;
   location: number | undefined;
 
   public categories: EventCategoryDto[] = CATEGORY_DATA;
   public locations: EventLocationDto[] = LOCATION_DATA;
+  minDate: Date;
 
-  constructor(private router: Router, public dialog: MatDialog) {}
+  constructor(private router: Router, public dialog: MatDialog) {
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date(currentYear, 0, 1);
+  }
 
   ngOnInit(): void {
     console.log(this.event);
