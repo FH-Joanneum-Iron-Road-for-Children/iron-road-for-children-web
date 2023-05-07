@@ -38,9 +38,7 @@ import {
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
-import { CategoryDialogComponent } from './event-dialog/category-dialog/category-dialog.component';
-import { EventDialogComponent } from './event-dialog/event-dialog.component';
-import { LocationDialogComponent } from './event-dialog/location-dialog/location-dialog.component';
+import { LocationDialogComponent } from './program/shared/event-dialog/location-dialog/location-dialog.component';
 
 @NgModule({
   declarations: [
