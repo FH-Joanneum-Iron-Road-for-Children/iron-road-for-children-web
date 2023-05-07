@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { EventCategoryDto } from '../../../../models/models';
+import { CATEGORY_DATA } from '../../../../test-data/test-data';
 
 @Component({
   selector: 'app-category-dialog',
@@ -6,7 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./category-dialog.component.css'],
 })
 export class CategoryDialogComponent {
-  categories: string[] = ['Musik', 'Tattoo', 'Food & Drinks', ' Ausfahrten'];
+  categoryList: EventCategoryDto[] = CATEGORY_DATA;
 
   saveCategories() {}
 }
