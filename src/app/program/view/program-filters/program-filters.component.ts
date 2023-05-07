@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CategoryDialogComponent } from '../../event-dialog/category-dialog/category-dialog.component';
+import { CategoryDialogComponent } from '../../shared/event-dialog/category-dialog/category-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 

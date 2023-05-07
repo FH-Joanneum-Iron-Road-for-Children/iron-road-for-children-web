@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import type { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { ProgramComponent } from './program/program.component';
-import { AddEventComponent } from './add-event/add-event.component';
+import { ProgramComponent } from './program/view/program.component';
+import { AddEventComponent } from './program/add/add-event/add-event.component';
+import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
 
 //insert here more routes when needed
 const routes: Routes = [
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'program/add',
     component: AddEventComponent,
+  },
+  {
+    path: 'program/edit/:id',
+    component: EditEventComponent,
   },
 ];
 
