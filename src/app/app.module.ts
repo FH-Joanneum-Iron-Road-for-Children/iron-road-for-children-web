@@ -8,8 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import {MatInputModule} from "@angular/material/input";
-import { ProgramComponent } from './program/program.component';
+import { MatInputModule } from '@angular/material/input';
+import { ProgramComponent } from './program/view/program.component';
 import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
 import { RouterLink } from '@angular/router';
 import { AddEventComponent } from './program/add/add-event/add-event.component';
@@ -27,11 +27,10 @@ import { NewVotingButtonComponent } from './voting/new-voting-button/new-voting-
 import { VotingElementComponent } from './voting/voting-element/voting-element.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { VotingCardComponent } from './voting/voting-element/voting-card/voting-card.component';
-import { EventFormEditButtonsComponent } from './event-form/event-form-edit-buttons/event-form-edit-buttons.component';
+import { EventFormEditButtonsComponent } from './program/shared/event-form/event-form-edit-buttons/event-form-edit-buttons.component';
 import { MatCardModule } from '@angular/material/card';
 import { CategoryDialogComponent } from './program/shared/event-dialog/category-dialog/category-dialog.component';
 import {
-import { EventDialogComponent } from './program/shared/event-dialog/event-dialog.component';
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule,
   NgxMatTimepickerModule,
@@ -40,14 +39,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AddEditComponent } from './voting/add-edit/add-edit.component';
-import {MatDialogModule} from "@angular/material/dialog";
-import { EventDialogComponent } from './event-dialog/event-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ProgramViewComponent } from './program/view/program-view/program-view.component';
-import { EventFormEditButtonsComponent } from './program/shared/event-form/event-form-edit-buttons/event-form-edit-buttons.component';
-import { CategoryDialogComponent } from './event-dialog/category-dialog/category-dialog.component';
-import { ProgramViewComponent } from './program/program-view/program-view.component';
-import { MatCardModule } from '@angular/material/card';
 import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
+import { EventDialogComponent } from './program/shared/event-dialog/event-dialog.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +64,7 @@ import { EditEventComponent } from './program/edit/edit-event/edit-event.compone
     NewVotingButtonComponent,
     VotingElementComponent,
     VotingCardComponent,
-    AddEditComponent
+    AddEditComponent,
   ],
 
   imports: [
