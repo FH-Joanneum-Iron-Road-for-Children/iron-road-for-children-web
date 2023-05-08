@@ -1,0 +1,34 @@
+<main>
+  <section>
+    <div>
+      <mat-card *ngFor="let event of events" class="program-view">
+        <img
+          alt="{{ event.image?.title }}"
+          class="picture"
+          mat-card-image
+          src="{{ event.image?.path }}" />
+
+        <mat-card-header class="header">
+          <mat-card-title>{{ event.title }}</mat-card-title>
+          <mat-card-subtitle>{{ event.eventLocation?.name }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="time"
+          >{{ event?.startDateTime }} bis
+          {{ event?.endDateTime }}</mat-card-content
+        >
+
+        <mat-card-actions class="actions">
+          <button
+            [disabled]="!event.isEditable"
+            mat-icon-button
+            routerLink="/program/edit/{{ event.id }}">
+            <mat-icon>mode_edit</mat-icon>
+          </button>
+          <button (click)="openDeleteDialog(event.id)" mat-icon-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </section>
+</main>

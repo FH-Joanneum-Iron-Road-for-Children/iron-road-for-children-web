@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'program/add',
     component: AddEventComponent,
   },
+  {
+    path: 'program/edit/:id',
+    component: EditEventComponent,
+  },
   {path: 'voting', component: AddEditComponent},
 ];
 

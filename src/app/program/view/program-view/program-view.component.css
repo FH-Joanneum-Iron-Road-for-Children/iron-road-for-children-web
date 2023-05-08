@@ -6,11 +6,11 @@
   justify-content: flex-start;
   background-color: #fffbfe;
 }
-#header {
+.header {
   flex-grow: 0.5;
   align-self: center;
 }
-#picture {
+.picture {
   object-fit: cover;
   object-position: left;
   height: 10%;
@@ -19,11 +19,15 @@
   padding: 0;
 }
 
-#actions {
+.actions {
   align-self: center;
 }
 
-#time {
+.time {
   align-self: center;
   flex-grow: 2;
+}
+
+.program-view:not(:last-of-type) {
+  margin-bottom: 1rem;
 }

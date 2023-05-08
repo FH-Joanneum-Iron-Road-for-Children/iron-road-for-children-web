@@ -1,0 +1,176 @@
+<section>
+  <div class="form">
+    <form [formGroup]="eventFormGroup">
+      <div class="one-col">
+        <mat-form-field appearance="fill">
+          <mat-label>Titel</mat-label>
+          <input formControlName="title" matInput placeholder="Titel" />
+        </mat-form-field>
+      </div>
+
+      <div class="one-col">
+        <mat-form-field appearance="fill">
+          <mat-label>Beschreibung</mat-label>
+          <input
+            formControlName="description"
+            matInput
+            placeholder="Beschreibung" />
+        </mat-form-field>
+      </div>
+
+      <div class="two-col">
+        <mat-form-field appearance="fill">
+          <mat-label>Location</mat-label>
+          <mat-select [(value)]="location">
+            <mat-option
+              *ngFor="let location of locations"
+              [value]="location.id">
+              {{ location.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Kategorie</mat-label>
+          <mat-select [(value)]="category">
+            <mat-option
+              *ngFor="let category of categories"
+              [value]="category.id">
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="two-col">
+        <mat-form-field>
+          <mat-label>Start</mat-label>
+          <input
+            [disabled]="false"
+            [ngxMatDatetimePicker]="picker"
+            matInput
+            placeholder="Start" />
+          <mat-datepicker-toggle
+            [for]="$any(picker)"
+            matSuffix></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker
+            #picker
+            [disableMinute]="false"
+            [enableMeridian]="false"
+            [hideTime]="false"
+            [showSeconds]="false"
+            [showSpinners]="true"
+            [stepHour]="1"
+            [stepMinute]="1"
+            [touchUi]="false">
+          </ngx-mat-datetime-picker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Ende</mat-label>
+          <input
+            [disabled]="false"
+            [ngxMatDatetimePicker]="picker2"
+            formControlName="endDateTime"
+            matInput
+            placeholder="Ende" />
+          <mat-datepicker-toggle
+            [for]="$any(picker2)"
+            matSuffix></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker
+            #picker2
+            [disableMinute]="false"
+            [enableMeridian]="false"
+            [hideTime]="false"
+            [showSeconds]="false"
+            [showSpinners]="true"
+            [stepHour]="1"
+            [stepMinute]="1"
+            [touchUi]="false">
+          </ngx-mat-datetime-picker>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <h4>Coverfoto</h4>
+        <button
+          class="upload-btn"
+          mat-flat-button
+          onclick="document.getElementById('file-input1').click()">
+          <mat-icon>upload</mat-icon>
+          Coverfoto
+        </button>
+        <input
+          (change)="uploadFile($event)"
+          formControlName="file1"
+          id="file-input1"
+          style="display: none"
+          type="file" />
+      </div>
+
+      <h4>Weitere Fotos</h4>
+      <div class="three-col">
+        <button
+          class="upload-btn"
+          mat-flat-button
+          onclick="document.getElementById('file-input2').click()">
+          <mat-icon>upload</mat-icon>
+          Foto
+        </button>
+        <input
+          (change)="uploadFile($event)"
+          formControlName="file2"
+          id="file-input2"
+          style="display: none"
+          type="file" />
+
+        <button
+          class="upload-btn"
+          mat-flat-button
+          onclick="document.getElementById('file-input3').click()">
+          <mat-icon>upload</mat-icon>
+          Foto
+        </button>
+        <input
+          (change)="uploadFile($event)"
+          formControlName="file3"
+          id="file-input3"
+          style="display: none"
+          type="file" />
+
+        <button
+          class="upload-btn"
+          mat-flat-button
+          onclick="document.getElementById('file-input4').click()">
+          <mat-icon>upload</mat-icon>
+          Foto
+        </button>
+        <input
+          (change)="uploadFile($event)"
+          formControlName="file4"
+          id="file-input4"
+          style="display: none"
+          type="file" />
+      </div>
+      <mat-hint>Nur .PNG, .JPG, .JPEG</mat-hint>
+    </form>
+
+    <div class="center">
+      <div>
+        <button
+          (click)="cancel()"
+          class="btn btn-secondary form-btn"
+          mat-button>
+          Abbrechen
+        </button>
+        <button
+          (click)="submit()"
+          [disabled]="!eventFormGroup.valid"
+          class="btn btn-primary form-btn"
+          mat-button>
+          Speichern
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
