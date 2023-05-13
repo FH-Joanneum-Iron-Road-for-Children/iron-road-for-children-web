@@ -19,9 +19,9 @@
       </div>
 
       <div class="two-col">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" *ngIf="event">
           <mat-label>Location</mat-label>
-          <mat-select [(value)]="location">
+          <mat-select [(value)]="event.eventLocation.id">
             <mat-option
               *ngFor="let location of locations"
               [value]="location.id">
@@ -30,25 +30,50 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" *ngIf="!event">
+          <mat-label>Location</mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let location of locations"
+              [value]="location.id">
+              {{ location.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" *ngIf="event">
           <mat-label>Kategorie</mat-label>
-          <mat-select [(value)]="category">
+          <mat-select [(value)]="event.category.id">
             <mat-option
               *ngFor="let category of categories"
               [value]="category.id">
               {{ category.name }}
             </mat-option>
           </mat-select>
+          <!--          <input formControlName="location" *ngIf="event">-->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" *ngIf="!event">
+          <mat-label>Kategorie</mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let category of categories"
+              [value]="category.id">
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+          <!--          <input formControlName="location" *ngIf="event">-->
         </mat-form-field>
       </div>
 
       <div class="two-col">
-        <mat-form-field>
+        <mat-form-field *ngIf="event">
           <mat-label>Start</mat-label>
           <input
             [disabled]="false"
             [ngxMatDatetimePicker]="picker"
             matInput
+            formControlName="startDateTime"
             placeholder="Start" />
           <mat-datepicker-toggle
             [for]="$any(picker)"

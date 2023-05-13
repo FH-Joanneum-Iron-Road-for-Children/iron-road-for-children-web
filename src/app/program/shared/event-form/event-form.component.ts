@@ -15,12 +15,14 @@ import { CATEGORY_DATA, LOCATION_DATA } from '../../../test-data/test-data';
   styleUrls: ['./event-form.component.css'],
 })
 export class EventFormComponent implements OnInit {
-  @Input() event!: EventDto;
+  @Input() event: EventDto | undefined;
 
+  //TODO: overlook! Datepicker -> Date?
   eventFormGroup = new FormGroup({
     title: new FormControl('', Validators.min(1)),
     description: new FormControl('', Validators.min(1)),
     location: new FormControl('', Validators.min(1)),
+    category: new FormControl(''),
     startDateTime: new FormControl('', Validators.min(1)),
     endDateTime: new FormControl('', Validators.min(1)),
     file1: new FormControl('', Validators.required),
@@ -44,6 +46,21 @@ export class EventFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.event) {
+      this.eventFormGroup.setValue({
+        title: this.event.title,
+        description: this.event.eventInfo?.infoText,
+        location: this.event.eventLocation.name,
+        category: this.event.category.name,
+        startDateTime: this.event.startDateTime,
+        endDateTime: this.event.endDateTime,
+        file1: this.event.image?.path,
+        file2: null,
+        file3: null,
+        file4: null,
+        // file2: this.event.eventInfo?.pictures[0]
+      });
+    }
     console.log(this.event);
   }
 
