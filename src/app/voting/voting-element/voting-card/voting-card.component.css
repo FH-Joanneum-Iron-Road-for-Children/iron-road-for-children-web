@@ -17,9 +17,3 @@
   justify-content: space-between;
   align-items: baseline;
 }
-
-.button {
-  margin-left: 15px;
-  border-radius: 20px !important;
-  background-color: #fdd516 !important;
-}

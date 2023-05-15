@@ -38,7 +38,7 @@ import {
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
-import { AddEditComponent } from './voting/add-edit/add-edit.component';
+import { VotingAddEditComponent } from './voting/add-edit/voting-add-edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProgramViewComponent } from './program/view/program-view/program-view.component';
 import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
@@ -64,7 +64,7 @@ import { EventDialogComponent } from './program/shared/event-dialog/event-dialog
     NewVotingButtonComponent,
     VotingElementComponent,
     VotingCardComponent,
-    AddEditComponent,
+    VotingAddEditComponent,
   ],
 
   imports: [

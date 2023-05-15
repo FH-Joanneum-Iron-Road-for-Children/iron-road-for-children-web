@@ -5,7 +5,7 @@ import {Router, RouterModule} from '@angular/router';
 import {User} from '../models/models';
 import {MatDialog} from '@angular/material/dialog';
 import {DummyDialogComponent} from '../dummy-dialog/dummy-dialog.component';
-import {AddEditComponent} from "../voting/add-edit/add-edit.component";
+import {VotingAddEditComponent} from "../voting/add-edit/voting-add-edit.component";
 
 @Component({
   selector: 'app-login',
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
 
   onBtnClick() {
     // Navigate to /add-edit page
-    this.dialog.open(AddEditComponent, {
+    this.dialog.open(VotingAddEditComponent, {
       disableClose: true,
     });
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AddEditComponent } from '../add-edit/add-edit.component';
+import { VotingAddEditComponent } from '../add-edit/voting-add-edit.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -23,7 +23,7 @@ export class NewVotingButtonComponent implements OnInit{
 
   onVtnClick() {
     // Navigate to /add-edit page
-    this.dialog.open(AddEditComponent, {
+    this.dialog.open(VotingAddEditComponent, {
       disableClose: true,
     });   
 } }; 
