@@ -4,7 +4,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-add-edit',
   templateUrl: './voting-add-edit.component.html',
-  styleUrls: ['./voting-add-edit.component.css'],
+  styleUrls: ['./voting-add-edit.component.css',
+  '../../program/shared/event-dialog/event-dialog.component.css'],
 })
 export class VotingAddEditComponent {
     

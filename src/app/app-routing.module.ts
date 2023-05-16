@@ -7,7 +7,6 @@ import { ProgramComponent } from './program/view/program.component';
 import { VotingComponent } from './voting/voting.component';
 import { AddEventComponent } from './program/add/add-event/add-event.component';
 import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
-import { VotingAddEditComponent } from './voting/add-edit/voting-add-edit.component';
 
 const routes: Routes = [
   {
@@ -29,8 +28,7 @@ const routes: Routes = [
   {
     path: 'program/edit/:id',
     component: EditEventComponent,
-  },
-  { path: 'voting', component: VotingAddEditComponent },
+  }
 ];
 
 @NgModule({
