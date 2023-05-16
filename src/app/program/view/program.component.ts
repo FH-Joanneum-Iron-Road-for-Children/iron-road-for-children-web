@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./program.component.css'],
 })
 export class ProgramComponent implements OnInit {
-  //   constructor() {}
-
   ngOnInit(): void {
     console.log('ngOnInit is called');
   }

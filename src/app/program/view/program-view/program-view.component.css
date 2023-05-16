@@ -1,0 +1,33 @@
+.program-view {
+  margin-left: 150px;
+  margin-right: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: #fffbfe;
+}
+.header {
+  flex-grow: 0.5;
+  align-self: center;
+}
+.picture {
+  object-fit: cover;
+  object-position: left;
+  height: 10%;
+  width: 10%;
+  margin: 0;
+  padding: 0;
+}
+
+.actions {
+  align-self: center;
+}
+
+.time {
+  align-self: center;
+  flex-grow: 2;
+}
+
+.program-view:not(:last-of-type) {
+  margin-bottom: 1rem;
+}

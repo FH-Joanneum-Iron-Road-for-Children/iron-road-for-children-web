@@ -12,11 +12,10 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
-      schemas: [NO_ERRORS_SCHEMA], 
+      declarations: [LoginComponent],
+      schemas: [NO_ERRORS_SCHEMA],
       imports: [HttpClientModule, MatDialogModule],
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
