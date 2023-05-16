@@ -1,0 +1,26 @@
+name: Build
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - 66-build-docker-image
+
+jobs:
+  build-docker-image-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout ✅
+        uses: actions/checkout@v3
+
+      - name: Login to GitHub Container Registry
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build Image
+        run: |
+          docker build -t ghcr.io/fh-joanneum-iron-road-for-children/iron-road-for-children-web/web .
+
+      - name: Push Image
+        run: |
+          docker push ghcr.io/fh-joanneum-iron-road-for-children/iron-road-for-children-web/web
