@@ -1,0 +1,19 @@
+.card-holder {
+  display: flex;
+}
+
+.card {
+  margin: 0.5rem;
+  background-color: #fff8eb;
+  height: 240px;
+  width: 200px;
+}
+
+.flex {
+  display: flex;
+}
+
+.alignment {
+  justify-content: space-between;
+  align-items: baseline;
+}

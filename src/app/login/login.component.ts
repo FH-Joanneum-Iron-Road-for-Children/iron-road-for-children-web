@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
-import { User } from '../models/models';
-import { MatDialog } from '@angular/material/dialog';
-import { DummyDialogComponent } from '../dummy-dialog/dummy-dialog.component';
+import {Component, Input, NgModule, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../services/user.service';
+import {Router, RouterModule} from '@angular/router';
+import {User} from '../models/models';
+import {MatDialog} from '@angular/material/dialog';
+import {DummyDialogComponent} from '../dummy-dialog/dummy-dialog.component';
+import {VotingAddEditComponent} from "../voting/add-edit/voting-add-edit.component";
 
 @Component({
   selector: 'app-login',
@@ -48,23 +49,37 @@ export class LoginComponent implements OnInit {
       throw new Error('die übermittelten Daten bei Login sind null');
     }
 
-    //make REST call
-    //this is how to route to other components
+    // onSubmit() {
+    //   this.router.navigate(['/login'])
     this.router.navigate(['program']);
   }
 
-  openDummyDialog() {
-    //opens the DialogComponent
-    //you can further edit the look with f.e. saying the width is max 250px and so on
-    //const refDialog =
-    this.dialog.open(DummyDialogComponent, {
+  onBtnClick() {
+    // Navigate to /add-edit page
+    this.dialog.open(VotingAddEditComponent, {
       disableClose: true,
     });
 
-    //needed if you want to do something with the data after closing the dialog
-    //normally the rest call happens in the Dialog but it depends on the data
-    // refDialog.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
   }
+
+
+//make REST call
+//this is how to route to other components
+
+
+openDummyDialog()
+{
+  //opens the DialogComponent
+  //you can further edit the look with f.e. saying the width is max 250px and so on
+  //const refDialog =
+  this.dialog.open(DummyDialogComponent, {
+    disableClose: true,
+  });
+
+  //needed if you want to do something with the data after closing the dialog
+  //normally the rest call happens in the Dialog but it depends on the data
+  // refDialog.afterClosed().subscribe(result => {
+  //   console.log(`Dialog result: ${result}`);
+  // });
+}
 }
