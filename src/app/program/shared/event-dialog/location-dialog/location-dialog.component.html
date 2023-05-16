@@ -1,8 +1,8 @@
 <div class="center">
-  <h1 mat-dialog-title>Kategorien bearbeiten</h1>
+  <h1 mat-dialog-title>Locations bearbeiten</h1>
 </div>
 
-<app-event-dialog [itemList]="categoryList"></app-event-dialog>
+<app-event-dialog [itemList]="locationList"></app-event-dialog>
 
 <div class="center" mat-dialog-actions>
   <section>
@@ -10,7 +10,7 @@
       Abbrechen
     </button>
     <button
-      (click)="saveCategories()"
+      (click)="saveLocations()"
       class="btn btn-primary"
       mat-dialog-close="true"
       mat-raised-button>
