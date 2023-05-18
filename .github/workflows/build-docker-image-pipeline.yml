@@ -18,7 +18,7 @@ jobs:
 
       - name: Build Image
         run: |
-          docker build -t ghcr.io/fh-joanneum-iron-road-for-children/iron-road-for-children-web/web .
+          docker build -t ghcr.io/fh-joanneum-iron-road-for-children/iron-road-for-children-web/web:$GITHUB_REF_NAME .
 
       - name: Push Image
         run: |
