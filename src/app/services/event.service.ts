@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
 import { EventDto } from '../models/models';
 import { EVENT_DATA } from '../test-data/test-data';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventService {
-  baseUrl = 'http://localhost:8080/api/';
+  baseUrl = 'https://backend.irfc.st-ki.at/api/';
 
+  // header = new Headers().set('access-control-allow-origin',"https://backend.irfc.st-ki.at/api/");
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+    }),
+  };
   constructor(private httpClient: HttpClient) {}
 
   getEventById(id: number): EventDto {
@@ -17,7 +23,11 @@ export class EventService {
   }
 
   getAllEvents(): Observable<EventDto[]> {
-    return this.httpClient.get<EventDto[]>(this.baseUrl + 'events');
+    // const headers = new Headers().set('access-control-allow-origin',"https://backend.irfc.st-ki.at/api/");
+    return this.httpClient.get<EventDto[]>(
+      this.baseUrl + 'events',
+      this.httpOptions
+    );
   }
 
   getEventByEventId(eventId: number): Observable<EventDto> {

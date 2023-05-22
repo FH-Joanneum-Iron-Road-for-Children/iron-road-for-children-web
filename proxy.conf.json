@@ -1,7 +1,8 @@
 {
   "/api": {
-    "target": "http://localhost:8080",
-    "secure": false,
+    "target": "https://backend.irfc.st-ki.at/api/",
+    "secure": true,
+    "changeOrigin": false,
     "logLevel": "debug"
   }
 }
