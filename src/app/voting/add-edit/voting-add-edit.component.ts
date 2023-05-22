@@ -1,22 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-edit',
   templateUrl: './voting-add-edit.component.html',
-  styleUrls: ['./voting-add-edit.component.css',
-  '../../program/shared/event-dialog/event-dialog.component.css'],
+  styleUrls: [
+    './voting-add-edit.component.css',
+    '../../program/shared/event-dialog/event-dialog.component.css',
+  ],
 })
 export class VotingAddEditComponent {
-    
-    votingAddEditFormGroup = new FormGroup({
+  votingAddEditFormGroup = new FormGroup({
     votingName: new FormControl(''),
     participant: new FormControl(''),
   });
 
   constructor() {}
 
-  listOfBands: string[] = ['Seiler und Speer', 'Veins of Suffering', 'Burnswell'];
+  listOfBands: string[] = [
+    'Seiler und Speer',
+    'Veins of Suffering',
+    'Burnswell',
+  ];
   newItem: any;
   itemFormGroup = new FormGroup({
     name: new FormControl('', Validators.min(1)),
@@ -38,10 +43,10 @@ export class VotingAddEditComponent {
     }
   }
 
-  saveCategories() {
-    throw new Error('Method not implemented.');
-    }
-    
-   
+  @Output() addVotingComponent = new EventEmitter();
+  createNewVoting() {
+    this.addVotingComponent.emit();
+  }
+
   sendDataToRest() {}
 }

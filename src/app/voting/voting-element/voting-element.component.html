@@ -2,13 +2,13 @@
   <div class="space-between">
     <div>Beliebteste Band</div>
     <div class="alignment">
-      <div mat-icon-button>
+      <div>
         <mat-slide-toggle>Voting inaktiv</mat-slide-toggle>
       </div>
       <button mat-icon-button>
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-icon-button>
+      <button (click)="onDeleteClick()" mat-icon-button>
         <mat-icon>delete</mat-icon>
       </button>
     </div>

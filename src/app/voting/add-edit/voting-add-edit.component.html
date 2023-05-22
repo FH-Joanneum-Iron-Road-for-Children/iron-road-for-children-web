@@ -21,12 +21,21 @@
         <form [formGroup]="itemFormGroup">
           <div>
             <mat-form-field appearance="fill">
-              <input formControlName="name" matInput placeholder="Teilnehmer" tabindex="0" />
+              <input
+                formControlName="name"
+                matInput
+                placeholder="Teilnehmer"
+                tabindex="0" />
             </mat-form-field>
           </div>
           <mat-label>Teilnehmer</mat-label>
           <div class="center">
-            <button (click)="addToList()"class="btn btn-primary" mat-raised-button> Hinzufügen </button>
+            <button
+              (click)="addToList()"
+              class="btn btn-primary"
+              mat-raised-button>
+              Hinzufügen
+            </button>
           </div>
         </form>
       </section>
@@ -40,7 +49,10 @@
           <ul>
             <div *ngFor="let name of listOfBands" class="list-item two-col">
               <li>{{ name }}</li>
-              <button (click)="removeFromList(name)" mat-icon-button tabindex="-1">
+              <button
+                (click)="removeFromList(name)"
+                mat-icon-button
+                tabindex="-1">
                 <mat-icon>delete</mat-icon>
               </button>
             </div>
@@ -49,7 +61,7 @@
       </div>
     </div>
   </div>
-  <br/>
+  <br />
 </div>
 
 <!--  here are the action buttons with cancel the dialog simply closes and with save
@@ -57,7 +69,16 @@ there is normally the rest call-->
 
 <div class="center" mat-dialog-actions>
   <section>
-    <button class="btn btn-secondary" mat-dialog-close="true" mat-raised-button> Abbrechen </button>
-    <button (click)="saveCategories()" class="btn btn-primary" mat-dialog-close="true" mat-raised-button> Speichern </button>
+    <button class="btn btn-secondary" mat-dialog-close="true" mat-raised-button>
+      Abbrechen
+    </button>
+    <button
+      (click)="createNewVoting()"
+      class="btn btn-primary"
+      mat-dialog-close="true"
+      mat-raised-button>
+      Speichern
+    </button>
+    <!--    <div (addVotingComponent)="createNewVoting()"></div>-->
   </section>
 </div>
