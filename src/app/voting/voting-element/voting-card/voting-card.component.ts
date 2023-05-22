@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class VotingCardComponent {
   @Output() deleteCardEvent = new EventEmitter<string>();
-  closeCard() {
+  deleteCard() {
     this.deleteCardEvent.emit();
   }
   @Input()
