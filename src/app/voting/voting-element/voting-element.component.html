@@ -14,16 +14,19 @@
     </div>
   </div>
 
-  <div class="cards-wrapper">
-    <div>
-      <app-voting-card
-        name="Beste Band"
-        text="Lorem ipsum dolor sit amet."></app-voting-card>
+  <div style="display: flex; justify-content: space-between">
+    <div class="cards-wrapper">
+      <div>
+        <app-voting-card
+          name="Beste Band"
+          text="Lorem ipsum dolor sit amet."></app-voting-card>
+      </div>
+      <div #cardContainer (deleteCardEvent)="deleteCard()"></div>
     </div>
-    <div>
-      <app-voting-card
-        name="Beste Band"
-        text="Lorem ipsum dolor sit amet."></app-voting-card>
+    <div style="align-self: center">
+      <button class="btn btn-primary" mat-raised-button (click)="newCard()">
+        <mat-icon>add</mat-icon>neues Feld
+      </button>
     </div>
   </div>
 </div>

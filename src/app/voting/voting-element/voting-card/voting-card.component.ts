@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-voting-card',
@@ -6,8 +6,9 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./voting-card.component.css'],
 })
 export class VotingCardComponent {
+  @Output() deleteCardEvent = new EventEmitter<string>();
   closeCard() {
-    //TODO add logic for new category
+    this.deleteCardEvent.emit();
   }
   @Input()
   get name(): string {

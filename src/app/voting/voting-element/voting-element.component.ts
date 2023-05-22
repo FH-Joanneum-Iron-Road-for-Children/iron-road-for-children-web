@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { DeleteVotingComponent } from './delete-dialog/delete-voting-dialog.component';
 import { EventDto } from '../../models/models';
 import { EVENT_DATA } from '../../test-data/test-data';
 import { MatDialog } from '@angular/material/dialog';
+import { VotingCardComponent } from './voting-card/voting-card.component';
 
 @Component({
   selector: 'app-voting-element',
@@ -13,6 +14,7 @@ export class VotingElementComponent {
   public events: EventDto[] = EVENT_DATA;
 
   constructor(public dialog: MatDialog) {}
+
   onDeleteClick(): void {
     const dialogRef = this.dialog.open(DeleteVotingComponent, {
       width: '50vw',
@@ -22,5 +24,16 @@ export class VotingElementComponent {
     dialogRef.afterClosed().subscribe(() => {
       console.log('The dialog was closed');
     });
+  }
+
+  @ViewChild('cardContainer', { read: ViewContainerRef })
+  cardContainer!: ViewContainerRef;
+
+  newCard() {
+    this.cardContainer.createComponent(VotingCardComponent);
+  }
+
+  deleteCard() {
+    console.log('delete');
   }
 }

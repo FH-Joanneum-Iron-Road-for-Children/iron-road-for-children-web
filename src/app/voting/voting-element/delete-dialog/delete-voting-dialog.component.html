@@ -1,0 +1,29 @@
+// TODO align content center
+<div style="display: flex; flex-direction: column; align-items: center">
+  <p mat-dialog-title style="background: lightgray; border-radius: 8px">
+    Wollen Sie das Voting wirklich löschen?
+  </p>
+  <div mat-dialog-actions style="justify-content: space-between">
+    <button
+      mat-raised-button
+      mat-button-rounded
+      color="default"
+      (click)="onCancelClick()"
+      style="margin-right: 10px; border-radius: 50px">
+      Abbrechen
+    </button>
+    <button
+      mat-raised-button
+      mat-button-rounded
+      color="warn"
+      (click)="onDeleteClick()"
+      style="
+        margin-left: 10px;
+        border-radius: 50px;
+        background-color: #fdd516;
+        color: black;
+      ">
+      Löschen
+    </button>
+  </div>
+</div>
