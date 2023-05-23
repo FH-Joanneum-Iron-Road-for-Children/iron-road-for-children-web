@@ -1,8 +1,20 @@
 <div class="card-holder">
   <mat-card class="card">
-    <p style="margin: unset">{{ name }}</p>
+    <input
+      type="text"
+      [(ngModel)]="name"
+      placeholder="Title"
+      style="padding: 2px; background: #fff8eb; border: none" />
     <img src="favicon.ico" height="80px" class="cover" />
-    <p>{{ text }}</p>
+    <textarea
+      [(ngModel)]="text"
+      placeholder="Text"
+      style="
+        min-height: 80px;
+        background: #fff8eb;
+        padding: 2px;
+        border: none;
+      "></textarea>
     <div class="flex alignment">
       <button mat-raised-button class="btn btn-primary" (click)="deleteCard()">
         Löschen
