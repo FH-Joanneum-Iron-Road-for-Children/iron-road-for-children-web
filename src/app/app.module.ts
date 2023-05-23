@@ -40,6 +40,11 @@ import { NgxMatMomentModule } from '@angular-material-components/moment-adapter'
 import { MatNativeDateModule } from '@angular/material/core';
 import { UtcToLocalTimePipe } from './services/pipes/UtcToLocalTimePipe';
 
+import { registerLocaleData } from '@angular/common';
+import localeAt from '@angular/common/locales/de-AT';
+
+registerLocaleData(localeAt, 'de-AT');
+
 @NgModule({
   declarations: [
     AppComponent,
