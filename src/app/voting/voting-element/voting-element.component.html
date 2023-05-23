@@ -15,16 +15,17 @@
     </div>
   </div>
 
-  <div style="display: flex; justify-content: space-between">
+  <div style="display: flex; justify-content: space-between; min-height: 250px">
     <div class="cards-wrapper" style="width: 80vw; overflow: auto">
-      <div>
-        <app-voting-card
-          name="Beste Band"
-          text="Lorem ipsum dolor sit amet."></app-voting-card>
-      </div>
+      <!--      <div>-->
+      <!--        <app-voting-card-->
+      <!--          name="Beste Band"-->
+      <!--          text="Lorem ipsum dolor sit amet."></app-voting-card>-->
+      <!--      </div>-->
       <app-voting-card
-        #cardContainer
-        (deleteCardEvent)="deleteCard()"></app-voting-card>
+        *ngFor="let card of cards; let i = index"
+        (deleteCardEvent)="deleteCard(i)">
+      </app-voting-card>
     </div>
     <div style="align-self: center">
       <button class="btn btn-primary" mat-raised-button (click)="newCard()">

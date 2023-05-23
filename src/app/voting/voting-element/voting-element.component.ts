@@ -3,7 +3,6 @@ import { DeleteVotingComponent } from './delete-dialog/delete-voting-dialog.comp
 import { EventDto } from '../../models/models';
 import { EVENT_DATA } from '../../test-data/test-data';
 import { MatDialog } from '@angular/material/dialog';
-import { VotingCardComponent } from './voting-card/voting-card.component';
 
 @Component({
   selector: 'app-voting-element',
@@ -12,6 +11,7 @@ import { VotingCardComponent } from './voting-card/voting-card.component';
 })
 export class VotingElementComponent {
   public events: EventDto[] = EVENT_DATA;
+  cards: { title: string; content: string }[] = [];
 
   constructor(public dialog: MatDialog) {}
 
@@ -30,10 +30,11 @@ export class VotingElementComponent {
   cardContainer!: ViewContainerRef;
 
   newCard() {
-    this.cardContainer.createComponent(VotingCardComponent);
+    const card = { title: 'New Card', content: 'Card Content' };
+    this.cards.push(card);
   }
 
-  deleteCard() {
-    console.log('delete');
+  deleteCard(index: number) {
+    this.cards.splice(index, 1);
   }
 }
