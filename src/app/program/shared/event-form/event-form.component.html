@@ -1,14 +1,14 @@
 <section>
   <div class="form">
     <form [formGroup]="eventFormGroup">
-      <div class="one-col">
+      <div class="col-1">
         <mat-form-field appearance="fill">
           <mat-label>Titel</mat-label>
           <input formControlName="title" matInput placeholder="Titel" />
         </mat-form-field>
       </div>
 
-      <div class="one-col">
+      <div class="col-1">
         <mat-form-field appearance="fill">
           <mat-label>Beschreibung</mat-label>
           <input
@@ -18,7 +18,7 @@
         </mat-form-field>
       </div>
 
-      <div class="two-col">
+      <div class="col-2">
         <mat-form-field appearance="fill">
           <mat-label>Standort</mat-label>
           <mat-select [(value)]="location">
@@ -42,7 +42,7 @@
         </mat-form-field>
       </div>
 
-      <div class="two-col">
+      <div class="col-2">
         <mat-form-field>
           <mat-label>Start</mat-label>
           <input
@@ -109,7 +109,7 @@
       </div>
 
       <h4>Weitere Fotos</h4>
-      <div class="three-col">
+      <div class="col-3">
         <button
           class="upload-btn"
           mat-flat-button

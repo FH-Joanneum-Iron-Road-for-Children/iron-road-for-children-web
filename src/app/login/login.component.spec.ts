@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientModule, HttpStatusCode } from '@angular/common/http';
-import { MatDialogModule } from '@angular/material/dialog';
 import { UserService } from '../services/user.service';
 
 describe('LoginComponent', () => {
@@ -14,7 +13,7 @@ describe('LoginComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [LoginComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [HttpClientModule, MatDialogModule],
+      imports: [HttpClientModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);

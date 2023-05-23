@@ -1,21 +1,14 @@
-.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.one-col {
+.col-1 {
   display: grid;
 }
 
-.two-col {
+.col-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 2rem;
 }
 
-.three-col {
+.col-3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 2rem;
