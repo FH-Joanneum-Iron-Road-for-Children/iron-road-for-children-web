@@ -22,7 +22,9 @@
           name="Beste Band"
           text="Lorem ipsum dolor sit amet."></app-voting-card>
       </div>
-      <div #cardContainer (deleteCardEvent)="deleteCard()"></div>
+      <app-voting-card
+        #cardContainer
+        (deleteCardEvent)="deleteCard()"></app-voting-card>
     </div>
     <div style="align-self: center">
       <button class="btn btn-primary" mat-raised-button (click)="newCard()">
