@@ -23,8 +23,8 @@ export class EventFormComponent implements OnInit {
     description: new FormControl('', Validators.min(1)),
     location: new FormControl('', Validators.min(1)),
     category: new FormControl(''),
-    startDateTime: new FormControl('', Validators.min(1)),
-    endDateTime: new FormControl('', Validators.min(1)),
+    startDateTime: new FormControl(new Date(), Validators.min(1)),
+    endDateTime: new FormControl(new Date(), Validators.min(1)),
     file1: new FormControl('', Validators.required),
     file2: new FormControl('', Validators.nullValidator),
     file3: new FormControl('', Validators.nullValidator),
@@ -52,12 +52,13 @@ export class EventFormComponent implements OnInit {
         description: this.event.eventInfo?.infoText,
         location: this.event.eventLocation.name,
         category: this.event.category.name,
-        startDateTime: this.event.startDateTime,
-        endDateTime: this.event.endDateTime,
+        startDateTime: new Date(this.event.startDateTimeUTC * 1000),
+        endDateTime: new Date(this.event.endDateTimeUTC * 1000),
         file1: this.event.image?.path,
         file2: null,
         file3: null,
         file4: null,
+
         // file2: this.event.eventInfo?.pictures[0]
       });
     }

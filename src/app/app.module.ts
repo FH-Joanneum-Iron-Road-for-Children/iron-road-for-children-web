@@ -38,6 +38,7 @@ import {
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
+import { UtcToLocalTimePipe } from './services/pipes/UtcToLocalTimePipe';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     EventFormEditButtonsComponent,
     EventDialogComponent,
     EditEventComponent,
+    UtcToLocalTimePipe,
   ],
 
   imports: [

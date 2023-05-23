@@ -13,8 +13,10 @@
           <mat-card-subtitle>{{ event.eventLocation?.name }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="time"
-          >{{ event?.startDateTime }} bis
-          {{ event?.endDateTime }}</mat-card-content
+          >{{
+            getDateFromUTC(event?.startDateTimeUTC) | date : 'dd.MM.yyyy'
+          }}
+          bis {{ event?.endDateTimeUTC }}</mat-card-content
         >
 
         <mat-card-actions class="actions">

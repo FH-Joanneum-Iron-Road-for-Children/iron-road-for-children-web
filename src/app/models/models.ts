@@ -30,8 +30,8 @@ export interface EventDto {
   title: string;
   eventInfo: EventInfoDto;
   image: PictureDto;
-  startDateTime: string;
-  endDateTime: string;
+  startDateTimeUTC: number;
+  endDateTimeUTC: number;
   eventLocation: EventLocationDto;
   category: EventCategoryDto;
   isEditable: boolean;
