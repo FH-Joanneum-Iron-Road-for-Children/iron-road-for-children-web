@@ -20,19 +20,8 @@
 
       <div class="two-col">
         <mat-form-field appearance="fill" *ngIf="event">
-          <mat-label>Location</mat-label>
+          <mat-label>Standort</mat-label>
           <mat-select [(value)]="event.eventLocation.id">
-            <mat-option
-              *ngFor="let location of locations"
-              [value]="location.id">
-              {{ location.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" *ngIf="!event">
-          <mat-label>Location</mat-label>
-          <mat-select>
             <mat-option
               *ngFor="let location of locations"
               [value]="location.id">
@@ -117,13 +106,13 @@
       </div>
 
       <div>
-        <h4>Coverfoto</h4>
+        <h4>Titelbild</h4>
         <button
           class="upload-btn"
           mat-flat-button
           onclick="document.getElementById('file-input1').click()">
           <mat-icon>upload</mat-icon>
-          Coverfoto
+          Titelbild
         </button>
         <input
           (change)="uploadFile($event)"

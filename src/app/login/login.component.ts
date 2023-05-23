@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, NgModule, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { User } from '../models/models';
 import { MatDialog } from '@angular/material/dialog';
 import { DummyDialogComponent } from '../dummy-dialog/dummy-dialog.component';
+import { VotingAddEditComponent } from '../voting/add-edit/voting-add-edit.component';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    public dialog: MatDialog,
+    public dialog: MatDialog
   ) {}
 
   // you can remove this method but it is only used because of lint complaining that it is empty
@@ -48,10 +49,20 @@ export class LoginComponent implements OnInit {
       throw new Error('die übermittelten Daten bei Login sind null');
     }
 
-    //make REST call
-    //this is how to route to other components
+    // onSubmit() {
+    //   this.router.navigate(['/login'])
     this.router.navigate(['program']);
   }
+
+  onBtnClick() {
+    // Navigate to /add-edit page
+    this.dialog.open(VotingAddEditComponent, {
+      disableClose: true,
+    });
+  }
+
+  //make REST call
+  //this is how to route to other components
 
   openDummyDialog() {
     //opens the DialogComponent
