@@ -1,71 +1,56 @@
 <div class="center">
   <h1 mat-dialog-title>Voting hinzufügen</h1>
 </div>
+<div mat-dialog-content>
+  <div class="col-2e">
+    <div>
+      <form [formGroup]="votingAddEditFormGroup">
+        <section class="center">
+          <mat-form-field appearance="fill" class="center">
+            <mat-label>Name des Votings</mat-label>
+            <input formControlName="votingName" matInput />
+          </mat-form-field>
+        </section>
 
-<div mat-dialog-content class="wrapper-for-divs">
-  <div>
-    <section class="center"></section>
-    <form [formGroup]="votingAddEditFormGroup">
-      <mat-form-field class="center" appearance="fill">
-        <mat-label>Name des Votings</mat-label>
-        <input matInput formControlName="votingName" />
-
-        <mat-hint>Name des Votings</mat-hint>
-      </mat-form-field>
-
-      <div class="left-align">
-        <h1 mat-dialog-title>Teilnehmer hinzufügen</h1>
-      </div>
-      <!--button für Teilnehmer hinzufügen-->
-      <section class="center">
-        <form [formGroup]="itemFormGroup">
-          <div>
-            <mat-form-field appearance="fill">
-              <input
-                formControlName="name"
-                matInput
-                placeholder="Teilnehmer"
-                tabindex="0" />
-            </mat-form-field>
-          </div>
-          <mat-label>Teilnehmer</mat-label>
-          <div class="center">
-            <button
-              (click)="addToList()"
-              class="btn btn-primary"
-              mat-raised-button>
-              Hinzufügen
-            </button>
-          </div>
-        </form>
-      </section>
-    </form>
-  </div>
-
-  <div>
-    <div mat-dialog-content>
-      <div class="two-even-col">
-        <section class="left-align">
-          <ul>
-            <div *ngFor="let name of listOfBands" class="list-item two-col">
-              <li>{{ name }}</li>
+        <section class="center">
+          <h1 mat-dialog-title>Teilnehmer hinzufügen</h1>
+          <form [formGroup]="itemFormGroup">
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Teilnehmer</mat-label>
+                <input
+                  formControlName="name"
+                  matInput
+                  placeholder="Teilnehmer" />
+              </mat-form-field>
+            </div>
+            <div class="center">
               <button
-                (click)="removeFromList(name)"
-                mat-icon-button
-                tabindex="-1">
-                <mat-icon>delete</mat-icon>
+                (click)="addToList()"
+                class="btn btn-primary"
+                mat-raised-button>
+                Hinzufügen
               </button>
             </div>
-          </ul>
+          </form>
         </section>
-      </div>
+      </form>
+    </div>
+
+    <div class="col-2">
+      <section class="scroll-container">
+        <ul>
+          <div *ngFor="let name of listOfBands" class="list-item col-2">
+            <li>{{ name }}</li>
+            <button (click)="removeFromList(name)" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </ul>
+      </section>
     </div>
   </div>
-  <br />
 </div>
-
-<!--  here are the action buttons with cancel the dialog simply closes and with save
-there is normally the rest call-->
 
 <div class="center" mat-dialog-actions>
   <section>
