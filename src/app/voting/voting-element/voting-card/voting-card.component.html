@@ -5,7 +5,35 @@
       [(ngModel)]="name"
       placeholder="Title"
       style="padding: 2px; background: #fff8eb; border: none" />
-    <img src="favicon.ico" height="80px" class="cover" />
+    <!--    https://blog.angular-university.io/angular-file-upload/-->
+    <div
+      style="
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      ">
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        #fileUpload
+        style="display: none" />
+      {{ fileName || 'Foto hinzufügen.' }}
+
+      <button
+        mat-mini-fab
+        color="primary"
+        class="upload-btn"
+        (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+    </div>
+    <img
+      *ngIf="imageUrl"
+      [src]="imageUrl"
+      alt="Selected Image"
+      style="max-height: 120px; width: auto; object-fit: cover" />
+
     <textarea
       [(ngModel)]="text"
       placeholder="Text"
