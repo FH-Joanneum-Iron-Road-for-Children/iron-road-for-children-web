@@ -3,29 +3,57 @@
 @include mat.core();
 
 $yellow-palette: (
-  100: #fff9dc,
-  500: #f3e088,
-  700: #fed513,
+  50: #fffefe,
+  100: #fcfaf3,
+  200: #fdf6d7,
+  300: #faefbb,
+  400: #fdea93,
+  500: #fae372,
+  600: #fcdc57,
+  700: #ffdc3e,
+  800: #fcd722,
+  900: #fed513,
   contrast: (
+    50: #000000,
     100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
     500: #000000,
-    700: #ffffff,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
   ),
 );
 
 $blue-palette: (
-  100: #849db7,
-  500: #3d698f,
-  700: #174066,
+  50: #b9dbff,
+  100: #a2c1de,
+  200: #7f9fcb,
+  300: #62869f,
+  400: #557698,
+  500: #4c6983,
+  600: #354f67,
+  700: #2b4965,
+  800: #1e4364,
+  900: #174066,
   contrast: (
+    50: #000000,
     100: #000000,
-    500: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
     700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
   ),
 );
 
-$primary: mat.define-palette($blue-palette, 700);
-$accent: mat.define-palette($yellow-palette, 700);
+$primary: mat.define-palette($blue-palette, 900);
+$accent: mat.define-palette($yellow-palette, 900);
 
 $theme: mat.define-light-theme(
   (
