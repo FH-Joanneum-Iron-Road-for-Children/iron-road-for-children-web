@@ -44,7 +44,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProgramViewComponent } from './program/view/program-view/program-view.component';
 import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
 import { EventDialogComponent } from './program/shared/event-dialog/event-dialog.component';
-
+import { ConfirmDialogComponent } from './voting/shared/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +68,7 @@ import { EventDialogComponent } from './program/shared/event-dialog/event-dialog
     VotingElementComponent,
     VotingCardComponent,
     VotingAddEditComponent,
+    ConfirmDialogComponent,
   ],
 
   imports: [
@@ -98,6 +99,5 @@ import { EventDialogComponent } from './program/shared/event-dialog/event-dialog
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'de-AT' }],
   bootstrap: [AppComponent],
-  entryComponents: [DummyDialogComponent, DeleteDialogComponent],
 })
 export class AppModule {}
