@@ -23,10 +23,10 @@ export class EventFormComponent implements OnInit {
     location: new FormControl('', Validators.min(1)),
     startDateTime: new FormControl('', Validators.min(1)),
     endDateTime: new FormControl('', Validators.min(1)),
-    file1: new FormControl('', Validators.required),
+    file0: new FormControl('', Validators.required),
+    file1: new FormControl('', Validators.nullValidator),
     file2: new FormControl('', Validators.nullValidator),
     file3: new FormControl('', Validators.nullValidator),
-    file4: new FormControl('', Validators.nullValidator),
   });
 
   title: string | undefined;
@@ -47,10 +47,32 @@ export class EventFormComponent implements OnInit {
     console.log(this.event);
   }
 
-  uploadFile(event: Event) {
-    const target = event.target as HTMLInputElement;
-    const files = target.files as FileList;
-    console.log(files);
+  uploadedFile: File | null = null;
+  uploadedFiles: (File | null)[] = Array(4).fill(null);
+
+  openFileSelectDialog(index: number) {
+    document.getElementById('file-input' + index)?.click();
+  }
+
+  onFileSelected(event: any, index: number) {
+    this.uploadedFile = event.target.files[0] as File;
+
+    if (this.isValidImageFile()) {
+      this.uploadedFiles[index] = this.uploadedFile;
+    }
+  }
+
+  isValidImageFile(): boolean {
+    if (this.uploadedFile) {
+      const allowedFormats = ['image/png', 'image/jpeg', 'image/jpg'];
+      const maxFileSize = 2 * 1024 * 1024; // 2MB
+
+      return (
+        allowedFormats.includes(this.uploadedFile.type) &&
+        this.uploadedFile.size <= maxFileSize
+      );
+    }
+    return false;
   }
 
   cancel() {

@@ -21,19 +21,30 @@
   column-gap: 2rem;
 }
 
+.file-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1rem;
+}
+
+.upload-title {
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+  column-gap: 1rem;
+}
+
 .upload-btn {
   background-color: #fff9dc !important;
   height: 7rem !important;
   width: 10rem !important;
   border-radius: 0 !important;
-  margin-bottom: 1rem;
-}
-
-.form-btn {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
 }
 
 mat-hint {
   color: grey;
+}
+
+.form-btn {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
