@@ -83,6 +83,11 @@ export class EventFormComponent implements OnInit {
     return false;
   }
 
+  removeFile(index: number) {
+    this.filePreviews[index] = null;
+    this.uploadedFiles[index] = null;
+  }
+
   cancel() {
     this.router.navigate(['program']);
   }

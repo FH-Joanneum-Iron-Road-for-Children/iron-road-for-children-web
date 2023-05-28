@@ -122,6 +122,12 @@
             style="display: none"
             type="file" />
           <div class="file-info">
+            <button
+              (click)="removeFile(i)"
+              *ngIf="uploadedFiles[i]"
+              mat-icon-button>
+              <mat-icon>close</mat-icon>
+            </button>
             <div class="file-name">
               {{ uploadedFiles[i]?.name ?? 'Keine Datei' }}
             </div>
