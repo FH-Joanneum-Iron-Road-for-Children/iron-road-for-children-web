@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EventDto } from '../../models/models';
 
 @Component({
   selector: 'app-footer',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./program.component.css'],
 })
 export class ProgramComponent implements OnInit {
+  public events: EventDto[] = [];
+
   ngOnInit(): void {
     console.log('ngOnInit is called');
   }
