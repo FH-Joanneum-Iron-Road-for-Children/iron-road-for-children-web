@@ -21,5 +21,14 @@ export class ProgramComponent implements OnInit {
 
   onSelectedChipsChange(selectedChips: string[]): void {
     this.selectedChips = selectedChips;
+    this.filterEvents();
+  }
+
+  filterEvents() {
+    this.events = this.events.filter((event) => {
+      return this.selectedChips.some((chip: string) => {
+        return event.category?.name?.includes(chip);
+      });
+    });
   }
 }
