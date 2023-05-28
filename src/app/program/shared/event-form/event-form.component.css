@@ -45,6 +45,22 @@
   max-width: 10rem;
 }
 
+.file-info {
+  font-size: 80%;
+  grid-template-columns: 1fr 1fr;
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  margin-bottom: 1rem;
+}
+
+.file-name {
+  width: 7rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 mat-hint {
   color: grey;
 }

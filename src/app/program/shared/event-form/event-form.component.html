@@ -121,6 +121,11 @@
             id="file-input{{ i }}"
             style="display: none"
             type="file" />
+          <div class="file-info">
+            <div class="file-name">
+              {{ uploadedFiles[i]?.name ?? 'Keine Datei' }}
+            </div>
+          </div>
         </div>
       </div>
 
