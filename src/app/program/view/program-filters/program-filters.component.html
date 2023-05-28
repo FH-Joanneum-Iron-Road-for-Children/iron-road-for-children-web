@@ -2,9 +2,11 @@
   <section>
     <div>
       <mat-chip-list>
-        <mat-chip-option>Freitag Datum</mat-chip-option>
-        <mat-chip-option>Samstag Datum</mat-chip-option>
-        <mat-chip-option>Sonntag Datum</mat-chip-option>
+        <mat-chip-option
+          (click)="toggleChip(chip)"
+          *ngFor="let chip of dateFilters">
+          {{ chip }}
+        </mat-chip-option>
       </mat-chip-list>
     </div>
     <div>

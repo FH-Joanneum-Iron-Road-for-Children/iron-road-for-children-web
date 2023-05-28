@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CategoryDialogComponent } from '../../shared/event-dialog/category-dialog/category-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { EventCategoryDto, EventDto } from '../../../models/models';
+import { EventCategoryDto } from '../../../models/models';
 
 @Component({
   selector: 'app-program-filters',
@@ -10,9 +10,9 @@ import { EventCategoryDto, EventDto } from '../../../models/models';
   styleUrls: ['./program-filters.component.css'],
 })
 export class ProgramFiltersComponent {
-  @Input() events: EventDto[] = [];
+  @Input() dateFilters: string[] = [];
   @Input() categoryFilters: EventCategoryDto[] = [];
-  @Output() selectedChipsChange = new EventEmitter<string[]>();
+  @Output() selectedCategoryChipsChange = new EventEmitter<string[]>();
 
   private selectedChips: string[] = [];
 
@@ -26,7 +26,7 @@ export class ProgramFiltersComponent {
     } else {
       this.selectedChips.push(chip);
     }
-    this.selectedChipsChange.emit(this.selectedChips);
+    this.selectedCategoryChipsChange.emit(this.selectedChips);
   }
 
   openDialogToEditCategory() {
