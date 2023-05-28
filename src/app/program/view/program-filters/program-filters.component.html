@@ -9,17 +9,19 @@
     </div>
     <div>
       <button
-        mat-raised-button
+        (click)="openDialogToEditCategory()"
         class="btn btn-secondary"
-        (click)="openDialogToEditCategory()">
-        <mat-icon>edit</mat-icon> Kategorien
+        mat-raised-button>
+        <mat-icon>edit</mat-icon>
+        Kategorien
       </button>
 
       <button
-        mat-raised-button
+        (click)="goToAddEvent()"
         class="btn btn-primary"
-        (click)="goToAddEvent()">
-        <mat-icon>add</mat-icon> Event
+        mat-raised-button>
+        <mat-icon>add</mat-icon>
+        Event
       </button>
     </div>
   </section>
@@ -27,9 +29,11 @@
   <section class="row-filters-categories">
     <div>
       <mat-chip-list>
-        <mat-chip-option>Musik</mat-chip-option>
-        <mat-chip-option>Tattoo</mat-chip-option>
-        <mat-chip-option>Ausfahrten</mat-chip-option>
+        <mat-chip-option
+          (click)="toggleChip(chip.name)"
+          *ngFor="let chip of categoryFilters">
+          {{ chip.name }}
+        </mat-chip-option>
       </mat-chip-list>
     </div>
   </section>

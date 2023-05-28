@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EventDto } from '../../models/models';
+import { EventCategoryDto, EventDto } from '../../models/models';
+import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,8 +9,12 @@ import { EventDto } from '../../models/models';
 })
 export class ProgramComponent implements OnInit {
   public events: EventDto[] = [];
+  public categories: EventCategoryDto[] = [];
+
+  constructor(private eventService: EventService) {}
 
   ngOnInit(): void {
-    console.log('ngOnInit is called');
+    this.events = this.eventService.getEvents();
+    this.categories = this.eventService.getCategories();
   }
 }

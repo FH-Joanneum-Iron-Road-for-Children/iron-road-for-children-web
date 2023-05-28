@@ -1,5 +1,7 @@
 <app-navigation></app-navigation>
 <main>
-  <app-program-filters></app-program-filters>
+  <app-program-filters
+    [categoryFilters]="categories"
+    [events]="events"></app-program-filters>
   <app-program-view [events]="events"></app-program-view>
 </main>
