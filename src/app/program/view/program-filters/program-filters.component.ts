@@ -12,6 +12,7 @@ import { EventCategoryDto, EventDto } from '../../../models/models';
 export class ProgramFiltersComponent {
   @Input() events: EventDto[] = [];
   @Input() categoryFilters: EventCategoryDto[] = [];
+  @Output() selectedChipsChange = new EventEmitter<string[]>();
 
   private selectedChips: string[] = [];
 
@@ -25,6 +26,7 @@ export class ProgramFiltersComponent {
     } else {
       this.selectedChips.push(chip);
     }
+    this.selectedChipsChange.emit(this.selectedChips);
   }
 
   openDialogToEditCategory() {

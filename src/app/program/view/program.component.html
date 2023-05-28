@@ -1,6 +1,7 @@
 <app-navigation></app-navigation>
 <main>
   <app-program-filters
+    (selectedChipsChange)="onSelectedChipsChange($event)"
     [categoryFilters]="categories"
     [events]="events"></app-program-filters>
   <app-program-view [events]="events"></app-program-view>

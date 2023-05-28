@@ -10,11 +10,16 @@ import { EventService } from '../../services/event.service';
 export class ProgramComponent implements OnInit {
   public events: EventDto[] = [];
   public categories: EventCategoryDto[] = [];
+  private selectedChips: any;
 
   constructor(private eventService: EventService) {}
 
   ngOnInit(): void {
     this.events = this.eventService.getEvents();
     this.categories = this.eventService.getCategories();
+  }
+
+  onSelectedChipsChange(selectedChips: string[]): void {
+    this.selectedChips = selectedChips;
   }
 }
