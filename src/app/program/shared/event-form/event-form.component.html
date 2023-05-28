@@ -102,12 +102,17 @@
             (click)="openFileSelectDialog(i)"
             class="upload-btn"
             mat-flat-button>
-            <div>
+            <div *ngIf="!uploadedFiles[i]">
               <mat-icon>upload</mat-icon>
             </div>
-            <div>
+            <div *ngIf="!uploadedFiles[i]">
               {{ i == 0 ? 'Titelbild' : 'Foto' }}
             </div>
+            <img
+              *ngIf="uploadedFiles[i]"
+              [src]="filePreviews[i]"
+              alt="{{ uploadedFiles[i]?.name }}"
+              class="preview" />
           </button>
           <input
             (change)="onFileSelected($event, i)"

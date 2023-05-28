@@ -49,6 +49,7 @@ export class EventFormComponent implements OnInit {
 
   uploadedFile: File | null = null;
   uploadedFiles: (File | null)[] = Array(4).fill(null);
+  filePreviews: (string | ArrayBuffer | null)[] = Array(4).fill(null);
 
   openFileSelectDialog(index: number) {
     document.getElementById('file-input' + index)?.click();
@@ -59,6 +60,13 @@ export class EventFormComponent implements OnInit {
 
     if (this.isValidImageFile()) {
       this.uploadedFiles[index] = this.uploadedFile;
+
+      // preview
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.filePreviews[index] = e.target.result;
+      };
+      reader.readAsDataURL(this.uploadedFile);
     }
   }
 
