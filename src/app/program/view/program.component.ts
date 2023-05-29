@@ -40,11 +40,27 @@ export class ProgramComponent implements OnInit {
     this.events = this.eventService.getEvents();
     this.originalEventList = this.events;
 
-    // get dates from startDateTime and endDateTime properties
+    // get dates from both startDateTime and endDateTime properties
     const startTimestamps = this.testDates.map((event) => event.startDateTime);
     const endTimestamps = this.testDates.map((event) => event.endDateTime);
     this.dates = startTimestamps.concat(endTimestamps);
+    this.dates = this.getUniqueDates();
     this.categories = this.eventService.getCategories();
+  }
+
+  private getUniqueDates(): number[] {
+    const uniqueDatesSet = new Set<number>();
+
+    this.dates.forEach((date) => {
+      const dateFormat = this.dateConverterService.getDateFromTimestamp(date);
+      uniqueDatesSet.add(
+        this.dateConverterService.getTimestampWithoutTimeFromDate(dateFormat)
+      );
+    });
+
+    const uniqueDatesArray = Array.from(uniqueDatesSet);
+    uniqueDatesArray.sort((a, b) => a - b); // order
+    return uniqueDatesArray;
   }
 
   onSelectedDateChipsChange(selectedChips: any): void {}
