@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventCategoryDto, EventDto } from '../../models/models';
 import { EventService } from '../../services/event.service';
 import { DateConverterService } from '../../services/date-converter.service';
+import { formatDate } from '@angular/common';
 
 interface Item {
   // for test data
@@ -63,23 +64,39 @@ export class ProgramComponent implements OnInit {
     return uniqueDatesArray;
   }
 
-  onSelectedDateChipsChange(selectedChips: any): void {}
-
   onSelectedCategoryChipsChange(selectedChips: any): void {
     this.selectedCategoryChips = selectedChips;
-    if (selectedChips.length != 0) {
-      this.filterEvents();
-    } else {
-      this.events = this.originalEventList;
-    }
+    this.filterEvents();
+  }
+
+  onSelectedDateChipsChange(selectedChips: any): void {
+    this.selectedDateChips = selectedChips;
+    this.filterEvents();
   }
 
   filterEvents() {
-    this.events = this.originalEventList.filter((event) => {
-      // if matches any filter set
-      return this.selectedCategoryChips.some((chip: string) => {
-        return event.category?.name?.includes(chip);
+    if (
+      this.selectedDateChips.length != 0 ||
+      this.selectedCategoryChips.length != 0
+    ) {
+      this.events = this.originalEventList.filter((event) => {
+        // if matches any filter set
+        return (
+          this.selectedDateChips.some((chip: Date) => {
+            const formattedDate = formatDate(chip, 'dd.MM.yyyy', 'de-AT');
+            console.log(formattedDate);
+            return (
+              event.startDateTime?.includes(formattedDate) ||
+              event.endDateTime?.includes(formattedDate)
+            );
+          }) ||
+          this.selectedCategoryChips.some((chip: string) => {
+            return event.category?.name?.includes(chip);
+          })
+        );
       });
-    });
+    } else {
+      this.events = this.originalEventList;
+    }
   }
 }

@@ -37,7 +37,22 @@ export class ProgramFiltersComponent {
     this.selectedCategoryChipsChange.emit(this.selectedCategoryChips);
   }
 
-  toggleDateChip(chip: number) {}
+  toggleDateChip(chip: number) {
+    const index = this.selectedDateChips.findIndex(
+      (date) =>
+        this.dateConverterService.getTimestampWithoutTimeFromDate(date) ==
+        this.dateConverterService.getTimestampWithoutTime(chip)
+    );
+
+    if (index > -1) {
+      this.selectedDateChips.splice(index, 1);
+    } else {
+      this.selectedDateChips.push(
+        this.dateConverterService.getDateWithoutTimeFromTimestamp(chip)
+      );
+    }
+    this.selectedDateChipsChange.emit(this.selectedDateChips);
+  }
 
   openDialogToEditCategory() {
     this.dialog.open(CategoryDialogComponent, {
