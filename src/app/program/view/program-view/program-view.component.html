@@ -1,4 +1,5 @@
 <main>
+  <section *ngIf="events?.length == 0">Keine Events vorhanden.</section>
   <section>
     <div>
       <mat-card *ngFor="let event of events" class="program-view">

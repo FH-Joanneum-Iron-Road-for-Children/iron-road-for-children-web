@@ -5,11 +5,14 @@
   flex-direction: row;
   justify-content: flex-start;
   background-color: #fffbfe;
+  border-radius: 20px;
 }
+
 .header {
   flex-grow: 0.5;
   align-self: center;
 }
+
 .picture {
   object-fit: cover;
   object-position: left;
