@@ -3,6 +3,7 @@ import { CategoryDialogComponent } from '../../shared/event-dialog/category-dial
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { EventCategoryDto } from '../../../models/models';
+import { DateConverterService } from '../../../services/date-converter.service';
 
 @Component({
   selector: 'app-program-filters',
@@ -10,24 +11,33 @@ import { EventCategoryDto } from '../../../models/models';
   styleUrls: ['./program-filters.component.css'],
 })
 export class ProgramFiltersComponent {
-  @Input() dateFilters: string[] = [];
+  @Input() dateFilters: number[] = [];
   @Input() categoryFilters: EventCategoryDto[] = [];
   @Output() selectedCategoryChipsChange = new EventEmitter<string[]>();
+  @Output() selectedDateChipsChange = new EventEmitter<Date[]>();
 
-  private selectedChips: string[] = [];
+  selectedCategoryChips: string[] = [];
+  selectedDateChips: Date[] = [];
 
-  constructor(public dialog: MatDialog, private router: Router) {}
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    public dateConverterService: DateConverterService
+  ) {}
 
-  toggleChip(chip: string) {
-    const index = this.selectedChips.indexOf(chip);
+  toggleCategoryChip(chip: string) {
+    const index = this.selectedCategoryChips.indexOf(chip);
 
     if (index > -1) {
-      this.selectedChips.splice(index, 1);
+      // if found
+      this.selectedCategoryChips.splice(index, 1);
     } else {
-      this.selectedChips.push(chip);
+      this.selectedCategoryChips.push(chip);
     }
-    this.selectedCategoryChipsChange.emit(this.selectedChips);
+    this.selectedCategoryChipsChange.emit(this.selectedCategoryChips);
   }
+
+  toggleDateChip(chip: number) {}
 
   openDialogToEditCategory() {
     this.dialog.open(CategoryDialogComponent, {

@@ -3,9 +3,12 @@
     <div>
       <mat-chip-list>
         <mat-chip-option
-          (click)="toggleChip(chip)"
+          (click)="toggleDateChip(chip)"
           *ngFor="let chip of dateFilters">
-          {{ chip }}
+          {{
+            this.dateConverterService.getDateFromTimestamp(chip)
+              | date : 'EEEE, dd.MM.yyyy'
+          }}
         </mat-chip-option>
       </mat-chip-list>
     </div>
@@ -32,7 +35,7 @@
     <div>
       <mat-chip-list>
         <mat-chip-option
-          (click)="toggleChip(chip.name)"
+          (click)="toggleCategoryChip(chip.name)"
           *ngFor="let chip of categoryFilters">
           {{ chip.name }}
         </mat-chip-option>

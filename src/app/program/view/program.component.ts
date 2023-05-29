@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { EventCategoryDto, EventDto } from '../../models/models';
 import { EventService } from '../../services/event.service';
+import { DateConverterService } from '../../services/date-converter.service';
+
+interface Item {
+  // for test data
+  startDateTime: number;
+  endDateTime: number;
+}
 
 @Component({
   selector: 'app-footer',
@@ -9,22 +16,41 @@ import { EventService } from '../../services/event.service';
 })
 export class ProgramComponent implements OnInit {
   public events: EventDto[] = [];
-  public originalEventList: EventDto[] = []; // for filtering
+  public originalEventList: EventDto[] = []; // for resetting the list
   public categories: EventCategoryDto[] = [];
-  private selectedChips: any;
-  dates: string[] = ['Fr, 28.07.2023', 'Sa, 29.07.2023', 'So, 30.07.2023'];
+  private selectedCategoryChips: any = [];
+  private selectedDateChips: any = [];
 
-  constructor(private eventService: EventService) {}
+  dates: number[] = [];
 
-  // TODO: update view if category list is updated
+  testDates: Item[] = [
+    // test data
+    { startDateTime: 1690555193, endDateTime: 1690641593 },
+    { startDateTime: 1690641593, endDateTime: 1690641000 },
+    { startDateTime: 1690727000, endDateTime: 1690727000 },
+    { startDateTime: 1690727030, endDateTime: 1690727050 },
+  ];
+
+  constructor(
+    private eventService: EventService,
+    private dateConverterService: DateConverterService
+  ) {}
+
   ngOnInit(): void {
     this.events = this.eventService.getEvents();
     this.originalEventList = this.events;
+
+    // get dates from startDateTime and endDateTime properties
+    const startTimestamps = this.testDates.map((event) => event.startDateTime);
+    const endTimestamps = this.testDates.map((event) => event.endDateTime);
+    this.dates = startTimestamps.concat(endTimestamps);
     this.categories = this.eventService.getCategories();
   }
 
-  onSelectedChipsChange(selectedChips: any): void {
-    this.selectedChips = selectedChips;
+  onSelectedDateChipsChange(selectedChips: any): void {}
+
+  onSelectedCategoryChipsChange(selectedChips: any): void {
+    this.selectedCategoryChips = selectedChips;
     if (selectedChips.length != 0) {
       this.filterEvents();
     } else {
@@ -35,7 +61,7 @@ export class ProgramComponent implements OnInit {
   filterEvents() {
     this.events = this.originalEventList.filter((event) => {
       // if matches any filter set
-      return this.selectedChips.some((chip: string) => {
+      return this.selectedCategoryChips.some((chip: string) => {
         return event.category?.name?.includes(chip);
       });
     });

@@ -1,7 +1,8 @@
 <app-navigation></app-navigation>
 <main>
   <app-program-filters
-    (selectedCategoryChipsChange)="onSelectedChipsChange($event)"
+    (selectedCategoryChipsChange)="onSelectedCategoryChipsChange($event)"
+    (selectedDateChipsChange)="onSelectedDateChipsChange($event)"
     [categoryFilters]="categories"
     [dateFilters]="dates"></app-program-filters>
   <app-program-view [events]="events"></app-program-view>
