@@ -9,10 +9,9 @@ describe('VotingAddEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VotingAddEditComponent ],
+      declarations: [VotingAddEditComponent],
       schemas: [NO_ERRORS_SCHEMA],
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(VotingAddEditComponent);
     component = fixture.componentInstance;
