@@ -16,6 +16,8 @@ export class NewVotingButtonComponent implements OnInit {
     // Navigate to /add-edit page
     this.dialog.open(VotingAddEditComponent, {
       disableClose: true,
+      width: '45rem',
+      height: '30rem',
     });
   }
 }

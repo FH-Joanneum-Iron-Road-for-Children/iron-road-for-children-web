@@ -1,14 +1,14 @@
 <section>
   <div class="form">
     <form [formGroup]="eventFormGroup">
-      <div class="one-col">
+      <div class="col-1">
         <mat-form-field appearance="fill">
           <mat-label>Titel</mat-label>
           <input formControlName="title" matInput placeholder="Titel" />
         </mat-form-field>
       </div>
 
-      <div class="one-col">
+      <div class="col-1">
         <mat-form-field appearance="fill">
           <mat-label>Beschreibung</mat-label>
           <input
@@ -18,7 +18,7 @@
         </mat-form-field>
       </div>
 
-      <div class="two-col">
+      <div class="col-2">
         <mat-form-field appearance="fill" *ngIf="event">
           <mat-label>Standort</mat-label>
           <mat-select [(value)]="event.eventLocation.id">
@@ -50,7 +50,6 @@
               {{ category.name }}
             </mat-option>
           </mat-select>
-          <!--          <input formControlName="location" *ngIf="event">-->
         </mat-form-field>
 
         <mat-form-field appearance="fill" *ngIf="!event">
@@ -62,11 +61,10 @@
               {{ category.name }}
             </mat-option>
           </mat-select>
-          <!--          <input formControlName="location" *ngIf="event">-->
         </mat-form-field>
       </div>
 
-      <div class="two-col">
+      <div class="col-2">
         <mat-form-field>
           <mat-label>Start</mat-label>
           <input
@@ -90,30 +88,6 @@
             [touchUi]="false">
           </ngx-mat-datetime-picker>
         </mat-form-field>
-
-        <!--        <mat-form-field *ngIf="!event">-->
-        <!--          <mat-label>Start</mat-label>-->
-        <!--          <input-->
-        <!--            [disabled]="false"-->
-        <!--            [ngxMatDatetimePicker]="picker"-->
-        <!--            matInput-->
-        <!--            formControlName="startDateTime"-->
-        <!--            placeholder="Start" />-->
-        <!--          <mat-datepicker-toggle-->
-        <!--            [for]="$any(picker)"-->
-        <!--            matSuffix></mat-datepicker-toggle>-->
-        <!--          <ngx-mat-datetime-picker-->
-        <!--            #picker-->
-        <!--            [disableMinute]="false"-->
-        <!--            [enableMeridian]="false"-->
-        <!--            [hideTime]="false"-->
-        <!--            [showSeconds]="false"-->
-        <!--            [showSpinners]="true"-->
-        <!--            [stepHour]="1"-->
-        <!--            [stepMinute]="1"-->
-        <!--            [touchUi]="false">-->
-        <!--          </ngx-mat-datetime-picker>-->
-        <!--        </mat-form-field>-->
 
         <mat-form-field>
           <mat-label>Ende</mat-label>
@@ -158,7 +132,7 @@
       </div>
 
       <h4>Weitere Fotos</h4>
-      <div class="three-col">
+      <div class="col-3">
         <button
           class="upload-btn"
           mat-flat-button

@@ -43,9 +43,5 @@ export class VotingAddEditComponent {
     }
   }
 
-  saveCategories() {
-    throw new Error('Method not implemented.');
-  }
-
-  sendDataToRest() {}
+  saveCategories() {}
 }
