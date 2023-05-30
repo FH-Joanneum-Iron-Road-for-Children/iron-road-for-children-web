@@ -6,6 +6,7 @@ import { User } from '../models/models';
 import { MatDialog } from '@angular/material/dialog';
 import { DummyDialogComponent } from '../dummy-dialog/dummy-dialog.component';
 import { EventService } from '../services/event.service';
+import { EventLocationService } from '../services/event-location.service';
 
 @Component({
   selector: 'app-login',
@@ -28,15 +29,16 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
 
-    private eventService: EventService
+    private eventService: EventService,
+    private eventLocationService: EventLocationService
   ) {}
 
   // you can remove this method but it is only used because of lint complaining that it is empty
   ngOnInit(): void {
     console.log('ngOnInit is called');
 
-    this.eventService
-      .getAllEvents()
+    this.eventLocationService
+      .getAllEventLocations()
       .subscribe((events) => console.log('events', events));
   }
 
