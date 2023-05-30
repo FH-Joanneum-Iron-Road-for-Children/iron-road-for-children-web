@@ -36,6 +36,14 @@ export const LOCATION_DATA: EventLocationDto[] = [
     id: 4,
     name: 'Rock Stage',
   },
+  {
+    id: 5,
+    name: 'Ausfahrt 123',
+  },
+  {
+    id: 6,
+    name: 'Ausfahrt Exit 123',
+  },
 ];
 
 export const EVENT_DATA: EventDto[] = [
@@ -87,7 +95,7 @@ export const EVENT_DATA: EventDto[] = [
     startDateTimeUTC: 1684528868,
     endDateTimeUTC: 1684874468,
     eventLocation: {
-      id: 3,
+      id: 5,
       name: 'Ausfahrt 123',
     },
     image: {
@@ -96,7 +104,7 @@ export const EVENT_DATA: EventDto[] = [
       path: '',
     },
     category: {
-      id: 1,
+      id: 4,
       name: 'Ausfahrten',
     },
     isEditable: true,
@@ -123,11 +131,11 @@ export const EVENT_DATA: EventDto[] = [
       title: '',
     },
     eventLocation: {
-      id: 66,
+      id: 6,
       name: 'Ausfahrt Exit 123',
     },
     category: {
-      id: 1,
+      id: 4,
       name: 'Ausfahrten',
     },
     isEditable: true,
@@ -158,7 +166,7 @@ export const EVENT_DATA: EventDto[] = [
       name: 'Main Stage',
     },
     category: {
-      id: 2,
+      id: 1,
       name: 'Musik',
     },
     isEditable: true,
@@ -178,14 +186,14 @@ export const EVENT_DATA: EventDto[] = [
     },
     title: 'Preisverleihung',
     startDateTimeUTC: 1684528868,
-    endDateTimeUTC: 0,
+    endDateTimeUTC: 1684530000,
     eventLocation: {
       id: 1,
       name: 'Main Stage',
     },
     category: {
-      id: 888,
-      name: CATEGORY_DATA[1].name,
+      id: 1,
+      name: '',
     },
     image: {
       id: 88,
