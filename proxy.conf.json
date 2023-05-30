@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://backend.irfc.st-ki.at/api/",
+    "target": "https://backend.irfc-test.st-ki.at",
     "secure": true,
     "changeOrigin": false,
     "logLevel": "debug"
