@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
@@ -44,7 +45,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProgramViewComponent } from './program/view/program-view/program-view.component';
 import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
 import { EventDialogComponent } from './program/shared/event-dialog/event-dialog.component';
+import { registerLocaleData } from '@angular/common';
+import localeAt from '@angular/common/locales/de-AT';
 
+registerLocaleData(localeAt, 'de-AT');
 
 @NgModule({
   declarations: [
