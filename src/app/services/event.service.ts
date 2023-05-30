@@ -3,12 +3,13 @@ import { EventDto } from '../models/models';
 import { EVENT_DATA } from '../test-data/test-data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventService {
-  baseUrl = 'https://backend.irfc.st-ki.at/api/';
+  baseUrl = environment.baseUrl;
 
   // header = new Headers().set('access-control-allow-origin',"https://backend.irfc.st-ki.at/api/");
   httpOptions = {

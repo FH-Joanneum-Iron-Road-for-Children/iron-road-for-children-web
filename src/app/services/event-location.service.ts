@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
 import { EventDto, EventLocationDto } from '../models/models';
 import { EVENT_DATA } from '../test-data/test-data';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventLocationService {
-  baseUrl = 'http://localhost:8080/api/';
+  baseUrl = environment.baseUrl;
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+    }),
+  };
 
   constructor(private httpClient: HttpClient) {}
 
