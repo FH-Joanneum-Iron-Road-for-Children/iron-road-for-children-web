@@ -4,12 +4,6 @@ import { EventService } from '../../services/event.service';
 import { DateConverterService } from '../../services/date-converter.service';
 import { formatDate } from '@angular/common';
 
-interface Item {
-  // for test data
-  startDateTime: number;
-  endDateTime: number;
-}
-
 @Component({
   selector: 'app-footer',
   templateUrl: './program.component.html',
@@ -24,14 +18,6 @@ export class ProgramComponent implements OnInit {
 
   dates: number[] = [];
 
-  testDates: Item[] = [
-    // test data
-    { startDateTime: 1690555193, endDateTime: 1690641593 },
-    { startDateTime: 1690641593, endDateTime: 1690641000 },
-    { startDateTime: 1690727000, endDateTime: 1690727000 },
-    { startDateTime: 1690727030, endDateTime: 1690727050 },
-  ];
-
   constructor(
     private eventService: EventService,
     private dateConverterService: DateConverterService
@@ -42,8 +28,8 @@ export class ProgramComponent implements OnInit {
     this.originalEventList = this.events;
 
     // get dates from both startDateTime and endDateTime properties
-    const startTimestamps = this.testDates.map((event) => event.startDateTime);
-    const endTimestamps = this.testDates.map((event) => event.endDateTime);
+    const startTimestamps = this.events.map((event) => event.startDateTimeUTC);
+    const endTimestamps = this.events.map((event) => event.endDateTimeUTC);
     this.dates = startTimestamps.concat(endTimestamps);
     this.dates = this.getUniqueDates();
     this.categories = this.eventService.getCategories();
@@ -84,10 +70,19 @@ export class ProgramComponent implements OnInit {
         return (
           this.selectedDateChips.some((chip: Date) => {
             const formattedDate = formatDate(chip, 'dd.MM.yyyy', 'de-AT');
+            const chipTimestamp =
+              this.dateConverterService.getTimestampWithoutTimeFromDate(chip);
+            const startTimestamp =
+              this.dateConverterService.getTimestampWithoutTime(
+                event.startDateTimeUTC
+              );
+            const endTimestamp =
+              this.dateConverterService.getTimestampWithoutTime(
+                event.endDateTimeUTC
+              );
             console.log(formattedDate);
             return (
-              event.startDateTime?.includes(formattedDate) ||
-              event.endDateTime?.includes(formattedDate)
+              startTimestamp == chipTimestamp || endTimestamp == chipTimestamp
             );
           }) ||
           this.selectedCategoryChips.some((chip: string) => {
