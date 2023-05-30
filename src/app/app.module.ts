@@ -45,9 +45,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProgramViewComponent } from './program/view/program-view/program-view.component';
 import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
 import { EventDialogComponent } from './program/shared/event-dialog/event-dialog.component';
-
-import { UtcToLocalTimePipe } from './services/pipes/UtcToLocalTimePipe';
-
 import { registerLocaleData } from '@angular/common';
 import localeAt from '@angular/common/locales/de-AT';
 
@@ -75,7 +72,6 @@ registerLocaleData(localeAt, 'de-AT');
     VotingElementComponent,
     VotingCardComponent,
     VotingAddEditComponent,
-    UtcToLocalTimePipe,
   ],
 
   imports: [

@@ -78,12 +78,4 @@ export class EventFormComponent implements OnInit {
   submit() {
     this.router.navigate(['program']);
   }
-
-  showLocationValue() {
-    if (this.event == undefined) {
-      return '';
-    } else {
-      return this.event.eventLocation.id;
-    }
-  }
 }
