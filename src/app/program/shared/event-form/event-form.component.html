@@ -19,9 +19,9 @@
       </div>
 
       <div class="col-2">
-        <mat-form-field appearance="fill" *ngIf="event">
+        <mat-form-field appearance="fill">
           <mat-label>Standort</mat-label>
-          <mat-select [(value)]="event.eventLocation.id">
+          <mat-select [(value)]="location">
             <mat-option
               *ngFor="let location of locations"
               [value]="location.id">
@@ -30,31 +30,9 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" *ngIf="!event">
-          <mat-label>Standort</mat-label>
-          <mat-select>
-            <mat-option
-              *ngFor="let location of locations"
-              [value]="location.id">
-              {{ location.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" *ngIf="event">
+        <mat-form-field appearance="fill">
           <mat-label>Kategorie</mat-label>
-          <mat-select [(value)]="event.category.id">
-            <mat-option
-              *ngFor="let category of categories"
-              [value]="category.id">
-              {{ category.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" *ngIf="!event">
-          <mat-label>Kategorie</mat-label>
-          <mat-select>
+          <mat-select [(value)]="category">
             <mat-option
               *ngFor="let category of categories"
               [value]="category.id">

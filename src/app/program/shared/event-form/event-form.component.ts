@@ -17,12 +17,11 @@ import { CATEGORY_DATA, LOCATION_DATA } from '../../../test-data/test-data';
 export class EventFormComponent implements OnInit {
   @Input() event: EventDto | undefined;
 
-  //TODO: overlook! Datepicker -> Date?
   eventFormGroup = new FormGroup({
     title: new FormControl('', Validators.min(1)),
     description: new FormControl('', Validators.min(1)),
-    location: new FormControl('', Validators.min(1)),
-    category: new FormControl(''),
+    location: new FormControl(-1, Validators.required),
+    category: new FormControl(-1, Validators.required),
     startDateTime: new FormControl(new Date(), Validators.min(1)),
     endDateTime: new FormControl(new Date(), Validators.min(1)),
     file1: new FormControl('', Validators.required),
@@ -47,19 +46,27 @@ export class EventFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.event) {
+      // edit event
       this.eventFormGroup.setValue({
         title: this.event.title,
         description: this.event.eventInfo?.infoText,
-        location: this.event.eventLocation.name,
-        category: this.event.category.name,
+        location: this.event.eventLocation.id,
+        category: this.event.category.id,
         startDateTime: new Date(this.event.startDateTimeUTC * 1000),
         endDateTime: new Date(this.event.endDateTimeUTC * 1000),
         file1: this.event.image?.path,
-        file2: null,
-        file3: null,
-        file4: null,
+        file2: this.event.eventInfo?.pictures[0]?.path ?? null,
+        file3: this.event.eventInfo?.pictures[1]?.path ?? null,
+        file4: this.event.eventInfo?.pictures[2]?.path ?? null,
+      });
 
-        // file2: this.event.eventInfo?.pictures[0]
+      this.category = this.event.category.id;
+      this.location = this.event.eventLocation.id;
+    } else {
+      // add event - reset datetime fields
+      this.eventFormGroup.patchValue({
+        startDateTime: null,
+        endDateTime: null,
       });
     }
     console.log(this.event);
