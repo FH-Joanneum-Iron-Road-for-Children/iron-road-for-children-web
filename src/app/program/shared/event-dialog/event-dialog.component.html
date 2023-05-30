@@ -1,8 +1,8 @@
 <div mat-dialog-content>
-  <div class="two-even-col">
+  <div class="col-2e">
     <section class="scroll-container left-align">
       <ul>
-        <div *ngFor="let item of itemList" class="list-item two-col">
+        <div *ngFor="let item of itemList" class="list-item col-2">
           <li>{{ item.name }}</li>
           <button (click)="removeItem(item)" mat-icon-button tabindex="-1">
             <mat-icon>delete</mat-icon>

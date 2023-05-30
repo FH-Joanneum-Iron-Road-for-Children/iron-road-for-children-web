@@ -22,4 +22,11 @@ export class ProgramViewComponent {
       console.log('The dialog was closed');
     });
   }
+
+  getDateFromUTC(startDateTimeUTC: number | undefined) {
+    if (startDateTimeUTC == undefined) {
+      throw new Error('undefined timestamp');
+    }
+    return new Date(startDateTimeUTC * 1000);
+  }
 }

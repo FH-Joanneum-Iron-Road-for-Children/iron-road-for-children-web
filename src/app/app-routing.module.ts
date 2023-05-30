@@ -28,7 +28,7 @@ const routes: Routes = [
   {
     path: 'program/edit/:id',
     component: EditEventComponent,
-  }
+  },
 ];
 
 @NgModule({

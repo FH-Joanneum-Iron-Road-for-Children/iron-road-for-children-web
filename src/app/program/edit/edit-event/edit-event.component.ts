@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../../../services/event.service';
 import { EventDto } from '../../../models/models';
@@ -9,19 +9,18 @@ import { EventDto } from '../../../models/models';
   styleUrls: ['./edit-event.component.css'],
 })
 export class EditEventComponent implements OnInit {
-  id: any;
-
-  @Input() event!: EventDto;
-
+  id: number | undefined;
+  event: EventDto | undefined;
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params) => {
-      this.id = params.get('id');
+    this.route.params.subscribe((value) => (this.id = value['id']));
+    if (this.id) {
       this.event = this.eventService.getEventById(this.id) as EventDto;
-    });
+      console.log(this.event);
+    }
   }
 }
