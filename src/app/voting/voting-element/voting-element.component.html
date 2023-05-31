@@ -5,7 +5,7 @@
       <div mat-icon-button>
         <mat-slide-toggle color="primary">Voting inaktiv</mat-slide-toggle>
       </div>
-      <button mat-icon-button>
+      <button mat-icon-button (click)="openEditVotingDialog()">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button (click)="openDeleteVotingDialog()">
