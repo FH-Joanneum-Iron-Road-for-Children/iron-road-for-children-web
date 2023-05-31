@@ -20,7 +20,6 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { EventFormComponent } from './program/shared/event-form/event-form.component';
-import { DeleteDialogComponent } from './program/view/delete-dialog/delete-dialog.component';
 import { VotingComponent } from './voting/voting.component';
 import { NewVotingButtonComponent } from './voting/new-voting-button/new-voting-button.component';
 import { VotingElementComponent } from './voting/voting-element/voting-element.component';
@@ -57,7 +56,6 @@ registerLocaleData(localeAt, 'de-AT');
     ProgramFiltersComponent,
     AddEventComponent,
     ProgramViewComponent,
-    DeleteDialogComponent,
     NavigationComponent,
     CategoryDialogComponent,
     EventFormComponent,
