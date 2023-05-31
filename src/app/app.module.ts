@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { ProgramComponent } from './program/view/program.component';
-import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
 import { RouterLink } from '@angular/router';
 import { AddEventComponent } from './program/add/add-event/add-event.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -55,7 +54,6 @@ registerLocaleData(localeAt, 'de-AT');
     AppComponent,
     LoginComponent,
     ProgramComponent,
-    DummyDialogComponent,
     ProgramFiltersComponent,
     AddEventComponent,
     ProgramViewComponent,
