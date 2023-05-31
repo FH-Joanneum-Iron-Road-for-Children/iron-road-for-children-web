@@ -1,23 +1,27 @@
 <main>
-  <section>
+  <section class="center">
     <div>
-      <mat-card *ngFor="let event of events" class="program-view">
+      <mat-card *ngFor="let event of events" class="program-item">
         <img
-          alt="{{ event.image?.title }}"
+          alt="{{ event.image.title }}"
           class="picture"
           mat-card-image
-          src="{{ event.image?.path }}" />
+          src="{{ event.image.path }}" />
 
-        <mat-card-header class="header">
+        <mat-card-header>
           <mat-card-title>{{ event.title }}</mat-card-title>
-          <mat-card-subtitle>{{ event.eventLocation?.name }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ event.eventLocation.name }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="time"
-          >{{ event?.startDateTime }} bis
-          {{ event?.endDateTime }}</mat-card-content
+          >{{
+            getDateFromUTC(event?.startDateTimeUTC) | date : 'dd.MM.yyyy HH:mm'
+          }}
+          bis
+          {{
+            getDateFromUTC(event?.endDateTimeUTC) | date : 'dd.MM.yyyy HH:mm'
+          }}</mat-card-content
         >
-
-        <mat-card-actions class="actions">
+        <mat-card-actions>
           <button
             [disabled]="!event.isEditable"
             mat-icon-button

@@ -7,23 +7,17 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './new-voting-button.component.html',
   styleUrls: ['./new-voting-button.component.css'],
 })
+export class NewVotingButtonComponent implements OnInit {
+  constructor(public dialog: MatDialog) {}
 
-
-
-
-export class NewVotingButtonComponent implements OnInit{
-
-
-  constructor(
-    public dialog: MatDialog,
-  ) {}
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onVtnClick() {
     // Navigate to /add-edit page
     this.dialog.open(VotingAddEditComponent, {
       disableClose: true,
-    });   
-} }; 
+      width: '45rem',
+      height: '30rem',
+    });
+  }
+}
