@@ -3,8 +3,17 @@
     {{ message }}
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button (click)="onCancelClick()" mat-raised-button>Abbrechen</button>
-    <button (click)="onConfirmClick()" mat-raised-button>
+    <button
+      (click)="onCancelClick()"
+      class="btn btn-secondary"
+      mat-raised-button>
+      Abbrechen
+    </button>
+    <button
+      (click)="onConfirmClick()"
+      class="btn"
+      color="{{ actionType == 'Löschen' ? 'warn' : 'accent' }}"
+      mat-raised-button>
       {{ actionType }}
     </button>
   </mat-dialog-actions>
