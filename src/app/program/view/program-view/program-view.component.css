@@ -6,6 +6,7 @@
   align-items: center;
   background-color: #fdfdfb;
   height: 5rem;
+  border-radius: 20px;
 }
 
 .picture {
