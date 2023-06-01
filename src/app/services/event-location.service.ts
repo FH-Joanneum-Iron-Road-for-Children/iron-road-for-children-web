@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class EventLocationService {
-  baseUrl = environment.baseUrl;
+  baseUrl = 'https://backend.irfc-test.st-ki.at/api/';
 
   httpOptions = {
     headers: new HttpHeaders({

@@ -62,8 +62,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "iron-road-for-children-web:build",
-            "proxyConfig": "src/proxy.conf.json",
-            "port": 4200
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
