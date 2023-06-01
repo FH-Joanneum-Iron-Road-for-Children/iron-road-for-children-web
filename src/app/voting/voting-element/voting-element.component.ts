@@ -12,7 +12,6 @@ import { EventDto } from '../../models/models';
 export class VotingElementComponent {
   @Input()
   events: EventDto[] | undefined;
-  isActive: boolean | undefined;
 
   constructor(
     private dialog: MatDialog,

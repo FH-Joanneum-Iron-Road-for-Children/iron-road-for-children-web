@@ -21,7 +21,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { EventFormComponent } from './program/shared/event-form/event-form.component';
 import { VotingComponent } from './voting/voting.component';
-import { NewVotingButtonComponent } from './voting/new-voting-button/new-voting-button.component';
 import { VotingElementComponent } from './voting/voting-element/voting-element.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { VotingCardComponent } from './voting/voting-element/voting-card/voting-card.component';
@@ -64,7 +63,6 @@ registerLocaleData(localeAt, 'de-AT');
     EditEventComponent,
     LocationDialogComponent,
     VotingComponent,
-    NewVotingButtonComponent,
     VotingElementComponent,
     VotingCardComponent,
     VotingAddEditComponent,
