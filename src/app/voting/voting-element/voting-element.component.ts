@@ -25,7 +25,7 @@ export class VotingElementComponent {
   }
 
   openDeleteVotingDialog() {
-    const msg = 'Voting endgültig löschen?'; // TODO: Show voting title
+    const msg = 'Voting wirklich löschen?'; // TODO: Show voting title
     const actionType = 'Löschen';
     const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
 

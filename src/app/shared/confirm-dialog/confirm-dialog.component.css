@@ -1,0 +1,12 @@
+mat-dialog-content {
+  font-size: 1rem !important;
+  color: black !important;
+}
+
+mat-dialog-actions {
+  justify-content: space-evenly;
+}
+
+button {
+  color: black !important;
+}
