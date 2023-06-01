@@ -2,5 +2,7 @@
 <main>
   <app-new-voting-button></app-new-voting-button>
 
-  <app-voting-element></app-voting-element>
+  <div *ngFor="let voting of votingList">
+    <app-voting-element [events]="voting.events"> </app-voting-element>
+  </div>
 </main>

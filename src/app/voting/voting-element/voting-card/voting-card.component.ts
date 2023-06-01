@@ -19,16 +19,16 @@ export class VotingCardComponent {
 
   private _name = '';
 
-  @Input()
-  get text(): string {
-    return this._text;
-  }
-
-  set text(name: string) {
-    this._text = (name && name.trim()) || '<no name set>';
-  }
-
-  private _text = '';
+  // @Input()
+  // get text(): string {
+  //   return this._text;
+  // }
+  //
+  // set text(name: string) {
+  //   this._text = (name && name.trim()) || '<no name set>';
+  // }
+  //
+  // private _text = '';
 
   constructor(
     private dialog: MatDialog,

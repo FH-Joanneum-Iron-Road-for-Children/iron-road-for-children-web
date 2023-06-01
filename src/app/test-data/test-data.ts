@@ -1,4 +1,9 @@
-import { EventCategoryDto, EventDto, EventLocationDto } from '../models/models';
+import {
+  EventCategoryDto,
+  EventDto,
+  EventLocationDto,
+  VotingDto,
+} from '../models/models';
 
 export const CATEGORY_DATA: EventCategoryDto[] = [
   {
@@ -201,5 +206,26 @@ export const EVENT_DATA: EventDto[] = [
       title: '',
     },
     isEditable: true,
+  },
+];
+
+export const VOTING: VotingDto[] = [
+  {
+    id: 0,
+    title: 'Best Voting',
+    isEditable: true,
+    events: EVENT_DATA,
+    votingResult: undefined,
+    eventCategoryId: 1,
+    isActive: false,
+  },
+  {
+    id: 1,
+    title: 'another voting',
+    isActive: false,
+    votingResult: undefined,
+    eventCategoryId: 2,
+    events: EVENT_DATA,
+    isEditable: false,
   },
 ];

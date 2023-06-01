@@ -17,5 +17,10 @@
 
 .cards-wrapper {
   display: flex;
+  flex-direction: row;
   margin: 0.5rem;
+}
+section {
+  overflow-x: auto;
+  overflow-y: hidden;
 }

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 import { VotingAddEditComponent } from '../add-edit/voting-add-edit.component';
+import { EventDto } from '../../models/models';
 
 @Component({
   selector: 'app-voting-element',
@@ -9,6 +10,8 @@ import { VotingAddEditComponent } from '../add-edit/voting-add-edit.component';
   styleUrls: ['./voting-element.component.css'],
 })
 export class VotingElementComponent {
+  @Input()
+  events: EventDto[] | undefined;
   isActive: boolean | undefined;
 
   constructor(
