@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EventDto } from '../../../models/models';
-import { EVENT_DATA } from '../../../test-data/test-data';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
 
@@ -10,7 +9,7 @@ import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
   styleUrls: ['./program-view.component.css'],
 })
 export class ProgramViewComponent {
-  public events: EventDto[] = EVENT_DATA;
+  @Input() events?: EventDto[];
 
   constructor(
     public dialog: MatDialog,
