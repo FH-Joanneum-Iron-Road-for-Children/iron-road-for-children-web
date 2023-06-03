@@ -6,12 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { ProgramComponent } from './program/view/program.component';
-import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
 import { RouterLink } from '@angular/router';
 import { AddEventComponent } from './program/add/add-event/add-event.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -22,7 +20,6 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { EventFormComponent } from './program/shared/event-form/event-form.component';
-import { DeleteDialogComponent } from './program/view/delete-dialog/delete-dialog.component';
 import { VotingComponent } from './voting/voting.component';
 import { NewVotingButtonComponent } from './voting/new-voting-button/new-voting-button.component';
 import { VotingElementComponent } from './voting/voting-element/voting-element.component';
@@ -45,6 +42,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProgramViewComponent } from './program/view/program-view/program-view.component';
 import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
 import { EventDialogComponent } from './program/shared/event-dialog/event-dialog.component';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { registerLocaleData } from '@angular/common';
 import localeAt from '@angular/common/locales/de-AT';
 
@@ -55,11 +53,9 @@ registerLocaleData(localeAt, 'de-AT');
     AppComponent,
     LoginComponent,
     ProgramComponent,
-    DummyDialogComponent,
     ProgramFiltersComponent,
     AddEventComponent,
     ProgramViewComponent,
-    DeleteDialogComponent,
     NavigationComponent,
     CategoryDialogComponent,
     EventFormComponent,
@@ -72,6 +68,7 @@ registerLocaleData(localeAt, 'de-AT');
     VotingElementComponent,
     VotingCardComponent,
     VotingAddEditComponent,
+    ConfirmDialogComponent,
   ],
 
   imports: [
@@ -102,6 +99,5 @@ registerLocaleData(localeAt, 'de-AT');
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'de-AT' }],
   bootstrap: [AppComponent],
-  entryComponents: [DummyDialogComponent, DeleteDialogComponent],
 })
 export class AppModule {}
