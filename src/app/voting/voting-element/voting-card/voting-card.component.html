@@ -1,11 +1,15 @@
 <div class="card-holder">
   <mat-card class="card">
     <p style="margin: unset">{{ name }}</p>
-    <img src="favicon.ico" height="80px" class="cover" />
+    <img class="cover" height="80px" src="favicon.ico" />
     <p>{{ text }}</p>
     <div class="flex alignment">
-      <button mat-raised-button class="btn btn-primary" (click)="closeCard()">
-        Close
+      <button
+        (click)="openConfirmWinnerDialog()"
+        color="accent"
+        mat-raised-button>
+        <mat-icon>emoji_events</mat-icon>
+        Auswählen
       </button>
       <p>Stimmen:</p>
     </div>

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { EventDto } from '../../../models/models';
-import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-program-view',
@@ -11,15 +11,20 @@ import { MatDialog } from '@angular/material/dialog';
 export class ProgramViewComponent {
   @Input() events?: EventDto[];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    public confirmDialogService: ConfirmDialogService
+  ) {}
 
-  openDeleteDialog(id: number): void {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '250px',
-    });
+  openDeleteEventDialog(id: number, title: string) {
+    const msg = `"${title}" wirklich löschen?`; // TODO: Show event title
+    const actionType = 'Löschen';
+    const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+      if (result) {
+        // TODO: delete event
+      }
     });
   }
 
