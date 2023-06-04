@@ -11,6 +11,8 @@ describe('VotingWrapperComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [VotingWrapperComponent],
+      providers: [{ provide: MatDialog, useValue: {} }],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(VotingWrapperComponent);
