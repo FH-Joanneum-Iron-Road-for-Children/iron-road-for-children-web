@@ -44,6 +44,7 @@ import { EventDialogComponent } from './program/shared/event-dialog/event-dialog
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { registerLocaleData } from '@angular/common';
 import localeAt from '@angular/common/locales/de-AT';
+import { VotingWrapperComponent } from './voting/voting-wrapper/voting-wrapper.component';
 
 registerLocaleData(localeAt, 'de-AT');
 
@@ -67,6 +68,7 @@ registerLocaleData(localeAt, 'de-AT');
     VotingCardComponent,
     VotingAddEditComponent,
     ConfirmDialogComponent,
+    VotingWrapperComponent,
   ],
 
   imports: [

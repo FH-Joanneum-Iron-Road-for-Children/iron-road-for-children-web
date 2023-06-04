@@ -6,27 +6,5 @@
     </button>
   </div>
 
-  <div *ngFor="let voting of votingList">
-    <section>
-      <div class="mat-app-background">
-        <div class="space-between">
-          <div>{{ voting.title }}</div>
-          <div class="alignment">
-            <div>
-              <mat-slide-toggle color="primary" (click)="toggleButton()">{{
-                isActive ? 'Voting aktiv' : 'Voting inaktiv'
-              }}</mat-slide-toggle>
-            </div>
-            <button mat-icon-button (click)="openEditVotingDialog()">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button (click)="openDeleteVotingDialog()">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
-        </div>
-        <app-voting-element [events]="voting.events"></app-voting-element>
-      </div>
-    </section>
-  </div>
+  <app-voting-wrapper [votingList]="votingList"> </app-voting-wrapper>
 </main>
