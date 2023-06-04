@@ -13,7 +13,7 @@ export class VotingWrapperComponent implements OnInit {
   @Input()
   votingList: VotingDto[] | undefined;
 
-  isActive: boolean = false;
+  isActive = false;
 
   constructor(
     private dialog: MatDialog,

@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./voting.component.css'],
 })
 export class VotingComponent implements OnInit {
-  isActive: boolean = false;
+  isActive = false;
   votingList: VotingDto[] = VOTING;
 
   ngOnInit(): void {
