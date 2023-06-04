@@ -14,7 +14,9 @@ export class VotingComponent implements OnInit {
   isActive: boolean = false;
   votingList: VotingDto[] = VOTING;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.votingList[0].isActive);
+  }
 
   constructor(
     private dialog: MatDialog,
