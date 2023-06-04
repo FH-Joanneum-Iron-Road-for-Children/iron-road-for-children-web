@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VotingWrapperComponent } from './voting-wrapper.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('VotingWrapperComponent', () => {
   let component: VotingWrapperComponent;

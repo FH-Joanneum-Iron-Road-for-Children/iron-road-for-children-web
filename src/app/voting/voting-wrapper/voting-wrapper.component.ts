@@ -53,7 +53,25 @@ export class VotingWrapperComponent implements OnInit {
   }
 
   toggleButton() {
-    this.isActive = !this.isActive;
+    if (this.votingList !== undefined) {
+      console.log('active', this.isActive);
+
+      this.votingList[0].isActive = !this.isActive;
+      this.isActive = !this.isActive;
+    }
+
+    const msg = 'Voting wirklich starten?'; // TODO: Show voting title
+    const actionType = 'Starten';
+    const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // if( this.votingList !== undefined) {
+        //   delete this.votingList[0];
+        //   this.cd.markForCheck();
+        // }
+      }
+    });
   }
 
   onVtnClick() {
