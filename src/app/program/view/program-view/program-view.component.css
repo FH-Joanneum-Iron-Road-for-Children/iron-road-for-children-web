@@ -1,16 +1,44 @@
 .program-item {
   display: grid;
-  grid-template-columns: 1fr 5fr 5fr 1fr;
+  grid-template-columns: 1fr 7fr 2fr 2fr 1fr;
   column-gap: 1rem;
   margin-bottom: 1rem;
   align-items: center;
   background-color: #fdfdfb;
-  height: 5rem;
   border-radius: 20px;
 }
 
 .picture {
   border-radius: 20px 0 0 20px !important;
-  height: 5rem;
-  width: 5rem;
+  object-fit: cover;
+  width: 8rem;
+  height: 10rem;
+}
+
+mat-chip {
+  padding: 0 !important;
+  font-size: 75% !important;
+  color: black !important;
+  margin: 0.5rem 0 1rem 0.5rem;
+  /*disable ripple */
+  pointer-events: none;
+  cursor: default;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.category-chip {
+  background-color: #fdea93 !important;
+  color: black !important;
+  margin-left: 0;
+}
+
+.location-chip {
+  background-color: #fdf6d7 !important;
+  color: black !important;
+}
+
+.image-chip {
+  background-color: #fffefe !important;
+  margin-left: 0;
 }

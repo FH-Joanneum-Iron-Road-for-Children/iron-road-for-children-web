@@ -37,11 +37,7 @@ import { NgxMatMomentModule } from '@angular-material-components/moment-adapter'
 import { MatNativeDateModule } from '@angular/material/core';
 import { LocationDialogComponent } from './program/shared/event-dialog/location-dialog/location-dialog.component';
 import { VotingAddEditComponent } from './voting/add-edit/voting-add-edit.component';
-import {
-  MatDialog,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ProgramViewComponent } from './program/view/program-view/program-view.component';
 import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
 import { EventDialogComponent } from './program/shared/event-dialog/event-dialog.component';
@@ -49,6 +45,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
 import { registerLocaleData } from '@angular/common';
 import localeAt from '@angular/common/locales/de-AT';
 import { VotingWrapperComponent } from './voting/voting-wrapper/voting-wrapper.component';
+import { MatBadgeModule } from '@angular/material/badge';
 
 registerLocaleData(localeAt, 'de-AT');
 
@@ -100,6 +97,7 @@ registerLocaleData(localeAt, 'de-AT');
     MatNativeDateModule,
     MatSlideToggleModule,
     MatCardModule,
+    MatBadgeModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'de-AT' }],
   bootstrap: [AppComponent],
