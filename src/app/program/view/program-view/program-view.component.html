@@ -1,5 +1,6 @@
 <main>
   <section class="center">
+    <div *ngIf="events?.length == 0">Keine Events vorhanden.</div>
     <div>
       <mat-card *ngFor="let event of events" class="program-item">
         <img

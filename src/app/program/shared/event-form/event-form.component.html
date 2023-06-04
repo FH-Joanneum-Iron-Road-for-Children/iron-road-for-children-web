@@ -92,68 +92,51 @@
         </mat-form-field>
       </div>
 
-      <div>
+      <div class="upload-title">
         <h4>Titelbild</h4>
-        <button
-          class="upload-btn"
-          mat-flat-button
-          onclick="document.getElementById('file-input1').click()">
-          <mat-icon>upload</mat-icon>
-          Titelbild
-        </button>
-        <input
-          (change)="uploadFile($event)"
-          formControlName="file1"
-          id="file-input1"
-          style="display: none"
-          type="file" />
+        <h4>Weitere Fotos</h4>
       </div>
 
-      <h4>Weitere Fotos</h4>
-      <div class="col-3">
-        <button
-          class="upload-btn"
-          mat-flat-button
-          onclick="document.getElementById('file-input2').click()">
-          <mat-icon>upload</mat-icon>
-          Foto
-        </button>
-        <input
-          (change)="uploadFile($event)"
-          formControlName="file2"
-          id="file-input2"
-          style="display: none"
-          type="file" />
-
-        <button
-          class="upload-btn"
-          mat-flat-button
-          onclick="document.getElementById('file-input3').click()">
-          <mat-icon>upload</mat-icon>
-          Foto
-        </button>
-        <input
-          (change)="uploadFile($event)"
-          formControlName="file3"
-          id="file-input3"
-          style="display: none"
-          type="file" />
-
-        <button
-          class="upload-btn"
-          mat-flat-button
-          onclick="document.getElementById('file-input4').click()">
-          <mat-icon>upload</mat-icon>
-          Foto
-        </button>
-        <input
-          (change)="uploadFile($event)"
-          formControlName="file4"
-          id="file-input4"
-          style="display: none"
-          type="file" />
+      <div class="file-inputs">
+        <div *ngFor="let item of [].constructor(4); let i = index">
+          <button
+            (click)="openFileSelectDialog(i)"
+            class="upload-btn"
+            mat-flat-button>
+            <div *ngIf="!uploadedFiles[i]">
+              <mat-icon>upload</mat-icon>
+            </div>
+            <div *ngIf="!uploadedFiles[i]">
+              {{ i == 0 ? 'Titelbild' : 'Foto' }}
+            </div>
+            <img
+              *ngIf="uploadedFiles[i]"
+              [src]="filePreviews[i]"
+              alt="{{ uploadedFiles[i]?.name }}"
+              class="preview" />
+          </button>
+          <input
+            (change)="onFileSelected($event, i)"
+            accept=".png,.jpeg,.jpg"
+            formControlName="file{{ i }}"
+            id="file-input{{ i }}"
+            style="display: none"
+            type="file" />
+          <div class="file-info">
+            <button
+              (click)="removeFile(i)"
+              *ngIf="uploadedFiles[i]"
+              mat-icon-button>
+              <mat-icon>close</mat-icon>
+            </button>
+            <div class="file-name">
+              {{ uploadedFiles[i]?.name ?? 'Keine Datei' }}
+            </div>
+          </div>
+        </div>
       </div>
-      <mat-hint>Nur .PNG, .JPG, .JPEG</mat-hint>
+
+      <mat-hint>Nur .PNG, .JPG, .JPEG - max. 2MB</mat-hint>
     </form>
 
     <div class="center">
