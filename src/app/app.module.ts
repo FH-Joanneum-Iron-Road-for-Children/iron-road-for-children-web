@@ -21,7 +21,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { EventFormComponent } from './program/shared/event-form/event-form.component';
 import { VotingComponent } from './voting/voting.component';
-import { NewVotingButtonComponent } from './voting/new-voting-button/new-voting-button.component';
 import { VotingElementComponent } from './voting/voting-element/voting-element.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { VotingCardComponent } from './voting/voting-element/voting-card/voting-card.component';
@@ -38,13 +37,18 @@ import { NgxMatMomentModule } from '@angular-material-components/moment-adapter'
 import { MatNativeDateModule } from '@angular/material/core';
 import { LocationDialogComponent } from './program/shared/event-dialog/location-dialog/location-dialog.component';
 import { VotingAddEditComponent } from './voting/add-edit/voting-add-edit.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { ProgramViewComponent } from './program/view/program-view/program-view.component';
 import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
 import { EventDialogComponent } from './program/shared/event-dialog/event-dialog.component';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { registerLocaleData } from '@angular/common';
 import localeAt from '@angular/common/locales/de-AT';
+import { VotingWrapperComponent } from './voting/voting-wrapper/voting-wrapper.component';
 
 registerLocaleData(localeAt, 'de-AT');
 
@@ -64,11 +68,11 @@ registerLocaleData(localeAt, 'de-AT');
     EditEventComponent,
     LocationDialogComponent,
     VotingComponent,
-    NewVotingButtonComponent,
     VotingElementComponent,
     VotingCardComponent,
     VotingAddEditComponent,
     ConfirmDialogComponent,
+    VotingWrapperComponent,
   ],
 
   imports: [

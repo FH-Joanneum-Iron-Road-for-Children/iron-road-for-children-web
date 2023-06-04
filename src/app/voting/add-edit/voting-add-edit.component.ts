@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-edit',
@@ -15,13 +16,9 @@ export class VotingAddEditComponent {
     participant: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(private dialogRef: MatDialogRef<VotingAddEditComponent>) {}
 
-  listOfBands: string[] = [
-    'Seiler und Speer',
-    'Veins of Suffering',
-    'Burnswell',
-  ];
+  listOfBands: any[] = ['Seiler und Speer', 'Veins of Suffering', 'Burnswell'];
   newItem: any;
   itemFormGroup = new FormGroup({
     name: new FormControl('', Validators.min(1)),
@@ -43,5 +40,7 @@ export class VotingAddEditComponent {
     }
   }
 
-  saveCategories() {}
+  saveCategories() {
+    this.dialogRef.close(this.listOfBands);
+  }
 }
