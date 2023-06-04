@@ -24,10 +24,10 @@ export class EventFormComponent implements OnInit {
     category: new FormControl(-1, Validators.required),
     startDateTime: new FormControl(new Date(), Validators.min(1)),
     endDateTime: new FormControl(new Date(), Validators.min(1)),
-    file1: new FormControl('', Validators.required),
+    file0: new FormControl('', Validators.required),
+    file1: new FormControl('', Validators.nullValidator),
     file2: new FormControl('', Validators.nullValidator),
     file3: new FormControl('', Validators.nullValidator),
-    file4: new FormControl('', Validators.nullValidator),
   });
 
   title: string | undefined;
@@ -54,10 +54,10 @@ export class EventFormComponent implements OnInit {
         category: this.event.category.id,
         startDateTime: new Date(this.event.startDateTimeUTC * 1000),
         endDateTime: new Date(this.event.endDateTimeUTC * 1000),
-        file1: this.event.image?.path,
-        file2: this.event.eventInfo?.pictures[0]?.path ?? null,
-        file3: this.event.eventInfo?.pictures[1]?.path ?? null,
-        file4: this.event.eventInfo?.pictures[2]?.path ?? null,
+        file0: this.event.image?.path,
+        file1: this.event.eventInfo?.pictures[0]?.path ?? null,
+        file2: this.event.eventInfo?.pictures[1]?.path ?? null,
+        file3: this.event.eventInfo?.pictures[2]?.path ?? null,
       });
 
       this.category = this.event.category.id;
@@ -72,10 +72,45 @@ export class EventFormComponent implements OnInit {
     console.log(this.event);
   }
 
-  uploadFile(event: Event) {
-    const target = event.target as HTMLInputElement;
-    const files = target.files as FileList;
-    console.log(files);
+  uploadedFile: File | null = null;
+  uploadedFiles: (File | null)[] = Array(4).fill(null);
+  filePreviews: (string | ArrayBuffer | null)[] = Array(4).fill(null);
+
+  openFileSelectDialog(index: number) {
+    document.getElementById('file-input' + index)?.click();
+  }
+
+  onFileSelected(event: any, index: number) {
+    this.uploadedFile = event.target.files[0] as File;
+
+    if (this.isValidImageFile()) {
+      this.uploadedFiles[index] = this.uploadedFile;
+
+      // preview
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.filePreviews[index] = e.target.result;
+      };
+      reader.readAsDataURL(this.uploadedFile);
+    }
+  }
+
+  isValidImageFile(): boolean {
+    if (this.uploadedFile) {
+      const allowedFormats = ['image/png', 'image/jpeg', 'image/jpg'];
+      const maxFileSize = 2 * 1024 * 1024; // 2MB
+
+      return (
+        allowedFormats.includes(this.uploadedFile.type) &&
+        this.uploadedFile.size <= maxFileSize
+      );
+    }
+    return false;
+  }
+
+  removeFile(index: number) {
+    this.filePreviews[index] = null;
+    this.uploadedFiles[index] = null;
   }
 
   cancel() {
