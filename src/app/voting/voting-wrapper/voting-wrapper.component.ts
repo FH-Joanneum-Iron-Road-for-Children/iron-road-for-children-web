@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { VotingDto } from '../../models/models';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
@@ -17,7 +17,8 @@ export class VotingWrapperComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private confirmDialogService: ConfirmDialogService
+    private confirmDialogService: ConfirmDialogService,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +31,10 @@ export class VotingWrapperComponent implements OnInit {
       width: '45rem',
       height: '30rem',
     });
+    // }).afterClosed().subscribe((resultList) =>{
+    //   this.votingList = resultList;
+    //   this.cd.markForCheck();
+    // });
   }
 
   openDeleteVotingDialog() {
@@ -39,7 +44,10 @@ export class VotingWrapperComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // TODO: delete voting
+        // if( this.votingList !== undefined) {
+        //   delete this.votingList[0];
+        //   this.cd.markForCheck();
+        // }
       }
     });
   }
