@@ -57,8 +57,7 @@ export interface VotingDto {
   isEditable: boolean;
   events?: EventDto[];
   eventCategoryId: number;
-  image: PictureDto;
-  votingResult: VotingResultDto;
+  votingResult?: VotingResultDto;
 }
 
 // TODO: Create getAll interfaces when they are done
