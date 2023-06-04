@@ -34,6 +34,8 @@ export class EventFormComponent implements OnInit {
   date: any;
   category: number | undefined;
   location: number | undefined;
+  filePaths: (string | null)[] = Array(4).fill(null);
+  fileNames: (string | null)[] = Array(4).fill(null);
 
   public categories: EventCategoryDto[] = CATEGORY_DATA;
   public locations: EventLocationDto[] = LOCATION_DATA;
@@ -60,6 +62,16 @@ export class EventFormComponent implements OnInit {
         file3: this.event.eventInfo?.pictures[2]?.path ?? null,
       });
 
+      this.filePaths[0] = this.event.image?.path;
+      this.filePaths[1] = this.event.eventInfo?.pictures[1]?.path ?? null;
+      this.filePaths[2] = this.event.eventInfo?.pictures[2]?.path ?? null;
+      this.filePaths[3] = this.event.eventInfo?.pictures[3]?.path ?? null;
+
+      this.fileNames[0] = this.event.image?.title;
+      this.fileNames[1] = this.event.eventInfo?.pictures[1]?.title ?? null;
+      this.fileNames[2] = this.event.eventInfo?.pictures[2]?.title ?? null;
+      this.fileNames[3] = this.event.eventInfo?.pictures[3]?.title ?? null;
+
       this.category = this.event.category.id;
       this.location = this.event.eventLocation.id;
     } else {
@@ -85,6 +97,8 @@ export class EventFormComponent implements OnInit {
 
     if (this.isValidImageFile()) {
       this.uploadedFiles[index] = this.uploadedFile;
+      this.filePaths[index] = null;
+      this.fileNames[index] = null;
 
       // preview
       const reader = new FileReader();
