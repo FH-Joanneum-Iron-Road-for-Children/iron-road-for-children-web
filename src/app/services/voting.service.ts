@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {EventCategoryDto, EventLocationDto, VotingDto} from '../models/models';
-import {CATEGORY_DATA, EVENT_DATA, LOCATION_DATA,} from '../test-data/test-data';
+import {VotingDto} from '../models/models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
@@ -8,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root',
 })
 export class VotingService {
-  baseUrl = 'https://backend.irfc-test.st-ki.at/api/';
+  baseUrl = '';
 
   // header = new Headers().set('access-control-allow-origin',"https://backend.irfc.st-ki.at/api/");
   httpOptions = {
@@ -21,33 +20,35 @@ export class VotingService {
   getAllVotings(): Observable<VotingDto[]> {
     // const headers = new Headers().set('access-control-allow-origin',"https://backend.irfc.st-ki.at/api/");
     return this.httpClient.get<VotingDto[]>(
-      this.baseUrl + 'votings'
+      this.baseUrl + 'api/votings'
     );
   }
 
   getVotingById(eventId: number): Observable<VotingDto> {
-    return this.httpClient.get<VotingDto>(this.baseUrl + 'votings/' + eventId);
+    return this.httpClient.get<VotingDto>(this.baseUrl + 'api/votings/' + eventId);
   }
 
   updateVoting(id: number, votingDto: VotingDto) {
-    return this.httpClient.put<VotingDto>(this.baseUrl + 'votings/' + id, {
+    return this.httpClient.put<VotingDto>(this.baseUrl + 'api/votings/' + id, {
       id,
       votingDto,
     });
   }
 
   createVoting(VotingDto: VotingDto) {
-    return this.httpClient.post<VotingDto>(this.baseUrl + 'votings', VotingDto);
+    return this.httpClient.post<VotingDto>(this.baseUrl + 'api/votings', VotingDto);
   }
 
   deleteVotingByVotingId(id: number) {
-    return this.httpClient.delete<Response>(this.baseUrl + 'votings/' + id);
+    return this.httpClient.delete<Response>(this.baseUrl + 'api/votings/' + id);
   }
 
   setEndForVoting(id: number){
-    return this.httpClient.put<Response>(this.baseUrl + 'votings/' + '/endVoting' + id ,{
+    return this.httpClient.put<Response>(this.baseUrl + 'api/votings/' + '/endVoting' + id ,{
       id
     });
   }
+
+
 
 }

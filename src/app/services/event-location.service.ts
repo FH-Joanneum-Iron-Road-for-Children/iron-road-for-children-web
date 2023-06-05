@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root',
 })
 export class EventLocationService {
-  baseUrl = 'https://backend.irfc-test.st-ki.at/api/';
+  baseUrl = '';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -19,33 +19,33 @@ export class EventLocationService {
 
   getAllEventLocations(): Observable<EventLocationDto[]> {
     return this.httpClient.get<EventLocationDto[]>(
-      this.baseUrl + 'event-locations'
+      this.baseUrl + 'api/event-locations'
     );
   }
 
   getEventLocationById(id: number): Observable<EventLocationDto> {
     return this.httpClient.get<EventLocationDto>(
-      this.baseUrl + 'event-locations' + id
+      this.baseUrl + 'api/event-locations' + id
     );
   }
 
   updateEventLocation(id: number, eventDto: EventLocationDto) {
     return this.httpClient.put<EventLocationDto>(
-      this.baseUrl + 'event-locations' + id,
+      this.baseUrl + 'api/event-locations' + id,
       { id, eventDto }
     );
   }
 
   createEventLocation(eventDto: EventLocationDto) {
     return this.httpClient.post<EventLocationDto>(
-      this.baseUrl + 'event-locations',
+      this.baseUrl + 'api/event-locations',
       eventDto
     );
   }
 
   deleteEventByEventId(id: number) {
     return this.httpClient.delete<Response>(
-      this.baseUrl + 'event-locations' + id
+      this.baseUrl + 'api/event-locations' + id
     );
   }
 }

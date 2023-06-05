@@ -6,22 +6,22 @@ export interface User {
 export interface PictureDto {
   pictureId?: number;
   altText: string;
-  path: string;
+  path: string|null;
 }
 
 export interface EventInfoDto {
   eventInfoId?: number;
-  infoText: string;
+  infoText: string|null;
   pictures: PictureDto[];
 }
 
 export interface EventLocationDto {
-  eventLocationId?: number;
+  id: number;
   name: string;
 }
 
 export interface EventCategoryDto {
-  eventCategoryId?: number;
+  eventCategoryId: number;
   name: string;
 }
 

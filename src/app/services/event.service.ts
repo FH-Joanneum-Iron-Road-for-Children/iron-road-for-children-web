@@ -8,7 +8,8 @@ import {Observable} from 'rxjs';
   providedIn: 'root',
 })
 export class EventService {
-  baseUrl = 'https://backend.irfc-test.st-ki.at/api/';
+
+
 
   // header = new Headers().set('access-control-allow-origin',"https://backend.irfc.st-ki.at/api/");
   httpOptions = {
@@ -18,45 +19,30 @@ export class EventService {
   };
   constructor(private httpClient: HttpClient) {}
 
-  getEvents(): EventDto[] {
-    return EVENT_DATA;
-  }
-
-  getEventById(id: number): EventDto {
-    return EVENT_DATA.find((e) => e.eventId === Number(id)) as EventDto;
-  }
-
   getAllEvents(): Observable<EventDto[]> {
     // const headers = new Headers().set('access-control-allow-origin',"https://backend.irfc.st-ki.at/api/");
     return this.httpClient.get<EventDto[]>(
-      this.baseUrl + 'events'
+      'api/events'
     );
   }
 
   getEventByEventId(eventId: number): Observable<EventDto> {
-    return this.httpClient.get<EventDto>(this.baseUrl + 'events/' + eventId);
+    return this.httpClient.get<EventDto>('api/events/' + eventId);
   }
 
   updateEvent(id: number, eventDto: EventDto) {
-    return this.httpClient.put<EventDto>(this.baseUrl + 'events/' + id, {
+    return this.httpClient.put<EventDto>('api/events/' + id, {
       id,
       eventDto,
     });
   }
 
   createEvent(eventDto: EventDto) {
-    return this.httpClient.post<EventDto>(this.baseUrl + 'events', eventDto);
+    return this.httpClient.post<EventDto>('api/events', eventDto);
   }
 
   deleteEventByEventId(eventId: number) {
-    return this.httpClient.delete<Response>(this.baseUrl + 'events/' + eventId);
+    return this.httpClient.delete<Response>('api/events/' + eventId);
   }
 
-  getCategories(): EventCategoryDto[] {
-    return CATEGORY_DATA;
-  }
-
-  getLocations(): EventLocationDto[] {
-    return LOCATION_DATA;
-  }
 }

@@ -24,7 +24,6 @@
         >
         <mat-card-actions>
           <button
-            [disabled]="!event?.isEditable"
             mat-icon-button
             routerLink="/program/edit/{{ event?.eventId }}">
             <mat-icon>mode_edit</mat-icon>

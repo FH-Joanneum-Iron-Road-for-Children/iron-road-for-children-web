@@ -26,27 +26,27 @@ export const CATEGORY_DATA: EventCategoryDto[] = [
 
 export const LOCATION_DATA: EventLocationDto[] = [
   {
-    eventLocationId: 1,
+    id: 1,
     name: 'Main Stage',
   },
   {
-    eventLocationId: 2,
+    id: 2,
     name: 'Family Stage',
   },
   {
-    eventLocationId: 3,
+    id: 3,
     name: 'Iron Road Stage',
   },
   {
-    eventLocationId: 4,
+    id: 4,
     name: 'Rock Stage',
   },
   {
-    eventLocationId: 5,
+    id: 5,
     name: 'Ausfahrt 123',
   },
   {
-    eventLocationId: 6,
+    id: 6,
     name: 'Ausfahrt Exit 123',
   },
 ];
@@ -74,14 +74,13 @@ export const EVENT_DATA: EventDto[] = [
     startDateTimeInUTC: 1658566800,
     endDateTimeInUTC: 1658572200,
     eventLocation: {
-      eventLocationId: 3,
+      id: 3,
       name: 'Iron Road Stage',
     },
     category: {
       eventCategoryId: 4,
       name: 'Ausfahrten',
     },
-    isEditable: true,
   },
   {
     eventId: 2,
@@ -100,7 +99,7 @@ export const EVENT_DATA: EventDto[] = [
     startDateTimeInUTC: 1658570400,
     endDateTimeInUTC: 1658579400,
     eventLocation: {
-      eventLocationId: 5,
+      id: 5,
       name: 'Ausfahrt 123',
     },
     picture: {
@@ -112,7 +111,6 @@ export const EVENT_DATA: EventDto[] = [
       eventCategoryId: 4,
       name: 'Ausfahrten',
     },
-    isEditable: true,
   },
   {
     eventId: 3,
@@ -136,14 +134,13 @@ export const EVENT_DATA: EventDto[] = [
       altText: '',
     },
     eventLocation: {
-      eventLocationId: 6,
+      id: 6,
       name: 'Ausfahrt Exit 123',
     },
     category: {
       eventCategoryId: 4,
       name: 'Ausfahrten',
     },
-    isEditable: true,
   },
   {
     eventId: 4,
@@ -167,14 +164,13 @@ export const EVENT_DATA: EventDto[] = [
     startDateTimeInUTC: 1658491200,
     endDateTimeInUTC: 1658520000,
     eventLocation: {
-      eventLocationId: 1,
+      id: 1,
       name: 'Main Stage',
     },
     category: {
       eventCategoryId: 1,
       name: 'Musik',
     },
-    isEditable: true,
   },
   {
     eventId: 5,
@@ -193,7 +189,7 @@ export const EVENT_DATA: EventDto[] = [
     startDateTimeInUTC: 1658660400,
     endDateTimeInUTC: 1658664000,
     eventLocation: {
-      eventLocationId: 1,
+      id: 1,
       name: 'Main Stage',
     },
     category: {
@@ -205,7 +201,6 @@ export const EVENT_DATA: EventDto[] = [
       path: '',
       altText: '',
     },
-    isEditable: true,
   },
 ];
 
@@ -216,16 +211,18 @@ export const VOTING: VotingDto[] = [
     isEditable: true,
     events: EVENT_DATA,
     votingResult: undefined,
-    eventCategoryId: 1,
     isActive: false,
+    editable: true,
+    active:false
   },
   {
     id: 1,
     title: 'another voting',
     isActive: false,
     votingResult: undefined,
-    eventCategoryId: 2,
     events: EVENT_DATA,
     isEditable: false,
+    editable: true,
+    active:false
   },
 ];

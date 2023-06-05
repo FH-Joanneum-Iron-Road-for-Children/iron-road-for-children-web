@@ -21,7 +21,7 @@ export class LocationDialogComponent implements OnInit {
 
   saveLocations() {
     const eventLocation: EventLocationDto ={
-      eventLocationId: undefined,
+      id: 0,
       name: 'Location1'
     }
     this.eventLocationService.createEventLocation(eventLocation).subscribe((result) => console.log(result));

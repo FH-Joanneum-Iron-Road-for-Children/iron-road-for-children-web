@@ -37,7 +37,7 @@ export class ProgramComponent implements OnInit {
     const endTimestamps = this.events.map((event) => event.endDateTimeInUTC);
     this.dates = startTimestamps.concat(endTimestamps);
     this.dates = this.getUniqueDates();
-    this.categories = this.eventService.getCategories();
+    this.eventCategoryService.getAllEventCategories().subscribe((categories) => this.categories = categories);
   }
 
   private getUniqueDates(): number[] {

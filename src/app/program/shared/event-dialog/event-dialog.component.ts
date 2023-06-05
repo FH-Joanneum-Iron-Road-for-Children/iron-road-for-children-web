@@ -1,4 +1,4 @@
-import {Component, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {EventCategoryDto} from "../../../models/models";
 
@@ -13,15 +13,17 @@ type Item = {
   styleUrls: ['./event-dialog.component.css'],
 })
 export class EventDialogComponent {
-  @Input() itemList: EventCategoryDto[] | null = null;
+  @Input() itemList: Item[] | null = null;
 
-  @Output() saveItemList: EventCategoryDto[] | null = null;
+  @Output() saveItemList = new EventEmitter<Item[]>();
+  @Output() removeItemList = new EventEmitter<Item[]>();
 
   itemFormGroup = new FormGroup({
     name: new FormControl('', Validators.min(1)),
   });
 
-  removeItem(item: EventCategoryDto) {
+  //TODO: change to setItem -1 and emit
+  removeItem(item: Item) {
     if (this.itemList) {
       const index = this.itemList.indexOf(item);
       if (index !== -1) {
@@ -39,6 +41,7 @@ export class EventDialogComponent {
       if (!exists) {
         const newItem: Item = { id: 0, name: newItemName };
         this.itemList.push(newItem);
+        this.saveItemList.emit(this.itemList);
       }
     }
   }

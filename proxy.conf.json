@@ -1,9 +1,8 @@
 {
-  "/api": {
+  "/api/*": {
     "target": "https://backend.irfc-test.st-ki.at",
-    "secure": false,
+    "secure": true,
     "changeOrigin": true,
-    "logLevel": "debug",
-    "headers": { "Access-Control-Allow-Origin": "*" }
+    "logLevel": "debug"
   }
 }

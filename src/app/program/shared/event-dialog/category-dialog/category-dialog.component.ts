@@ -20,9 +20,9 @@ export class CategoryDialogComponent implements OnInit {
   }
 
   saveCategories() {
-    let eventCategory: EventCategoryDto={
-      eventCategoryId: undefined,
-      name: 'Ausfahrteb'
+    const eventCategory: EventCategoryDto={
+      eventCategoryId: 0,
+      name: 'Ausfahrten'
     }
     this.eventCategoryService.createEventCategory(eventCategory).subscribe((result) => console.log(result));
 
