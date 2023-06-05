@@ -1,0 +1,33 @@
+<div *ngFor="let voting of votingList">
+  <section>
+    <div class="mat-app-background">
+      <div class="space-between">
+        <div>{{ voting.title }}</div>
+        <div class="alignment">
+          <div>
+            <mat-slide-toggle color="primary" (click)="toggleButton()">{{
+              voting.isActive ? 'Voting aktiv' : 'Voting inaktiv'
+            }}</mat-slide-toggle>
+          </div>
+          <button
+            mat-icon-button
+            (click)="openEditVotingDialog()"
+            [disabled]="!voting.isEditable || voting.isActive || isActive">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            (click)="openDeleteVotingDialog()"
+            [disabled]="voting.isActive || isActive">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <app-voting-element [events]="voting.events"></app-voting-element>
+    </div>
+  </section>
+</div>
+
+<div *ngIf="votingList?.length == 0">
+  <p>Keine Votings vorhanden!</p>
+</div>

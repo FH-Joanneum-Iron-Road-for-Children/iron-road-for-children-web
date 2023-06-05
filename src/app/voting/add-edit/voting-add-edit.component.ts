@@ -1,22 +1,24 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-edit',
   templateUrl: './voting-add-edit.component.html',
-  styleUrls: ['./voting-add-edit.component.css',
-  '../../program/shared/event-dialog/event-dialog.component.css'],
+  styleUrls: [
+    './voting-add-edit.component.css',
+    '../../program/shared/event-dialog/event-dialog.component.css',
+  ],
 })
 export class VotingAddEditComponent {
-    
-    votingAddEditFormGroup = new FormGroup({
+  votingAddEditFormGroup = new FormGroup({
     votingName: new FormControl(''),
     participant: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(private dialogRef: MatDialogRef<VotingAddEditComponent>) {}
 
-  listOfBands: string[] = ['Seiler und Speer', 'Veins of Suffering', 'Burnswell'];
+  listOfBands: any[] = ['Seiler und Speer', 'Veins of Suffering', 'Burnswell'];
   newItem: any;
   itemFormGroup = new FormGroup({
     name: new FormControl('', Validators.min(1)),
@@ -39,9 +41,6 @@ export class VotingAddEditComponent {
   }
 
   saveCategories() {
-    throw new Error('Method not implemented.');
-    }
-    
-   
-  sendDataToRest() {}
+    this.dialogRef.close(this.listOfBands);
+  }
 }

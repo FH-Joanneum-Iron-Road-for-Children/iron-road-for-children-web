@@ -1,21 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewVotingButtonComponent } from './new-voting-button.component';
+import { ConfirmDialogComponent } from './confirm-dialog.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
 
-describe('NewVotingButtonComponent', () => {
-  let component: NewVotingButtonComponent;
-  let fixture: ComponentFixture<NewVotingButtonComponent>;
+describe('DeleteVotingDialogComponent', () => {
+  let component: ConfirmDialogComponent;
+  let fixture: ComponentFixture<ConfirmDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NewVotingButtonComponent],
-      imports: [MatDialogModule],
+      declarations: [ConfirmDialogComponent],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
@@ -23,7 +18,7 @@ describe('NewVotingButtonComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NewVotingButtonComponent);
+    fixture = TestBed.createComponent(ConfirmDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,87 @@
+@use '../node_modules/@angular/material/index' as mat;
+
+@include mat.core();
+
+$yellow-palette: (
+  50: #fffefe,
+  100: #fcfaf3,
+  200: #fdf6d7,
+  300: #faefbb,
+  400: #fdea93,
+  500: #fae372,
+  600: #fcdc57,
+  700: #ffdc3e,
+  800: #fcd722,
+  900: #fed513,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+  ),
+);
+
+$blue-palette: (
+  50: #b9dbff,
+  100: #a2c1de,
+  200: #7f9fcb,
+  300: #62869f,
+  400: #557698,
+  500: #4c6983,
+  600: #354f67,
+  700: #2b4965,
+  800: #1e4364,
+  900: #174066,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+  ),
+);
+
+$primary: mat.define-palette($blue-palette, 900);
+$accent: mat.define-palette($yellow-palette, 900);
+
+$theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+    ),
+  )
+);
+
+$typography: mat.define-typography-config(
+  $font-family: '"Roboto", "Helvetica Neue", sans-serif',
+  $headline-1:
+    mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $headline-2:
+    mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $headline-3:
+    mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  $headline-4: mat.define-typography-level(34px, 40px, 400),
+  $headline-5: mat.define-typography-level(24px, 32px, 400),
+  $headline-6: mat.define-typography-level(20px, 32px, 400),
+  $subtitle-1: mat.define-typography-level(16px, 28px, 400),
+  $body-1: mat.define-typography-level(14px, 20px, 400),
+  $body-2: mat.define-typography-level(14px, 20px, 400),
+  $subtitle-2: mat.define-typography-level(16px, 28px, 400),
+  $caption: mat.define-typography-level(12px, 20px, 400),
+  $button: mat.define-typography-level(14px, 14px, 500),
+);
+
+@include mat.all-component-themes($theme);
+@include mat.all-component-typographies($typography);
