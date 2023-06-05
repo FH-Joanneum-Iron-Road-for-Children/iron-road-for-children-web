@@ -12,26 +12,41 @@
           </mat-form-field>
         </section>
         <section class="center">
-          <h1 mat-dialog-title>Teilnehmer hinzufügen</h1>
-          <form [formGroup]="itemFormGroup">
+          <h2 mat-dialog-title>Event auswählen</h2>
+
+          <div style="background: #1e4364">
+            <div *ngFor="let event of events">
+              <app-event-list [title]="event.title"></app-event-list>
+            </div>
+
             <div>
-              <mat-form-field appearance="fill">
-                <mat-label>Teilnehmer</mat-label>
-                <input
-                  formControlName="name"
-                  matInput
-                  placeholder="Teilnehmer" />
-              </mat-form-field>
+              <p>Hallo</p>
             </div>
-            <div class="center">
-              <button
-                (click)="addToList()"
-                class="btn btn-primary"
-                mat-raised-button>
-                Hinzufügen
-              </button>
+
+            <div *ngFor="let event of events" class="list-item col-2">
+              <li>{{ event.title }}</li>
             </div>
-          </form>
+          </div>
+
+          <!--          <form [formGroup]="itemFormGroup">-->
+          <!--            <div>-->
+          <!--              <mat-form-field appearance="fill">-->
+          <!--                <mat-label>Teilnehmer</mat-label>-->
+          <!--                <input-->
+          <!--                  formControlName="name"-->
+          <!--                  matInput-->
+          <!--                  placeholder="Teilnehmer" />-->
+          <!--              </mat-form-field>-->
+          <!--            </div>-->
+          <!--            <div class="center">-->
+          <!--              <button-->
+          <!--                (click)="addToList()"-->
+          <!--                class="btn btn-primary"-->
+          <!--                mat-raised-button>-->
+          <!--                Hinzufügen-->
+          <!--              </button>-->
+          <!--            </div>-->
+          <!--          </form>-->
         </section>
       </form>
     </div>
