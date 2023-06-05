@@ -18,12 +18,12 @@ export class EventFormComponent implements OnInit {
   @Input() event: EventDto | undefined;
 
   eventFormGroup = new FormGroup({
-    title: new FormControl('', Validators.min(1)),
-    description: new FormControl('', Validators.min(1)),
+    title: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
     location: new FormControl(-1, Validators.required),
     category: new FormControl(-1, Validators.required),
-    startDateTime: new FormControl(new Date(), Validators.min(1)),
-    endDateTime: new FormControl(new Date(), Validators.min(1)),
+    startDateTime: new FormControl(new Date(), Validators.required),
+    endDateTime: new FormControl(new Date(), Validators.required),
     file0: new FormControl('', Validators.required),
     file1: new FormControl('', Validators.nullValidator),
     file2: new FormControl('', Validators.nullValidator),

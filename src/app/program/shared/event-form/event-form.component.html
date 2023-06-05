@@ -21,7 +21,7 @@
       <div class="col-2">
         <mat-form-field appearance="fill">
           <mat-label>Standort</mat-label>
-          <mat-select [(value)]="location">
+          <mat-select [(value)]="location" required>
             <mat-option
               *ngFor="let location of locations"
               [value]="location.id">
@@ -32,7 +32,7 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Kategorie</mat-label>
-          <mat-select [(value)]="category">
+          <mat-select [(value)]="category" required>
             <mat-option
               *ngFor="let category of categories"
               [value]="category.id">
@@ -93,7 +93,7 @@
       </div>
 
       <div class="upload-title">
-        <h4>Titelbild</h4>
+        <h4>Titelbild*</h4>
         <h4>Weitere Fotos</h4>
       </div>
 
