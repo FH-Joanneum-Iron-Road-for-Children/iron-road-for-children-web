@@ -1,14 +1,12 @@
-FROM node:bullseye-slim as build-stage
+FROM node:bullseye-slim as node
+
 WORKDIR /app
-COPY package*.json /app/
+COPY . .
 RUN npm install
-COPY ./ /app/
-ARG configuration=production
-RUN npm run build -- --output-path=./dist/out --configuration $configuration
+RUN npm run build --prod
 
-FROM nginx
-COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
-
+FROM nginx:alpine
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=node /app/dist/iron-road-for-children-web /usr/share/nginx/html
 
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
