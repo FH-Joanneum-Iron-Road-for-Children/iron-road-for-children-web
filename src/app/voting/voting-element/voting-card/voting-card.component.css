@@ -1,0 +1,26 @@
+.card-holder {
+  display: flex;
+  flex-direction: row;
+}
+
+.card {
+  margin: 0.5rem;
+  background-color: #fff8eb;
+  width: 300px;
+}
+
+.flex {
+  display: flex;
+}
+
+.alignment {
+  justify-content: space-between;
+  align-items: baseline;
+}
+button {
+  margin-top: 20px;
+}
+mat-card-header {
+  font-weight: bold;
+  font-size: 18px;
+}

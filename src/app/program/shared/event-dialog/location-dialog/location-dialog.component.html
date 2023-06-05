@@ -1,0 +1,20 @@
+<div class="center">
+  <h1 mat-dialog-title>Standorte bearbeiten</h1>
+</div>
+
+<app-event-dialog [itemList]="locationList"></app-event-dialog>
+
+<div class="center" mat-dialog-actions>
+  <section>
+    <button class="btn btn-secondary" mat-dialog-close="true" mat-raised-button>
+      Abbrechen
+    </button>
+    <button
+      (click)="saveLocations()"
+      class="btn btn-primary"
+      mat-dialog-close="true"
+      mat-raised-button>
+      Speichern
+    </button>
+  </section>
+</div>

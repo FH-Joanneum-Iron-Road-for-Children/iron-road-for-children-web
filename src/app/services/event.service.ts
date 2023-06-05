@@ -1,4 +1,10 @@
 import { Injectable } from '@angular/core';
+import { EventCategoryDto, EventDto, EventLocationDto } from '../models/models';
+import {
+  CATEGORY_DATA,
+  EVENT_DATA,
+  LOCATION_DATA,
+} from '../test-data/test-data';
 import { EventDto } from '../models/models';
 import { EVENT_DATA } from '../test-data/test-data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -18,6 +24,10 @@ export class EventService {
     }),
   };
   constructor(private httpClient: HttpClient) {}
+
+  getEvents(): EventDto[] {
+    return EVENT_DATA;
+  }
 
   getEventById(id: number): EventDto {
     return EVENT_DATA.find((e) => e.id === Number(id)) as EventDto;
@@ -48,5 +58,13 @@ export class EventService {
 
   deleteEventByEventId(eventId: number) {
     return this.httpClient.delete<Response>(this.baseUrl + 'events/' + eventId);
+  }
+
+  getCategories(): EventCategoryDto[] {
+    return CATEGORY_DATA;
+  }
+
+  getLocations(): EventLocationDto[] {
+    return LOCATION_DATA;
   }
 }

@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+type Item = {
+  id: number;
+  name: string;
+};
 
 @Component({
   selector: 'app-event-dialog',
@@ -7,25 +12,31 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./event-dialog.component.css'],
 })
 export class EventDialogComponent {
-  itemList: string[] = ['Musik', 'Tattoo', 'Food & Drinks', ' Ausfahrten'];
-  newItem: any;
+  @Input() itemList: Item[] | null = null;
+
   itemFormGroup = new FormGroup({
     name: new FormControl('', Validators.min(1)),
   });
 
-  removeItem(name: string) {
-    const index = this.itemList.indexOf(name);
-    if (index !== -1) {
-      this.itemList.splice(index, 1);
+  removeItem(item: Item) {
+    if (this.itemList) {
+      const index = this.itemList.indexOf(item);
+      if (index !== -1) {
+        this.itemList?.splice(index, 1);
+      }
     }
   }
 
   addItem() {
-    this.newItem = this.itemFormGroup.controls['name'].value;
+    const newItemName: string | null =
+      this.itemFormGroup.controls['name'].value;
 
-    if (this.newItem && !this.itemList.includes(this.newItem)) {
-      this.itemList.push(this.newItem);
-      this.newItem = '';
+    if (newItemName && this.itemList) {
+      const exists = this.itemList.some((item) => item.name === newItemName);
+      if (!exists) {
+        const newItem: Item = { id: 0, name: newItemName };
+        this.itemList.push(newItem);
+      }
     }
   }
 }

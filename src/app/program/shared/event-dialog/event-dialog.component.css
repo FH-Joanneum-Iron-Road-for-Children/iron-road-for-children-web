@@ -1,19 +1,25 @@
-.two-col {
+.col-2 {
   display: grid;
   grid-template-columns: 1fr auto;
   column-gap: 1rem;
 }
 
-.two-even-col {
+.col-2e {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 1rem;
+}
+
+.scroll-container {
+  height: 20rem;
+  overflow: auto;
 }
 
 .list-item {
   border-radius: 20px !important;
   background: #fdd516;
   list-style: none;
+  width: 15rem;
 }
 
 .list-item {
@@ -22,13 +28,6 @@
 
 li {
   padding: 0.75rem 1rem 0.75rem 1rem;
-}
-
-.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .left-align {

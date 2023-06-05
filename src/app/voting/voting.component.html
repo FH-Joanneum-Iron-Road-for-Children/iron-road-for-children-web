@@ -1,0 +1,11 @@
+<app-navigation></app-navigation>
+<main>
+  <div class="voting-button">
+    <button class="btn btn-primary" (click)="onVtnClick()" mat-raised-button>
+      <mat-icon>add</mat-icon>
+      Neues Voting
+    </button>
+  </div>
+
+  <app-voting-wrapper [votingList]="votingList"></app-voting-wrapper>
+</main>

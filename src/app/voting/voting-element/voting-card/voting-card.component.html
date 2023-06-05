@@ -1,0 +1,17 @@
+<div class="card-holder">
+  <mat-card class="card">
+    <mat-card-header>{{ name }}</mat-card-header>
+    <mat-card-content>
+      <p>Stimmen:</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        (click)="openConfirmWinnerDialog()"
+        color="accent"
+        mat-raised-button>
+        <mat-icon>emoji_events</mat-icon>
+        Auswählen
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

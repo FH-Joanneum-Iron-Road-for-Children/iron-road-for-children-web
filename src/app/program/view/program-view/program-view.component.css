@@ -1,33 +1,16 @@
-.program-view {
-  margin-left: 150px;
-  margin-right: 150px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  background-color: #fffbfe;
-}
-.header {
-  flex-grow: 0.5;
-  align-self: center;
-}
-.picture {
-  object-fit: cover;
-  object-position: left;
-  height: 10%;
-  width: 10%;
-  margin: 0;
-  padding: 0;
-}
-
-.actions {
-  align-self: center;
-}
-
-.time {
-  align-self: center;
-  flex-grow: 2;
-}
-
-.program-view:not(:last-of-type) {
+.program-item {
+  display: grid;
+  grid-template-columns: 1fr 5fr 5fr 1fr;
+  column-gap: 1rem;
   margin-bottom: 1rem;
+  align-items: center;
+  background-color: #fdfdfb;
+  height: 5rem;
+  border-radius: 20px;
+}
+
+.picture {
+  border-radius: 20px 0 0 20px !important;
+  height: 5rem;
+  width: 5rem;
 }

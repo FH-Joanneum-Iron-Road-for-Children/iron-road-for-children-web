@@ -1,0 +1,67 @@
+<div class="center">
+  <h1 mat-dialog-title>Voting hinzufügen</h1>
+</div>
+<div mat-dialog-content>
+  <div class="col-2e">
+    <div>
+      <form [formGroup]="votingAddEditFormGroup">
+        <section class="center">
+          <mat-form-field appearance="fill" class="center">
+            <mat-label>Name des Votings</mat-label>
+            <input formControlName="votingName" matInput />
+          </mat-form-field>
+        </section>
+        <section class="center">
+          <h1 mat-dialog-title>Teilnehmer hinzufügen</h1>
+          <form [formGroup]="itemFormGroup">
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Teilnehmer</mat-label>
+                <input
+                  formControlName="name"
+                  matInput
+                  placeholder="Teilnehmer" />
+              </mat-form-field>
+            </div>
+            <div class="center">
+              <button
+                (click)="addToList()"
+                class="btn btn-primary"
+                mat-raised-button>
+                Hinzufügen
+              </button>
+            </div>
+          </form>
+        </section>
+      </form>
+    </div>
+
+    <div class="col-2">
+      <section class="scroll-container">
+        <ul>
+          <div *ngFor="let name of listOfBands" class="list-item col-2">
+            <li>{{ name }}</li>
+            <button (click)="removeFromList(name)" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="center" mat-dialog-actions>
+  <section>
+    <button class="btn btn-secondary" mat-dialog-close="true" mat-raised-button>
+      Abbrechen
+    </button>
+    <button
+      (click)="saveCategories()"
+      class="btn btn-primary"
+      mat-dialog-close="true"
+      mat-raised-button>
+      Speichern
+    </button>
+  </section>
+</div>
