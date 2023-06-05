@@ -10,8 +10,12 @@
   align-items: center;
 }
 
+.overflow-auto {
+  width: 95vw;
+  overflow: auto;
+}
+
 section {
   margin-bottom: 40px;
-  overflow-x: auto;
   overflow-y: hidden;
 }
