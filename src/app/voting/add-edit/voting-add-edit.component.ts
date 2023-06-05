@@ -1,14 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import {
-  EventCategoryDto,
-  EventDto,
-  EventLocationDto,
-} from '../../models/models';
-import { EventService } from '../../services/event.service';
-import { CATEGORY_DATA, LOCATION_DATA } from '../../test-data/test-data';
-import { Router } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { EventDto } from '../../models/models';
 
 @Component({
   selector: 'app-add-edit',
@@ -26,10 +19,10 @@ export class VotingAddEditComponent {
     participant: new FormControl(''),
   });
 
-  // constructor(
-  //   private dialog: MatDialog,
-  //   private dialogRef: MatDialogRef<VotingAddEditComponent>) {
-  // }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: EventDto[],
+    private dialogRef: MatDialogRef<VotingAddEditComponent>
+  ) {}
 
   listOfBands: any[] = ['Seiler und Speer', 'Veins of Suffering', 'Burnswell'];
   newItem: any;

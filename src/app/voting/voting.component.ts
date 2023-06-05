@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { VotingDto } from '../models/models';
-import { VOTING } from '../test-data/test-data';
+import { EventDto, VotingDto } from '../models/models';
+import { EVENT_DATA, VOTING } from '../test-data/test-data';
 import { VotingAddEditComponent } from './add-edit/voting-add-edit.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class VotingComponent implements OnInit {
   isActive = false;
   votingList: VotingDto[] = VOTING;
+  events: EventDto[] = EVENT_DATA;
 
   ngOnInit(): void {
     console.log(this.votingList[0].isActive);
@@ -22,6 +23,7 @@ export class VotingComponent implements OnInit {
   onVtnClick() {
     // Navigate to /add-edit page
     this.dialog.open(VotingAddEditComponent, {
+      data: this.events,
       disableClose: true,
       width: '45rem',
       height: '30rem',
