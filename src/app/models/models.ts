@@ -4,60 +4,60 @@ export interface User {
 }
 
 export interface PictureDto {
-  id: number;
-  title: string;
+  pictureId?: number;
+  altText: string;
   path: string;
 }
 
 export interface EventInfoDto {
-  id: number;
+  eventInfoId?: number;
   infoText: string;
   pictures: PictureDto[];
 }
 
 export interface EventLocationDto {
-  id: number;
+  eventLocationId?: number;
   name: string;
 }
 
 export interface EventCategoryDto {
-  id: number;
+  eventCategoryId?: number;
   name: string;
 }
 
 export interface EventDto {
-  id: number;
+  eventId?: number;
   title: string;
   eventInfo: EventInfoDto;
-  image: PictureDto;
-  startDateTimeUTC: number;
-  endDateTimeUTC: number;
+  picture: PictureDto;
+  startDateTimeInUTC: number;
+  endDateTimeInUTC: number;
   eventLocation: EventLocationDto;
   category: EventCategoryDto;
-  isEditable: boolean;
 }
 
 export interface VotingPartialResultDto {
-  id: number;
+  id?: number;
   eventName: string;
   percentage?: number;
 }
 
 export interface VotingResultDto {
-  id: number;
+  id?: number;
   title: string;
   endDate?: string;
   partialResults?: VotingPartialResultDto[];
 }
 
 export interface VotingDto {
-  id: number;
+  id?: number;
   title: string;
   isActive: boolean;
   isEditable: boolean;
   events?: EventDto[];
-  eventCategoryId: number;
   votingResult?: VotingResultDto;
+  active:boolean;
+  editable: boolean;
 }
 
 // TODO: Create getAll interfaces when they are done

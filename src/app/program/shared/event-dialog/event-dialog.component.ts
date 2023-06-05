@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, Output} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {EventCategoryDto} from "../../../models/models";
 
 type Item = {
   id: number;
@@ -12,13 +13,15 @@ type Item = {
   styleUrls: ['./event-dialog.component.css'],
 })
 export class EventDialogComponent {
-  @Input() itemList: Item[] | null = null;
+  @Input() itemList: EventCategoryDto[] | null = null;
+
+  @Output() saveItemList: EventCategoryDto[] | null = null;
 
   itemFormGroup = new FormGroup({
     name: new FormControl('', Validators.min(1)),
   });
 
-  removeItem(item: Item) {
+  removeItem(item: EventCategoryDto) {
     if (this.itemList) {
       const index = this.itemList.indexOf(item);
       if (index !== -1) {

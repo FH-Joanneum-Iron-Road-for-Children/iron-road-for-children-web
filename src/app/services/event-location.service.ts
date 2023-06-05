@@ -1,9 +1,7 @@
-import { Injectable } from '@angular/core';
-import { EventDto, EventLocationDto } from '../models/models';
-import { EVENT_DATA } from '../test-data/test-data';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
+import {Injectable} from '@angular/core';
+import {EventLocationDto} from '../models/models';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,9 +23,9 @@ export class EventLocationService {
     );
   }
 
-  getEventLocationById(eventId: number): Observable<EventLocationDto> {
+  getEventLocationById(id: number): Observable<EventLocationDto> {
     return this.httpClient.get<EventLocationDto>(
-      this.baseUrl + 'event-locations' + eventId
+      this.baseUrl + 'event-locations' + id
     );
   }
 
@@ -45,9 +43,9 @@ export class EventLocationService {
     );
   }
 
-  deleteEventByEventId(eventId: number) {
+  deleteEventByEventId(id: number) {
     return this.httpClient.delete<Response>(
-      this.baseUrl + 'event-locations' + eventId
+      this.baseUrl + 'event-locations' + id
     );
   }
 }

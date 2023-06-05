@@ -7,5 +7,5 @@
     </button>
   </div>
 
-  <app-voting-wrapper [votingList]="votingList"></app-voting-wrapper>
+  <app-voting-wrapper *ngIf="votingList" [votingList]="votingList"></app-voting-wrapper>
 </main>

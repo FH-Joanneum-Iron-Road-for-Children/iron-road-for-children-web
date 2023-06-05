@@ -47,21 +47,22 @@ export class EventFormComponent implements OnInit {
   ngOnInit(): void {
     if (this.event) {
       // edit event
+      if(this.event.category.eventCategoryId && this.event.eventLocation.eventLocationId)
       this.eventFormGroup.setValue({
         title: this.event.title,
         description: this.event.eventInfo?.infoText,
-        location: this.event.eventLocation.id,
-        category: this.event.category.id,
-        startDateTime: new Date(this.event.startDateTimeUTC * 1000),
-        endDateTime: new Date(this.event.endDateTimeUTC * 1000),
-        file0: this.event.image?.path,
+        location: this.event.eventLocation.eventLocationId,
+        category: this.event.category.eventCategoryId,
+        startDateTime: new Date(this.event.startDateTimeInUTC * 1000),
+        endDateTime: new Date(this.event.endDateTimeInUTC * 1000),
+        file0: this.event.picture?.path,
         file1: this.event.eventInfo?.pictures[0]?.path ?? null,
         file2: this.event.eventInfo?.pictures[1]?.path ?? null,
         file3: this.event.eventInfo?.pictures[2]?.path ?? null,
       });
 
-      this.category = this.event.category.id;
-      this.location = this.event.eventLocation.id;
+      this.category = this.event.category.eventCategoryId;
+      this.location = this.event.eventLocation.eventLocationId;
     } else {
       // add event - reset datetime fields
       this.eventFormGroup.patchValue({

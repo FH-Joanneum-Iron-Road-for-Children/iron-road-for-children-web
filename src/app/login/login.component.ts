@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { User } from '../models/models';
 import { MatDialog } from '@angular/material/dialog';
-import { DummyDialogComponent } from '../dummy-dialog/dummy-dialog.component';
 import { EventService } from '../services/event.service';
 import { EventLocationService } from '../services/event-location.service';
 
@@ -33,22 +32,13 @@ export class LoginComponent implements OnInit {
     private eventLocationService: EventLocationService
   ) {}
 
-  ngOnInit(): void {
-    console.log('ngOnInit is called');
-
-    this.eventLocationService
-      .getAllEventLocations()
-      .subscribe((events) => console.log('events', events));
-  }
-
-
   // you can remove this method but it is only used because of lint complaining that it is empty
   ngOnInit(): void {
     console.log('ngOnInit is called');
 
     this.eventLocationService
       .getAllEventLocations()
-      .subscribe((events) => console.log('events', events));
+      .subscribe((events) => console.log('eventsLocations', events));
   }
 
   login() {
