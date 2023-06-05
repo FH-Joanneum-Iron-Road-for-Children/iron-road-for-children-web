@@ -1,5 +1,5 @@
 import { Component, Inject, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { EventDto } from '../../models/models';
 
@@ -14,6 +14,8 @@ import { EventDto } from '../../models/models';
 export class VotingAddEditComponent {
   @Input()
   events: EventDto[] | undefined;
+
+  eventList: EventDto[] = [];
   votingAddEditFormGroup = new FormGroup({
     votingName: new FormControl(''),
     participant: new FormControl(''),
@@ -24,30 +26,21 @@ export class VotingAddEditComponent {
     private dialogRef: MatDialogRef<VotingAddEditComponent>
   ) {}
 
-  listOfBands: any[] = ['Seiler und Speer', 'Veins of Suffering', 'Burnswell'];
-  newItem: any;
-  itemFormGroup = new FormGroup({
-    name: new FormControl('', Validators.min(1)),
-  });
-  EventDto: any;
-
-  addToList() {
-    this.newItem = this.itemFormGroup.controls['name'].value;
-
-    if (this.newItem && !this.listOfBands.includes(this.newItem)) {
-      this.listOfBands.push(this.newItem);
-      this.newItem = '';
-    }
+  addEventToList(event: EventDto) {
+    this.eventList.push(event);
+    console.log('add item');
   }
 
-  removeFromList(name: string) {
-    const index = this.listOfBands.indexOf(name);
-    if (index !== -1) {
-      this.listOfBands.splice(index, 1);
+  removeFromList(event: EventDto) {
+    if (this.eventList) {
+      const index = this.eventList.indexOf(event);
+      if (index !== -1) {
+        this.eventList?.splice(index, 1);
+      }
     }
   }
 
   saveCategories() {
-    // this.dialogRef.close(this.listOfBands);
+    //   // this.dialogRef.close(this.listOfBands);
   }
 }

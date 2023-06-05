@@ -26,7 +26,7 @@ export class VotingComponent implements OnInit {
       data: this.events,
       disableClose: true,
       width: '45rem',
-      height: '30rem',
+      height: '32rem',
     });
   }
 }
