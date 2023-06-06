@@ -18,16 +18,16 @@ export class LocationDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.eventLocationService
-      .getAllEventLocations()
-      .subscribe((result) => (this.locations = result));
+    this.eventLocationService.getAllEventLocations().subscribe((locations) => {
+      this.locations = locations;
 
-    // map to Item[] so it can be used in shared event-dialog component
-    this.locationList = this.locations.map((location) => {
-      return {
-        id: location.eventLocationId,
-        name: location.name,
-      };
+      // map to Item[] so it can be used in shared event-dialog component
+      this.locationList = locations.map((location) => {
+        return {
+          id: location.eventLocationId,
+          name: location.name,
+        };
+      });
     });
   }
 
