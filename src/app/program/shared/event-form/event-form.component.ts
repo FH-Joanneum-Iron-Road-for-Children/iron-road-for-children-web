@@ -9,7 +9,6 @@ import {
   EventLocationDto,
   PictureDto,
 } from '../../../models/models';
-import { CATEGORY_DATA, LOCATION_DATA } from '../../../test-data/test-data';
 import { EventService } from '../../../services/event.service';
 import { PicturesService } from '../../../services/pictures.service';
 
@@ -41,8 +40,8 @@ export class EventFormComponent implements OnInit {
   filePaths: (string | null)[] = Array(4).fill(null);
   fileNames: (string | null)[] = Array(4).fill(null);
 
-  public categories: EventCategoryDto[] = CATEGORY_DATA;
-  public locations: EventLocationDto[] = LOCATION_DATA;
+  public categories: EventCategoryDto[] = [];
+  public locations: EventLocationDto[] = [];
   minDate: Date;
 
   sentPictures: PictureDto[] | undefined;
@@ -64,8 +63,8 @@ export class EventFormComponent implements OnInit {
       this.eventFormGroup.setValue({
         title: this.event.title,
         description: this.event.eventInfo?.infoText,
-        location: this.event.eventLocation.id,
-        category: this.event.category.id,
+        location: this.event.eventLocation.eventLocationId,
+        category: this.event.eventCategory.eventCategoryId,
         startDateTime: new Date(this.event.startDateTimeInUTC * 1000),
         endDateTime: new Date(this.event.endDateTimeInUTC * 1000),
         file0: this.event.picture?.path,
@@ -84,8 +83,8 @@ export class EventFormComponent implements OnInit {
       this.fileNames[2] = this.event.eventInfo?.pictures[2]?.altText ?? null;
       this.fileNames[3] = this.event.eventInfo?.pictures[3]?.altText ?? null;
 
-      this.category = this.event.category.id;
-      this.location = this.event.eventLocation.id;
+      this.category = this.event.eventCategory.eventCategoryId;
+      this.location = this.event.eventLocation.eventLocationId;
     } else {
       // add event - reset datetime fields
       this.eventFormGroup.patchValue({
@@ -171,12 +170,12 @@ export class EventFormComponent implements OnInit {
       title: title,
       startDateTimeInUTC: 1690320193,
       endDateTimeInUTC: 1690327393,
-      category: {
-        id: 100,
+      eventCategory: {
+        eventCategoryId: 100,
         name: 'test category',
       },
       eventLocation: {
-        id: 100,
+        eventLocationId: 100,
         name: 'test location',
       },
       picture: {

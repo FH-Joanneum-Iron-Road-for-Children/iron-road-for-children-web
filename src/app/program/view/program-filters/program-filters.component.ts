@@ -26,7 +26,7 @@ export class ProgramFiltersComponent {
   ) {}
 
   toggleCategoryChip(chip: string) {
-    if (this.selectedCategoryChips == chip) {
+    if (this.selectedCategoryChips === chip) {
       this.selectedCategoryChips = '';
       this.selectedCategoryChipsChange.emit('');
     } else {
@@ -39,7 +39,7 @@ export class ProgramFiltersComponent {
     if (
       this.dateConverterService.getTimestampWithoutTime(
         this.selectedDateChips
-      ) == this.dateConverterService.getTimestampWithoutTime(chip)
+      ) === this.dateConverterService.getTimestampWithoutTime(chip)
     ) {
       this.selectedDateChips = 0;
       this.selectedDateChipsChange.emit(this.selectedDateChips);

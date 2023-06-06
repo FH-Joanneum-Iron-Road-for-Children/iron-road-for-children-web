@@ -25,14 +25,15 @@ export class ProgramComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.eventService
-      .getAllEvents()
-      .subscribe((events) => (this.events = events));
+    this.eventService.getAllEvents().subscribe((events) => {
+      this.events = events;
+      this.originalEventList = events;
+    });
 
     this.eventCategoryService
       .getAllEventCategories()
       .subscribe((categories) => (this.categories = categories));
-    this.originalEventList = this.events;
+    // this.originalEventList = this.events;
 
     // get dates from both startDateTime and endDateTime properties
     const startTimestamps = this.events.map(
@@ -82,7 +83,7 @@ export class ProgramComponent implements OnInit {
             this.dateConverterService.getTimestampWithoutTime(
               event.endDateTimeInUTC
             ) == chipTimestamp) &&
-          event.category?.name?.includes(this.selectedCategoryChips)
+          event.eventCategory?.name?.includes(this.selectedCategoryChips)
         );
       });
     } else if (
@@ -90,7 +91,7 @@ export class ProgramComponent implements OnInit {
       this.selectedCategoryChips != ''
     ) {
       this.events = this.originalEventList.filter((event) => {
-        return event.category?.name?.includes(this.selectedCategoryChips);
+        return event.eventCategory?.name?.includes(this.selectedCategoryChips);
       });
     } else if (
       this.selectedCategoryChips == '' &&

@@ -19,10 +19,10 @@
             {{ event.eventInfo.infoText }}
             <div>
               <mat-chip
-                *ngIf="event.category.name != ''"
+                *ngIf="event.eventCategory.name != ''"
                 class="category-chip"
                 matTooltip="Kategorie">
-                {{ event?.category?.name }}
+                {{ event?.eventCategory?.name }}
               </mat-chip>
               <mat-chip
                 *ngIf="event.eventLocation.name != ''"
