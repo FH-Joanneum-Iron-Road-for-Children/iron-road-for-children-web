@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { EventCategoryDto, EventDto } from '../../models/models';
 import { EventService } from '../../services/event.service';
 import { DateConverterService } from '../../services/date-converter.service';
-import { formatDate } from '@angular/common';
 import { EventCategoriesService } from '../../services/event-categories.service';
 
 @Component({
@@ -14,35 +13,35 @@ export class ProgramComponent implements OnInit {
   public events: EventDto[] = [];
   public originalEventList: EventDto[] = []; // for resetting the list
   public categories: EventCategoryDto[] = [];
-  private selectedCategoryChips: any = [];
-  private selectedDateChips: any = [];
+  private selectedCategoryChips: any = '';
+  private selectedDateChips: any = 0;
 
   dates: number[] = [];
 
   constructor(
     private eventService: EventService,
-
     private eventCategoryService: EventCategoriesService,
     private dateConverterService: DateConverterService
   ) {}
 
   ngOnInit(): void {
-    this.eventService
-      .getAllEvents()
-      .subscribe((events) => (this.events = events));
+    this.eventService.getAllEvents().subscribe((events) => {
+      this.events = events;
+      this.originalEventList = events;
+
+      // get dates from both startDateTime and endDateTime properties
+      const startTimestamps = this.events.map(
+        (event) => event.startDateTimeInUTC
+      );
+
+      const endTimestamps = this.events.map((event) => event.endDateTimeInUTC);
+      this.dates = startTimestamps.concat(endTimestamps);
+      this.dates = this.getUniqueDates();
+    });
 
     this.eventCategoryService
       .getAllEventCategories()
       .subscribe((categories) => (this.categories = categories));
-    this.originalEventList = this.events;
-
-    // get dates from both startDateTime and endDateTime properties
-    const startTimestamps = this.events.map(
-      (event) => event.startDateTimeInUTC
-    );
-    const endTimestamps = this.events.map((event) => event.endDateTimeInUTC);
-    this.dates = startTimestamps.concat(endTimestamps);
-    this.dates = this.getUniqueDates();
   }
 
   private getUniqueDates(): number[] {
@@ -50,9 +49,12 @@ export class ProgramComponent implements OnInit {
 
     this.dates.forEach((date) => {
       const dateFormat = this.dateConverterService.getDateFromTimestamp(date);
-      uniqueDatesSet.add(
-        this.dateConverterService.getTimestampWithoutTimeFromDate(dateFormat)
-      );
+
+      if (date > 10000) {
+        uniqueDatesSet.add(
+          this.dateConverterService.getTimestampWithoutTimeFromDate(dateFormat)
+        );
+      }
     });
 
     const uniqueDatesArray = Array.from(uniqueDatesSet);
@@ -71,33 +73,44 @@ export class ProgramComponent implements OnInit {
   }
 
   filterEvents() {
-    if (
-      this.selectedDateChips.length != 0 ||
-      this.selectedCategoryChips.length != 0
+    if (this.selectedDateChips != 0 && this.selectedCategoryChips != '') {
+      const chipTimestamp = this.dateConverterService.getTimestampWithoutTime(
+        this.selectedDateChips
+      );
+
+      this.events = this.originalEventList.filter((event) => {
+        return (
+          (this.dateConverterService.getTimestampWithoutTime(
+            event.startDateTimeInUTC
+          ) == chipTimestamp ||
+            this.dateConverterService.getTimestampWithoutTime(
+              event.endDateTimeInUTC
+            ) == chipTimestamp) &&
+          event.eventCategory?.name?.includes(this.selectedCategoryChips)
+        );
+      });
+    } else if (
+      this.selectedDateChips == 0 &&
+      this.selectedCategoryChips != ''
     ) {
       this.events = this.originalEventList.filter((event) => {
-        // if matches any filter set
+        return event.eventCategory?.name?.includes(this.selectedCategoryChips);
+      });
+    } else if (
+      this.selectedCategoryChips == '' &&
+      this.selectedDateChips != 0
+    ) {
+      const chipTimestamp = this.dateConverterService.getTimestampWithoutTime(
+        this.selectedDateChips
+      );
+      this.events = this.originalEventList.filter((event) => {
         return (
-          this.selectedDateChips.some((chip: Date) => {
-            const formattedDate = formatDate(chip, 'dd.MM.yyyy', 'de-AT');
-            const chipTimestamp =
-              this.dateConverterService.getTimestampWithoutTimeFromDate(chip);
-            const startTimestamp =
-              this.dateConverterService.getTimestampWithoutTime(
-                event.startDateTimeInUTC
-              );
-            const endTimestamp =
-              this.dateConverterService.getTimestampWithoutTime(
-                event.endDateTimeInUTC
-              );
-            console.log(formattedDate);
-            return (
-              startTimestamp == chipTimestamp || endTimestamp == chipTimestamp
-            );
-          }) ||
-          this.selectedCategoryChips.some((chip: string) => {
-            return event.category?.name?.includes(chip);
-          })
+          this.dateConverterService.getTimestampWithoutTime(
+            event.startDateTimeInUTC
+          ) == chipTimestamp ||
+          this.dateConverterService.getTimestampWithoutTime(
+            event.endDateTimeInUTC
+          ) == chipTimestamp
         );
       });
     } else {

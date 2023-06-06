@@ -45,6 +45,7 @@ import { registerLocaleData } from '@angular/common';
 import localeAt from '@angular/common/locales/de-AT';
 import { VotingWrapperComponent } from './voting/voting-wrapper/voting-wrapper.component';
 import { EventListComponent } from './voting/add-edit/event-list/event-list.component';
+import { MatBadgeModule } from '@angular/material/badge';
 
 registerLocaleData(localeAt, 'de-AT');
 
@@ -97,6 +98,7 @@ registerLocaleData(localeAt, 'de-AT');
     MatNativeDateModule,
     MatSlideToggleModule,
     MatCardModule,
+    MatBadgeModule,
   ],
   providers: [HttpClient, { provide: LOCALE_ID, useValue: 'de-AT' }],
   bootstrap: [AppComponent],

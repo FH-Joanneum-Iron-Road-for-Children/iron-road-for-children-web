@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventDto, VotingDto } from '../models/models';
-import { EVENT_DATA, VOTING } from '../test-data/test-data';
+import { VotingDto } from '../models/models';
 import { VotingAddEditComponent } from './add-edit/voting-add-edit.component';
 import { MatDialog } from '@angular/material/dialog';
 import { VotingService } from '../services/voting.service';
@@ -12,8 +11,7 @@ import { VotingService } from '../services/voting.service';
 })
 export class VotingComponent implements OnInit {
   isActive = false;
-  votingList: VotingDto[] = VOTING;
-  events: EventDto[] = EVENT_DATA;
+  votingList: VotingDto[] | undefined;
 
   ngOnInit(): void {
     this.votingService
@@ -29,7 +27,6 @@ export class VotingComponent implements OnInit {
   onVtnClick() {
     // Navigate to /add-edit page
     this.dialog.open(VotingAddEditComponent, {
-      data: this.events,
       disableClose: true,
       width: '60vw',
       minWidth: ' 40rem',
