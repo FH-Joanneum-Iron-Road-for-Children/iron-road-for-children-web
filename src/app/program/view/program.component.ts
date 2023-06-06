@@ -28,20 +28,20 @@ export class ProgramComponent implements OnInit {
     this.eventService.getAllEvents().subscribe((events) => {
       this.events = events;
       this.originalEventList = events;
+
+      // get dates from both startDateTime and endDateTime properties
+      const startTimestamps = this.events.map(
+        (event) => event.startDateTimeInUTC
+      );
+
+      const endTimestamps = this.events.map((event) => event.endDateTimeInUTC);
+      this.dates = startTimestamps.concat(endTimestamps);
+      this.dates = this.getUniqueDates();
     });
 
     this.eventCategoryService
       .getAllEventCategories()
       .subscribe((categories) => (this.categories = categories));
-    // this.originalEventList = this.events;
-
-    // get dates from both startDateTime and endDateTime properties
-    const startTimestamps = this.events.map(
-      (event) => event.startDateTimeInUTC
-    );
-    const endTimestamps = this.events.map((event) => event.endDateTimeInUTC);
-    this.dates = startTimestamps.concat(endTimestamps);
-    this.dates = this.getUniqueDates();
   }
 
   private getUniqueDates(): number[] {
@@ -49,9 +49,12 @@ export class ProgramComponent implements OnInit {
 
     this.dates.forEach((date) => {
       const dateFormat = this.dateConverterService.getDateFromTimestamp(date);
-      uniqueDatesSet.add(
-        this.dateConverterService.getTimestampWithoutTimeFromDate(dateFormat)
-      );
+
+      if (date > 10000) {
+        uniqueDatesSet.add(
+          this.dateConverterService.getTimestampWithoutTimeFromDate(dateFormat)
+        );
+      }
     });
 
     const uniqueDatesArray = Array.from(uniqueDatesSet);
