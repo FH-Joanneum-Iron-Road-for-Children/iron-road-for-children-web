@@ -8,12 +8,6 @@ export interface PictureDto {
   altText: string;
   path: string | null;
 }
-export interface CreatePictureDto {
-  file: string;
-  altText: string;
-
-  fileType: string;
-}
 
 export interface EventInfoDto {
   eventInfoId?: number;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CreatePictureDto, PictureDto } from '../models/models';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PictureDto } from '../models/models';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -25,10 +25,16 @@ export class PicturesService {
     );
   }
 
-  postPictures(PictureDto: CreatePictureDto) {
-    return this.httpClient.post<PictureDto>(this.baseUrl + 'api/pictures/', {
-      PictureDto,
-    });
+  postPictures(file: File, name: string, fileType: string) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('altText', name);
+    formData.append('fileType', fileType);
+
+    return this.httpClient.post<PictureDto>(
+      this.baseUrl + 'api/pictures/',
+      formData
+    );
   }
 
   deletePicture(id: number) {

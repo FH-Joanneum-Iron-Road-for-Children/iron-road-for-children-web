@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import {
-  CreatePictureDto,
   EventCategoryDto,
   EventDto,
   EventLocationDto,
@@ -159,14 +158,8 @@ export class EventFormComponent implements OnInit {
   submit() {
     for (const uploadedFile1 of this.uploadedFiles) {
       if (uploadedFile1 !== null) {
-        const pictureDto: CreatePictureDto = {
-          file: uploadedFile1.name,
-          altText: '',
-          fileType: uploadedFile1.type,
-        };
-
         this.pictureService
-          .postPictures(pictureDto)
+          .postPictures(uploadedFile1, '', 'PNG')
           .subscribe((fromBackendPictures) => {
             this.sentPictures?.push(fromBackendPictures);
             console.log(this.sentPictures);
