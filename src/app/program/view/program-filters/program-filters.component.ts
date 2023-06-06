@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CategoryDialogComponent } from '../../shared/event-dialog/category-dialog/category-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { EventCategoryDto } from '../../../models/models';
-import { DateConverterService } from '../../../services/date-converter.service';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {CategoryDialogComponent} from '../../shared/event-dialog/category-dialog/category-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {Router} from '@angular/router';
+import {EventCategoryDto} from '../../../models/models';
+import {DateConverterService} from '../../../services/date-converter.service';
 
 @Component({
   selector: 'app-program-filters',
@@ -16,6 +16,8 @@ export class ProgramFiltersComponent {
   @Output() selectedCategoryChipsChange = new EventEmitter<string[]>();
   @Output() selectedDateChipsChange = new EventEmitter<Date[]>();
 
+  @Output() categoriesList = new EventEmitter<EventCategoryDto[]>();
+
   selectedCategoryChips: string[] = [];
   selectedDateChips: Date[] = [];
 
@@ -23,7 +25,8 @@ export class ProgramFiltersComponent {
     public dialog: MatDialog,
     private router: Router,
     public dateConverterService: DateConverterService
-  ) {}
+  ) {
+  }
 
   toggleCategoryChip(chip: string) {
     const index = this.selectedCategoryChips.indexOf(chip);
@@ -56,9 +59,12 @@ export class ProgramFiltersComponent {
 
   openDialogToEditCategory() {
     this.dialog.open(CategoryDialogComponent, {
+      data: this.categoryFilters,
       disableClose: true,
       width: '45rem',
       height: '30rem',
+    }).afterClosed().subscribe((result) => {
+      window.location.reload();
     });
   }
 

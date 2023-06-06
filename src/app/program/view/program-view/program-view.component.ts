@@ -16,7 +16,9 @@ export class ProgramViewComponent {
     public confirmDialogService: ConfirmDialogService
   ) {}
 
-  openDeleteEventDialog(id: number, title: string) {
+  openDeleteEventDialog(id: number|undefined, title: string) {
+    if(id == undefined) throw new Error('id is undefined');
+
     const msg = `"${title}" wirklich löschen?`; // TODO: Show event title
     const actionType = 'Löschen';
     const dialogRef = this.confirmDialogService.openDialog(actionType, msg);

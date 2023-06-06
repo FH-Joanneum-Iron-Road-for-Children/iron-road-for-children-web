@@ -53,26 +53,26 @@ export const LOCATION_DATA: EventLocationDto[] = [
 
 export const EVENT_DATA: EventDto[] = [
   {
-    id: 1,
+    eventId: 1,
     title: 'Ausfahrt der Vespas',
     eventInfo: {
-      id: 1,
+      eventInfoId: 1,
       infoText: 'Das ist ein Text für die Beschreibung',
       pictures: [
         {
-          id: 1,
-          title: '',
+          pictureId: 1,
+          altText: '',
           path: '',
         },
       ],
     },
-    image: {
-      title: 'test picture',
-      id: 2,
+    picture: {
+      altText: 'test picture',
+      pictureId: 2,
       path: '',
     },
-    startDateTimeUTC: 1658566800,
-    endDateTimeUTC: 1658572200,
+    startDateTimeInUTC: 1658566800,
+    endDateTimeInUTC: 1658572200,
     eventLocation: {
       id: 3,
       name: 'Iron Road Stage',
@@ -81,59 +81,57 @@ export const EVENT_DATA: EventDto[] = [
       id: 4,
       name: 'Ausfahrten',
     },
-    isEditable: true,
   },
   {
-    id: 2,
+    eventId: 2,
     title: 'Ausfahrt der US-Cars',
     eventInfo: {
-      id: 2,
+      eventInfoId: 2,
       infoText: '',
       pictures: [
         {
-          id: 3,
-          title: '',
+          pictureId: 3,
+          altText: '',
           path: '',
         },
       ],
     },
-    startDateTimeUTC: 1658570400,
-    endDateTimeUTC: 1658579400,
+    startDateTimeInUTC: 1658570400,
+    endDateTimeInUTC: 1658579400,
     eventLocation: {
       id: 5,
       name: 'Ausfahrt 123',
     },
-    image: {
-      id: 3,
-      title: 'test',
+    picture: {
+      pictureId: 3,
+      altText: 'test',
       path: '',
     },
     category: {
       id: 4,
       name: 'Ausfahrten',
     },
-    isEditable: true,
   },
   {
-    id: 3,
+    eventId: 3,
     title: 'Ausfahrt mit den Bikes',
     eventInfo: {
-      id: 4,
+      eventInfoId: 4,
       infoText: '',
       pictures: [
         {
-          id: 3,
-          title: '',
+          pictureId: 3,
+          altText: '',
           path: '',
         },
       ],
     },
-    startDateTimeUTC: 1658563200,
-    endDateTimeUTC: 1658566800,
-    image: {
-      id: 88,
+    startDateTimeInUTC: 1658563200,
+    endDateTimeInUTC: 1658566800,
+    picture: {
+      pictureId: 88,
       path: '',
-      title: '',
+      altText: '',
     },
     eventLocation: {
       id: 6,
@@ -143,29 +141,28 @@ export const EVENT_DATA: EventDto[] = [
       id: 4,
       name: 'Ausfahrten',
     },
-    isEditable: true,
   },
   {
-    id: 4,
+    eventId: 4,
     title: 'IRFC Bands',
     eventInfo: {
-      id: 4,
+      eventInfoId: 4,
       infoText: '',
       pictures: [
         {
-          id: 3,
-          title: '',
+          pictureId: 3,
+          altText: '',
           path: '',
         },
       ],
     },
-    image: {
-      id: 88,
+    picture: {
+      pictureId: 88,
       path: '',
-      title: '',
+      altText: '',
     },
-    startDateTimeUTC: 1658491200,
-    endDateTimeUTC: 1658520000,
+    startDateTimeInUTC: 1658491200,
+    endDateTimeInUTC: 1658520000,
     eventLocation: {
       id: 1,
       name: 'Main Stage',
@@ -174,24 +171,23 @@ export const EVENT_DATA: EventDto[] = [
       id: 1,
       name: 'Musik',
     },
-    isEditable: true,
   },
   {
-    id: 5,
+    eventId: 5,
     eventInfo: {
-      id: 4,
+      eventInfoId: 4,
       infoText: '',
       pictures: [
         {
-          id: 3,
-          title: '',
+          pictureId: 3,
+          altText: '',
           path: '',
         },
       ],
     },
     title: 'Preisverleihung',
-    startDateTimeUTC: 1658660400,
-    endDateTimeUTC: 1658664000,
+    startDateTimeInUTC: 1658660400,
+    endDateTimeInUTC: 1658664000,
     eventLocation: {
       id: 1,
       name: 'Main Stage',
@@ -200,12 +196,11 @@ export const EVENT_DATA: EventDto[] = [
       id: 1,
       name: '',
     },
-    image: {
-      id: 88,
+    picture: {
+      pictureId: 88,
       path: '',
-      title: '',
+      altText: '',
     },
-    isEditable: true,
   },
 ];
 
@@ -216,16 +211,18 @@ export const VOTING: VotingDto[] = [
     isEditable: true,
     events: EVENT_DATA,
     votingResult: undefined,
-    eventCategoryId: 1,
     isActive: false,
+    editable: true,
+    active: false,
   },
   {
     id: 1,
     title: 'another voting',
     isActive: false,
     votingResult: undefined,
-    eventCategoryId: 2,
     events: EVENT_DATA,
     isEditable: false,
+    editable: true,
+    active: false,
   },
 ];

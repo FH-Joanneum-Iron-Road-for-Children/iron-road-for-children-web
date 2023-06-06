@@ -3,6 +3,7 @@ import { VotingDto } from '../models/models';
 import { VOTING } from '../test-data/test-data';
 import { VotingAddEditComponent } from './add-edit/voting-add-edit.component';
 import { MatDialog } from '@angular/material/dialog';
+import {VotingService} from "../services/voting.service";
 
 @Component({
   selector: 'app-voting',
@@ -11,13 +12,14 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class VotingComponent implements OnInit {
   isActive = false;
-  votingList: VotingDto[] = VOTING;
+  votingList: VotingDto[] | undefined;
 
   ngOnInit(): void {
-    console.log(this.votingList[0].isActive);
+    this.votingService.getAllVotings().subscribe((result) => this.votingList = result);
   }
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog,
+              private votingService: VotingService) {}
 
   onVtnClick() {
     // Navigate to /add-edit page

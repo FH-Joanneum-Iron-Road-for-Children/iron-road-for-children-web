@@ -7,5 +7,8 @@
     </button>
   </div>
 
-  <app-voting-wrapper [votingList]="votingList"></app-voting-wrapper>
+  <app-voting-wrapper *ngIf="votingList" [votingList]="votingList"></app-voting-wrapper>
+  <div *ngIf="votingList?.length == 0">
+    <p>Keine Votings vorhanden!</p>
+  </div>
 </main>
