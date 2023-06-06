@@ -11,7 +11,7 @@ export class UserService {
   constructor(private httpClient: HttpClient) {}
 
   env = environment;
-  url: string = 'https://backend.irfc-test.st-ki.at/api/';
+  url = 'https://backend.irfc-test.st-ki.at/api/';
 
   postLoginData(user: User): Observable<User> {
     return this.httpClient.post<User>(this.url, user);
