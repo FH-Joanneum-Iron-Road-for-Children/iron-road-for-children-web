@@ -6,44 +6,39 @@
     <div>
       <form [formGroup]="votingAddEditFormGroup">
         <section class="center">
-          <mat-form-field appearance="fill" class="center">
+          <mat-form-field appearance="fill" class="center" [formGroup]="myForm">
             <mat-label>Name des Votings</mat-label>
             <input formControlName="votingName" matInput />
           </mat-form-field>
         </section>
         <section class="center">
-          <h1 mat-dialog-title>Teilnehmer hinzufügen</h1>
-          <form [formGroup]="itemFormGroup">
-            <div>
-              <mat-form-field appearance="fill">
-                <mat-label>Teilnehmer</mat-label>
-                <input
-                  formControlName="name"
-                  matInput
-                  placeholder="Teilnehmer" />
-              </mat-form-field>
+          <h2 mat-dialog-title>Event auswählen</h2>
+
+          <section class="scroll-container left-align mat-app-background">
+            <div style="margin: 2rem">
+              <div *ngFor="let event of events" class="list-item col-2">
+                <app-event-list
+                  (eventAdded)="addEventToList($event)"
+                  [event]="event"></app-event-list>
+              </div>
             </div>
-            <div class="center">
-              <button
-                (click)="addToList()"
-                class="btn btn-primary"
-                mat-raised-button>
-                Hinzufügen
-              </button>
-            </div>
-          </form>
+          </section>
         </section>
       </form>
     </div>
 
     <div class="col-2">
-      <section class="scroll-container">
-        <ul>
-          <div *ngFor="let name of listOfBands" class="list-item col-2">
-            <li>{{ name }}</li>
-            <button (click)="removeFromList(name)" mat-icon-button>
-              <mat-icon>delete</mat-icon>
-            </button>
+      <section
+        style="display: flex; flex-direction: column; text-align: center">
+        <h2 mat-dialog-title>ausgewählte Events</h2>
+        <ul class="mat-app-background scroll-container">
+          <div style="margin-top: 2rem; margin-bottom: 2rem">
+            <div *ngFor="let event of eventList" class="list-item col-2">
+              <li>{{ event.title }}</li>
+              <button (click)="removeFromList(event)" mat-icon-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
           </div>
         </ul>
       </section>

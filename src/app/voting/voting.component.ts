@@ -28,8 +28,10 @@ export class VotingComponent implements OnInit {
     // Navigate to /add-edit page
     this.dialog.open(VotingAddEditComponent, {
       disableClose: true,
-      width: '45rem',
-      height: '30rem',
+      width: '60vw',
+      minWidth: ' 40rem',
+      height: '60vh',
+      minHeight: '32rem',
     });
   }
 }
