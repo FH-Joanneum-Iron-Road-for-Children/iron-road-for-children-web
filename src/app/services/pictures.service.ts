@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PictureDto } from '../models/models';
+import { CreatePictureDto, PictureDto } from '../models/models';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -25,7 +25,7 @@ export class PicturesService {
     );
   }
 
-  postPictures(PictureDto: PictureDto) {
+  postPictures(PictureDto: CreatePictureDto) {
     return this.httpClient.post<PictureDto>(this.baseUrl + 'api/pictures/', {
       PictureDto,
     });

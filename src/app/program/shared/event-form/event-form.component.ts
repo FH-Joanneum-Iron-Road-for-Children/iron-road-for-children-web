@@ -3,12 +3,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import {
+  CreatePictureDto,
   EventCategoryDto,
   EventDto,
   EventLocationDto,
+  PictureDto,
 } from '../../../models/models';
 import { CATEGORY_DATA, LOCATION_DATA } from '../../../test-data/test-data';
 import { EventService } from '../../../services/event.service';
+import { PicturesService } from '../../../services/pictures.service';
 
 @Component({
   selector: 'app-event-form',
@@ -40,10 +43,14 @@ export class EventFormComponent implements OnInit {
   public locations: EventLocationDto[] = LOCATION_DATA;
   minDate: Date;
 
+  sentPictures: PictureDto[] | undefined;
+
   constructor(
     private router: Router,
     public dialog: MatDialog,
-    private eventService: EventService
+    private eventService: EventService,
+
+    private pictureService: PicturesService
   ) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear, 0, 1);
@@ -124,6 +131,23 @@ export class EventFormComponent implements OnInit {
   }
 
   submit() {
+    for (const uploadedFile1 of this.uploadedFiles) {
+      if (uploadedFile1 !== null) {
+        const pictureDto: CreatePictureDto = {
+          file: uploadedFile1.name,
+          altText: '',
+          fileType: uploadedFile1.type,
+        };
+
+        this.pictureService
+          .postPictures(pictureDto)
+          .subscribe((fromBackendPictures) => {
+            this.sentPictures?.push(fromBackendPictures);
+            console.log(this.sentPictures);
+          });
+      }
+    }
+
     //TODO: first post pics then post event! & property filetype .png and .jpg
     let title = this.eventFormGroup.controls['title'].value;
 
@@ -143,7 +167,7 @@ export class EventFormComponent implements OnInit {
         name: 'test location',
       },
       picture: {
-        path: this.eventFormGroup.controls['file0'].value,
+        path: '',
         altText: 'test alt text',
       },
       eventInfo: {
@@ -151,10 +175,12 @@ export class EventFormComponent implements OnInit {
         pictures: [],
       },
     };
-    this.eventService.createEvent(event).subscribe((event) => {
-      if (event) {
-        this.router.navigate(['program']);
-      }
-    });
+
+    console.log(event);
+    // this.eventService.createEvent(event).subscribe((event) => {
+    //   if (event) {
+    //     this.router.navigate(['program']);
+    //   }
+    // });
   }
 }

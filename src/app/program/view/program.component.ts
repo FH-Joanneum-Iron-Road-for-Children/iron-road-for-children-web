@@ -3,7 +3,7 @@ import { EventCategoryDto, EventDto } from '../../models/models';
 import { EventService } from '../../services/event.service';
 import { DateConverterService } from '../../services/date-converter.service';
 import { formatDate } from '@angular/common';
-import {EventCategoriesService} from "../../services/event-categories.service";
+import { EventCategoriesService } from '../../services/event-categories.service';
 
 @Component({
   selector: 'app-footer',
@@ -27,17 +27,22 @@ export class ProgramComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.eventService.getAllEvents().subscribe((events)=> this.events = events);
+    this.eventService
+      .getAllEvents()
+      .subscribe((events) => (this.events = events));
 
-    this.eventCategoryService.getAllEventCategories().subscribe((categories) => this.categories = categories);
+    this.eventCategoryService
+      .getAllEventCategories()
+      .subscribe((categories) => (this.categories = categories));
     this.originalEventList = this.events;
 
     // get dates from both startDateTime and endDateTime properties
-    const startTimestamps = this.events.map((event) => event.startDateTimeInUTC);
+    const startTimestamps = this.events.map(
+      (event) => event.startDateTimeInUTC
+    );
     const endTimestamps = this.events.map((event) => event.endDateTimeInUTC);
     this.dates = startTimestamps.concat(endTimestamps);
     this.dates = this.getUniqueDates();
-    this.eventCategoryService.getAllEventCategories().subscribe((categories) => this.categories = categories);
   }
 
   private getUniqueDates(): number[] {
