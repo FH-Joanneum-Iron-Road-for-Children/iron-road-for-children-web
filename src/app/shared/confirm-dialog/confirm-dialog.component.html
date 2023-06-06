@@ -1,7 +1,5 @@
 <div>
-  <mat-dialog-content>
-    {{ message }}
-  </mat-dialog-content>
+  <mat-dialog-content [innerHTML]="message"> </mat-dialog-content>
   <mat-dialog-actions>
     <button (click)="onCancelClick()" class="btn-secondary" mat-raised-button>
       Abbrechen
