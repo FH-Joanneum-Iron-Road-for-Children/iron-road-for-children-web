@@ -6,6 +6,9 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { EventService } from '../../services/event.service';
+import { VotingService } from '../../services/voting.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('VotingAddEditComponent', () => {
   let component: VotingAddEditComponent;
@@ -14,7 +17,10 @@ describe('VotingAddEditComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [VotingAddEditComponent],
+      imports: [HttpClientTestingModule],
       providers: [
+        EventService,
+        VotingService,
         { provide: MatDialog, useValue: {} },
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },

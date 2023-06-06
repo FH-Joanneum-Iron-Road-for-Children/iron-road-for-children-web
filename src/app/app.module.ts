@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
@@ -36,11 +36,7 @@ import { NgxMatMomentModule } from '@angular-material-components/moment-adapter'
 import { MatNativeDateModule } from '@angular/material/core';
 import { LocationDialogComponent } from './program/shared/event-dialog/location-dialog/location-dialog.component';
 import { VotingAddEditComponent } from './voting/add-edit/voting-add-edit.component';
-import {
-  MatDialog,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ProgramViewComponent } from './program/view/program-view/program-view.component';
 import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
 import { EventDialogComponent } from './program/shared/event-dialog/event-dialog.component';
@@ -102,7 +98,7 @@ registerLocaleData(localeAt, 'de-AT');
     MatSlideToggleModule,
     MatCardModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'de-AT' }],
+  providers: [HttpClient, { provide: LOCALE_ID, useValue: 'de-AT' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

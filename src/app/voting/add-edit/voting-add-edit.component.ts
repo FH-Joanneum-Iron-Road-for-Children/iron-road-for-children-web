@@ -73,8 +73,7 @@ export class VotingAddEditComponent implements OnInit {
     // send post request
     this.votingService
       .createVoting(newVoting)
-      .subscribe(() =>
-        console.log('new voting submitted, title = ' + this.myForm.value)
-      );
+      .subscribe(() => console.log('new voting submitted'));
+    window.location.reload();
   }
 }
