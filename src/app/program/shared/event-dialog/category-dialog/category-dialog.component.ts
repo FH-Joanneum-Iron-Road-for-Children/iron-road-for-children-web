@@ -16,15 +16,17 @@ export class CategoryDialogComponent implements OnInit {
   ngOnInit(): void {
     this.eventCategoryService
       .getAllEventCategories()
-      .subscribe((categories) => (this.categories = categories));
+      .subscribe((categories) => {
+        this.categories = categories;
 
-    // map to Item[] so it can be used in shared event-dialog component
-    this.categoryList = this.categories.map((category) => {
-      return {
-        id: category.eventCategoryId,
-        name: category.name,
-      };
-    });
+        // map to Item[] so it can be used in shared event-dialog component
+        this.categoryList = this.categories.map((category) => {
+          return {
+            id: category.eventCategoryId,
+            name: category.name,
+          };
+        });
+      });
   }
 
   saveCategories() {
