@@ -1,15 +1,15 @@
 <main>
   <section class="center">
     <div *ngIf="events?.length == 0">Keine Events vorhanden.</div>
-    <div>
+    <div *ngIf="events">
       <mat-card *ngFor="let event of events" class="program-item">
         <div class="picture">
           <img
-            *ngIf="event.image.path != ''"
-            alt="{{ event.image.title }}"
+            *ngIf="event?.picture?.path != ''"
+            alt="{{ event?.picture?.altText }}"
             class="picture"
             mat-card-image
-            src="{{ event.image.path }}" />
+            src="{{ event?.picture?.path }}" />
         </div>
         <mat-card-header>
           <mat-card-title>
@@ -50,31 +50,33 @@
             <span
               *ngIf="
                 this.checkIfSameDate(
-                  event.startDateTimeUTC,
-                  event.endDateTimeUTC
+                  event.startDateTimeInUTC,
+                  event.endDateTimeInUTC
                 )
               ">
               {{
-                this.displayTime(event.startDateTimeUTC, event.endDateTimeUTC)
-                  | date : 'dd.MM.'
+                this.displayTime(
+                  event.startDateTimeInUTC,
+                  event.endDateTimeInUTC
+                ) | date : 'dd.MM.'
               }}
             </span>
             <span
               *ngIf="
                 !this.checkIfSameDate(
-                  event.startDateTimeUTC,
-                  event.endDateTimeUTC
+                  event.startDateTimeInUTC,
+                  event.endDateTimeInUTC
                 )
               ">
               {{
                 this.dateConverterService.getDateFromTimestamp(
-                  event.startDateTimeUTC
+                  event.startDateTimeInUTC
                 ) | date : 'dd.'
               }}
               -
               {{
                 this.dateConverterService.getDateFromTimestamp(
-                  event.endDateTimeUTC
+                  event.endDateTimeInUTC
                 ) | date : 'dd.MM.'
               }}
             </span>
@@ -84,24 +86,24 @@
         <div>
           {{
             this.dateConverterService.getDateFromTimestamp(
-              event.startDateTimeUTC
+              event.startDateTimeInUTC
             ) | date : 'HH:mm'
           }}
           -
           {{
-            this.dateConverterService.getDateFromTimestamp(event.endDateTimeUTC)
-              | date : 'HH:mm'
+            this.dateConverterService.getDateFromTimestamp(
+              event.endDateTimeInUTC
+            ) | date : 'HH:mm'
           }}
         </div>
         <mat-card-actions>
           <button
-            [disabled]="!event.isEditable"
             mat-icon-button
-            routerLink="/program/edit/{{ event.id }}">
+            routerLink="/program/edit/{{ event?.eventId }}">
             <mat-icon>mode_edit</mat-icon>
           </button>
           <button
-            (click)="openDeleteEventDialog(event.id, event.title)"
+            (click)="openDeleteEventDialog(event.eventId, event.title)"
             mat-icon-button>
             <mat-icon>delete</mat-icon>
           </button>

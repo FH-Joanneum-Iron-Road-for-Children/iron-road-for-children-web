@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventCategoryDto, EventDto } from '../../models/models';
 import { EventService } from '../../services/event.service';
 import { DateConverterService } from '../../services/date-converter.service';
+import { EventCategoriesService } from '../../services/event-categories.service';
 
 @Component({
   selector: 'app-footer',
@@ -19,19 +20,27 @@ export class ProgramComponent implements OnInit {
 
   constructor(
     private eventService: EventService,
+    private eventCategoryService: EventCategoriesService,
     private dateConverterService: DateConverterService
   ) {}
 
   ngOnInit(): void {
-    this.events = this.eventService.getEvents();
+    this.eventService
+      .getAllEvents()
+      .subscribe((events) => (this.events = events));
+
+    this.eventCategoryService
+      .getAllEventCategories()
+      .subscribe((categories) => (this.categories = categories));
     this.originalEventList = this.events;
 
     // get dates from both startDateTime and endDateTime properties
-    const startTimestamps = this.events.map((event) => event.startDateTimeUTC);
-    const endTimestamps = this.events.map((event) => event.endDateTimeUTC);
+    const startTimestamps = this.events.map(
+      (event) => event.startDateTimeInUTC
+    );
+    const endTimestamps = this.events.map((event) => event.endDateTimeInUTC);
     this.dates = startTimestamps.concat(endTimestamps);
     this.dates = this.getUniqueDates();
-    this.categories = this.eventService.getCategories();
   }
 
   private getUniqueDates(): number[] {
@@ -68,10 +77,10 @@ export class ProgramComponent implements OnInit {
       this.events = this.originalEventList.filter((event) => {
         return (
           (this.dateConverterService.getTimestampWithoutTime(
-            event.startDateTimeUTC
+            event.startDateTimeInUTC
           ) == chipTimestamp ||
             this.dateConverterService.getTimestampWithoutTime(
-              event.endDateTimeUTC
+              event.endDateTimeInUTC
             ) == chipTimestamp) &&
           event.category?.name?.includes(this.selectedCategoryChips)
         );
@@ -93,10 +102,10 @@ export class ProgramComponent implements OnInit {
       this.events = this.originalEventList.filter((event) => {
         return (
           this.dateConverterService.getTimestampWithoutTime(
-            event.startDateTimeUTC
+            event.startDateTimeInUTC
           ) == chipTimestamp ||
           this.dateConverterService.getTimestampWithoutTime(
-            event.endDateTimeUTC
+            event.endDateTimeInUTC
           ) == chipTimestamp
         );
       });
