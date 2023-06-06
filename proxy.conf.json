@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://backend.irfc-test.st-ki.at",
+    "target": "https://backend.irfc-test.fh-joanneum.at",
     "secure": true,
     "changeOrigin": true,
     "logLevel": "debug"
