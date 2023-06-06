@@ -1,27 +1,101 @@
 <main>
   <section class="center">
     <div *ngIf="events?.length == 0">Keine Events vorhanden.</div>
-    <div>
+    <div *ngIf="events">
       <mat-card *ngFor="let event of events" class="program-item">
-        <img
-          alt="{{ event?.picture?.altText }}"
-          class="picture"
-          mat-card-image
-          src="{{ event?.picture?.path }}" />
-
+        <div class="picture">
+          <img
+            *ngIf="event?.picture?.path != ''"
+            alt="{{ event?.picture?.altText }}"
+            class="picture"
+            mat-card-image
+            src="{{ event?.picture?.path }}" />
+        </div>
         <mat-card-header>
-          <mat-card-title>{{ event?.title }}</mat-card-title>
-          <mat-card-subtitle>{{ event?.eventLocation?.name }}</mat-card-subtitle>
+          <mat-card-title>
+            {{ event.title }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{ event.eventInfo.infoText }}
+            <div>
+              <mat-chip
+                *ngIf="event.eventCategory.name != ''"
+                class="category-chip"
+                matTooltip="Kategorie">
+                {{ event?.eventCategory?.name }}
+              </mat-chip>
+              <mat-chip
+                *ngIf="event.eventLocation.name != ''"
+                class="location-chip"
+                matTooltip="Ort">
+                {{ event?.eventLocation?.name }}
+              </mat-chip>
+              <mat-chip
+                *ngIf="event.eventInfo.pictures.length != 0"
+                class="image-chip"
+                matTooltip="Fotos">
+                <mat-icon>photo </mat-icon>
+                <span
+                  matBadge="{{ event.eventInfo.pictures.length }}"
+                  matBadgeColor="primary"
+                  matBadgePosition="after"
+                  matBadgeSize="small">
+                </span>
+              </mat-chip>
+            </div>
+          </mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content class="time"
-          >{{
-            getDateFromUTC(event?.startDateTimeInUTC) | date : 'dd.MM.yyyy HH:mm'
-          }}
-          bis
+        <mat-card-content>
+          <div>
+            <span
+              *ngIf="
+                this.checkIfSameDate(
+                  event.startDateTimeInUTC,
+                  event.endDateTimeInUTC
+                )
+              ">
+              {{
+                this.displayTime(
+                  event.startDateTimeInUTC,
+                  event.endDateTimeInUTC
+                ) | date : 'dd.MM.'
+              }}
+            </span>
+            <span
+              *ngIf="
+                !this.checkIfSameDate(
+                  event.startDateTimeInUTC,
+                  event.endDateTimeInUTC
+                )
+              ">
+              {{
+                this.dateConverterService.getDateFromTimestamp(
+                  event.startDateTimeInUTC
+                ) | date : 'dd.'
+              }}
+              -
+              {{
+                this.dateConverterService.getDateFromTimestamp(
+                  event.endDateTimeInUTC
+                ) | date : 'dd.MM.'
+              }}
+            </span>
+          </div>
+        </mat-card-content>
+
+        <div>
           {{
-            getDateFromUTC(event?.endDateTimeInUTC) | date : 'dd.MM.yyyy HH:mm'
-          }}</mat-card-content
-        >
+            this.dateConverterService.getDateFromTimestamp(
+              event.startDateTimeInUTC
+            ) | date : 'HH:mm'
+          }}
+          -
+          {{
+            this.dateConverterService.getDateFromTimestamp(
+              event.endDateTimeInUTC
+            ) | date : 'HH:mm'
+          }}
+        </div>
         <mat-card-actions>
           <button
             mat-icon-button

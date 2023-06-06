@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EventLocationDto } from '../../../../models/models';
+import { EventLocationDto, Item } from '../../../../models/models';
 import { EventService } from '../../../../services/event.service';
-import {EventCategoriesService} from "../../../../services/event-categories.service";
-import {EventLocationService} from "../../../../services/event-location.service";
+import { EventLocationService } from '../../../../services/event-location.service';
 
 @Component({
   selector: 'app-location-dialog',
@@ -10,20 +9,35 @@ import {EventLocationService} from "../../../../services/event-location.service"
   styleUrls: ['./location-dialog.component.css'],
 })
 export class LocationDialogComponent implements OnInit {
-  locationList: EventLocationDto[] = [];
+  locations: EventLocationDto[] = [];
+  locationList: Item[] = [];
 
-  constructor(private eventService: EventService,
-              private eventLocationService: EventLocationService) {}
+  constructor(
+    private eventService: EventService,
+    private eventLocationService: EventLocationService
+  ) {}
 
   ngOnInit(): void {
-    this.eventLocationService.getAllEventLocations().subscribe((result) => this.locationList = result);
+    this.eventLocationService.getAllEventLocations().subscribe((locations) => {
+      this.locations = locations;
+
+      // map to Item[] so it can be used in shared event-dialog component
+      this.locationList = locations.map((location) => {
+        return {
+          id: location.eventLocationId,
+          name: location.name,
+        };
+      });
+    });
   }
 
   saveLocations() {
-    const eventLocation: EventLocationDto ={
-      id: 0,
-      name: 'Location1'
-    }
-    this.eventLocationService.createEventLocation(eventLocation).subscribe((result) => console.log(result));
+    const eventLocation: EventLocationDto = {
+      eventLocationId: 0,
+      name: 'Location1',
+    };
+    this.eventLocationService
+      .createEventLocation(eventLocation)
+      .subscribe((result) => console.log(result));
   }
 }

@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { EventDto } from '../../../models/models';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
+import { DateConverterService } from '../../../services/date-converter.service';
 
 @Component({
   selector: 'app-program-view',
@@ -13,11 +14,12 @@ export class ProgramViewComponent {
 
   constructor(
     public dialog: MatDialog,
-    public confirmDialogService: ConfirmDialogService
+    public confirmDialogService: ConfirmDialogService,
+    public dateConverterService: DateConverterService
   ) {}
 
-  openDeleteEventDialog(id: number|undefined, title: string) {
-    if(id == undefined) throw new Error('id is undefined');
+  openDeleteEventDialog(id: number | undefined, title: string) {
+    if (id == undefined) throw new Error('id is undefined');
 
     const msg = `"${title}" wirklich löschen?`; // TODO: Show event title
     const actionType = 'Löschen';
@@ -30,10 +32,23 @@ export class ProgramViewComponent {
     });
   }
 
-  getDateFromUTC(startDateTimeUTC: number | undefined) {
-    if (startDateTimeUTC == undefined) {
-      throw new Error('undefined timestamp');
+  displayTime(startDateTimeUTC: number, endDateTimeUTC: number) {
+    if (
+      this.dateConverterService.getTimestampWithoutTime(startDateTimeUTC) ==
+      this.dateConverterService.getTimestampWithoutTime(endDateTimeUTC)
+    ) {
+      return this.dateConverterService.getDateFromTimestamp(startDateTimeUTC);
     }
-    return new Date(startDateTimeUTC * 1000);
+    return null;
+  }
+
+  checkIfSameDate(startDateTimeUTC: number, endDateTimeUTC: number) {
+    if (
+      this.dateConverterService.getTimestampWithoutTime(startDateTimeUTC) ==
+      this.dateConverterService.getTimestampWithoutTime(endDateTimeUTC)
+    ) {
+      return true;
+    }
+    return false;
   }
 }

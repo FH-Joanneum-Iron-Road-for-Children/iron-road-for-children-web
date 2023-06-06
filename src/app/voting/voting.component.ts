@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { VotingDto } from '../models/models';
-import { VOTING } from '../test-data/test-data';
 import { VotingAddEditComponent } from './add-edit/voting-add-edit.component';
 import { MatDialog } from '@angular/material/dialog';
-import {VotingService} from "../services/voting.service";
+import { VotingService } from '../services/voting.service';
 
 @Component({
   selector: 'app-voting',
@@ -15,11 +14,15 @@ export class VotingComponent implements OnInit {
   votingList: VotingDto[] | undefined;
 
   ngOnInit(): void {
-    this.votingService.getAllVotings().subscribe((result) => this.votingList = result);
+    this.votingService
+      .getAllVotings()
+      .subscribe((result) => (this.votingList = result));
   }
 
-  constructor(private dialog: MatDialog,
-              private votingService: VotingService) {}
+  constructor(
+    private dialog: MatDialog,
+    private votingService: VotingService
+  ) {}
 
   onVtnClick() {
     // Navigate to /add-edit page

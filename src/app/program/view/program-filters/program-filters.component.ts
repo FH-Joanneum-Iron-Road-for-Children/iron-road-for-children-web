@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {CategoryDialogComponent} from '../../shared/event-dialog/category-dialog/category-dialog.component';
-import {MatDialog} from '@angular/material/dialog';
-import {Router} from '@angular/router';
-import {EventCategoryDto} from '../../../models/models';
-import {DateConverterService} from '../../../services/date-converter.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CategoryDialogComponent } from '../../shared/event-dialog/category-dialog/category-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { EventCategoryDto } from '../../../models/models';
+import { DateConverterService } from '../../../services/date-converter.service';
 
 @Component({
   selector: 'app-program-filters',
@@ -13,59 +13,53 @@ import {DateConverterService} from '../../../services/date-converter.service';
 export class ProgramFiltersComponent {
   @Input() dateFilters: number[] = [];
   @Input() categoryFilters: EventCategoryDto[] = [];
-  @Output() selectedCategoryChipsChange = new EventEmitter<string[]>();
-  @Output() selectedDateChipsChange = new EventEmitter<Date[]>();
+  @Output() selectedCategoryChipsChange = new EventEmitter<string>();
+  @Output() selectedDateChipsChange = new EventEmitter<number>();
 
-  @Output() categoriesList = new EventEmitter<EventCategoryDto[]>();
-
-  selectedCategoryChips: string[] = [];
-  selectedDateChips: Date[] = [];
+  selectedCategoryChips = '';
+  selectedDateChips = 0;
 
   constructor(
     public dialog: MatDialog,
     private router: Router,
     public dateConverterService: DateConverterService
-  ) {
-  }
+  ) {}
 
   toggleCategoryChip(chip: string) {
-    const index = this.selectedCategoryChips.indexOf(chip);
-
-    if (index > -1) {
-      // if found
-      this.selectedCategoryChips.splice(index, 1);
+    if (this.selectedCategoryChips === chip) {
+      this.selectedCategoryChips = '';
+      this.selectedCategoryChipsChange.emit('');
     } else {
-      this.selectedCategoryChips.push(chip);
+      this.selectedCategoryChips = chip;
+      this.selectedCategoryChipsChange.emit(chip);
     }
-    this.selectedCategoryChipsChange.emit(this.selectedCategoryChips);
   }
 
   toggleDateChip(chip: number) {
-    const index = this.selectedDateChips.findIndex(
-      (date) =>
-        this.dateConverterService.getTimestampWithoutTimeFromDate(date) ==
-        this.dateConverterService.getTimestampWithoutTime(chip)
-    );
-
-    if (index > -1) {
-      this.selectedDateChips.splice(index, 1);
+    if (
+      this.dateConverterService.getTimestampWithoutTime(
+        this.selectedDateChips
+      ) === this.dateConverterService.getTimestampWithoutTime(chip)
+    ) {
+      this.selectedDateChips = 0;
+      this.selectedDateChipsChange.emit(this.selectedDateChips);
     } else {
-      this.selectedDateChips.push(
-        this.dateConverterService.getDateWithoutTimeFromTimestamp(chip)
-      );
+      this.selectedDateChips = chip;
+      this.selectedDateChipsChange.emit(chip);
     }
-    this.selectedDateChipsChange.emit(this.selectedDateChips);
   }
 
   openDialogToEditCategory() {
-    this.dialog.open(CategoryDialogComponent, {
-      data: this.categoryFilters,
-      disableClose: true,
-      width: '45rem',
-      height: '30rem',
-    }).afterClosed().subscribe((result) => {
-      window.location.reload();
-    });
+    this.dialog
+      .open(CategoryDialogComponent, {
+        disableClose: true,
+        width: '45rem',
+        height: '30rem',
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        window.location.reload();
+      });
   }
 
   goToAddEvent() {

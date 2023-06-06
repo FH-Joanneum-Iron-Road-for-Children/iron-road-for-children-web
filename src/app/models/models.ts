@@ -22,12 +22,12 @@ export interface EventInfoDto {
 }
 
 export interface EventLocationDto {
-  id: number;
+  eventLocationId: number;
   name: string;
 }
 
 export interface EventCategoryDto {
-  id: number;
+  eventCategoryId: number;
   name: string;
 }
 
@@ -39,7 +39,7 @@ export interface EventDto {
   startDateTimeInUTC: number;
   endDateTimeInUTC: number;
   eventLocation: EventLocationDto;
-  category: EventCategoryDto;
+  eventCategory: EventCategoryDto;
 }
 
 export interface VotingPartialResultDto {
@@ -65,5 +65,10 @@ export interface VotingDto {
   active: boolean;
   editable: boolean;
 }
+
+export type Item = {
+  id: number;
+  name: string;
+};
 
 // TODO: Create getAll interfaces when they are done

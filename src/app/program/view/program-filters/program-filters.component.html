@@ -1,7 +1,7 @@
 <main>
   <section>
     <div>
-      <mat-chip-list>
+      <mat-chip-listbox>
         <mat-chip-option
           (click)="toggleDateChip(chip)"
           *ngFor="let chip of dateFilters">
@@ -10,7 +10,7 @@
               | date : 'EEEE, dd.MM.yyyy'
           }}
         </mat-chip-option>
-      </mat-chip-list>
+      </mat-chip-listbox>
     </div>
     <div>
       <button
@@ -33,13 +33,13 @@
 
   <section class="row-filters-categories">
     <div>
-      <mat-chip-list>
+      <mat-chip-listbox>
         <mat-chip-option
           (click)="toggleCategoryChip(chip.name)"
           *ngFor="let chip of categoryFilters">
           {{ chip.name }}
         </mat-chip-option>
-      </mat-chip-list>
+      </mat-chip-listbox>
     </div>
   </section>
 </main>

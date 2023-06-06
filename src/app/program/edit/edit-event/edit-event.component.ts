@@ -11,6 +11,7 @@ import { EventDto } from '../../../models/models';
 export class EditEventComponent implements OnInit {
   id: number | undefined;
   event: EventDto | undefined;
+
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService
@@ -19,8 +20,10 @@ export class EditEventComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((value) => (this.id = value['id']));
     if (this.id) {
-      this.eventService.getEventByEventId(this.id).subscribe((event) => this.event = event);
-      console.log(this.event);
+      this.eventService.getEventByEventId(this.id).subscribe((event) => {
+        this.event = event;
+        console.log(this.event);
+      });
     }
   }
 }

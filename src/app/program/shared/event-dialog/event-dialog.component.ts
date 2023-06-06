@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {EventCategoryDto} from "../../../models/models";
+import { EventCategoryDto } from '../../../models/models';
 
 type Item = {
   id: number;

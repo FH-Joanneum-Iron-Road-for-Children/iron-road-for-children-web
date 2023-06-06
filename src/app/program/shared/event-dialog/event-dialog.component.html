@@ -2,6 +2,7 @@
   <div class="col-2e">
     <section class="scroll-container left-align">
       <ul>
+        <div *ngIf="itemList?.length == 0">Keine Elemente vorhanden.</div>
         <div *ngFor="let item of itemList" class="list-item col-2">
           <li>{{ item.name }}</li>
           <button (click)="removeItem(item)" mat-icon-button tabindex="-1">

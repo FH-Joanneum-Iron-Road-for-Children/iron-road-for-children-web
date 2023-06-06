@@ -9,9 +9,10 @@ import {
   EventLocationDto,
   PictureDto,
 } from '../../../models/models';
-import { CATEGORY_DATA, LOCATION_DATA } from '../../../test-data/test-data';
 import { EventService } from '../../../services/event.service';
 import { PicturesService } from '../../../services/pictures.service';
+import { EventLocationService } from '../../../services/event-location.service';
+import { EventCategoriesService } from '../../../services/event-categories.service';
 
 @Component({
   selector: 'app-event-form',
@@ -20,15 +21,16 @@ import { PicturesService } from '../../../services/pictures.service';
 })
 export class EventFormComponent implements OnInit {
   @Input() event: EventDto | undefined;
+  @Input() eventId: number | undefined;
 
   eventFormGroup = new FormGroup({
-    title: new FormControl('', Validators.min(1)),
-    description: new FormControl('', Validators.min(1)),
+    title: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
     location: new FormControl(-1, Validators.required),
     category: new FormControl(-1, Validators.required),
-    startDateTime: new FormControl(new Date(), Validators.min(1)),
-    endDateTime: new FormControl(new Date(), Validators.min(1)),
-    file0: new FormControl('', Validators.required),
+    startDateTime: new FormControl(new Date(), Validators.required),
+    endDateTime: new FormControl(new Date(), Validators.required),
+    file0: new FormControl('', Validators.nullValidator),
     file1: new FormControl('', Validators.nullValidator),
     file2: new FormControl('', Validators.nullValidator),
     file3: new FormControl('', Validators.nullValidator),
@@ -38,10 +40,11 @@ export class EventFormComponent implements OnInit {
   date: any;
   category: number | undefined;
   location: number | undefined;
+  filePaths: (string | null)[] = Array(4).fill(null);
+  fileNames: (string | null)[] = Array(4).fill(null);
 
-  public categories: EventCategoryDto[] = CATEGORY_DATA;
-  public locations: EventLocationDto[] = LOCATION_DATA;
-  minDate: Date;
+  public categories: EventCategoryDto[] = [];
+  public locations: EventLocationDto[] = [];
 
   sentPictures: PictureDto[] | undefined;
 
@@ -49,32 +52,54 @@ export class EventFormComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private eventService: EventService,
-
+    private eventLocationService: EventLocationService,
+    private eventCategoryService: EventCategoriesService,
     private pictureService: PicturesService
-  ) {
-    const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear, 0, 1);
-  }
+  ) {}
 
   ngOnInit(): void {
-    console.log(this.event);
-    if (this.event) {
-      // edit event
-      console.log('setValue');
-      this.eventFormGroup.setValue({
-        title: this.event.title,
-        description: this.event.eventInfo?.infoText,
-        location: this.event.eventLocation.id,
-        category: this.event.category.id,
-        startDateTime: new Date(this.event.startDateTimeInUTC * 1000),
-        endDateTime: new Date(this.event.endDateTimeInUTC * 1000),
-        file0: this.event.picture?.path,
-        file1: this.event.eventInfo?.pictures[0]?.path ?? null,
-        file2: this.event.eventInfo?.pictures[1]?.path ?? null,
-        file3: this.event.eventInfo?.pictures[2]?.path ?? null,
+    this.eventLocationService.getAllEventLocations().subscribe((locations) => {
+      this.locations = locations;
+    });
+
+    this.eventCategoryService
+      .getAllEventCategories()
+      .subscribe((categories) => {
+        this.categories = categories;
       });
-      this.category = this.event.category.id;
-      this.location = this.event.eventLocation.id;
+
+    if (this.eventId != undefined) {
+      this.eventService.getEventByEventId(this.eventId).subscribe((event) => {
+        this.event = event;
+
+        if (this.event) {
+          // edit event
+          this.eventFormGroup.patchValue({
+            title: this.event.title,
+            description: this.event.eventInfo?.infoText,
+            location: this.event.eventLocation.eventLocationId,
+            category: this.event.eventCategory.eventCategoryId,
+            startDateTime: new Date(this.event.startDateTimeInUTC * 1000),
+            endDateTime: new Date(this.event.endDateTimeInUTC * 1000),
+          });
+
+          this.filePaths[0] = this.event.picture?.path ?? null;
+          this.filePaths[1] = this.event.eventInfo?.pictures[0]?.path ?? null;
+          this.filePaths[2] = this.event.eventInfo?.pictures[1]?.path ?? null;
+          this.filePaths[3] = this.event.eventInfo?.pictures[2]?.path ?? null;
+
+          this.fileNames[0] = this.event.picture?.altText ?? null;
+          this.fileNames[1] =
+            this.event.eventInfo?.pictures[0]?.altText ?? null;
+          this.fileNames[2] =
+            this.event.eventInfo?.pictures[1]?.altText ?? null;
+          this.fileNames[3] =
+            this.event.eventInfo?.pictures[2]?.altText ?? null;
+
+          this.category = this.event.eventCategory.eventCategoryId;
+          this.location = this.event.eventLocation.eventLocationId;
+        }
+      });
     } else {
       // add event - reset datetime fields
       this.eventFormGroup.patchValue({
@@ -82,7 +107,6 @@ export class EventFormComponent implements OnInit {
         endDateTime: null,
       });
     }
-    console.log(this.event);
   }
 
   uploadedFile: File | null = null;
@@ -98,6 +122,8 @@ export class EventFormComponent implements OnInit {
 
     if (this.isValidImageFile()) {
       this.uploadedFiles[index] = this.uploadedFile;
+      this.filePaths[index] = null;
+      this.fileNames[index] = null;
 
       // preview
       const reader = new FileReader();
@@ -158,12 +184,12 @@ export class EventFormComponent implements OnInit {
       title: title,
       startDateTimeInUTC: 1690320193,
       endDateTimeInUTC: 1690327393,
-      category: {
-        id: 100,
+      eventCategory: {
+        eventCategoryId: 100,
         name: 'test category',
       },
       eventLocation: {
-        id: 100,
+        eventLocationId: 100,
         name: 'test location',
       },
       picture: {
