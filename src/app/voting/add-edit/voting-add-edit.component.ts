@@ -1,6 +1,6 @@
 import { Component, Inject, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventDto } from '../../models/models';
 
 @Component({
@@ -21,14 +21,15 @@ export class VotingAddEditComponent {
     participant: new FormControl(''),
   });
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: EventDto[],
-    private dialogRef: MatDialogRef<VotingAddEditComponent>
-  ) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: EventDto[]) {}
+
+  isEventInList(event: EventDto): boolean {
+    //check if event is already in the list of events
+    return this.eventList.some((item) => item.id === event.id);
+  }
 
   addEventToList(event: EventDto) {
-    this.eventList.push(event);
-    console.log('add item');
+    if (!this.isEventInList(event)) this.eventList.push(event);
   }
 
   removeFromList(event: EventDto) {
@@ -41,6 +42,6 @@ export class VotingAddEditComponent {
   }
 
   saveCategories() {
-    //   // this.dialogRef.close(this.listOfBands);
+    // send post request
   }
 }

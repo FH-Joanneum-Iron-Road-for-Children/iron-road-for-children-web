@@ -25,8 +25,10 @@ export class VotingComponent implements OnInit {
     this.dialog.open(VotingAddEditComponent, {
       data: this.events,
       disableClose: true,
-      width: '45rem',
-      height: '32rem',
+      width: '60vw',
+      minWidth: ' 40rem',
+      height: '60vh',
+      minHeight: '32rem',
     });
   }
 }

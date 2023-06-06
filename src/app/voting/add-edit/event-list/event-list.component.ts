@@ -19,7 +19,6 @@ export class EventListComponent {
   @Output() eventAdded = new EventEmitter<EventDto>();
 
   addToParentList(event: EventDto) {
-    console.log('clicked the button');
     if (event !== undefined) this.eventAdded.emit(event);
   }
 }
