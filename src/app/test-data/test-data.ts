@@ -7,19 +7,19 @@ import {
 
 export const CATEGORY_DATA: EventCategoryDto[] = [
   {
-    eventCategoryId: 1,
+    id: 1,
     name: 'Musik',
   },
   {
-    eventCategoryId: 2,
+    id: 2,
     name: 'Tattoo',
   },
   {
-    eventCategoryId: 3,
+    id: 3,
     name: 'Food & Drinks',
   },
   {
-    eventCategoryId: 4,
+    id: 4,
     name: 'Ausfahrten',
   },
 ];
@@ -78,7 +78,7 @@ export const EVENT_DATA: EventDto[] = [
       name: 'Iron Road Stage',
     },
     category: {
-      eventCategoryId: 4,
+      id: 4,
       name: 'Ausfahrten',
     },
   },
@@ -108,7 +108,7 @@ export const EVENT_DATA: EventDto[] = [
       path: '',
     },
     category: {
-      eventCategoryId: 4,
+      id: 4,
       name: 'Ausfahrten',
     },
   },
@@ -138,7 +138,7 @@ export const EVENT_DATA: EventDto[] = [
       name: 'Ausfahrt Exit 123',
     },
     category: {
-      eventCategoryId: 4,
+      id: 4,
       name: 'Ausfahrten',
     },
   },
@@ -168,7 +168,7 @@ export const EVENT_DATA: EventDto[] = [
       name: 'Main Stage',
     },
     category: {
-      eventCategoryId: 1,
+      id: 1,
       name: 'Musik',
     },
   },
@@ -193,7 +193,7 @@ export const EVENT_DATA: EventDto[] = [
       name: 'Main Stage',
     },
     category: {
-      eventCategoryId: 1,
+      id: 1,
       name: '',
     },
     picture: {
@@ -213,7 +213,7 @@ export const VOTING: VotingDto[] = [
     votingResult: undefined,
     isActive: false,
     editable: true,
-    active:false
+    active: false,
   },
   {
     id: 1,
@@ -223,6 +223,6 @@ export const VOTING: VotingDto[] = [
     events: EVENT_DATA,
     isEditable: false,
     editable: true,
-    active:false
+    active: false,
   },
 ];

@@ -35,7 +35,7 @@
           <mat-select [(value)]="category">
             <mat-option
               *ngFor="let category of categories"
-              [value]="category.eventCategoryId">
+              [value]="category.id">
               {{ category.name }}
             </mat-option>
           </mat-select>

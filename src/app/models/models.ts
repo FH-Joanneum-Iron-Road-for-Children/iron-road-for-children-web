@@ -6,12 +6,12 @@ export interface User {
 export interface PictureDto {
   pictureId?: number;
   altText: string;
-  path: string|null;
+  path: string | null;
 }
 
 export interface EventInfoDto {
   eventInfoId?: number;
-  infoText: string|null;
+  infoText: string | null;
   pictures: PictureDto[];
 }
 
@@ -21,7 +21,7 @@ export interface EventLocationDto {
 }
 
 export interface EventCategoryDto {
-  eventCategoryId: number;
+  id: number;
   name: string;
 }
 
@@ -56,7 +56,7 @@ export interface VotingDto {
   isEditable: boolean;
   events?: EventDto[];
   votingResult?: VotingResultDto;
-  active:boolean;
+  active: boolean;
   editable: boolean;
 }
 

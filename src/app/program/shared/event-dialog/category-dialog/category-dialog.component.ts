@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {EventCategoryDto} from '../../../../models/models';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {EventCategoriesService} from "../../../../services/event-categories.service";
+import { Component, Inject, OnInit } from '@angular/core';
+import { EventCategoryDto } from '../../../../models/models';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EventCategoriesService } from '../../../../services/event-categories.service';
 
 @Component({
   selector: 'app-category-dialog',
@@ -11,8 +11,9 @@ import {EventCategoriesService} from "../../../../services/event-categories.serv
 export class CategoryDialogComponent implements OnInit {
   categoryList: EventCategoryDto[] = [];
 
-  constructor(private eventCategoryService: EventCategoriesService,
-  @Inject(MAT_DIALOG_DATA) public data: EventCategoryDto[]
+  constructor(
+    private eventCategoryService: EventCategoriesService,
+    @Inject(MAT_DIALOG_DATA) public data: EventCategoryDto[]
   ) {}
 
   ngOnInit(): void {
@@ -20,11 +21,13 @@ export class CategoryDialogComponent implements OnInit {
   }
 
   saveCategories() {
-    const eventCategory: EventCategoryDto={
-      eventCategoryId: 0,
-      name: 'Ausfahrten'
-    }
-    this.eventCategoryService.createEventCategory(eventCategory).subscribe((result) => console.log(result));
+    const eventCategory: EventCategoryDto = {
+      id: 0,
+      name: 'Ausfahrten',
+    };
+    this.eventCategoryService
+      .createEventCategory(eventCategory)
+      .subscribe((result) => console.log(result));
 
     // TODO
   }

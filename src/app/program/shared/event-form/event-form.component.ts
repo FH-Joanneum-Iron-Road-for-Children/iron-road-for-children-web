@@ -8,7 +8,7 @@ import {
   EventLocationDto,
 } from '../../../models/models';
 import { CATEGORY_DATA, LOCATION_DATA } from '../../../test-data/test-data';
-import {EventService} from "../../../services/event.service";
+import { EventService } from '../../../services/event.service';
 
 @Component({
   selector: 'app-event-form',
@@ -40,8 +40,11 @@ export class EventFormComponent implements OnInit {
   public locations: EventLocationDto[] = LOCATION_DATA;
   minDate: Date;
 
-  constructor(private router: Router, public dialog: MatDialog,
-              private eventService: EventService) {
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    private eventService: EventService
+  ) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear, 0, 1);
   }
@@ -50,20 +53,20 @@ export class EventFormComponent implements OnInit {
     console.log(this.event);
     if (this.event) {
       // edit event
-        console.log("setValue");
-        this.eventFormGroup.setValue({
-          title: this.event.title,
-          description: this.event.eventInfo?.infoText,
-          location: this.event.eventLocation.id,
-          category: this.event.category.eventCategoryId,
-          startDateTime: new Date(this.event.startDateTimeInUTC * 1000),
-          endDateTime: new Date(this.event.endDateTimeInUTC * 1000),
-          file0: this.event.picture?.path,
-          file1: this.event.eventInfo?.pictures[0]?.path ?? null,
-          file2: this.event.eventInfo?.pictures[1]?.path ?? null,
-          file3: this.event.eventInfo?.pictures[2]?.path ?? null,
-        });
-      this.category = this.event.category.eventCategoryId;
+      console.log('setValue');
+      this.eventFormGroup.setValue({
+        title: this.event.title,
+        description: this.event.eventInfo?.infoText,
+        location: this.event.eventLocation.id,
+        category: this.event.category.id,
+        startDateTime: new Date(this.event.startDateTimeInUTC * 1000),
+        endDateTime: new Date(this.event.endDateTimeInUTC * 1000),
+        file0: this.event.picture?.path,
+        file1: this.event.eventInfo?.pictures[0]?.path ?? null,
+        file2: this.event.eventInfo?.pictures[1]?.path ?? null,
+        file3: this.event.eventInfo?.pictures[2]?.path ?? null,
+      });
+      this.category = this.event.category.id;
       this.location = this.event.eventLocation.id;
     } else {
       // add event - reset datetime fields
@@ -124,7 +127,7 @@ export class EventFormComponent implements OnInit {
     //TODO: first post pics then post event! & property filetype .png and .jpg
     let title = this.eventFormGroup.controls['title'].value;
 
-    if(title == null || title == ''){
+    if (title == null || title == '') {
       title = '-';
     }
     const event: EventDto = {
@@ -132,12 +135,12 @@ export class EventFormComponent implements OnInit {
       startDateTimeInUTC: 1690320193,
       endDateTimeInUTC: 1690327393,
       category: {
-        eventCategoryId: 100,
-        name: 'test category'
+        id: 100,
+        name: 'test category',
       },
       eventLocation: {
         id: 100,
-        name: 'test location'
+        name: 'test location',
       },
       picture: {
         path: this.eventFormGroup.controls['file0'].value,
@@ -149,10 +152,9 @@ export class EventFormComponent implements OnInit {
       },
     };
     this.eventService.createEvent(event).subscribe((event) => {
-      if(event){
+      if (event) {
         this.router.navigate(['program']);
       }
     });
-
   }
 }
