@@ -9,9 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class UserService {
   constructor(private httpClient: HttpClient) {}
-
-  env = environment;
-  url = 'https://backend.irfc-test.st-ki.at/api/';
+  url = '';
 
   postLoginData(user: User): Observable<User> {
     return this.httpClient.post<User>(this.url, user);
