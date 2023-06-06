@@ -6,7 +6,7 @@
     <div>
       <form [formGroup]="votingAddEditFormGroup">
         <section class="center">
-          <mat-form-field appearance="fill" class="center">
+          <mat-form-field appearance="fill" class="center" [formGroup]="myForm">
             <mat-label>Name des Votings</mat-label>
             <input formControlName="votingName" matInput />
           </mat-form-field>
@@ -16,7 +16,7 @@
 
           <section class="scroll-container left-align mat-app-background">
             <div style="margin: 2rem">
-              <div *ngFor="let event of data" class="list-item col-2">
+              <div *ngFor="let event of events" class="list-item col-2">
                 <app-event-list
                   (eventAdded)="addEventToList($event)"
                   [event]="event"></app-event-list>

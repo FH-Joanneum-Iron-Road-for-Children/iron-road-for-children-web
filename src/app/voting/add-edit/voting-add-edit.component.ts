@@ -1,7 +1,8 @@
-import { Component, Inject, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EventDto } from '../../models/models';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { EventDto, VotingDto } from '../../models/models';
+import { EventService } from '../../services/event.service';
+import { VotingService } from '../../services/voting.service';
 
 @Component({
   selector: 'app-add-edit',
@@ -11,21 +12,38 @@ import { EventDto } from '../../models/models';
     '../../program/shared/event-dialog/event-dialog.component.css',
   ],
 })
-export class VotingAddEditComponent {
+export class VotingAddEditComponent implements OnInit {
   @Input()
-  events: EventDto[] | undefined;
+  events: EventDto[] = [];
 
   eventList: EventDto[] = [];
+
+  myForm: FormGroup;
+
   votingAddEditFormGroup = new FormGroup({
     votingName: new FormControl(''),
     participant: new FormControl(''),
   });
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: EventDto[]) {}
+  constructor(
+    private eventService: EventService,
+    private votingService: VotingService,
+    private formBuilder: FormBuilder
+  ) {
+    this.myForm = this.formBuilder.group({
+      votingName: [''],
+    });
+  }
+
+  ngOnInit() {
+    this.eventService
+      .getAllEvents()
+      .subscribe((result) => (this.events = result));
+  }
 
   isEventInList(event: EventDto): boolean {
     //check if event is already in the list of events
-    return this.eventList.some((item) => item.id === event.id);
+    return this.eventList.some((item) => item.eventId === event.eventId);
   }
 
   addEventToList(event: EventDto) {
@@ -42,6 +60,21 @@ export class VotingAddEditComponent {
   }
 
   saveCategories() {
+    const newVoting: VotingDto = {
+      id: undefined,
+      title: this.myForm.get('votingName')?.value,
+      isActive: true,
+      isEditable: true,
+      events: this.eventList,
+      votingResult: undefined,
+      active: true,
+      editable: true,
+    };
     // send post request
+    this.votingService
+      .createVoting(newVoting)
+      .subscribe(() =>
+        console.log('new voting submitted, title = ' + this.myForm.value)
+      );
   }
 }
