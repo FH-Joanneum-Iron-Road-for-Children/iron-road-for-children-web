@@ -1,6 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EventCategoryDto } from '../../../../models/models';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventCategoriesService } from '../../../../services/event-categories.service';
 
 @Component({
@@ -11,13 +10,12 @@ import { EventCategoriesService } from '../../../../services/event-categories.se
 export class CategoryDialogComponent implements OnInit {
   categoryList: EventCategoryDto[] = [];
 
-  constructor(
-    private eventCategoryService: EventCategoriesService,
-    @Inject(MAT_DIALOG_DATA) public data: EventCategoryDto[]
-  ) {}
+  constructor(private eventCategoryService: EventCategoriesService) {}
 
   ngOnInit(): void {
-    this.categoryList = this.data;
+    this.eventCategoryService
+      .getAllEventCategories()
+      .subscribe((categories) => (this.categoryList = categories));
   }
 
   saveCategories() {
