@@ -1,28 +1,34 @@
 import { Injectable } from '@angular/core';
-import { EventCategoryDto, EventDto, EventLocationDto } from '../models/models';
-import {
-  CATEGORY_DATA,
-  EVENT_DATA,
-  LOCATION_DATA,
-} from '../test-data/test-data';
+import { EventDto } from '../models/models';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventService {
-  getEvents(): EventDto[] {
-    return EVENT_DATA;
+  constructor(private httpClient: HttpClient) {}
+
+  getAllEvents(): Observable<EventDto[]> {
+    return this.httpClient.get<EventDto[]>('api/events');
   }
 
-  getEventById(id: number): EventDto {
-    return EVENT_DATA.find((e) => e.id === Number(id)) as EventDto;
+  getEventByEventId(eventId: number): Observable<EventDto> {
+    return this.httpClient.get<EventDto>('api/events/' + eventId);
   }
 
-  getCategories(): EventCategoryDto[] {
-    return CATEGORY_DATA;
+  updateEvent(id: number, eventDto: EventDto) {
+    return this.httpClient.put<EventDto>('api/events/' + id, {
+      id,
+      eventDto,
+    });
   }
 
-  getLocations(): EventLocationDto[] {
-    return LOCATION_DATA;
+  createEvent(eventDto: EventDto) {
+    return this.httpClient.post<EventDto>('api/events', eventDto);
+  }
+
+  deleteEventByEventId(eventId: number) {
+    return this.httpClient.delete<Response>('api/events/' + eventId);
   }
 }

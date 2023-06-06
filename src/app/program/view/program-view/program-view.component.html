@@ -4,33 +4,35 @@
     <div>
       <mat-card *ngFor="let event of events" class="program-item">
         <img
-          alt="{{ event.image.title }}"
+          alt="{{ event?.picture?.altText }}"
           class="picture"
           mat-card-image
-          src="{{ event.image.path }}" />
+          src="{{ event?.picture?.path }}" />
 
         <mat-card-header>
-          <mat-card-title>{{ event.title }}</mat-card-title>
-          <mat-card-subtitle>{{ event.eventLocation.name }}</mat-card-subtitle>
+          <mat-card-title>{{ event?.title }}</mat-card-title>
+          <mat-card-subtitle>{{
+            event?.eventLocation?.name
+          }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="time"
           >{{
-            getDateFromUTC(event?.startDateTimeUTC) | date : 'dd.MM.yyyy HH:mm'
+            getDateFromUTC(event?.startDateTimeInUTC)
+              | date : 'dd.MM.yyyy HH:mm'
           }}
           bis
           {{
-            getDateFromUTC(event?.endDateTimeUTC) | date : 'dd.MM.yyyy HH:mm'
+            getDateFromUTC(event?.endDateTimeInUTC) | date : 'dd.MM.yyyy HH:mm'
           }}</mat-card-content
         >
         <mat-card-actions>
           <button
-            [disabled]="!event.isEditable"
             mat-icon-button
-            routerLink="/program/edit/{{ event.id }}">
+            routerLink="/program/edit/{{ event?.eventId }}">
             <mat-icon>mode_edit</mat-icon>
           </button>
           <button
-            (click)="openDeleteEventDialog(event.id, event.title)"
+            (click)="openDeleteEventDialog(event.eventId, event.title)"
             mat-icon-button>
             <mat-icon>delete</mat-icon>
           </button>

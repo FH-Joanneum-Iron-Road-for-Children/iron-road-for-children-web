@@ -19,7 +19,9 @@ export class EditEventComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((value) => (this.id = value['id']));
     if (this.id) {
-      this.event = this.eventService.getEventById(this.id) as EventDto;
+      this.eventService
+        .getEventByEventId(this.id)
+        .subscribe((event) => (this.event = event));
       console.log(this.event);
     }
   }

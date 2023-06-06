@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventCategoryDto } from '../../../../models/models';
-import { EventService } from '../../../../services/event.service';
+import { EventCategoriesService } from '../../../../services/event-categories.service';
 
 @Component({
   selector: 'app-category-dialog',
@@ -10,13 +10,23 @@ import { EventService } from '../../../../services/event.service';
 export class CategoryDialogComponent implements OnInit {
   categoryList: EventCategoryDto[] = [];
 
-  constructor(private eventService: EventService) {}
+  constructor(private eventCategoryService: EventCategoriesService) {}
 
   ngOnInit(): void {
-    this.categoryList = this.eventService.getCategories();
+    this.eventCategoryService
+      .getAllEventCategories()
+      .subscribe((categories) => (this.categoryList = categories));
   }
 
   saveCategories() {
+    const eventCategory: EventCategoryDto = {
+      id: 0,
+      name: 'Ausfahrten',
+    };
+    this.eventCategoryService
+      .createEventCategory(eventCategory)
+      .subscribe((result) => console.log(result));
+
     // TODO
   }
 }

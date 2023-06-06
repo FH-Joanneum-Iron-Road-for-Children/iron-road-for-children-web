@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { AddEventComponent } from './add-event.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AddEventComponent', () => {
   let component: AddEventComponent;
@@ -12,6 +13,7 @@ describe('AddEventComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddEventComponent],
+      imports: [HttpClientModule],
       providers: [{ provide: MatDialog, useValue: {} }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();

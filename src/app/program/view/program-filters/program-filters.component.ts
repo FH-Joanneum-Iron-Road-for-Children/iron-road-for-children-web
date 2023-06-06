@@ -16,6 +16,8 @@ export class ProgramFiltersComponent {
   @Output() selectedCategoryChipsChange = new EventEmitter<string[]>();
   @Output() selectedDateChipsChange = new EventEmitter<Date[]>();
 
+  @Output() categoriesList = new EventEmitter<EventCategoryDto[]>();
+
   selectedCategoryChips: string[] = [];
   selectedDateChips: Date[] = [];
 
@@ -55,11 +57,17 @@ export class ProgramFiltersComponent {
   }
 
   openDialogToEditCategory() {
-    this.dialog.open(CategoryDialogComponent, {
-      disableClose: true,
-      width: '45rem',
-      height: '30rem',
-    });
+    this.dialog
+      .open(CategoryDialogComponent, {
+        data: this.categoryFilters,
+        disableClose: true,
+        width: '45rem',
+        height: '30rem',
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        window.location.reload();
+      });
   }
 
   goToAddEvent() {
