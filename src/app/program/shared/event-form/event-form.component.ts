@@ -11,6 +11,8 @@ import {
 } from '../../../models/models';
 import { EventService } from '../../../services/event.service';
 import { PicturesService } from '../../../services/pictures.service';
+import { EventLocationService } from '../../../services/event-location.service';
+import { EventCategoriesService } from '../../../services/event-categories.service';
 
 @Component({
   selector: 'app-event-form',
@@ -19,6 +21,7 @@ import { PicturesService } from '../../../services/pictures.service';
 })
 export class EventFormComponent implements OnInit {
   @Input() event: EventDto | undefined;
+  @Input() eventId: number | undefined;
 
   eventFormGroup = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -27,7 +30,7 @@ export class EventFormComponent implements OnInit {
     category: new FormControl(-1, Validators.required),
     startDateTime: new FormControl(new Date(), Validators.required),
     endDateTime: new FormControl(new Date(), Validators.required),
-    file0: new FormControl('', Validators.required),
+    file0: new FormControl('', Validators.nullValidator),
     file1: new FormControl('', Validators.nullValidator),
     file2: new FormControl('', Validators.nullValidator),
     file3: new FormControl('', Validators.nullValidator),
@@ -42,7 +45,6 @@ export class EventFormComponent implements OnInit {
 
   public categories: EventCategoryDto[] = [];
   public locations: EventLocationDto[] = [];
-  minDate: Date;
 
   sentPictures: PictureDto[] | undefined;
 
@@ -50,41 +52,54 @@ export class EventFormComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private eventService: EventService,
-
+    private eventLocationService: EventLocationService,
+    private eventCategoryService: EventCategoriesService,
     private pictureService: PicturesService
-  ) {
-    const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear, 0, 1);
-  }
+  ) {}
 
   ngOnInit(): void {
-    if (this.event) {
-      // edit event
-      this.eventFormGroup.setValue({
-        title: this.event.title,
-        description: this.event.eventInfo?.infoText,
-        location: this.event.eventLocation.eventLocationId,
-        category: this.event.eventCategory.eventCategoryId,
-        startDateTime: new Date(this.event.startDateTimeInUTC * 1000),
-        endDateTime: new Date(this.event.endDateTimeInUTC * 1000),
-        file0: this.event.picture?.path,
-        file1: this.event.eventInfo?.pictures[0]?.path ?? null,
-        file2: this.event.eventInfo?.pictures[1]?.path ?? null,
-        file3: this.event.eventInfo?.pictures[2]?.path ?? null,
+    this.eventLocationService.getAllEventLocations().subscribe((locations) => {
+      this.locations = locations;
+    });
+
+    this.eventCategoryService
+      .getAllEventCategories()
+      .subscribe((categories) => {
+        this.categories = categories;
       });
 
-      this.filePaths[0] = this.event.picture?.path;
-      this.filePaths[1] = this.event.eventInfo?.pictures[1]?.path ?? null;
-      this.filePaths[2] = this.event.eventInfo?.pictures[2]?.path ?? null;
-      this.filePaths[3] = this.event.eventInfo?.pictures[3]?.path ?? null;
+    if (this.eventId != undefined) {
+      this.eventService.getEventByEventId(this.eventId).subscribe((event) => {
+        this.event = event;
 
-      this.fileNames[0] = this.event.picture?.altText;
-      this.fileNames[1] = this.event.eventInfo?.pictures[1]?.altText ?? null;
-      this.fileNames[2] = this.event.eventInfo?.pictures[2]?.altText ?? null;
-      this.fileNames[3] = this.event.eventInfo?.pictures[3]?.altText ?? null;
+        if (this.event) {
+          // edit event
+          this.eventFormGroup.patchValue({
+            title: this.event.title,
+            description: this.event.eventInfo?.infoText,
+            location: this.event.eventLocation.eventLocationId,
+            category: this.event.eventCategory.eventCategoryId,
+            startDateTime: new Date(this.event.startDateTimeInUTC * 1000),
+            endDateTime: new Date(this.event.endDateTimeInUTC * 1000),
+          });
 
-      this.category = this.event.eventCategory.eventCategoryId;
-      this.location = this.event.eventLocation.eventLocationId;
+          this.filePaths[0] = this.event.picture?.path ?? null;
+          this.filePaths[1] = this.event.eventInfo?.pictures[0]?.path ?? null;
+          this.filePaths[2] = this.event.eventInfo?.pictures[1]?.path ?? null;
+          this.filePaths[3] = this.event.eventInfo?.pictures[2]?.path ?? null;
+
+          this.fileNames[0] = this.event.picture?.altText ?? null;
+          this.fileNames[1] =
+            this.event.eventInfo?.pictures[0]?.altText ?? null;
+          this.fileNames[2] =
+            this.event.eventInfo?.pictures[1]?.altText ?? null;
+          this.fileNames[3] =
+            this.event.eventInfo?.pictures[2]?.altText ?? null;
+
+          this.category = this.event.eventCategory.eventCategoryId;
+          this.location = this.event.eventLocation.eventLocationId;
+        }
+      });
     } else {
       // add event - reset datetime fields
       this.eventFormGroup.patchValue({
@@ -92,7 +107,6 @@ export class EventFormComponent implements OnInit {
         endDateTime: null,
       });
     }
-    console.log(this.event);
   }
 
   uploadedFile: File | null = null;
