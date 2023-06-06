@@ -60,7 +60,8 @@ export class VotingWrapperComponent implements OnInit {
       this.isActive = !this.isActive;
     }
 
-    const msg = 'Voting wirklich starten?'; // TODO: Show voting title
+    const msg =
+      'Voting wirklich starten? <br> <br>Nach Start des Votings können keine <br> neuen Bands mehr hinzugefügt werden.'; // TODO: Show voting title
     const actionType = 'Starten';
     const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
 
