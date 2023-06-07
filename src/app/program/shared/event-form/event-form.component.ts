@@ -136,6 +136,7 @@ export class EventFormComponent implements OnInit {
   isValidImageFile(): boolean {
     if (this.uploadedFile) {
       const allowedFormats = ['image/png', 'image/jpeg', 'image/jpg'];
+
       const maxFileSize = 2 * 1024 * 1024; // 2MB
 
       return (
@@ -155,11 +156,20 @@ export class EventFormComponent implements OnInit {
     this.router.navigate(['program']);
   }
 
+  getFileType(fileType: string) {
+    if (fileType === 'image/png') {
+      return 'PNG';
+    } else if (fileType === 'image/jpg' || fileType === 'image/jpeg') {
+      return 'JPG';
+    }
+    return '';
+  }
+
   submit() {
-    for (const uploadedFile1 of this.uploadedFiles) {
-      if (uploadedFile1 !== null) {
+    for (const picture of this.uploadedFiles) {
+      if (picture !== null) {
         this.pictureService
-          .postPictures(uploadedFile1, '', 'PNG')
+          .postPictures(picture, picture.name, this.getFileType(picture.type))
           .subscribe((fromBackendPictures) => {
             this.sentPictures?.push(fromBackendPictures);
             console.log(this.sentPictures);
@@ -167,7 +177,6 @@ export class EventFormComponent implements OnInit {
       }
     }
 
-    //TODO: first post pics then post event! & property filetype .png and .jpg
     let title = this.eventFormGroup.controls['title'].value;
 
     if (title == null || title == '') {
