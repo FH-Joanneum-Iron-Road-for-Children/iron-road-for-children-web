@@ -1,6 +1,6 @@
-<div *ngFor="let voting of votingList">
+<div class="mat-app-background" *ngFor="let voting of votingList">
   <section>
-    <div class="mat-app-background">
+    <div>
       <div class="space-between">
         <div>{{ voting.title }}</div>
         <div class="alignment">
@@ -23,7 +23,9 @@
           </button>
         </div>
       </div>
-      <app-voting-element [events]="voting.events"></app-voting-element>
+      <div class="overflow-auto">
+        <app-voting-element [events]="voting.events"></app-voting-element>
+      </div>
     </div>
   </section>
 </div>

@@ -1,0 +1,15 @@
+<div
+  class="list-item col-2"
+  style="
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    justify-content: space-between;
+  ">
+  <li>
+    {{ event?.title }}
+  </li>
+  <button (click)="event && addToParentList(event)" mat-icon-button>
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

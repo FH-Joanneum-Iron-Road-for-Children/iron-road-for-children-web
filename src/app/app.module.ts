@@ -1,11 +1,10 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
@@ -45,6 +44,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
 import { registerLocaleData } from '@angular/common';
 import localeAt from '@angular/common/locales/de-AT';
 import { VotingWrapperComponent } from './voting/voting-wrapper/voting-wrapper.component';
+import { EventListComponent } from './voting/add-edit/event-list/event-list.component';
 import { MatBadgeModule } from '@angular/material/badge';
 
 registerLocaleData(localeAt, 'de-AT');
@@ -70,6 +70,7 @@ registerLocaleData(localeAt, 'de-AT');
     VotingAddEditComponent,
     ConfirmDialogComponent,
     VotingWrapperComponent,
+    EventListComponent,
   ],
 
   imports: [
@@ -99,7 +100,7 @@ registerLocaleData(localeAt, 'de-AT');
     MatCardModule,
     MatBadgeModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'de-AT' }],
+  providers: [HttpClient, { provide: LOCALE_ID, useValue: 'de-AT' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
