@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EventCategoryDto, Item } from '../../../../models/models';
+import { EventCategoryDto, EventDto, Item } from '../../../../models/models';
 import { EventCategoriesService } from '../../../../services/event-categories.service';
+import { EventService } from '../../../../services/event.service';
 
 @Component({
   selector: 'app-category-dialog',
@@ -10,34 +11,56 @@ import { EventCategoriesService } from '../../../../services/event-categories.se
 export class CategoryDialogComponent implements OnInit {
   categories: EventCategoryDto[] = [];
   categoryList: Item[] = [];
+  events: EventDto[] = [];
 
-  constructor(private eventCategoryService: EventCategoriesService) {}
+  constructor(
+    private eventService: EventService,
+    private eventCategoryService: EventCategoriesService
+  ) {}
 
   ngOnInit(): void {
-    this.eventCategoryService
-      .getAllEventCategories()
-      .subscribe((categories) => {
-        this.categories = categories;
+    this.eventService.getAllEvents().subscribe((events) => {
+      this.events = events;
 
-        // map to Item[] so it can be used in shared event-dialog component
-        this.categoryList = this.categories.map((category) => {
-          return {
-            id: category.eventCategoryId,
-            name: category.name,
-          };
+      this.eventCategoryService
+        .getAllEventCategories()
+        .subscribe((categories) => {
+          this.categories = categories;
+
+          // map to Item[] so it can be used in shared event-dialog component
+          this.categoryList = this.categories.map((category) => {
+            //check if category is used in event list - not safe to delete
+            const isInUse = this.events.some(
+              (event) =>
+                event.eventCategory.eventCategoryId === category.eventCategoryId
+            );
+
+            return {
+              id: category.eventCategoryId,
+              name: category.name,
+              isInUse: isInUse,
+            };
+          });
         });
-      });
+    });
   }
 
-  saveCategories() {
-    const eventCategory: EventCategoryDto = {
-      eventCategoryId: 0,
-      name: 'Ausfahrten',
-    };
-    this.eventCategoryService
-      .createEventCategory(eventCategory)
-      .subscribe((result) => console.log(result));
+  addCategories(addCategoriesList: any[]) {
+    for (const category of addCategoriesList) {
+      this.eventCategoryService
+        .createEventCategory({
+          eventCategoryId: category.id,
+          name: category.name,
+        })
+        .subscribe((result) => console.log(result));
+    }
+  }
 
-    // TODO
+  deleteCategories(removeCategoriesList: any[]) {
+    for (const category of removeCategoriesList) {
+      this.eventCategoryService
+        .deleteEventCategoryById(category.id)
+        .subscribe((result) => console.log(result));
+    }
   }
 }

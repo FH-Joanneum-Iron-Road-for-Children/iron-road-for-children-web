@@ -5,7 +5,11 @@
         <div *ngIf="itemList?.length == 0">Keine Elemente vorhanden.</div>
         <div *ngFor="let item of itemList" class="list-item col-2">
           <li>{{ item.name }}</li>
-          <button (click)="removeItem(item)" mat-icon-button tabindex="-1">
+          <button
+            (click)="removeItem(item)"
+            mat-icon-button
+            tabindex="-1"
+            [disabled]="item.isInUse">
             <mat-icon>delete</mat-icon>
           </button>
         </div>

@@ -1,10 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
-type Item = {
-  id: number;
-  name: string;
-};
+import { Item } from '../../../models/models';
 
 @Component({
   selector: 'app-event-dialog',
@@ -46,7 +42,7 @@ export class EventDialogComponent {
     if (newItemName && this.itemList) {
       const exists = this.itemList.some((item) => item.name === newItemName);
       if (!exists) {
-        const newItem: Item = { id: 0, name: newItemName };
+        const newItem: Item = { id: 0, name: newItemName, isInUse: false };
         this.itemList.push(newItem);
         this.addItems.push(newItem);
       }

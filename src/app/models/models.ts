@@ -63,6 +63,7 @@ export interface VotingDto {
 export type Item = {
   id: number;
   name: string;
+  isInUse: boolean;
 };
 
 // TODO: Create getAll interfaces when they are done

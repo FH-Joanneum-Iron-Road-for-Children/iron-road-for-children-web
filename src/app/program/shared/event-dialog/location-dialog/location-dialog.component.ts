@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EventLocationDto, Item } from '../../../../models/models';
+import { EventDto, EventLocationDto, Item } from '../../../../models/models';
 import { EventLocationService } from '../../../../services/event-location.service';
+import { EventService } from '../../../../services/event.service';
 
 @Component({
   selector: 'app-location-dialog',
@@ -10,20 +11,37 @@ import { EventLocationService } from '../../../../services/event-location.servic
 export class LocationDialogComponent implements OnInit {
   locations: EventLocationDto[] = [];
   locationList: Item[] = [];
+  events: EventDto[] = [];
 
-  constructor(private eventLocationService: EventLocationService) {}
+  constructor(
+    private eventService: EventService,
+    private eventLocationService: EventLocationService
+  ) {}
 
   ngOnInit(): void {
-    this.eventLocationService.getAllEventLocations().subscribe((locations) => {
-      this.locations = locations;
+    this.eventService.getAllEvents().subscribe((events) => {
+      this.events = events;
 
-      // map to Item[] so it can be used in shared event-dialog component
-      this.locationList = locations.map((location) => {
-        return {
-          id: location.eventLocationId,
-          name: location.name,
-        };
-      });
+      this.eventLocationService
+        .getAllEventLocations()
+        .subscribe((locations) => {
+          this.locations = locations;
+
+          // map to Item[] so it can be used in shared event-dialog component
+          this.locationList = locations.map((location) => {
+            //check if location is used in event list - not safe to delete
+            const isInUse = this.events.some(
+              (event) =>
+                event.eventCategory.eventCategoryId === location.eventLocationId
+            );
+
+            return {
+              id: location.eventLocationId,
+              name: location.name,
+              isInUse: isInUse,
+            };
+          });
+        });
     });
   }
 
