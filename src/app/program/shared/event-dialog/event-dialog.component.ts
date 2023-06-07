@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { EventCategoryDto } from '../../../models/models';
 
 type Item = {
   id: number;
@@ -14,20 +13,28 @@ type Item = {
 })
 export class EventDialogComponent {
   @Input() itemList: Item[] | null = null;
-
-  @Output() saveItemList = new EventEmitter<Item[]>();
+  @Output() addItemList = new EventEmitter<Item[]>();
   @Output() removeItemList = new EventEmitter<Item[]>();
 
+  addItems: Item[] = [];
+  removeItems: Item[] = [];
+
   itemFormGroup = new FormGroup({
-    name: new FormControl('', Validators.min(1)),
+    name: new FormControl('', Validators.required),
   });
 
-  //TODO: change to setItem -1 and emit
   removeItem(item: Item) {
     if (this.itemList) {
       const index = this.itemList.indexOf(item);
+      const indexAddItemsList = this.addItems.indexOf(item);
       if (index !== -1) {
         this.itemList?.splice(index, 1);
+
+        if (indexAddItemsList !== -1) {
+          this.addItems?.splice(indexAddItemsList, 1);
+        } else {
+          this.removeItems.push(item);
+        }
       }
     }
   }
@@ -41,8 +48,13 @@ export class EventDialogComponent {
       if (!exists) {
         const newItem: Item = { id: 0, name: newItemName };
         this.itemList.push(newItem);
-        this.saveItemList.emit(this.itemList);
+        this.addItems.push(newItem);
       }
     }
+  }
+
+  saveItemList() {
+    this.addItemList.emit(this.addItems);
+    this.removeItemList.emit(this.removeItems);
   }
 }

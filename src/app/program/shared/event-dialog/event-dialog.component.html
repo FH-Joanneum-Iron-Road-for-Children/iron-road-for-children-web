@@ -33,3 +33,18 @@
     </section>
   </div>
 </div>
+
+<div class="center" mat-dialog-actions>
+  <section>
+    <button class="btn btn-secondary" mat-dialog-close="true" mat-raised-button>
+      Abbrechen
+    </button>
+    <button
+      (click)="saveItemList()"
+      class="btn btn-primary"
+      mat-dialog-close="true"
+      mat-raised-button>
+      Speichern
+    </button>
+  </section>
+</div>

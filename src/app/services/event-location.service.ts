@@ -7,39 +7,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EventLocationService {
-  baseUrl = '';
-
   constructor(private httpClient: HttpClient) {}
 
   getAllEventLocations(): Observable<EventLocationDto[]> {
-    return this.httpClient.get<EventLocationDto[]>(
-      this.baseUrl + 'api/event-locations'
-    );
-  }
-
-  getEventLocationById(id: number): Observable<EventLocationDto> {
-    return this.httpClient.get<EventLocationDto>(
-      this.baseUrl + 'api/event-locations' + id
-    );
-  }
-
-  updateEventLocation(id: number, eventDto: EventLocationDto) {
-    return this.httpClient.put<EventLocationDto>(
-      this.baseUrl + 'api/event-locations' + id,
-      { id, eventDto }
-    );
+    return this.httpClient.get<EventLocationDto[]>('api/event-locations');
   }
 
   createEventLocation(eventDto: EventLocationDto) {
     return this.httpClient.post<EventLocationDto>(
-      this.baseUrl + 'api/event-locations',
+      'api/event-locations',
       eventDto
     );
   }
 
-  deleteEventByEventId(id: number) {
-    return this.httpClient.delete<Response>(
-      this.baseUrl + 'api/event-locations' + id
-    );
+  deleteEventLocationById(id: number) {
+    return this.httpClient.delete<Response>('api/event-locations/' + id);
   }
 }
