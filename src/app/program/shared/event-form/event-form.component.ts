@@ -159,7 +159,7 @@ export class EventFormComponent implements OnInit {
     for (const uploadedFile1 of this.uploadedFiles) {
       if (uploadedFile1 !== null) {
         this.pictureService
-          .postPictures(uploadedFile1, '', 'PNG')
+          .postPictures(uploadedFile1, uploadedFile1.name, 'PNG')
           .subscribe((fromBackendPictures) => {
             this.sentPictures?.push(fromBackendPictures);
             console.log(this.sentPictures);
