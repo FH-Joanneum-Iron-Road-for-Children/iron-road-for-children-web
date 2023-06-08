@@ -5,8 +5,8 @@ export interface User {
 
 export interface PictureDto {
   pictureId?: number;
-  altText: string;
-  path: string | null;
+  altText?: string;
+  path?: string | null;
 }
 
 export interface EventInfoDto {

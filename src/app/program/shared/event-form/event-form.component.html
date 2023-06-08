@@ -21,10 +21,8 @@
       <div class="col-2">
         <mat-form-field appearance="fill">
           <mat-label>Standort</mat-label>
-          <mat-select [(value)]="location" required>
-            <mat-option
-              *ngFor="let location of locations"
-              [value]="location.eventLocationId">
+          <mat-select [(value)]="location" required formControlName="location">
+            <mat-option *ngFor="let location of locations" [value]="location">
               {{ location.name }}
             </mat-option>
           </mat-select>
@@ -32,10 +30,8 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Kategorie</mat-label>
-          <mat-select [(value)]="category" required>
-            <mat-option
-              *ngFor="let category of categories"
-              [value]="category.eventCategoryId">
+          <mat-select [(value)]="category" required formControlName="category">
+            <mat-option *ngFor="let category of categories" [value]="category">
               {{ category.name }}
             </mat-option>
           </mat-select>
@@ -154,11 +150,7 @@
           mat-button>
           Abbrechen
         </button>
-        <button
-          (click)="submit()"
-          [disabled]="!eventFormGroup.valid"
-          class="btn btn-primary form-btn"
-          mat-button>
+        <button (click)="submit()" class="btn btn-primary form-btn" mat-button>
           Speichern
         </button>
       </div>

@@ -12,6 +12,7 @@ import { EventService } from '../../../services/event.service';
 import { PicturesService } from '../../../services/pictures.service';
 import { EventLocationService } from '../../../services/event-location.service';
 import { EventCategoriesService } from '../../../services/event-categories.service';
+import { DateConverterService } from '../../../services/date-converter.service';
 
 @Component({
   selector: 'app-event-form',
@@ -37,8 +38,8 @@ export class EventFormComponent implements OnInit {
 
   title: string | undefined;
   date: any;
-  category: number | undefined;
-  location: number | undefined;
+  category: EventCategoryDto | undefined;
+  location: EventLocationDto | undefined;
   filePaths: (string | null)[] = Array(4).fill(null);
   fileNames: (string | null)[] = Array(4).fill(null);
 
@@ -53,7 +54,8 @@ export class EventFormComponent implements OnInit {
     private eventService: EventService,
     private eventLocationService: EventLocationService,
     private eventCategoryService: EventCategoriesService,
-    private pictureService: PicturesService
+    private pictureService: PicturesService,
+    private dateConverter: DateConverterService
   ) {}
 
   ngOnInit(): void {
@@ -95,8 +97,8 @@ export class EventFormComponent implements OnInit {
           this.fileNames[3] =
             this.event.eventInfo?.pictures[2]?.altText ?? null;
 
-          this.category = this.event.eventCategory.eventCategoryId;
-          this.location = this.event.eventLocation.eventLocationId;
+          this.category = this.event.eventCategory;
+          this.location = this.event.eventLocation;
         }
       });
     } else {
@@ -156,50 +158,105 @@ export class EventFormComponent implements OnInit {
   }
 
   submit() {
-    for (const uploadedFile1 of this.uploadedFiles) {
-      if (uploadedFile1 !== null) {
-        this.pictureService
-          .postPictures(uploadedFile1, uploadedFile1.name, 'PNG')
-          .subscribe((fromBackendPictures) => {
-            this.sentPictures?.push(fromBackendPictures);
-            console.log(this.sentPictures);
-          });
-      }
+    const pictureToSend: PictureDto[] = [];
+    const file0 = this.uploadedFiles[0];
+    const file1 = this.uploadedFiles[1];
+    const file2 = this.uploadedFiles[2];
+    const file3 = this.uploadedFiles[3];
+
+    let file0ToSend: PictureDto = {
+      pictureId: 128,
+      altText: file0?.name,
+      path: 'https://pictures.irfc-test.fh-joanneum.at/40b8a5bb-20a7-47e1-adea-d0c2ff0d403d.png',
+    };
+
+    const file1Send: PictureDto = {
+      pictureId: 127,
+      altText: file1?.name,
+      path: 'https://pictures.irfc-test.fh-joanneum.at/40b8a5bb-20a7-47e1-adea-d0c2ff0d403d.png',
+    };
+
+    // if (file0 !== null) {
+    //   this.pictureService
+    //     .postPictures(file0, file0.name, 'PNG')
+    //     .subscribe((file0FromBackend) => {
+    //       file0ToSend = file0FromBackend;
+    //     });
+    // }
+
+    // console.log(file0ToSend);
+    // if (file1 !== null) {
+    //   this.pictureService
+    //     .postPictures(file1, file1.name, 'PNG')
+    //     .subscribe((file1FromBackend) => {
+    //       pictureToSend.push(file1FromBackend);
+    //     });
+    // }
+    // if (file2 !== null) {
+    //   this.pictureService
+    //     .postPictures(file2, file2.name, 'PNG')
+    //     .subscribe((file2FromBackend) => {
+    //       pictureToSend.push(file2FromBackend);
+    //     });
+    // }
+    // if (file3 !== null) {
+    //   this.pictureService
+    //     .postPictures(file3, file3.name, 'PNG')
+    //     .subscribe((file3FromBackend) => {
+    //       pictureToSend.push(file3FromBackend);
+    //     });
+    // }
+
+    // console.log(pictureToSend);
+    //TODO: first post pics then post event! & property filetype .png and .jpg
+
+    const value = this.eventFormGroup.controls['startDateTime'].value;
+    let utcMillisecondsStartDate = 0;
+    if (value != undefined) {
+      const startDate = new Date(value);
+      utcMillisecondsStartDate =
+        this.dateConverter.getTimestampFromDate(startDate);
     }
 
-    //TODO: first post pics then post event! & property filetype .png and .jpg
-    let title = this.eventFormGroup.controls['title'].value;
+    const valueEndDateTime = this.eventFormGroup.controls['endDateTime'].value;
+    let utcMillisecondsEndDate = 0;
+    if (valueEndDateTime != undefined) {
+      const endDate = new Date(valueEndDateTime);
+      utcMillisecondsEndDate = this.dateConverter.getTimestampFromDate(endDate);
+    }
 
+    let title = this.eventFormGroup.controls['title'].value;
     if (title == null || title == '') {
       title = '-';
     }
-    const event: EventDto = {
-      title: title,
-      startDateTimeInUTC: 1690320193,
-      endDateTimeInUTC: 1690327393,
-      eventCategory: {
-        eventCategoryId: 100,
-        name: 'test category',
-      },
-      eventLocation: {
-        eventLocationId: 100,
-        name: 'test location',
-      },
-      picture: {
-        path: '',
-        altText: 'test alt text',
-      },
-      eventInfo: {
-        infoText: this.eventFormGroup.controls['description'].value,
-        pictures: [],
-      },
-    };
 
-    console.log(event);
-    // this.eventService.createEvent(event).subscribe((event) => {
-    //   if (event) {
-    //     this.router.navigate(['program']);
-    //   }
-    // });
+    if (this.category && this.location) {
+      const event: EventDto = {
+        title: title,
+        startDateTimeInUTC: utcMillisecondsEndDate,
+        endDateTimeInUTC: utcMillisecondsEndDate,
+        eventCategory: this.category,
+        eventLocation: this.location,
+        picture: {
+          path: file0ToSend.path,
+          altText: file0ToSend.altText,
+        },
+        eventInfo: {
+          infoText: this.eventFormGroup.controls['description'].value,
+          pictures: [
+            {
+              altText: file1Send.altText,
+              path: file1Send?.path,
+            },
+          ],
+        },
+      };
+      console.log(event);
+      this.eventService.createEvent(event).subscribe((event) => {
+        if (event) {
+          this.router.navigate(['program']);
+        }
+      });
+    }
   }
 }
