@@ -6,6 +6,7 @@
     <div>
       <form [formGroup]="votingAddEditFormGroup">
         <section class="center">
+          <p>Voting Name: {{ voting }}</p>
           <mat-form-field appearance="fill" class="center" [formGroup]="myForm">
             <mat-label>Name des Votings</mat-label>
             <input formControlName="votingName" matInput />

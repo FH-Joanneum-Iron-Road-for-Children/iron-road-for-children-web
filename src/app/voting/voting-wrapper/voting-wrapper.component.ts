@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 import { AddVotingComponent } from '../add-edit/add-voting/add-voting.component';
 import { EditVotingComponent } from '../add-edit/edit-voting/edit-voting.component';
+import { VotingService } from '../../services/voting.service';
 
 @Component({
   selector: 'app-voting-wrapper',
@@ -18,6 +19,7 @@ export class VotingWrapperComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
+    private votingService: VotingService,
     private confirmDialogService: ConfirmDialogService,
     private cd: ChangeDetectorRef
   ) {}
@@ -26,16 +28,24 @@ export class VotingWrapperComponent implements OnInit {
     console.log('');
   }
 
-  openEditVotingDialog() {
-    this.dialog.open(EditVotingComponent, {
-      disableClose: true,
-      width: '45rem',
-      height: '30rem',
-    });
-    // }).afterClosed().subscribe((resultList) =>{
-    //   this.votingList = resultList;
-    //   this.cd.markForCheck();
-    // });
+  openEditVotingDialog(id: number | undefined) {
+    if (id !== undefined) {
+      this.votingService.getVotingById(id).subscribe(
+        (voting) => {
+          this.dialog.open(EditVotingComponent, {
+            data: voting,
+            disableClose: true,
+            width: '45rem',
+            height: '30rem',
+          });
+          // }).afterClosed().subscribe((resultList) =>{
+          //   this.votingList = resultList;
+          //   this.cd.markForCheck();
+          // });
+        },
+        (error) => console.log('Das Voting konnte nicht geladen werden.')
+      );
+    } else console.log('Es konnte kein Voting gefunden werden.');
   }
 
   openDeleteVotingDialog() {

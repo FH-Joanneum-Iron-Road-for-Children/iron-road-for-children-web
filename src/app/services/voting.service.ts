@@ -15,7 +15,7 @@ export class VotingService {
     return this.httpClient.get<VotingDto[]>(this.baseUrl + 'api/votings');
   }
 
-  getVotingById(eventId: number): Observable<VotingDto> {
+  getVotingById(eventId: number | undefined): Observable<VotingDto> {
     return this.httpClient.get<VotingDto>(
       this.baseUrl + 'api/votings/' + eventId
     );

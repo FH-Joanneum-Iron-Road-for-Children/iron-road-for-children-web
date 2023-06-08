@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { EventDto, VotingDto } from '../../../models/models';
 import { EventService } from '../../../services/event.service';
 import { VotingService } from '../../../services/voting.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-voting',
@@ -28,7 +29,8 @@ export class EditVotingComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private votingService: VotingService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public voting: any
   ) {
     this.myForm = this.formBuilder.group({
       votingName: [''],
