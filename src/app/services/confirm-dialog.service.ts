@@ -12,13 +12,15 @@ export class ConfirmDialogService {
 
   openDialog(
     actionType: 'Bestätigen' | 'Löschen' | 'Starten',
-    message: string
+    message: string,
+    isDisabled: boolean
   ): MatDialogRef<ConfirmDialogComponent> {
     this.dialogRef = this.dialog.open(ConfirmDialogComponent, {
       disableClose: true,
     });
     this.dialogRef.componentInstance.actionType = actionType;
     this.dialogRef.componentInstance.message = message;
+    this.dialogRef.componentInstance.isDisabled = isDisabled;
     return this.dialogRef;
   }
 }

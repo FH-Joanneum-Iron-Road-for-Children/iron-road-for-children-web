@@ -27,7 +27,11 @@ export class VotingCardComponent {
   openConfirmWinnerDialog() {
     const msg = 'Band als Gewinner auswählen?'; // TODO: Show band name
     const actionType = 'Bestätigen';
-    const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
+    const dialogRef = this.confirmDialogService.openDialog(
+      actionType,
+      msg,
+      false
+    );
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);

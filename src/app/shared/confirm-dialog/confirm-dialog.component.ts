@@ -9,6 +9,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class ConfirmDialogComponent {
   @Input() message: string | undefined;
   @Input() actionType: 'Bestätigen' | 'Löschen' | 'Starten' | undefined;
+  @Input() isDisabled = false;
 
   constructor(private dialogRef: MatDialogRef<ConfirmDialogComponent>) {}
 

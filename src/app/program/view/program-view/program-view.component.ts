@@ -23,7 +23,11 @@ export class ProgramViewComponent {
 
     const msg = `"${title}" wirklich löschen?`; // TODO: Show event title
     const actionType = 'Löschen';
-    const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
+    const dialogRef = this.confirmDialogService.openDialog(
+      actionType,
+      msg,
+      false
+    );
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

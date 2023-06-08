@@ -40,7 +40,11 @@ export class VotingWrapperComponent implements OnInit {
   openDeleteVotingDialog() {
     const msg = 'Voting wirklich löschen?'; // TODO: Show voting title
     const actionType = 'Löschen';
-    const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
+    const dialogRef = this.confirmDialogService.openDialog(
+      actionType,
+      msg,
+      false
+    );
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -63,7 +67,11 @@ export class VotingWrapperComponent implements OnInit {
     const msg =
       'Voting wirklich starten? <br> <br>Nach Start des Votings können keine <br> neuen Bands mehr hinzugefügt werden.'; // TODO: Show voting title
     const actionType = 'Starten';
-    const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
+    const dialogRef = this.confirmDialogService.openDialog(
+      actionType,
+      msg,
+      false
+    );
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
