@@ -183,6 +183,7 @@ export class EventFormComponent implements OnInit {
       title = '-';
     }
     const event: EventDto = {
+      eventId: 0,
       title: title,
       startDateTimeInUTC: 1690320193,
       endDateTimeInUTC: 1690327393,

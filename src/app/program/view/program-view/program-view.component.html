@@ -102,9 +102,7 @@
             routerLink="/program/edit/{{ event?.eventId }}">
             <mat-icon>mode_edit</mat-icon>
           </button>
-          <button
-            (click)="openDeleteEventDialog(event.eventId, event.title)"
-            mat-icon-button>
+          <button (click)="openDeleteEventDialog(event)" mat-icon-button>
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>

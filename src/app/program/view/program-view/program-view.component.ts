@@ -3,6 +3,10 @@ import { EventDto } from '../../../models/models';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
 import { DateConverterService } from '../../../services/date-converter.service';
+import { EventService } from '../../../services/event.service';
+import { PicturesService } from '../../../services/pictures.service';
+import { VotingService } from '../../../services/voting.service';
+import { EventInfoService } from '../../../services/event-info.service';
 
 @Component({
   selector: 'app-program-view',
@@ -15,24 +19,41 @@ export class ProgramViewComponent {
   constructor(
     public dialog: MatDialog,
     public confirmDialogService: ConfirmDialogService,
-    public dateConverterService: DateConverterService
+    public dateConverterService: DateConverterService,
+    public eventService: EventService,
+    public eventInfoService: EventInfoService,
+    public votingService: VotingService,
+    public pictureService: PicturesService
   ) {}
 
-  openDeleteEventDialog(id: number | undefined, title: string) {
-    if (id == undefined) throw new Error('id is undefined');
+  openDeleteEventDialog(event: EventDto) {
+    // check if event is in a voting
+    this.votingService.getAllVotings().subscribe((votings) => {
+      const isInUse = votings.some((voting) =>
+        voting.events.some(
+          (votingEvent) => votingEvent.eventId === event.eventId
+        )
+      );
 
-    const msg = `"${title}" wirklich löschen?`; // TODO: Show event title
-    const actionType = 'Löschen';
-    const dialogRef = this.confirmDialogService.openDialog(
-      actionType,
-      msg,
-      false
-    );
+      let msg = '';
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        // TODO: delete event
+      if (isInUse) {
+        msg = `"${event.title}" kann nicht gelöscht werden, da es in einem Voting vorkommt.`;
+      } else {
+        msg = `"${event.title}" wirklich löschen?`; // TODO: Show event title
       }
+
+      const dialogRef = this.confirmDialogService.openDialog(
+        'Löschen',
+        msg,
+        isInUse
+      );
+
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          // TODO: delete event
+        }
+      });
     });
   }
 

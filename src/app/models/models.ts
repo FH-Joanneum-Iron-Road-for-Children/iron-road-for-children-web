@@ -26,7 +26,7 @@ export interface EventCategoryDto {
 }
 
 export interface EventDto {
-  eventId?: number;
+  eventId: number;
   title: string;
   eventInfo: EventInfoDto;
   picture: PictureDto;
@@ -54,7 +54,7 @@ export interface VotingDto {
   title: string;
   isActive: boolean;
   isEditable: boolean;
-  events?: EventDto[];
+  events: EventDto[];
   votingResult?: VotingResultDto;
   active: boolean;
   editable: boolean;
