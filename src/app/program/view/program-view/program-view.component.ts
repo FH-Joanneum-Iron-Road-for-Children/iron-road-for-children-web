@@ -51,10 +51,37 @@ export class ProgramViewComponent {
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          // TODO: delete event
+          // if confirmed
+          this.deleteEvent(event);
         }
       });
     });
+  }
+
+  deleteEvent(event: EventDto) {
+    if (event.picture.pictureId != undefined) {
+      this.pictureService
+        .deletePicture(event.picture.pictureId)
+        .subscribe((result) => console.log(result));
+    }
+
+    for (const picture of event.eventInfo.pictures) {
+      if (picture.pictureId !== undefined) {
+        this.pictureService
+          .deletePicture(picture.pictureId)
+          .subscribe((result) => console.log(result));
+      }
+    }
+
+    if (event.eventInfo.eventInfoId !== undefined) {
+      this.eventInfoService
+        .deleteEventInfoById(event.eventInfo.eventInfoId)
+        .subscribe((result) => console.log(result));
+    }
+
+    this.eventService
+      .deleteEventByEventId(event.eventId)
+      .subscribe((result) => console.log(result));
   }
 
   displayTime(startDateTimeUTC: number, endDateTimeUTC: number) {
