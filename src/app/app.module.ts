@@ -35,7 +35,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LocationDialogComponent } from './program/shared/event-dialog/location-dialog/location-dialog.component';
-import { VotingAddEditComponent } from './voting/add-edit/voting-add-edit.component';
+import { AddVotingComponent } from './voting/add-edit/add-voting/add-voting.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProgramViewComponent } from './program/view/program-view/program-view.component';
 import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
@@ -46,6 +46,7 @@ import localeAt from '@angular/common/locales/de-AT';
 import { VotingWrapperComponent } from './voting/voting-wrapper/voting-wrapper.component';
 import { EventListComponent } from './voting/add-edit/event-list/event-list.component';
 import { MatBadgeModule } from '@angular/material/badge';
+import { EditVotingComponent } from './voting/add-edit/edit-voting/edit-voting.component';
 
 registerLocaleData(localeAt, 'de-AT');
 
@@ -67,10 +68,11 @@ registerLocaleData(localeAt, 'de-AT');
     VotingComponent,
     VotingElementComponent,
     VotingCardComponent,
-    VotingAddEditComponent,
+    AddVotingComponent,
     ConfirmDialogComponent,
     VotingWrapperComponent,
     EventListComponent,
+    EditVotingComponent,
   ],
 
   imports: [

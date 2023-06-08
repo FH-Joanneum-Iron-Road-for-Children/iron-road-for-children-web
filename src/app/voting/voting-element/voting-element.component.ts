@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
-import { VotingAddEditComponent } from '../add-edit/voting-add-edit.component';
+import { AddVotingComponent } from '../add-edit/add-voting/add-voting.component';
 import { EventDto } from '../../models/models';
 
 @Component({
@@ -19,7 +19,7 @@ export class VotingElementComponent {
   ) {}
 
   openEditVotingDialog() {
-    this.dialog.open(VotingAddEditComponent, {
+    this.dialog.open(AddVotingComponent, {
       disableClose: true,
       width: '45rem',
       height: '30rem',

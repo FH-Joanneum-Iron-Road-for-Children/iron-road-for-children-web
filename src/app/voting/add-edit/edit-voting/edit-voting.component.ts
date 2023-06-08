@@ -1,18 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { EventDto, VotingDto } from '../../models/models';
-import { EventService } from '../../services/event.service';
-import { VotingService } from '../../services/voting.service';
+import { EventDto, VotingDto } from '../../../models/models';
+import { EventService } from '../../../services/event.service';
+import { VotingService } from '../../../services/voting.service';
 
 @Component({
-  selector: 'app-add-edit',
-  templateUrl: './voting-add-edit.component.html',
+  selector: 'app-edit-voting',
+  templateUrl: './edit-voting.component.html',
   styleUrls: [
-    './voting-add-edit.component.css',
-    '../../program/shared/event-dialog/event-dialog.component.css',
+    './edit-voting.component.css',
+    '../../../program/shared/event-dialog/event-dialog.component.css',
   ],
 })
-export class VotingAddEditComponent implements OnInit {
+export class EditVotingComponent implements OnInit {
   @Input()
   events: EventDto[] = [];
 

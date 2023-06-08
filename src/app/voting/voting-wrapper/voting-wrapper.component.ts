@@ -2,7 +2,8 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { VotingDto } from '../../models/models';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
-import { VotingAddEditComponent } from '../add-edit/voting-add-edit.component';
+import { AddVotingComponent } from '../add-edit/add-voting/add-voting.component';
+import { EditVotingComponent } from '../add-edit/edit-voting/edit-voting.component';
 
 @Component({
   selector: 'app-voting-wrapper',
@@ -26,7 +27,7 @@ export class VotingWrapperComponent implements OnInit {
   }
 
   openEditVotingDialog() {
-    this.dialog.open(VotingAddEditComponent, {
+    this.dialog.open(EditVotingComponent, {
       disableClose: true,
       width: '45rem',
       height: '30rem',
@@ -77,7 +78,7 @@ export class VotingWrapperComponent implements OnInit {
 
   onVtnClick() {
     // Navigate to /add-edit page
-    this.dialog.open(VotingAddEditComponent, {
+    this.dialog.open(AddVotingComponent, {
       disableClose: true,
       width: '45rem',
       height: '30rem',

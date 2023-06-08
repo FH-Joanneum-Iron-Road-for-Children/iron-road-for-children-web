@@ -1,0 +1,62 @@
+<div class="center">
+  <h1 mat-dialog-title>Voting bearbeiten</h1>
+</div>
+<div mat-dialog-content>
+  <div class="col-2e">
+    <div>
+      <form [formGroup]="votingAddEditFormGroup">
+        <section class="center">
+          <mat-form-field appearance="fill" class="center" [formGroup]="myForm">
+            <mat-label>Name des Votings</mat-label>
+            <input formControlName="votingName" matInput />
+          </mat-form-field>
+        </section>
+        <section class="center">
+          <h2 mat-dialog-title>Event auswählen</h2>
+
+          <section class="scroll-container left-align mat-app-background">
+            <div style="margin: 2rem">
+              <div *ngFor="let event of events" class="list-item col-2">
+                <app-event-list
+                  (eventAdded)="addEventToList($event)"
+                  [event]="event"></app-event-list>
+              </div>
+            </div>
+          </section>
+        </section>
+      </form>
+    </div>
+
+    <div class="col-2">
+      <section
+        style="display: flex; flex-direction: column; text-align: center">
+        <h2 mat-dialog-title>ausgewählte Events</h2>
+        <ul class="mat-app-background scroll-container">
+          <div style="margin-top: 2rem; margin-bottom: 2rem">
+            <div *ngFor="let event of eventList" class="list-item col-2">
+              <li>{{ event.title }}</li>
+              <button (click)="removeFromList(event)" mat-icon-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="center" mat-dialog-actions>
+  <section>
+    <button class="btn btn-secondary" mat-dialog-close="true" mat-raised-button>
+      Abbrechen
+    </button>
+    <button
+      (click)="saveCategories()"
+      class="btn btn-primary"
+      mat-dialog-close="true"
+      mat-raised-button>
+      Speichern
+    </button>
+  </section>
+</div>

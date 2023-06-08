@@ -12,7 +12,8 @@
           <button
             mat-icon-button
             (click)="openEditVotingDialog()"
-            [disabled]="!voting.isEditable || voting.isActive || isActive">
+            [disabled]="isActive">
+            <!--            [disabled]="!voting.isEditable || voting.isActive || isActive">            -->
             <mat-icon>edit</mat-icon>
           </button>
           <button

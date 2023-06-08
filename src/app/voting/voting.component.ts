@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VotingDto } from '../models/models';
-import { VotingAddEditComponent } from './add-edit/voting-add-edit.component';
+import { AddVotingComponent } from './add-edit/add-voting/add-voting.component';
 import { MatDialog } from '@angular/material/dialog';
 import { VotingService } from '../services/voting.service';
 
@@ -26,7 +26,7 @@ export class VotingComponent implements OnInit {
 
   onVtnClick() {
     // Navigate to /add-edit page
-    this.dialog.open(VotingAddEditComponent, {
+    this.dialog.open(AddVotingComponent, {
       disableClose: true,
       width: '60vw',
       minWidth: ' 40rem',
