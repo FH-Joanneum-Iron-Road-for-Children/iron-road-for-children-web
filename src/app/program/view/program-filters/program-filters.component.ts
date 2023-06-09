@@ -57,9 +57,7 @@ export class ProgramFiltersComponent {
         height: '30rem',
       })
       .afterClosed()
-      .subscribe((result) => {
-        window.location.reload();
-      });
+      .subscribe((result) => {});
   }
 
   goToAddEvent() {

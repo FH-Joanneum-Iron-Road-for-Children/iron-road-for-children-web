@@ -38,9 +38,9 @@ export class ProgramViewComponent {
       let msg = '';
 
       if (isInUse) {
-        msg = `"${event.title}" kann nicht gelöscht werden, da es in einem Voting vorkommt.`;
+        msg = `"${event.title}" kann nicht gelöscht werden, <br>da es in einem Voting vorkommt.`;
       } else {
-        msg = `"${event.title}" wirklich löschen?`; // TODO: Show event title
+        msg = `"${event.title}" wirklich löschen?`;
       }
 
       const dialogRef = this.confirmDialogService.openDialog(

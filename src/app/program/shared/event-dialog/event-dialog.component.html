@@ -7,9 +7,9 @@
           <li>{{ item.name }}</li>
           <button
             (click)="removeItem(item)"
+            *ngIf="!item.isInUse"
             mat-icon-button
-            tabindex="-1"
-            [disabled]="item.isInUse">
+            tabindex="-1">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
