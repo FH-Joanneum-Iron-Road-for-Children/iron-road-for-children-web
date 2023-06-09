@@ -7,44 +7,36 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class VotingService {
-  baseUrl = '';
-
   constructor(private httpClient: HttpClient) {}
 
   getAllVotings(): Observable<VotingDto[]> {
-    return this.httpClient.get<VotingDto[]>(this.baseUrl + 'api/votings');
+    return this.httpClient.get<VotingDto[]>('api/votings');
   }
 
-  getVotingById(eventId: number): Observable<VotingDto> {
-    return this.httpClient.get<VotingDto>(
-      this.baseUrl + 'api/votings/' + eventId
-    );
+  getVotingById(id: number): Observable<VotingDto> {
+    return this.httpClient.get<VotingDto>(`api/votings/${id}`);
   }
 
   updateVoting(id: number, votingDto: VotingDto) {
-    return this.httpClient.put<VotingDto>(this.baseUrl + 'api/votings/' + id, {
+    return this.httpClient.put<VotingDto>(`api/votings/${id}`, {
       id,
       votingDto,
     });
   }
 
   createVoting(VotingDto: VotingDto) {
-    return this.httpClient.post<VotingDto>(
-      this.baseUrl + 'api/votings',
-      VotingDto
-    );
+    return this.httpClient.post<VotingDto>('api/votings', VotingDto);
   }
 
-  deleteVotingByVotingId(id: number) {
-    return this.httpClient.delete<Response>(this.baseUrl + 'api/votings/' + id);
+  deleteVoting(id: number) {
+    return this.httpClient.delete<Response>(`api/votings/${id}`);
   }
 
-  setEndForVoting(id: number) {
-    return this.httpClient.put<Response>(
-      this.baseUrl + 'api/votings/' + '/endVoting' + id,
-      {
-        id,
-      }
-    );
+  startVoting(id: number) {
+    return this.httpClient.put<Response>(`api/votings/startVoting/${id}`, {});
+  }
+
+  endVoting(id: number) {
+    return this.httpClient.put<Response>(`api/votings/endVoting/${id}`, {});
   }
 }
