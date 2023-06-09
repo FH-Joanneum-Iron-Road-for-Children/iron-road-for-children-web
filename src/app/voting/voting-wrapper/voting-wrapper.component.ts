@@ -45,7 +45,7 @@ export class VotingWrapperComponent implements OnInit {
         },
         (error) => console.log('Das Voting konnte nicht geladen werden.')
       );
-    } else console.log('Es konnte kein Voting gefunden werden.');
+    } else showAlert('Es konnte kein Voting gefunden werden.');
   }
 
   openDeleteVotingDialog() {
@@ -93,5 +93,14 @@ export class VotingWrapperComponent implements OnInit {
       width: '45rem',
       height: '30rem',
     });
+  }
+}
+
+function showAlert(message: string) {
+  // Update the DOM with the error message
+  const alertContainer = document.getElementById('alert-container');
+  if (alertContainer !== null) {
+    alertContainer.innerText = message;
+    alertContainer.style.display = 'block';
   }
 }
