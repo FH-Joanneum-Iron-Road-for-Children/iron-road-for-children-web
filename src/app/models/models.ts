@@ -32,7 +32,7 @@ export interface EventCategoryDto {
 }
 
 export interface EventDto {
-  eventId?: number;
+  eventId: number;
   title: string;
   eventInfo: EventInfoDto;
   picture: PictureDto;
@@ -43,15 +43,15 @@ export interface EventDto {
 }
 
 export interface VotingPartialResultDto {
-  id?: number;
+  id: number;
   eventName: string;
-  percentage?: number;
+  percentage: number;
 }
 
 export interface VotingResultDto {
-  id?: number;
+  votingResultId: number;
   title: string;
-  endDate?: string;
+  endDate: number;
   partialResults?: VotingPartialResultDto[];
 }
 
@@ -68,5 +68,3 @@ export type Item = {
   id: number;
   name: string;
 };
-
-// TODO: Create getAll interfaces when they are done

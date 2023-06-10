@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
 import { MatDialog } from '@angular/material/dialog';
+import { EventDto, VotingDto } from '../../../models/models';
+import { VotingService } from '../../../services/voting.service';
 
 @Component({
   selector: 'app-voting-card',
@@ -8,31 +10,36 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./voting-card.component.css'],
 })
 export class VotingCardComponent {
-  @Input()
-  get name(): string {
-    return this._name;
-  }
-
-  set name(name: string) {
-    this._name = (name && name.trim()) || '<no name set>';
-  }
-
-  private _name = '';
+  @Input() event: EventDto | undefined;
+  @Input() voting: VotingDto | undefined;
 
   constructor(
     private dialog: MatDialog,
-    private confirmDialogService: ConfirmDialogService
+    private confirmDialogService: ConfirmDialogService,
+    private votingService: VotingService
   ) {}
 
+  getVotes(id: number | undefined): any {
+    if (id != undefined) {
+      const votingResult = this.voting?.votingResult?.partialResults?.find(
+        (result) => result.id === id
+      );
+      return votingResult ? `${votingResult.percentage}` : '';
+    }
+  }
+
   openConfirmWinnerDialog() {
-    const msg = 'Band als Gewinner auswählen?'; // TODO: Show band name
+    const msg = `<strong>${this.event?.title}</strong> als Gewinner auswählen?`;
     const actionType = 'Bestätigen';
     const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
       if (result) {
-        // TODO: confirm
+        if (this.voting != undefined) {
+          this.votingService
+            .endVoting(this.voting.votingId)
+            .subscribe((result) => console.log(result));
+        }
       }
     });
   }

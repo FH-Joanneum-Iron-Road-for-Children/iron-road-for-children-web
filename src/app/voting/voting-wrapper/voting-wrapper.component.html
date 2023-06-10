@@ -11,7 +11,11 @@
               [ngModel]="voting.active"
               color="primary"
               >{{
-                voting.active ? 'Voting aktiv' : 'Voting inaktiv'
+                voting.votingResult != undefined
+                  ? 'Voting beendet'
+                  : voting.active
+                  ? 'Voting aktiv'
+                  : 'Voting inaktiv'
               }}</mat-slide-toggle
             >
           </div>
@@ -30,7 +34,9 @@
         </div>
       </div>
       <div class="overflow-auto">
-        <app-voting-element [events]="voting.events"></app-voting-element>
+        <app-voting-element
+          [events]="voting.events"
+          [voting]="voting"></app-voting-element>
       </div>
     </div>
   </section>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { VotingDto } from '../../models/models';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
@@ -10,7 +10,7 @@ import { VotingService } from '../../services/voting.service';
   templateUrl: './voting-wrapper.component.html',
   styleUrls: ['./voting-wrapper.component.css'],
 })
-export class VotingWrapperComponent implements OnInit {
+export class VotingWrapperComponent {
   @Input()
   votingList: VotingDto[] | undefined;
 
@@ -19,10 +19,6 @@ export class VotingWrapperComponent implements OnInit {
     private confirmDialogService: ConfirmDialogService,
     private votingService: VotingService
   ) {}
-
-  ngOnInit(): void {
-    console.log('');
-  }
 
   openEditVotingDialog(voting: VotingDto) {
     this.dialog.open(VotingAddEditComponent, {
