@@ -25,8 +25,12 @@ export class VotingWrapperComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('');
+    this.votingService
+      .getAllVotings()
+      .subscribe((result) => (this.votingList = result));
   }
+
+  public eventsExist: boolean = false;
 
   openEditVotingDialog(id: number | undefined) {
     if (id !== undefined) {
@@ -35,8 +39,10 @@ export class VotingWrapperComponent implements OnInit {
           this.dialog.open(EditVotingComponent, {
             data: voting,
             disableClose: true,
-            width: '45rem',
-            height: '30rem',
+            width: '60vw',
+            minWidth: ' 40rem',
+            height: '60vh',
+            minHeight: '32rem',
           });
           // }).afterClosed().subscribe((resultList) =>{
           //   this.votingList = resultList;
@@ -48,11 +54,17 @@ export class VotingWrapperComponent implements OnInit {
     } else showAlert('Es konnte kein Voting gefunden werden.');
   }
 
-  openDeleteVotingDialog() {
+  openDeleteVotingDialog(id: number | undefined) {
     const msg = 'Voting wirklich löschen?'; // TODO: Show voting title
     const actionType = 'Löschen';
     const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
 
+    if (id !== undefined) {
+      this.votingService
+        .deleteVotingByVotingId(id)
+        .subscribe(() => console.log('Voting deleted'));
+      window.location.reload();
+    }
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // if( this.votingList !== undefined) {
@@ -67,7 +79,7 @@ export class VotingWrapperComponent implements OnInit {
     if (this.votingList !== undefined) {
       console.log('active', this.isActive);
 
-      this.votingList[0].isActive = !this.isActive;
+      this.votingList[0].active = !this.isActive;
       this.isActive = !this.isActive;
     }
 

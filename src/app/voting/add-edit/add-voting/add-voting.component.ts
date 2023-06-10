@@ -61,10 +61,8 @@ export class AddVotingComponent implements OnInit {
 
   saveCategories() {
     const newVoting: VotingDto = {
-      id: undefined,
+      votingId: undefined,
       title: this.myForm.get('votingName')?.value,
-      isActive: true,
-      isEditable: true,
       events: this.eventList,
       votingResult: undefined,
       active: true,

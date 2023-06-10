@@ -35,6 +35,7 @@ export class EditVotingComponent implements OnInit {
     this.myForm = this.formBuilder.group({
       votingName: [''],
     });
+    this.eventList.push(...voting.events);
   }
 
   ngOnInit() {
@@ -62,20 +63,22 @@ export class EditVotingComponent implements OnInit {
   }
 
   saveCategories() {
-    const newVoting: VotingDto = {
-      id: undefined,
-      title: this.myForm.get('votingName')?.value,
-      isActive: true,
-      isEditable: true,
+    const editVoting: VotingDto = {
+      votingId: this.voting.votingId,
+      // title: this.myForm.get('votingName')?.value,
+      title: 'Versuch 1',
+      isActive: undefined,
+      isEditable: undefined,
       events: this.eventList,
       votingResult: undefined,
       active: true,
       editable: true,
     };
     // send post request
+    console.log(this.voting);
     this.votingService
-      .createVoting(newVoting)
+      .updateVoting(this.voting.votingId, editVoting)
       .subscribe(() => console.log('new voting submitted'));
-    window.location.reload();
+    // window.location.reload();
   }
 }

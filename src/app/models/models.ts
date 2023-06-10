@@ -8,6 +8,7 @@ export interface PictureDto {
   altText: string;
   path: string | null;
 }
+
 export interface CreatePictureDto {
   file: string;
   altText: string;
@@ -43,23 +44,24 @@ export interface EventDto {
 }
 
 export interface VotingPartialResultDto {
-  id?: number;
+  votingId?: number;
   eventName: string;
   percentage?: number;
 }
 
 export interface VotingResultDto {
-  id?: number;
+  votingId?: number;
   title: string;
   endDate?: string;
   partialResults?: VotingPartialResultDto[];
 }
 
 export interface VotingDto {
-  id?: number;
+  votingId?: number;
   title: string;
-  isActive: boolean;
-  isEditable: boolean;
+
+  isActive?: boolean | undefined;
+  isEditable?: boolean | undefined;
   events?: EventDto[];
   votingResult?: VotingResultDto;
   active: boolean;
