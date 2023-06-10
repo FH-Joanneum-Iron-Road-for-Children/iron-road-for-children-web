@@ -16,13 +16,13 @@
             >
           </div>
           <button
-            (click)="openEditVotingDialog()"
+            (click)="openEditVotingDialog(voting)"
             [disabled]="!voting.editable"
             mat-icon-button>
             <mat-icon>edit</mat-icon>
           </button>
           <button
-            (click)="openDeleteVotingDialog()"
+            (click)="openDeleteVotingDialog(voting)"
             [disabled]="!voting.editable"
             mat-icon-button>
             <mat-icon>delete</mat-icon>

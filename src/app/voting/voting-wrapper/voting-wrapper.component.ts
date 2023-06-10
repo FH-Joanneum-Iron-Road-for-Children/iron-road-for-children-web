@@ -24,28 +24,25 @@ export class VotingWrapperComponent implements OnInit {
     console.log('');
   }
 
-  openEditVotingDialog() {
+  openEditVotingDialog(voting: VotingDto) {
     this.dialog.open(VotingAddEditComponent, {
       disableClose: true,
       width: '60vw',
       height: '80vh',
     });
-    // }).afterClosed().subscribe((resultList) =>{
-    //   this.votingList = resultList;
-    // });
   }
 
-  openDeleteVotingDialog() {
-    const msg = 'Voting wirklich löschen?'; // TODO: Show voting title
+  openDeleteVotingDialog(voting: VotingDto) {
+    const msg = `"${voting.title}" wirklich löschen?`;
     const actionType = 'Löschen';
     const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // if( this.votingList !== undefined) {
-        //   delete this.votingList[0];
-        //   this.cd.markForCheck();
-        // }
+        this.votingService
+          .deleteVoting(voting.votingId)
+          .subscribe((result) => console.log(result));
+        this.refreshPage();
       }
     });
   }
@@ -54,7 +51,7 @@ export class VotingWrapperComponent implements OnInit {
     voting.active = !voting.active;
 
     if (voting.active) {
-      const msg = `Voting "${voting.title}" wirklich starten? <br> <br>Nach Start des Votings können keine <br> neuen Bands mehr hinzugefügt werden.`;
+      const msg = `"${voting.title}" wirklich starten? <br> <br>Nach Start des Votings können keine <br> neuen Bands mehr hinzugefügt werden.`;
       const actionType = 'Starten';
       const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
 
@@ -69,5 +66,9 @@ export class VotingWrapperComponent implements OnInit {
         }
       });
     }
+  }
+
+  refreshPage() {
+    window.location.reload();
   }
 }
