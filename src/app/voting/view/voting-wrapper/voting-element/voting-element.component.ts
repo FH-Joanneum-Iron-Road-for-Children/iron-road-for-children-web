@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { EventDto, VotingDto } from '../../models/models';
+import { EventDto, VotingDto } from '../../../../models/models';
 
 @Component({
   selector: 'app-voting-element',

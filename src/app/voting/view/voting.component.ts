@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VotingDto } from '../models/models';
-import { VotingAddEditComponent } from './add-edit/voting-add-edit.component';
+import { VotingDto } from '../../models/models';
+import { VotingAddEditComponent } from '../add-edit/voting-add-edit.component';
 import { MatDialog } from '@angular/material/dialog';
-import { VotingService } from '../services/voting.service';
+import { VotingService } from '../../services/voting/voting.service';
 
 @Component({
   selector: 'app-voting',

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { EventDto, VotingDto } from '../../models/models';
 import { EventService } from '../../services/event.service';
-import { VotingService } from '../../services/voting.service';
+import { VotingService } from '../../services/voting/voting.service';
 
 @Component({
   selector: 'app-add-edit',

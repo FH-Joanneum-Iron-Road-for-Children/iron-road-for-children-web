@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
+import { ConfirmDialogService } from '../../../../../services/confirm-dialog.service';
 import { MatDialog } from '@angular/material/dialog';
-import { EventDto, VotingDto } from '../../../models/models';
-import { VotingService } from '../../../services/voting.service';
+import { EventDto, VotingDto } from '../../../../../models/models';
+import { VotingService } from '../../../../../services/voting/voting.service';
 
 @Component({
   selector: 'app-voting-card',

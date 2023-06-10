@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { VotingDto } from '../models/models';
+import { VotingDto } from '../../models/models';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 

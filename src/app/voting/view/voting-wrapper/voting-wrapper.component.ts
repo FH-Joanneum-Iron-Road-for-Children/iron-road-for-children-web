@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { VotingDto } from '../../models/models';
+import { VotingDto } from '../../../models/models';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogService } from '../../services/confirm-dialog.service';
-import { VotingAddEditComponent } from '../add-edit/voting-add-edit.component';
-import { VotingService } from '../../services/voting.service';
+import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
+import { VotingAddEditComponent } from '../../add-edit/voting-add-edit.component';
+import { VotingService } from '../../../services/voting/voting.service';
 
 @Component({
   selector: 'app-voting-wrapper',
