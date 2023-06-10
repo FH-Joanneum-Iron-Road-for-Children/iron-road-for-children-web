@@ -21,7 +21,8 @@ export class EditVotingComponent implements OnInit {
 
   myForm: FormGroup;
 
-  votingAddEditFormGroup = new FormGroup({
+
+    votingAddEditFormGroup = new FormGroup({
     votingName: new FormControl(''),
     participant: new FormControl(''),
   });
@@ -31,10 +32,15 @@ export class EditVotingComponent implements OnInit {
     private votingService: VotingService,
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public voting: any
+
+
   ) {
     this.myForm = this.formBuilder.group({
       votingName: [''],
     });
+
+    console.log(voting)
+
     if (voting.events !== undefined) {
       this.eventList.push(...voting.events);
     }
@@ -44,6 +50,11 @@ export class EditVotingComponent implements OnInit {
     this.eventService
       .getAllEvents()
       .subscribe((result) => (this.events = result));
+
+    this.myForm.patchValue( {
+      votingName: this.voting.title
+    })
+    console.log( this.voting.title)
   }
 
   isEventInList(event: EventDto): boolean {
