@@ -79,6 +79,7 @@ export class EditVotingComponent implements OnInit {
     const editVoting: VotingDto = {
       votingId: this.voting.votingId,
       // title: this.myForm.get('votingName')?.value,
+
       title: 'Versuch 1',
       isActive: undefined,
       isEditable: undefined,
