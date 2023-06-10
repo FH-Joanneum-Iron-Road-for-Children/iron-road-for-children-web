@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { VotingDto } from '../../models/models';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 import { VotingAddEditComponent } from '../add-edit/voting-add-edit.component';
+import { VotingService } from '../../services/voting.service';
 
 @Component({
   selector: 'app-voting-wrapper',
@@ -13,12 +14,10 @@ export class VotingWrapperComponent implements OnInit {
   @Input()
   votingList: VotingDto[] | undefined;
 
-  isActive = false;
-
   constructor(
     private dialog: MatDialog,
     private confirmDialogService: ConfirmDialogService,
-    private cd: ChangeDetectorRef
+    private votingService: VotingService
   ) {}
 
   ngOnInit(): void {
@@ -28,12 +27,11 @@ export class VotingWrapperComponent implements OnInit {
   openEditVotingDialog() {
     this.dialog.open(VotingAddEditComponent, {
       disableClose: true,
-      width: '45rem',
-      height: '30rem',
+      width: '60vw',
+      height: '80vh',
     });
     // }).afterClosed().subscribe((resultList) =>{
     //   this.votingList = resultList;
-    //   this.cd.markForCheck();
     // });
   }
 
@@ -52,35 +50,24 @@ export class VotingWrapperComponent implements OnInit {
     });
   }
 
-  toggleButton() {
-    if (this.votingList !== undefined) {
-      console.log('active', this.isActive);
+  openStartVotingDialog(voting: VotingDto) {
+    voting.active = !voting.active;
 
-      this.votingList[0].isActive = !this.isActive;
-      this.isActive = !this.isActive;
+    if (voting.active) {
+      const msg = `Voting "${voting.title}" wirklich starten? <br> <br>Nach Start des Votings können keine <br> neuen Bands mehr hinzugefügt werden.`;
+      const actionType = 'Starten';
+      const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
+
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.votingService
+            .startVoting(voting.votingId)
+            .subscribe((result) => console.log(result));
+          voting.active = true;
+        } else {
+          voting.active = false;
+        }
+      });
     }
-
-    const msg =
-      'Voting wirklich starten? <br> <br>Nach Start des Votings können keine <br> neuen Bands mehr hinzugefügt werden.'; // TODO: Show voting title
-    const actionType = 'Starten';
-    const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        // if( this.votingList !== undefined) {
-        //   delete this.votingList[0];
-        //   this.cd.markForCheck();
-        // }
-      }
-    });
-  }
-
-  onVtnClick() {
-    // Navigate to /add-edit page
-    this.dialog.open(VotingAddEditComponent, {
-      disableClose: true,
-      width: '45rem',
-      height: '30rem',
-    });
   }
 }

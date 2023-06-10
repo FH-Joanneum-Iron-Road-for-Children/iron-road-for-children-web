@@ -61,14 +61,12 @@ export class VotingAddEditComponent implements OnInit {
 
   saveCategories() {
     const newVoting: VotingDto = {
-      id: undefined,
+      votingId: 0,
       title: this.myForm.get('votingName')?.value,
-      isActive: true,
-      isEditable: true,
+      active: false,
+      editable: true,
       events: this.eventList,
       votingResult: undefined,
-      active: true,
-      editable: true,
     };
     // send post request
     this.votingService
