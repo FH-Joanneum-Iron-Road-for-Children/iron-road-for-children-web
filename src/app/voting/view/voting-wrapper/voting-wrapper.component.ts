@@ -61,6 +61,21 @@ export class VotingWrapperComponent {
           voting.active = false;
         }
       });
+    } else {
+      const msg = `<strong>${voting.title}</strong> wirklich beenden? <br> <br>Das Event mit den meisten Stimmen gewinnt.`;
+      const actionType = 'Beenden';
+      const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
+
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.votingService
+            .endVoting(voting.votingId)
+            .subscribe((result) => console.log(result));
+          voting.active = false;
+        } else {
+          voting.active = true;
+        }
+      });
     }
   }
 

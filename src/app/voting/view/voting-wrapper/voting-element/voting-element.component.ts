@@ -10,5 +10,23 @@ export class VotingElementComponent {
   @Input() events: EventDto[] | undefined;
   @Input() voting: VotingDto | undefined;
 
-  constructor() {}
+  constructor() {
+    // order by event with the most votes
+    if (this.voting?.votingResult != undefined) {
+      this.events?.sort((a, b) => {
+        const eventA = this.voting?.votingResult?.partialResults?.find(
+          (e) => e.id === a.eventId
+        );
+        const eventB = this.voting?.votingResult?.partialResults?.find(
+          (e) => e.id === b.eventId
+        );
+
+        if (eventA && eventB) {
+          return eventA.percentage - eventB.percentage;
+        }
+
+        return 0;
+      });
+    }
+  }
 }

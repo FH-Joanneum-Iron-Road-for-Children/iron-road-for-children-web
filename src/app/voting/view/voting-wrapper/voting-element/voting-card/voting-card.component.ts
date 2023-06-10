@@ -12,12 +12,9 @@ import { VotingService } from '../../../../../services/voting/voting.service';
 export class VotingCardComponent {
   @Input() event: EventDto | undefined;
   @Input() voting: VotingDto | undefined;
+  hasMostVotes = false;
 
-  constructor(
-    private dialog: MatDialog,
-    private confirmDialogService: ConfirmDialogService,
-    private votingService: VotingService
-  ) {}
+  constructor() {}
 
   getVotes(id: number | undefined): any {
     if (id != undefined) {
@@ -26,21 +23,5 @@ export class VotingCardComponent {
       );
       return votingResult ? `${votingResult.percentage}` : '';
     }
-  }
-
-  openConfirmWinnerDialog() {
-    const msg = `<strong>${this.event?.title}</strong> als Gewinner auswählen?`;
-    const actionType = 'Bestätigen';
-    const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        if (this.voting != undefined) {
-          this.votingService
-            .endVoting(this.voting.votingId)
-            .subscribe((result) => console.log(result));
-        }
-      }
-    });
   }
 }

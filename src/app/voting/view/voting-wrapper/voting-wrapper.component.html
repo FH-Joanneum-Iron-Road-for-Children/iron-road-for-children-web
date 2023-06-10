@@ -7,7 +7,7 @@
           <div>
             <mat-slide-toggle
               (change)="openStartVotingDialog(voting)"
-              [disabled]="!voting.editable"
+              [disabled]="!voting.editable && !voting.active"
               [ngModel]="voting.active"
               color="primary"
               >{{

@@ -5,15 +5,15 @@
       *ngIf="voting?.votingResult?.partialResults?.length != undefined">
       <p>Stimmen: {{ getVotes(event?.eventId) }}</p>
     </mat-card-content>
-    <mat-card-actions class="center">
-      <button
-        (click)="openConfirmWinnerDialog()"
-        *ngIf="voting?.active"
-        color="accent"
-        mat-raised-button>
+    <mat-card-actions>
+      <mat-chip
+        *ngIf="
+          voting?.votingResult?.partialResults?.length != undefined &&
+          hasMostVotes
+        "
+        class="btn-primary">
         <mat-icon>emoji_events</mat-icon>
-        Auswählen
-      </button>
+      </mat-chip>
     </mat-card-actions>
   </mat-card>
 </div>
