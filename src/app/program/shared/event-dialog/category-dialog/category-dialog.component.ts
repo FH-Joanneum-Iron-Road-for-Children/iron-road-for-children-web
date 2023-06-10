@@ -12,6 +12,7 @@ export class CategoryDialogComponent implements OnInit {
   categories: EventCategoryDto[] = [];
   categoryList: Item[] = [];
   events: EventDto[] = [];
+  isLoading = true;
 
   constructor(
     private eventService: EventService,
@@ -41,6 +42,7 @@ export class CategoryDialogComponent implements OnInit {
               isInUse: isInUse,
             };
           });
+          this.isLoading = false;
         });
     });
   }

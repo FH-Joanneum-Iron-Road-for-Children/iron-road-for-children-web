@@ -5,4 +5,5 @@
 <app-event-dialog
   (addItemList)="addLocations($event)"
   (removeItemList)="deleteLocations($event)"
+  [isLoading]="isLoading"
   [itemList]="locationList"></app-event-dialog>

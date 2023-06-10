@@ -12,6 +12,7 @@ export class LocationDialogComponent implements OnInit {
   locations: EventLocationDto[] = [];
   locationList: Item[] = [];
   events: EventDto[] = [];
+  isLoading = true;
 
   constructor(
     private eventService: EventService,
@@ -41,6 +42,7 @@ export class LocationDialogComponent implements OnInit {
               isInUse: isInUse,
             };
           });
+          this.isLoading = false;
         });
     });
   }

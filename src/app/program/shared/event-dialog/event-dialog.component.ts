@@ -9,6 +9,7 @@ import { Item } from '../../../models/models';
 })
 export class EventDialogComponent {
   @Input() itemList: Item[] | null = null;
+  @Input() isLoading = true;
   @Output() addItemList = new EventEmitter<Item[]>();
   @Output() removeItemList = new EventEmitter<Item[]>();
 

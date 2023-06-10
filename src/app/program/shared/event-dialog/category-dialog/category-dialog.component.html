@@ -3,6 +3,7 @@
 </div>
 
 <app-event-dialog
-  [itemList]="categoryList"
   (addItemList)="addCategories($event)"
-  (removeItemList)="deleteCategories($event)"></app-event-dialog>
+  (removeItemList)="deleteCategories($event)"
+  [isLoading]="isLoading"
+  [itemList]="categoryList"></app-event-dialog>
