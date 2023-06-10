@@ -35,7 +35,9 @@ export class EditVotingComponent implements OnInit {
     this.myForm = this.formBuilder.group({
       votingName: [''],
     });
-    this.eventList.push(...voting.events);
+    if (voting.events !== undefined) {
+      this.eventList.push(...voting.events);
+    }
   }
 
   ngOnInit() {

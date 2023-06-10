@@ -59,7 +59,6 @@ export interface VotingResultDto {
 export interface VotingDto {
   votingId?: number;
   title: string;
-
   isActive?: boolean | undefined;
   isEditable?: boolean | undefined;
   events?: EventDto[];
