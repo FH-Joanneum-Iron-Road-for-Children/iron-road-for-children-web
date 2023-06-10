@@ -59,7 +59,7 @@ export class VotingAddEditComponent implements OnInit {
     }
   }
 
-  saveCategories() {
+  saveVoting() {
     const newVoting: VotingDto = {
       votingId: 0,
       title: this.myForm.get('votingName')?.value,

@@ -24,14 +24,11 @@ export class VotingComponent implements OnInit {
     private votingService: VotingService
   ) {}
 
-  onVtnClick() {
-    // Navigate to /add-edit page
+  openAddVotingDialog() {
     this.dialog.open(VotingAddEditComponent, {
       disableClose: true,
       width: '60vw',
-      minWidth: ' 40rem',
-      height: '60vh',
-      minHeight: '32rem',
+      height: '80vh',
     });
   }
 }
