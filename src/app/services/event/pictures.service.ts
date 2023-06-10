@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PictureDto } from '../models/models';
+import { PictureDto } from '../../models/models';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -7,22 +7,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PicturesService {
-  baseUrl = '';
-
   constructor(private httpClient: HttpClient) {}
 
   getAllPictures(): Observable<PictureDto[]> {
-    return this.httpClient.get<PictureDto[]>(this.baseUrl + 'api/pictures');
+    return this.httpClient.get<PictureDto[]>('api/pictures');
   }
 
   getPictureById(id: number): Observable<PictureDto> {
-    return this.httpClient.get<PictureDto>(this.baseUrl + 'api/pictures/' + id);
+    return this.httpClient.get<PictureDto>(`api/pictures/${id}`);
   }
 
   getPictureByRootpath(): Observable<PictureDto> {
-    return this.httpClient.get<PictureDto>(
-      this.baseUrl + 'api/pictures/' + 'rootpath'
-    );
+    return this.httpClient.get<PictureDto>('api/pictures/rootpath');
   }
 
   postPictures(file: File, name: string, fileType: string) {
@@ -31,15 +27,10 @@ export class PicturesService {
     formData.append('altText', name);
     formData.append('fileType', fileType);
 
-    return this.httpClient.post<PictureDto>(
-      this.baseUrl + 'api/pictures/',
-      formData
-    );
+    return this.httpClient.post<PictureDto>('api/pictures', formData);
   }
 
   deletePicture(id: number) {
-    return this.httpClient.delete<Response>(
-      this.baseUrl + 'api/pictures/' + id
-    );
+    return this.httpClient.delete<Response>(`api/pictures/${id}`);
   }
 }

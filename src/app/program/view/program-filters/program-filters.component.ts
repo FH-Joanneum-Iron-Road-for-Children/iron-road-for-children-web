@@ -3,7 +3,7 @@ import { CategoryDialogComponent } from '../../shared/event-dialog/category-dial
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { EventCategoryDto } from '../../../models/models';
-import { DateConverterService } from '../../../services/date-converter.service';
+import { DateConverterService } from '../../../services/shared/date-converter.service';
 
 @Component({
   selector: 'app-program-filters',

@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { VotingDto } from '../../models/models';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogService } from '../../services/confirm-dialog.service';
+import { ConfirmDialogService } from '../../services/shared/confirm-dialog.service';
 import { VotingAddEditComponent } from '../add-edit/voting-add-edit.component';
 
 @Component({

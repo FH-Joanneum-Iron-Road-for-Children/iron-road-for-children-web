@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventCategoryDto, EventDto, Item } from '../../../../models/models';
-import { EventCategoriesService } from '../../../../services/event-categories.service';
-import { EventService } from '../../../../services/event.service';
+import { EventCategoriesService } from '../../../../services/event/event-categories.service';
+import { EventService } from '../../../../services/event/event.service';
 
 @Component({
   selector: 'app-category-dialog',

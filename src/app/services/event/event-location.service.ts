@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EventLocationDto } from '../models/models';
+import { EventLocationDto } from '../../models/models';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -21,6 +21,6 @@ export class EventLocationService {
   }
 
   deleteEventLocationById(id: number) {
-    return this.httpClient.delete<Response>('api/event-locations/' + id);
+    return this.httpClient.delete<Response>(`api/event-locations/${id}`);
   }
 }

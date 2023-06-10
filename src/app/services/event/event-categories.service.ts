@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EventCategoryDto } from '../models/models';
+import { EventCategoryDto } from '../../models/models';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -21,6 +21,6 @@ export class EventCategoriesService {
   }
 
   deleteEventCategoryById(id: number) {
-    return this.httpClient.delete<Response>('api/eventCategories/' + id);
+    return this.httpClient.delete<Response>(`api/eventCategories/${id}`);
   }
 }

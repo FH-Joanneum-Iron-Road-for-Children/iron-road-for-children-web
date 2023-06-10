@@ -8,10 +8,10 @@ import {
   EventLocationDto,
   PictureDto,
 } from '../../../models/models';
-import { EventService } from '../../../services/event.service';
-import { PicturesService } from '../../../services/pictures.service';
-import { EventLocationService } from '../../../services/event-location.service';
-import { EventCategoriesService } from '../../../services/event-categories.service';
+import { EventService } from '../../../services/event/event.service';
+import { PicturesService } from '../../../services/event/pictures.service';
+import { EventLocationService } from '../../../services/event/event-location.service';
+import { EventCategoriesService } from '../../../services/event/event-categories.service';
 
 @Component({
   selector: 'app-event-form',

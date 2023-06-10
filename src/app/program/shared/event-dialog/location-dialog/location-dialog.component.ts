@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventDto, EventLocationDto, Item } from '../../../../models/models';
-import { EventLocationService } from '../../../../services/event-location.service';
-import { EventService } from '../../../../services/event.service';
+import { EventLocationService } from '../../../../services/event/event-location.service';
+import { EventService } from '../../../../services/event/event.service';
 
 @Component({
   selector: 'app-location-dialog',

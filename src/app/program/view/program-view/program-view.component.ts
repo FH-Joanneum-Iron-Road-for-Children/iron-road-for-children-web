@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { EventDto } from '../../../models/models';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
-import { DateConverterService } from '../../../services/date-converter.service';
-import { EventService } from '../../../services/event.service';
-import { PicturesService } from '../../../services/pictures.service';
+import { ConfirmDialogService } from '../../../services/shared/confirm-dialog.service';
+import { DateConverterService } from '../../../services/shared/date-converter.service';
+import { EventService } from '../../../services/event/event.service';
+import { PicturesService } from '../../../services/event/pictures.service';
 import { VotingService } from '../../../services/voting.service';
-import { EventInfoService } from '../../../services/event-info.service';
+import { EventInfoService } from '../../../services/event/event-info.service';
 
 @Component({
   selector: 'app-program-view',

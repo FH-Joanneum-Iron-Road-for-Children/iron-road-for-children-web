@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
+import { ConfirmDialogService } from '../../../services/shared/confirm-dialog.service';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
