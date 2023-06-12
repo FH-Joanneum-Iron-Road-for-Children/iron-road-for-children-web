@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,13 +13,14 @@ import { PicturesService } from '../../../services/pictures.service';
 import { EventLocationService } from '../../../services/event-location.service';
 import { EventCategoriesService } from '../../../services/event-categories.service';
 import { DateConverterService } from '../../../services/date-converter.service';
+import { forkJoin, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-event-form',
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.css'],
 })
-export class EventFormComponent implements OnInit {
+export class EventFormComponent implements OnInit, OnDestroy {
   @Input() event: EventDto | undefined;
   @Input() eventId: number | undefined;
 
@@ -42,6 +43,10 @@ export class EventFormComponent implements OnInit {
   location: EventLocationDto | undefined;
   filePaths: (string | null)[] = Array(4).fill(null);
   fileNames: (string | null)[] = Array(4).fill(null);
+
+  file0ToSend: PictureDto | undefined;
+
+  performing = false;
 
   public categories: EventCategoryDto[] = [];
   public locations: EventLocationDto[] = [];
@@ -114,6 +119,8 @@ export class EventFormComponent implements OnInit {
   uploadedFiles: (File | null)[] = Array(4).fill(null);
   filePreviews: (string | ArrayBuffer | null)[] = Array(4).fill(null);
 
+  subscription: Subscription = new Subscription();
+
   openFileSelectDialog(index: number) {
     document.getElementById('file-input' + index)?.click();
   }
@@ -158,58 +165,6 @@ export class EventFormComponent implements OnInit {
   }
 
   submit() {
-    const pictureToSend: PictureDto[] = [];
-    const file0 = this.uploadedFiles[0];
-    const file1 = this.uploadedFiles[1];
-    const file2 = this.uploadedFiles[2];
-    const file3 = this.uploadedFiles[3];
-
-    let file0ToSend: PictureDto = {
-      pictureId: 128,
-      altText: file0?.name,
-      path: 'https://pictures.irfc-test.fh-joanneum.at/40b8a5bb-20a7-47e1-adea-d0c2ff0d403d.png',
-    };
-
-    const file1Send: PictureDto = {
-      pictureId: 127,
-      altText: file1?.name,
-      path: 'https://pictures.irfc-test.fh-joanneum.at/40b8a5bb-20a7-47e1-adea-d0c2ff0d403d.png',
-    };
-
-    // if (file0 !== null) {
-    //   this.pictureService
-    //     .postPictures(file0, file0.name, 'PNG')
-    //     .subscribe((file0FromBackend) => {
-    //       file0ToSend = file0FromBackend;
-    //     });
-    // }
-
-    // console.log(file0ToSend);
-    // if (file1 !== null) {
-    //   this.pictureService
-    //     .postPictures(file1, file1.name, 'PNG')
-    //     .subscribe((file1FromBackend) => {
-    //       pictureToSend.push(file1FromBackend);
-    //     });
-    // }
-    // if (file2 !== null) {
-    //   this.pictureService
-    //     .postPictures(file2, file2.name, 'PNG')
-    //     .subscribe((file2FromBackend) => {
-    //       pictureToSend.push(file2FromBackend);
-    //     });
-    // }
-    // if (file3 !== null) {
-    //   this.pictureService
-    //     .postPictures(file3, file3.name, 'PNG')
-    //     .subscribe((file3FromBackend) => {
-    //       pictureToSend.push(file3FromBackend);
-    //     });
-    // }
-
-    // console.log(pictureToSend);
-    //TODO: first post pics then post event! & property filetype .png and .jpg
-
     const value = this.eventFormGroup.controls['startDateTime'].value;
     let utcMillisecondsStartDate = 0;
     if (value != undefined) {
@@ -225,38 +180,108 @@ export class EventFormComponent implements OnInit {
       utcMillisecondsEndDate = this.dateConverter.getTimestampFromDate(endDate);
     }
 
-    let title = this.eventFormGroup.controls['title'].value;
-    if (title == null || title == '') {
-      title = '-';
-    }
+    const picturesToSend: PictureDto[] = [];
+    const titlePic: PictureDto[] = [];
+    const file0 = this.uploadedFiles[0];
+    const file1 = this.uploadedFiles[1];
+    const file2 = this.uploadedFiles[2];
+    const file3 = this.uploadedFiles[3];
 
-    if (this.category && this.location) {
-      const event: EventDto = {
-        title: title,
-        startDateTimeInUTC: utcMillisecondsEndDate,
-        endDateTimeInUTC: utcMillisecondsEndDate,
-        eventCategory: this.category,
-        eventLocation: this.location,
-        picture: {
-          path: file0ToSend.path,
-          altText: file0ToSend.altText,
-        },
-        eventInfo: {
-          infoText: this.eventFormGroup.controls['description'].value,
-          pictures: [
-            {
-              altText: file1Send.altText,
-              path: file1Send?.path,
-            },
-          ],
-        },
-      };
-      console.log(event);
-      this.eventService.createEvent(event).subscribe((event) => {
-        if (event) {
-          this.router.navigate(['program']);
+    console.log(file0);
+
+    this.performing = true;
+
+    for (const uploadedFile1 of this.uploadedFiles) {
+      if (uploadedFile1 !== null) {
+        let typeOfFile = '';
+        if (uploadedFile1.type == 'image/png') {
+          typeOfFile = 'PNG';
+        } else {
+          typeOfFile = 'JPG';
         }
-      });
+        this.subscription.add(
+          this.pictureService
+            .postPictures(uploadedFile1, uploadedFile1.name, typeOfFile)
+            .subscribe({
+              next: (file0FromBackend) => {
+                picturesToSend.push(file0FromBackend);
+              },
+              error: (error) => {
+                console.log(error);
+              },
+              complete: () => {
+                let title = this.eventFormGroup.controls['title'].value;
+                if (title == null || title == '') {
+                  title = '-';
+                }
+
+                if (this.category && this.location && picturesToSend) {
+                  const event: EventDto = {
+                    title: title,
+                    startDateTimeInUTC: utcMillisecondsStartDate,
+                    endDateTimeInUTC: utcMillisecondsEndDate,
+                    eventCategory: this.category,
+                    eventLocation: this.location,
+                    picture: {
+                      pictureId: picturesToSend[0].pictureId,
+                      path: picturesToSend[0].path,
+                      altText: picturesToSend[0].altText,
+                    },
+                    eventInfo: {
+                      infoText:
+                        this.eventFormGroup.controls['description'].value,
+                      pictures: picturesToSend,
+                    },
+                  };
+                  console.log(event);
+                  this.eventService.createEvent(event).subscribe((event) => {
+                    if (event) {
+                      this.router.navigate(['program']);
+                    }
+                  });
+                }
+              },
+            })
+        );
+      }
     }
+  }
+
+  private async getPicturesFromBackend() {
+    //
+    // console.log(titlePic);
+    // if (file1 !== null) {
+    //   this.subscription.add(
+    //     this.pictureService
+    //       .postPictures(file1, file1.name, 'PNG')
+    //       .subscribe((file1FromBackend) => {
+    //         picturesToSend.push(file1FromBackend);
+    //       })
+    //   );
+    // }
+    // if (file2 !== null) {
+    //   this.subscription.add(
+    //     this.pictureService
+    //       .postPictures(file2, file2.name, 'PNG')
+    //       .subscribe((file2FromBackend) => {
+    //         picturesToSend.push(file2FromBackend);
+    //       })
+    //   );
+    // }
+    // if (file3 !== null) {
+    //   this.subscription.add(
+    //     this.pictureService
+    //       .postPictures(file3, file3.name, 'PNG')
+    //       .subscribe((file3FromBackend) => {
+    //         picturesToSend.push(file3FromBackend);
+    //       })
+    //   );
+    // }
+    // this.sentPictures = picturesToSend;
+    // this.performing = false;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
