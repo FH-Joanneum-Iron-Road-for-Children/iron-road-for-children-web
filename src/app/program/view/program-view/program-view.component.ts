@@ -38,9 +38,9 @@ export class ProgramViewComponent {
       let msg = '';
 
       if (isInUse) {
-        msg = `"${event.title}" kann nicht gelöscht werden, <br>da es in einem Voting vorkommt.`;
+        msg = `<strong>${event.title}</strong> kann nicht gelöscht werden, <br>da es in einem Voting vorkommt.`;
       } else {
-        msg = `"${event.title}" wirklich löschen?`;
+        msg = `<strong>${event.title}</strong> wirklich löschen?`;
       }
 
       const dialogRef = this.confirmDialogService.openDialog(
@@ -49,39 +49,29 @@ export class ProgramViewComponent {
         isInUse
       );
 
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          // if confirmed
+      dialogRef.afterClosed().subscribe((isConfirmed) => {
+        if (isConfirmed) {
           this.deleteEvent(event);
+          window.location.reload();
         }
       });
     });
   }
 
   deleteEvent(event: EventDto) {
-    if (event.picture.pictureId != undefined) {
-      this.pictureService
-        .deletePicture(event.picture.pictureId)
-        .subscribe((result) => console.log(result));
-    }
+    const eventToDelete = event;
 
-    for (const picture of event.eventInfo.pictures) {
+    this.eventService
+      .deleteEventByEventId(event.eventId)
+      .subscribe((result) => console.log(result));
+
+    for (const picture of eventToDelete.eventInfo.pictures) {
       if (picture.pictureId !== undefined) {
         this.pictureService
           .deletePicture(picture.pictureId)
           .subscribe((result) => console.log(result));
       }
     }
-
-    if (event.eventInfo.eventInfoId !== undefined) {
-      this.eventInfoService
-        .deleteEventInfoById(event.eventInfo.eventInfoId)
-        .subscribe((result) => console.log(result));
-    }
-
-    this.eventService
-      .deleteEventByEventId(event.eventId)
-      .subscribe((result) => console.log(result));
   }
 
   displayTime(startDateTimeUTC: number, endDateTimeUTC: number) {
