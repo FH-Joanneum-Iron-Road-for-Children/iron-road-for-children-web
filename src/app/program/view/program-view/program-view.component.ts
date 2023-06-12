@@ -5,8 +5,7 @@ import { ConfirmDialogService } from '../../../services/shared/confirm-dialog.se
 import { DateConverterService } from '../../../services/shared/date-converter.service';
 import { EventService } from '../../../services/event/event.service';
 import { PicturesService } from '../../../services/event/pictures.service';
-import { VotingService } from '../../../services/voting.service';
-import { EventInfoService } from '../../../services/event/event-info.service';
+import { VotingService } from '../../../services/voting/voting.service';
 
 @Component({
   selector: 'app-program-view',
@@ -21,7 +20,6 @@ export class ProgramViewComponent {
     public confirmDialogService: ConfirmDialogService,
     public dateConverterService: DateConverterService,
     public eventService: EventService,
-    public eventInfoService: EventInfoService,
     public votingService: VotingService,
     public pictureService: PicturesService
   ) {}

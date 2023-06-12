@@ -1,0 +1,43 @@
+<div *ngFor="let voting of votingList" class="mat-app-background">
+  <section>
+    <div>
+      <div class="space-between">
+        <div>{{ voting.title }}</div>
+        <div class="alignment">
+          <div>
+            <mat-slide-toggle
+              (change)="openStartVotingDialog(voting)"
+              [disabled]="!voting.editable && !voting.active"
+              [ngModel]="voting.active"
+              color="primary"
+              >{{
+                voting.votingResult != undefined
+                  ? 'Voting beendet'
+                  : voting.active
+                  ? 'Voting aktiv'
+                  : 'Voting inaktiv'
+              }}</mat-slide-toggle
+            >
+          </div>
+          <button
+            (click)="openEditVotingDialog(voting)"
+            [disabled]="!voting.editable"
+            mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            (click)="openDeleteVotingDialog(voting)"
+            [disabled]="!voting.editable"
+            mat-icon-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="overflow-auto">
+        <app-voting-element
+          [events]="voting.events"
+          [voting]="voting"></app-voting-element>
+      </div>
+    </div>
+  </section>
+</div>

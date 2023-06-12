@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VotingWrapperComponent } from './voting-wrapper.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('VotingWrapperComponent', () => {
   let component: VotingWrapperComponent;
@@ -11,6 +12,7 @@ describe('VotingWrapperComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [VotingWrapperComponent],
+      imports: [HttpClientModule],
       providers: [{ provide: MatDialog, useValue: {} }],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

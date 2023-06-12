@@ -37,23 +37,21 @@ export interface EventDto {
 }
 
 export interface VotingPartialResultDto {
-  id?: number;
+  id: number;
   eventName: string;
-  percentage?: number;
+  percentage: number;
 }
 
 export interface VotingResultDto {
-  id?: number;
+  votingResultId: number;
   title: string;
-  endDate?: string;
+  endDate: number;
   partialResults?: VotingPartialResultDto[];
 }
 
 export interface VotingDto {
-  id?: number;
+  votingId: number;
   title: string;
-  isActive: boolean;
-  isEditable: boolean;
   events: EventDto[];
   votingResult?: VotingResultDto;
   active: boolean;
@@ -65,5 +63,3 @@ export type Item = {
   name: string;
   isInUse: boolean;
 };
-
-// TODO: Create getAll interfaces when they are done
