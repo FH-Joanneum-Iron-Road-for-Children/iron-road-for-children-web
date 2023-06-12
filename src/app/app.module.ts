@@ -19,10 +19,10 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { EventFormComponent } from './program/shared/event-form/event-form.component';
-import { VotingComponent } from './voting/voting.component';
-import { VotingElementComponent } from './voting/voting-element/voting-element.component';
+import { VotingComponent } from './voting/view/voting.component';
+import { VotingElementComponent } from './voting/view/voting-wrapper/voting-element/voting-element.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { VotingCardComponent } from './voting/voting-element/voting-card/voting-card.component';
+import { VotingCardComponent } from './voting/view/voting-wrapper/voting-element/voting-card/voting-card.component';
 import { EventFormEditButtonsComponent } from './program/shared/event-form/event-form-edit-buttons/event-form-edit-buttons.component';
 import { MatCardModule } from '@angular/material/card';
 import { CategoryDialogComponent } from './program/shared/event-dialog/category-dialog/category-dialog.component';
@@ -43,7 +43,7 @@ import { EventDialogComponent } from './program/shared/event-dialog/event-dialog
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { registerLocaleData } from '@angular/common';
 import localeAt from '@angular/common/locales/de-AT';
-import { VotingWrapperComponent } from './voting/voting-wrapper/voting-wrapper.component';
+import { VotingWrapperComponent } from './voting/view/voting-wrapper/voting-wrapper.component';
 import { EventListComponent } from './voting/add-edit/event-list/event-list.component';
 import { MatBadgeModule } from '@angular/material/badge';
 
