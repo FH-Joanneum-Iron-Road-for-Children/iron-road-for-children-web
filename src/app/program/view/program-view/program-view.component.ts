@@ -14,6 +14,7 @@ import { VotingService } from '../../../services/voting/voting.service';
 })
 export class ProgramViewComponent {
   @Input() events?: EventDto[];
+  @Input() isLoading = true;
 
   constructor(
     public dialog: MatDialog,

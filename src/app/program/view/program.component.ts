@@ -15,7 +15,7 @@ export class ProgramComponent implements OnInit {
   public categories: EventCategoryDto[] = [];
   private selectedCategoryChips: any = '';
   private selectedDateChips: any = 0;
-
+  isLoading = true;
   dates: number[] = [];
 
   constructor(
@@ -37,6 +37,8 @@ export class ProgramComponent implements OnInit {
       const endTimestamps = this.events.map((event) => event.endDateTimeInUTC);
       this.dates = startTimestamps.concat(endTimestamps);
       this.dates = this.getUniqueDates();
+
+      this.isLoading = false;
     });
 
     this.eventCategoryService
