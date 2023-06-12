@@ -7,6 +7,7 @@
   margin: 0.5rem;
   background-color: #fdfdfb;
   width: 300px;
+  min-height: 150px;
   border-radius: 20px;
   box-shadow: 0 6px 6px 2px rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -27,4 +28,12 @@ button {
 mat-card-header {
   font-weight: bold;
   font-size: 18px;
+}
+
+mat-chip {
+  padding-top: 0.2rem;
+  pointer-events: none;
+  cursor: default;
+  background-color: transparent;
+  box-shadow: none;
 }

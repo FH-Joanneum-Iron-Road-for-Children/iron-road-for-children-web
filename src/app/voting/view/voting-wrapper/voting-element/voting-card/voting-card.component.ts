@@ -1,8 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ConfirmDialogService } from '../../../../../services/confirm-dialog.service';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Input } from '@angular/core';
 import { EventDto, VotingDto } from '../../../../../models/models';
-import { VotingService } from '../../../../../services/voting/voting.service';
 
 @Component({
   selector: 'app-voting-card',
@@ -12,14 +9,25 @@ import { VotingService } from '../../../../../services/voting/voting.service';
 export class VotingCardComponent {
   @Input() event: EventDto | undefined;
   @Input() voting: VotingDto | undefined;
-  hasMostVotes = false;
 
   constructor() {}
 
-  getVotes(id: number | undefined): any {
-    if (id != undefined) {
+  getEventWithMostVotes(name: string | undefined): any {
+    if (name != undefined) {
+      const eventMostVotes = this.voting?.votingResult?.partialResults?.reduce(
+        (a, b) => {
+          return a.percentage > b.percentage ? a : b;
+        }
+      );
+
+      return eventMostVotes?.eventName === name;
+    }
+  }
+
+  getVotes(name: string | undefined): any {
+    if (name != undefined) {
       const votingResult = this.voting?.votingResult?.partialResults?.find(
-        (result) => result.id === id
+        (result) => result.eventName === name
       );
       return votingResult ? `${votingResult.percentage}` : '';
     }
