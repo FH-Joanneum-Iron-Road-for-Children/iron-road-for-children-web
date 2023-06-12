@@ -45,8 +45,8 @@ export class EventFormComponent implements OnInit, OnDestroy {
 
   title: string | undefined;
   date: any;
-  categoryDto: EventCategoryDto | undefined;
-  locationDto: EventLocationDto | undefined;
+  category: EventCategoryDto | undefined;
+  location: EventLocationDto | undefined;
   filePaths: (string | null)[] = Array(4).fill(null);
   fileNames: (string | null)[] = Array(4).fill(null);
 
@@ -108,8 +108,8 @@ export class EventFormComponent implements OnInit, OnDestroy {
           this.fileNames[3] =
             this.event.eventInfo?.pictures[2]?.altText ?? null;
 
-          this.categoryDto = this.event.eventCategory;
-          this.locationDto = this.event.eventLocation;
+          this.category = this.event.eventCategory;
+          this.location = this.event.eventLocation;
         }
       });
     } else {
@@ -222,14 +222,14 @@ export class EventFormComponent implements OnInit, OnDestroy {
                     title = '-';
                   }
 
-                  if (this.categoryDto && this.locationDto && picturesToSend) {
+                  if (this.category && this.location && picturesToSend) {
                     const event: EventDto = {
                       eventId: undefined,
                       title: title,
                       startDateTimeInUTC: utcMillisecondsStartDate,
                       endDateTimeInUTC: utcMillisecondsEndDate,
-                      eventCategory: this.categoryDto,
-                      eventLocation: this.locationDto,
+                      eventCategory: this.category,
+                      eventLocation: this.location,
                       picture: {
                         pictureId: picturesToSend[0].pictureId,
                         path: picturesToSend[0].path,
@@ -260,8 +260,8 @@ export class EventFormComponent implements OnInit, OnDestroy {
   }
 
   locationId() {
-    if (this.locationDto !== undefined) {
-      return this.locationDto.eventLocationId;
+    if (this.location !== undefined) {
+      return this.location.eventLocationId;
     } else {
       return -1;
     }
