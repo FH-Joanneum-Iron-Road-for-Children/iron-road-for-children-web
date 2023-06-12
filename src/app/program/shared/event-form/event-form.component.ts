@@ -27,8 +27,14 @@ export class EventFormComponent implements OnInit, OnDestroy {
   eventFormGroup = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
-    location: new FormControl(-1, Validators.required),
-    category: new FormControl(-1, Validators.required),
+    location: new FormControl<EventLocationDto | null>(
+      null,
+      Validators.required
+    ),
+    category: new FormControl<EventCategoryDto | null>(
+      null,
+      Validators.required
+    ),
     startDateTime: new FormControl(new Date(), Validators.required),
     endDateTime: new FormControl(new Date(), Validators.required),
     file0: new FormControl('', Validators.nullValidator),
@@ -39,8 +45,8 @@ export class EventFormComponent implements OnInit, OnDestroy {
 
   title: string | undefined;
   date: any;
-  category: EventCategoryDto | undefined;
-  location: EventLocationDto | undefined;
+  categoryDto: EventCategoryDto | undefined;
+  locationDto: EventLocationDto | undefined;
   filePaths: (string | null)[] = Array(4).fill(null);
   fileNames: (string | null)[] = Array(4).fill(null);
 
@@ -83,8 +89,8 @@ export class EventFormComponent implements OnInit, OnDestroy {
           this.eventFormGroup.patchValue({
             title: this.event.title,
             description: this.event.eventInfo?.infoText,
-            location: this.event.eventLocation.eventLocationId,
-            category: this.event.eventCategory.eventCategoryId,
+            location: this.event.eventLocation,
+            category: this.event.eventCategory,
             startDateTime: new Date(this.event.startDateTimeInUTC * 1000),
             endDateTime: new Date(this.event.endDateTimeInUTC * 1000),
           });
@@ -102,8 +108,8 @@ export class EventFormComponent implements OnInit, OnDestroy {
           this.fileNames[3] =
             this.event.eventInfo?.pictures[2]?.altText ?? null;
 
-          this.category = this.event.eventCategory;
-          this.location = this.event.eventLocation;
+          this.categoryDto = this.event.eventCategory;
+          this.locationDto = this.event.eventLocation;
         }
       });
     } else {
@@ -181,15 +187,6 @@ export class EventFormComponent implements OnInit, OnDestroy {
     }
 
     const picturesToSend: PictureDto[] = [];
-    const titlePic: PictureDto[] = [];
-    const file0 = this.uploadedFiles[0];
-    const file1 = this.uploadedFiles[1];
-    const file2 = this.uploadedFiles[2];
-    const file3 = this.uploadedFiles[3];
-
-    console.log(file0);
-
-    this.performing = true;
 
     const numberOfPictures = this.uploadedFiles.filter(
       (files) => files !== null
@@ -225,14 +222,14 @@ export class EventFormComponent implements OnInit, OnDestroy {
                     title = '-';
                   }
 
-                  if (this.category && this.location && picturesToSend) {
+                  if (this.categoryDto && this.locationDto && picturesToSend) {
                     const event: EventDto = {
                       eventId: undefined,
                       title: title,
                       startDateTimeInUTC: utcMillisecondsStartDate,
                       endDateTimeInUTC: utcMillisecondsEndDate,
-                      eventCategory: this.category,
-                      eventLocation: this.location,
+                      eventCategory: this.categoryDto,
+                      eventLocation: this.locationDto,
                       picture: {
                         pictureId: picturesToSend[0].pictureId,
                         path: picturesToSend[0].path,
@@ -260,5 +257,17 @@ export class EventFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  locationId() {
+    if (this.locationDto !== undefined) {
+      return this.locationDto.eventLocationId;
+    } else {
+      return -1;
+    }
+  }
+
+  compareObjects(o1: any, o2: any) {
+    return o1.name === o2.name && o1.id === o2.id;
   }
 }
