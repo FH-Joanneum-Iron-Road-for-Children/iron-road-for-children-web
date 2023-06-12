@@ -26,7 +26,7 @@ export interface EventCategoryDto {
 }
 
 export interface EventDto {
-  eventId: number;
+  eventId: number | undefined;
   title: string;
   eventInfo: EventInfoDto;
   picture: PictureDto;

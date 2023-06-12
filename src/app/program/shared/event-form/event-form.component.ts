@@ -191,6 +191,11 @@ export class EventFormComponent implements OnInit, OnDestroy {
 
     this.performing = true;
 
+    const numberOfPictures = this.uploadedFiles.filter(
+      (files) => files !== null
+    ).length;
+    let sentPictures = 0;
+
     for (const uploadedFile1 of this.uploadedFiles) {
       if (uploadedFile1 !== null) {
         let typeOfFile = '';
@@ -205,80 +210,52 @@ export class EventFormComponent implements OnInit, OnDestroy {
             .subscribe({
               next: (file0FromBackend) => {
                 picturesToSend.push(file0FromBackend);
+                sentPictures++;
               },
               error: (error) => {
                 console.log(error);
               },
               complete: () => {
-                let title = this.eventFormGroup.controls['title'].value;
-                if (title == null || title == '') {
-                  title = '-';
-                }
+                if (
+                  numberOfPictures - 1 === sentPictures ||
+                  numberOfPictures === 1
+                ) {
+                  let title = this.eventFormGroup.controls['title'].value;
+                  if (title == null || title == '') {
+                    title = '-';
+                  }
 
-                if (this.category && this.location && picturesToSend) {
-                  const event: EventDto = {
-                    title: title,
-                    startDateTimeInUTC: utcMillisecondsStartDate,
-                    endDateTimeInUTC: utcMillisecondsEndDate,
-                    eventCategory: this.category,
-                    eventLocation: this.location,
-                    picture: {
-                      pictureId: picturesToSend[0].pictureId,
-                      path: picturesToSend[0].path,
-                      altText: picturesToSend[0].altText,
-                    },
-                    eventInfo: {
-                      infoText:
-                        this.eventFormGroup.controls['description'].value,
-                      pictures: picturesToSend,
-                    },
-                  };
-                  console.log(event);
-                  this.eventService.createEvent(event).subscribe((event) => {
-                    if (event) {
-                      this.router.navigate(['program']);
-                    }
-                  });
+                  if (this.category && this.location && picturesToSend) {
+                    const event: EventDto = {
+                      eventId: undefined,
+                      title: title,
+                      startDateTimeInUTC: utcMillisecondsStartDate,
+                      endDateTimeInUTC: utcMillisecondsEndDate,
+                      eventCategory: this.category,
+                      eventLocation: this.location,
+                      picture: {
+                        pictureId: picturesToSend[0].pictureId,
+                        path: picturesToSend[0].path,
+                        altText: picturesToSend[0].altText,
+                      },
+                      eventInfo: {
+                        infoText:
+                          this.eventFormGroup.controls['description'].value,
+                        pictures: picturesToSend,
+                      },
+                    };
+                    this.eventService.createEvent(event).subscribe((event) => {
+                      if (event) {
+                        this.router.navigate(['program']);
+                      }
+                    });
+                  }
                 }
               },
             })
         );
       }
     }
-  }
-
-  private async getPicturesFromBackend() {
-    //
-    // console.log(titlePic);
-    // if (file1 !== null) {
-    //   this.subscription.add(
-    //     this.pictureService
-    //       .postPictures(file1, file1.name, 'PNG')
-    //       .subscribe((file1FromBackend) => {
-    //         picturesToSend.push(file1FromBackend);
-    //       })
-    //   );
-    // }
-    // if (file2 !== null) {
-    //   this.subscription.add(
-    //     this.pictureService
-    //       .postPictures(file2, file2.name, 'PNG')
-    //       .subscribe((file2FromBackend) => {
-    //         picturesToSend.push(file2FromBackend);
-    //       })
-    //   );
-    // }
-    // if (file3 !== null) {
-    //   this.subscription.add(
-    //     this.pictureService
-    //       .postPictures(file3, file3.name, 'PNG')
-    //       .subscribe((file3FromBackend) => {
-    //         picturesToSend.push(file3FromBackend);
-    //       })
-    //   );
-    // }
-    // this.sentPictures = picturesToSend;
-    // this.performing = false;
   }
 
   ngOnDestroy(): void {
