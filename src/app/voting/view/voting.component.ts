@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VotingDto } from '../models/models';
-import { VotingAddEditComponent } from './add-edit/voting-add-edit.component';
+import { VotingDto } from '../../models/models';
+import { VotingAddEditComponent } from '../add-edit/voting-add-edit.component';
 import { MatDialog } from '@angular/material/dialog';
-import { VotingService } from '../services/voting.service';
+import { VotingService } from '../../services/voting/voting.service';
 
 @Component({
   selector: 'app-voting',
@@ -24,14 +24,11 @@ export class VotingComponent implements OnInit {
     private votingService: VotingService
   ) {}
 
-  onVtnClick() {
-    // Navigate to /add-edit page
+  openAddVotingDialog() {
     this.dialog.open(VotingAddEditComponent, {
       disableClose: true,
       width: '60vw',
-      minWidth: ' 40rem',
-      height: '60vh',
-      minHeight: '32rem',
+      height: '80vh',
     });
   }
 }

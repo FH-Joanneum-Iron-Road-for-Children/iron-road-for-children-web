@@ -16,7 +16,7 @@
 
           <section class="scroll-container left-align mat-app-background">
             <div style="margin: 2rem">
-              <div *ngFor="let event of events" class="list-item col-2">
+              <div *ngFor="let event of events" class="list-item">
                 <app-event-list
                   (eventAdded)="addEventToList($event)"
                   [event]="event"></app-event-list>
@@ -52,7 +52,7 @@
       Abbrechen
     </button>
     <button
-      (click)="saveCategories()"
+      (click)="saveVoting()"
       class="btn btn-primary"
       mat-dialog-close="true"
       mat-raised-button>

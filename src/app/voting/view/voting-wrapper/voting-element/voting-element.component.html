@@ -1,5 +1,5 @@
 <div class="cards-wrapper">
   <div *ngFor="let event of events">
-    <app-voting-card [name]="event.title"></app-voting-card>
+    <app-voting-card [event]="event" [voting]="voting"></app-voting-card>
   </div>
 </div>

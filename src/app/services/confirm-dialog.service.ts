@@ -11,7 +11,7 @@ export class ConfirmDialogService {
   constructor(private dialog: MatDialog) {}
 
   openDialog(
-    actionType: 'Bestätigen' | 'Löschen' | 'Starten',
+    actionType: 'Bestätigen' | 'Löschen' | 'Starten' | 'Beenden' | undefined,
     message: string
   ): MatDialogRef<ConfirmDialogComponent> {
     this.dialogRef = this.dialog.open(ConfirmDialogComponent, {
