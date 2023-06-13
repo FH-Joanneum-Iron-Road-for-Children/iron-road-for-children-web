@@ -9,7 +9,6 @@ import {
   PictureDto,
 } from '../../../models/models';
 import { Subscription } from 'rxjs';
-import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { EventService } from '../../../services/event/event.service';
 import { EventLocationService } from '../../../services/event/event-location.service';
 import { EventCategoriesService } from '../../../services/event/event-categories.service';
@@ -123,7 +122,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
   }
 
   uploadedFile: File | null = null;
-  uploadedFiles: (File | null)[] = Array(4).fill(null);
+  addPicturesList: (File | null)[] = Array(4).fill(null);
   filePreviews: (string | ArrayBuffer | null)[] = Array(4).fill(null);
 
   subscription: Subscription = new Subscription();
@@ -136,7 +135,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
     this.uploadedFile = event.target.files[0] as File;
 
     if (this.isValidImageFile()) {
-      this.uploadedFiles[index] = this.uploadedFile;
+      this.addPicturesList[index] = this.uploadedFile;
       this.filePaths[index] = null;
       this.fileNames[index] = null;
 
@@ -164,7 +163,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
 
   removeFile(index: number) {
     this.filePreviews[index] = null;
-    this.uploadedFiles[index] = null;
+    this.addPicturesList[index] = null;
   }
 
   cancel() {
@@ -187,52 +186,47 @@ export class EventFormComponent implements OnInit, OnDestroy {
       utcMillisecondsEndDate = this.dateConverter.getTimestampFromDate(endDate);
     }
 
-    const picturesToSend: PictureDto[] = [];
-    const titlePic: PictureDto[] = [];
-    const file0 = this.uploadedFiles[0];
-    const file1 = this.uploadedFiles[1];
-    const file2 = this.uploadedFiles[2];
-    const file3 = this.uploadedFiles[3];
-
-    console.log(file0);
-
-    const numberOfPictures = this.uploadedFiles.filter(
-      (files) => files !== null
+    let titlePicture: PictureDto;
+    const sentPicturesList: PictureDto[] = [];
+    const numberOfPictures = this.addPicturesList.filter(
+      (picture) => picture !== null
     ).length;
-    let sentPictures = 0;
+    let sentPicturesCounter = 0;
 
-    for (const uploadedFile1 of this.uploadedFiles) {
-      if (uploadedFile1 !== null) {
-        let typeOfFile = '';
-        if (uploadedFile1.type == 'image/png') {
-          typeOfFile = 'PNG';
+    for (const addPicture of this.addPicturesList) {
+      if (addPicture !== null) {
+        let fileType = '';
+        if (addPicture.type == 'image/png') {
+          fileType = 'PNG';
         } else {
-          typeOfFile = 'JPG';
+          fileType = 'JPG';
         }
         this.subscription.add(
           this.pictureService
-            .postPictures(uploadedFile1, uploadedFile1.name, typeOfFile)
+            .postPictures(addPicture, addPicture.name, fileType)
             .subscribe({
-              next: (file0FromBackend) => {
-                picturesToSend.push(file0FromBackend);
-                sentPictures++;
+              next: (response) => {
+                sentPicturesCounter++;
+                if (sentPicturesCounter === 1) {
+                  titlePicture = response;
+                } else {
+                  sentPicturesList.push(response);
+                }
               },
               error: (error) => {
                 console.log(error);
               },
               complete: () => {
+                // if all pictures are uploaded
                 if (
-                  numberOfPictures - 1 === sentPictures ||
+                  numberOfPictures - 1 === sentPicturesCounter ||
                   numberOfPictures === 1
                 ) {
                   let title = this.eventFormGroup.controls['title'].value;
                   if (title == null || title == '') {
                     title = '-';
                   }
-
-                  console.log(this.category, this.location);
-
-                  if (this.category && this.location && picturesToSend) {
+                  if (this.category && this.location && sentPicturesList) {
                     const event: EventDto = {
                       eventId: undefined,
                       title: title,
@@ -241,14 +235,14 @@ export class EventFormComponent implements OnInit, OnDestroy {
                       eventCategory: this.category,
                       eventLocation: this.location,
                       picture: {
-                        pictureId: picturesToSend[0].pictureId,
-                        path: picturesToSend[0].path,
-                        altText: picturesToSend[0].altText,
+                        pictureId: titlePicture.pictureId,
+                        path: titlePicture.path,
+                        altText: titlePicture.altText,
                       },
                       eventInfo: {
                         infoText:
                           this.eventFormGroup.controls['description'].value,
-                        pictures: picturesToSend,
+                        pictures: sentPicturesList,
                       },
                     };
                     console.log(event);
