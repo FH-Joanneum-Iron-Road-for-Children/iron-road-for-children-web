@@ -8,12 +8,13 @@ import {
   EventLocationDto,
   PictureDto,
 } from '../../../models/models';
-import { EventService } from '../../../services/event.service';
-import { PicturesService } from '../../../services/pictures.service';
-import { EventLocationService } from '../../../services/event-location.service';
-import { EventCategoriesService } from '../../../services/event-categories.service';
-import { DateConverterService } from '../../../services/date-converter.service';
-import { forkJoin, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { getLocaleFirstDayOfWeek } from '@angular/common';
+import { EventService } from '../../../services/event/event.service';
+import { EventLocationService } from '../../../services/event/event-location.service';
+import { EventCategoriesService } from '../../../services/event/event-categories.service';
+import { PicturesService } from '../../../services/event/pictures.service';
+import { DateConverterService } from '../../../services/shared/date-converter.service';
 
 @Component({
   selector: 'app-event-form',
@@ -50,14 +51,10 @@ export class EventFormComponent implements OnInit, OnDestroy {
   filePaths: (string | null)[] = Array(4).fill(null);
   fileNames: (string | null)[] = Array(4).fill(null);
 
-  file0ToSend: PictureDto | undefined;
-
-  performing = false;
-
   public categories: EventCategoryDto[] = [];
   public locations: EventLocationDto[] = [];
 
-  sentPictures: PictureDto[] | undefined;
+  receivedPictures: PictureDto[] = [];
 
   constructor(
     private router: Router,
@@ -110,6 +107,10 @@ export class EventFormComponent implements OnInit, OnDestroy {
 
           this.category = this.event.eventCategory;
           this.location = this.event.eventLocation;
+
+          this.receivedPictures = this.event.eventInfo?.pictures;
+          this.receivedPictures.push(this.event.picture);
+          console.log(this.receivedPictures);
         }
       });
     } else {
@@ -187,6 +188,13 @@ export class EventFormComponent implements OnInit, OnDestroy {
     }
 
     const picturesToSend: PictureDto[] = [];
+    const titlePic: PictureDto[] = [];
+    const file0 = this.uploadedFiles[0];
+    const file1 = this.uploadedFiles[1];
+    const file2 = this.uploadedFiles[2];
+    const file3 = this.uploadedFiles[3];
+
+    console.log(file0);
 
     const numberOfPictures = this.uploadedFiles.filter(
       (files) => files !== null
@@ -222,6 +230,8 @@ export class EventFormComponent implements OnInit, OnDestroy {
                     title = '-';
                   }
 
+                  console.log(this.category, this.location);
+
                   if (this.category && this.location && picturesToSend) {
                     const event: EventDto = {
                       eventId: undefined,
@@ -241,6 +251,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
                         pictures: picturesToSend,
                       },
                     };
+                    console.log(event);
                     this.eventService.createEvent(event).subscribe((event) => {
                       if (event) {
                         this.router.navigate(['program']);
@@ -257,14 +268,6 @@ export class EventFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  locationId() {
-    if (this.location !== undefined) {
-      return this.location.eventLocationId;
-    } else {
-      return -1;
-    }
   }
 
   compareObjects(o1: any, o2: any) {

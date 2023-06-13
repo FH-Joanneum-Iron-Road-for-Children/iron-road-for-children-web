@@ -60,9 +60,13 @@ export class ProgramViewComponent {
   deleteEvent(event: EventDto) {
     const eventToDelete = event;
 
-    this.eventService
-      .deleteEventByEventId(event.eventId)
-      .subscribe((result) => console.log(result));
+    if (event.eventId !== undefined) {
+      this.eventService
+        .deleteEventByEventId(event.eventId)
+        .subscribe((result) => console.log(result));
+    } else {
+      throw new Error('undefined eventId at: ' + event);
+    }
 
     for (const picture of eventToDelete.eventInfo.pictures) {
       if (picture.pictureId !== undefined) {
