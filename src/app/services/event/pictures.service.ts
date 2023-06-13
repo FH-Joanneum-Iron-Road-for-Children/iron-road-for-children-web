@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { PictureDto } from '../../models/models';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable, Subject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PicturesService {
+  baseUrl = '';
+
+  postSubject: Subject<PictureDto> = new Subject<PictureDto>();
+
   constructor(private httpClient: HttpClient) {}
 
   getAllPictures(): Observable<PictureDto[]> {
@@ -27,7 +31,14 @@ export class PicturesService {
     formData.append('altText', name);
     formData.append('fileType', fileType);
 
-    return this.httpClient.post<PictureDto>('api/pictures', formData);
+    return this.httpClient
+      .post<PictureDto>(this.baseUrl + 'api/pictures/', formData)
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        tap((response) => this.postSubject.next(response))
+      );
   }
 
   deletePicture(id: number) {

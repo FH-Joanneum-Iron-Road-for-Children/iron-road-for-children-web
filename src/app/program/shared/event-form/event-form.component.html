@@ -21,10 +21,12 @@
       <div class="col-2">
         <mat-form-field appearance="fill">
           <mat-label>Standort</mat-label>
-          <mat-select [(value)]="location" required>
-            <mat-option
-              *ngFor="let location of locations"
-              [value]="location.eventLocationId">
+          <mat-select
+            [(value)]="location"
+            required
+            formControlName="location"
+            [compareWith]="compareObjects">
+            <mat-option *ngFor="let location of locations" [value]="location">
               {{ location.name }}
             </mat-option>
           </mat-select>
@@ -32,10 +34,12 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Kategorie</mat-label>
-          <mat-select [(value)]="category" required>
-            <mat-option
-              *ngFor="let category of categories"
-              [value]="category.eventCategoryId">
+          <mat-select
+            [(value)]="category"
+            required
+            formControlName="category"
+            [compareWith]="compareObjects">
+            <mat-option *ngFor="let category of categories" [value]="category">
               {{ category.name }}
             </mat-option>
           </mat-select>
@@ -103,16 +107,16 @@
             (click)="openFileSelectDialog(i)"
             class="upload-btn"
             mat-flat-button>
-            <div *ngIf="!uploadedFiles[i] && filePaths[i] == null">
+            <div *ngIf="!addPicturesList[i] && filePaths[i] == null">
               <mat-icon>upload</mat-icon>
             </div>
-            <div *ngIf="!uploadedFiles[i] && filePaths[i] == null">
+            <div *ngIf="!addPicturesList[i] && filePaths[i] == null">
               {{ i == 0 ? 'Titelbild' : 'Foto' }}
             </div>
             <img
-              *ngIf="uploadedFiles[i]"
+              *ngIf="addPicturesList[i]"
               [src]="filePreviews[i]"
-              alt="{{ uploadedFiles[i]?.name }}"
+              alt="{{ addPicturesList[i]?.name }}"
               class="preview" />
             <img
               *ngIf="filePaths[i] != null"
@@ -129,12 +133,12 @@
           <div class="file-info">
             <button
               (click)="removeFile(i)"
-              *ngIf="uploadedFiles[i]"
+              *ngIf="addPicturesList[i]"
               mat-icon-button>
               <mat-icon>close</mat-icon>
             </button>
             <div *ngIf="fileNames[i] == null" class="file-name">
-              {{ uploadedFiles[i]?.name ?? 'Keine Datei' }}
+              {{ addPicturesList[i]?.name ?? 'Keine Datei' }}
             </div>
             <div *ngIf="fileNames[i] != null" class="file-name">
               {{ fileNames[i] }}
@@ -156,9 +160,9 @@
         </button>
         <button
           (click)="submit()"
-          [disabled]="!eventFormGroup.valid"
           class="btn btn-primary form-btn"
-          mat-button>
+          mat-button
+          [disabled]="eventFormGroup.invalid">
           Speichern
         </button>
       </div>

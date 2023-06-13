@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,25 +8,33 @@ import {
   EventLocationDto,
   PictureDto,
 } from '../../../models/models';
+import { Subscription } from 'rxjs';
 import { EventService } from '../../../services/event/event.service';
-import { PicturesService } from '../../../services/event/pictures.service';
 import { EventLocationService } from '../../../services/event/event-location.service';
 import { EventCategoriesService } from '../../../services/event/event-categories.service';
+import { PicturesService } from '../../../services/event/pictures.service';
+import { DateConverterService } from '../../../services/shared/date-converter.service';
 
 @Component({
   selector: 'app-event-form',
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.css'],
 })
-export class EventFormComponent implements OnInit {
+export class EventFormComponent implements OnInit, OnDestroy {
   @Input() event: EventDto | undefined;
   @Input() eventId: number | undefined;
 
   eventFormGroup = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
-    location: new FormControl(-1, Validators.required),
-    category: new FormControl(-1, Validators.required),
+    location: new FormControl<EventLocationDto | null>(
+      null,
+      Validators.required
+    ),
+    category: new FormControl<EventCategoryDto | null>(
+      null,
+      Validators.required
+    ),
     startDateTime: new FormControl(new Date(), Validators.required),
     endDateTime: new FormControl(new Date(), Validators.required),
     file0: new FormControl('', Validators.nullValidator),
@@ -37,15 +45,15 @@ export class EventFormComponent implements OnInit {
 
   title: string | undefined;
   date: any;
-  category: number | undefined;
-  location: number | undefined;
+  category: EventCategoryDto | undefined;
+  location: EventLocationDto | undefined;
   filePaths: (string | null)[] = Array(4).fill(null);
   fileNames: (string | null)[] = Array(4).fill(null);
 
   public categories: EventCategoryDto[] = [];
   public locations: EventLocationDto[] = [];
 
-  sentPictures: PictureDto[] | undefined;
+  receivedPictures: PictureDto[] = [];
 
   constructor(
     private router: Router,
@@ -53,7 +61,8 @@ export class EventFormComponent implements OnInit {
     private eventService: EventService,
     private eventLocationService: EventLocationService,
     private eventCategoryService: EventCategoriesService,
-    private pictureService: PicturesService
+    private pictureService: PicturesService,
+    private dateConverter: DateConverterService
   ) {}
 
   ngOnInit(): void {
@@ -76,8 +85,8 @@ export class EventFormComponent implements OnInit {
           this.eventFormGroup.patchValue({
             title: this.event.title,
             description: this.event.eventInfo?.infoText,
-            location: this.event.eventLocation.eventLocationId,
-            category: this.event.eventCategory.eventCategoryId,
+            location: this.event.eventLocation,
+            category: this.event.eventCategory,
             startDateTime: new Date(this.event.startDateTimeInUTC * 1000),
             endDateTime: new Date(this.event.endDateTimeInUTC * 1000),
           });
@@ -95,8 +104,12 @@ export class EventFormComponent implements OnInit {
           this.fileNames[3] =
             this.event.eventInfo?.pictures[2]?.altText ?? null;
 
-          this.category = this.event.eventCategory.eventCategoryId;
-          this.location = this.event.eventLocation.eventLocationId;
+          this.category = this.event.eventCategory;
+          this.location = this.event.eventLocation;
+
+          this.receivedPictures = this.event.eventInfo?.pictures;
+          this.receivedPictures.push(this.event.picture);
+          console.log(this.receivedPictures);
         }
       });
     } else {
@@ -109,8 +122,10 @@ export class EventFormComponent implements OnInit {
   }
 
   uploadedFile: File | null = null;
-  uploadedFiles: (File | null)[] = Array(4).fill(null);
+  addPicturesList: (File | null)[] = Array(4).fill(null);
   filePreviews: (string | ArrayBuffer | null)[] = Array(4).fill(null);
+
+  subscription: Subscription = new Subscription();
 
   openFileSelectDialog(index: number) {
     document.getElementById('file-input' + index)?.click();
@@ -120,7 +135,7 @@ export class EventFormComponent implements OnInit {
     this.uploadedFile = event.target.files[0] as File;
 
     if (this.isValidImageFile()) {
-      this.uploadedFiles[index] = this.uploadedFile;
+      this.addPicturesList[index] = this.uploadedFile;
       this.filePaths[index] = null;
       this.fileNames[index] = null;
 
@@ -136,7 +151,6 @@ export class EventFormComponent implements OnInit {
   isValidImageFile(): boolean {
     if (this.uploadedFile) {
       const allowedFormats = ['image/png', 'image/jpeg', 'image/jpg'];
-
       const maxFileSize = 2 * 1024 * 1024; // 2MB
 
       return (
@@ -149,67 +163,108 @@ export class EventFormComponent implements OnInit {
 
   removeFile(index: number) {
     this.filePreviews[index] = null;
-    this.uploadedFiles[index] = null;
+    this.addPicturesList[index] = null;
   }
 
   cancel() {
     this.router.navigate(['program']);
   }
 
-  getFileType(fileType: string) {
-    if (fileType === 'image/png') {
-      return 'PNG';
-    } else if (fileType === 'image/jpg' || fileType === 'image/jpeg') {
-      return 'JPG';
-    }
-    return '';
-  }
-
   submit() {
-    for (const picture of this.uploadedFiles) {
-      if (picture !== null) {
-        this.pictureService
-          .postPictures(picture, picture.name, this.getFileType(picture.type))
-          .subscribe((fromBackendPictures) => {
-            this.sentPictures?.push(fromBackendPictures);
-            console.log(this.sentPictures);
-          });
+    const value = this.eventFormGroup.controls['startDateTime'].value;
+    let utcMillisecondsStartDate = 0;
+    if (value != undefined) {
+      const startDate = new Date(value);
+      utcMillisecondsStartDate =
+        this.dateConverter.getTimestampFromDate(startDate);
+    }
+
+    const valueEndDateTime = this.eventFormGroup.controls['endDateTime'].value;
+    let utcMillisecondsEndDate = 0;
+    if (valueEndDateTime != undefined) {
+      const endDate = new Date(valueEndDateTime);
+      utcMillisecondsEndDate = this.dateConverter.getTimestampFromDate(endDate);
+    }
+
+    let titlePicture: PictureDto;
+    const sentPicturesList: PictureDto[] = [];
+    const numberOfPictures = this.addPicturesList.filter(
+      (picture) => picture !== null
+    ).length;
+    let sentPicturesCounter = 0;
+
+    for (const addPicture of this.addPicturesList) {
+      if (addPicture !== null) {
+        let fileType = '';
+        if (addPicture.type == 'image/png') {
+          fileType = 'PNG';
+        } else {
+          fileType = 'JPG';
+        }
+        this.subscription.add(
+          this.pictureService
+            .postPictures(addPicture, addPicture.name, fileType)
+            .subscribe({
+              next: (response) => {
+                sentPicturesCounter++;
+                if (sentPicturesCounter === 1) {
+                  titlePicture = response;
+                } else {
+                  sentPicturesList.push(response);
+                }
+              },
+              error: (error) => {
+                console.log(error);
+              },
+              complete: () => {
+                // if all pictures are uploaded
+                if (
+                  numberOfPictures - 1 === sentPicturesCounter ||
+                  numberOfPictures === 1
+                ) {
+                  let title = this.eventFormGroup.controls['title'].value;
+                  if (title == null || title == '') {
+                    title = '-';
+                  }
+                  if (this.category && this.location && sentPicturesList) {
+                    const event: EventDto = {
+                      eventId: undefined,
+                      title: title,
+                      startDateTimeInUTC: utcMillisecondsStartDate,
+                      endDateTimeInUTC: utcMillisecondsEndDate,
+                      eventCategory: this.category,
+                      eventLocation: this.location,
+                      picture: {
+                        pictureId: titlePicture.pictureId,
+                        path: titlePicture.path,
+                        altText: titlePicture.altText,
+                      },
+                      eventInfo: {
+                        infoText:
+                          this.eventFormGroup.controls['description'].value,
+                        pictures: sentPicturesList,
+                      },
+                    };
+                    console.log(event);
+                    this.eventService.createEvent(event).subscribe((event) => {
+                      if (event) {
+                        this.router.navigate(['program']);
+                      }
+                    });
+                  }
+                }
+              },
+            })
+        );
       }
     }
+  }
 
-    let title = this.eventFormGroup.controls['title'].value;
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
-    if (title == null || title == '') {
-      title = '-';
-    }
-    const event: EventDto = {
-      eventId: 0,
-      title: title,
-      startDateTimeInUTC: 1690320193,
-      endDateTimeInUTC: 1690327393,
-      eventCategory: {
-        eventCategoryId: 100,
-        name: 'test category',
-      },
-      eventLocation: {
-        eventLocationId: 100,
-        name: 'test location',
-      },
-      picture: {
-        path: '',
-        altText: 'test alt text',
-      },
-      eventInfo: {
-        infoText: this.eventFormGroup.controls['description'].value,
-        pictures: [],
-      },
-    };
-
-    console.log(event);
-    // this.eventService.createEvent(event).subscribe((event) => {
-    //   if (event) {
-    //     this.router.navigate(['program']);
-    //   }
-    // });
+  compareObjects(o1: any, o2: any) {
+    return o1.name === o2.name && o1.id === o2.id;
   }
 }
