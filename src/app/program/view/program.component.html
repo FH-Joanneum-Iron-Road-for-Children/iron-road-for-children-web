@@ -5,5 +5,7 @@
     (selectedDateChipsChange)="onSelectedDateChipsChange($event)"
     [categoryFilters]="categories"
     [dateFilters]="dates"></app-program-filters>
-  <app-program-view [events]="events"></app-program-view>
+  <app-program-view
+    [isLoading]="isLoading"
+    [events]="events"></app-program-view>
 </main>

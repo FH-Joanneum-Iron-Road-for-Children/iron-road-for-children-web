@@ -3,16 +3,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import {
-  CreatePictureDto,
   EventCategoryDto,
   EventDto,
   EventLocationDto,
   PictureDto,
 } from '../../../models/models';
-import { EventService } from '../../../services/event.service';
-import { PicturesService } from '../../../services/pictures.service';
-import { EventLocationService } from '../../../services/event-location.service';
-import { EventCategoriesService } from '../../../services/event-categories.service';
+import { EventService } from '../../../services/event/event.service';
+import { PicturesService } from '../../../services/event/pictures.service';
+import { EventLocationService } from '../../../services/event/event-location.service';
+import { EventCategoriesService } from '../../../services/event/event-categories.service';
 
 @Component({
   selector: 'app-event-form',
@@ -137,6 +136,7 @@ export class EventFormComponent implements OnInit {
   isValidImageFile(): boolean {
     if (this.uploadedFile) {
       const allowedFormats = ['image/png', 'image/jpeg', 'image/jpg'];
+
       const maxFileSize = 2 * 1024 * 1024; // 2MB
 
       return (
@@ -156,17 +156,20 @@ export class EventFormComponent implements OnInit {
     this.router.navigate(['program']);
   }
 
-  submit() {
-    for (const uploadedFile1 of this.uploadedFiles) {
-      if (uploadedFile1 !== null) {
-        const pictureDto: CreatePictureDto = {
-          file: uploadedFile1.name,
-          altText: '',
-          fileType: uploadedFile1.type,
-        };
+  getFileType(fileType: string) {
+    if (fileType === 'image/png') {
+      return 'PNG';
+    } else if (fileType === 'image/jpg' || fileType === 'image/jpeg') {
+      return 'JPG';
+    }
+    return '';
+  }
 
+  submit() {
+    for (const picture of this.uploadedFiles) {
+      if (picture !== null) {
         this.pictureService
-          .postPictures(pictureDto)
+          .postPictures(picture, picture.name, this.getFileType(picture.type))
           .subscribe((fromBackendPictures) => {
             this.sentPictures?.push(fromBackendPictures);
             console.log(this.sentPictures);
@@ -174,7 +177,6 @@ export class EventFormComponent implements OnInit {
       }
     }
 
-    //TODO: first post pics then post event! & property filetype .png and .jpg
     let title = this.eventFormGroup.controls['title'].value;
 
     if (title == null || title == '') {

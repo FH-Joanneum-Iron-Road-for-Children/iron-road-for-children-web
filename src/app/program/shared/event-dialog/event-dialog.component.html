@@ -1,16 +1,28 @@
 <div mat-dialog-content>
   <div class="col-2e">
-    <section class="scroll-container left-align">
-      <ul>
-        <div *ngIf="itemList?.length == 0">Keine Elemente vorhanden.</div>
-        <div *ngFor="let item of itemList" class="list-item col-2">
-          <li>{{ item.name }}</li>
-          <button (click)="removeItem(item)" mat-icon-button tabindex="-1">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-      </ul>
+    <section *ngIf="isLoading; else content" class="scroll-container center">
+      <mat-progress-spinner
+        diameter="50"
+        mode="indeterminate"
+        strokeWidth="3"></mat-progress-spinner>
     </section>
+    <ng-template #content>
+      <section class="scroll-container left-align">
+        <ul>
+          <div *ngIf="itemList?.length == 0">Keine Elemente vorhanden.</div>
+          <div *ngFor="let item of itemList" class="list-item col-2">
+            <li>{{ item.name }}</li>
+            <button
+              (click)="removeItem(item)"
+              *ngIf="!item.isInUse"
+              mat-icon-button
+              tabindex="-1">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </ul>
+      </section>
+    </ng-template>
 
     <section class="center">
       <form [formGroup]="itemFormGroup">
@@ -32,4 +44,19 @@
       </form>
     </section>
   </div>
+</div>
+
+<div class="center" mat-dialog-actions>
+  <section>
+    <button class="btn btn-secondary" mat-dialog-close="true" mat-raised-button>
+      Abbrechen
+    </button>
+    <button
+      (click)="saveItemList()"
+      class="btn btn-primary"
+      mat-dialog-close="true"
+      mat-raised-button>
+      Speichern
+    </button>
+  </section>
 </div>

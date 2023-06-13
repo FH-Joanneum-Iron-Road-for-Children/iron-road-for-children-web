@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Injectable({
   providedIn: 'root',
@@ -12,13 +12,15 @@ export class ConfirmDialogService {
 
   openDialog(
     actionType: 'Bestätigen' | 'Löschen' | 'Starten' | 'Beenden' | undefined,
-    message: string
+    message: string,
+    isDisabled: boolean
   ): MatDialogRef<ConfirmDialogComponent> {
     this.dialogRef = this.dialog.open(ConfirmDialogComponent, {
       disableClose: true,
     });
     this.dialogRef.componentInstance.actionType = actionType;
     this.dialogRef.componentInstance.message = message;
+    this.dialogRef.componentInstance.isDisabled = isDisabled;
     return this.dialogRef;
   }
 }

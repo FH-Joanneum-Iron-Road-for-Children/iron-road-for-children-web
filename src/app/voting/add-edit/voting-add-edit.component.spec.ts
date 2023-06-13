@@ -6,7 +6,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { EventService } from '../../services/event.service';
+import { EventService } from '../../services/event/event.service';
 import { VotingService } from '../../services/voting/voting.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 

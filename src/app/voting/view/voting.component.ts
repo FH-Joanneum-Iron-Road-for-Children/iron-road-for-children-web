@@ -12,11 +12,13 @@ import { VotingService } from '../../services/voting/voting.service';
 export class VotingComponent implements OnInit {
   isActive = false;
   votingList: VotingDto[] | undefined;
+  isLoading = true;
 
   ngOnInit(): void {
-    this.votingService
-      .getAllVotings()
-      .subscribe((result) => (this.votingList = result));
+    this.votingService.getAllVotings().subscribe((result) => {
+      this.votingList = result;
+      this.isLoading = false;
+    });
   }
 
   constructor(

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EventCategoryDto } from '../models/models';
+import { EventCategoryDto } from '../../models/models';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -13,12 +13,6 @@ export class EventCategoriesService {
     return this.httpClient.get<EventCategoryDto[]>('api/eventCategories');
   }
 
-  getEventByEventCategoryId(eventId: number): Observable<EventCategoryDto> {
-    return this.httpClient.get<EventCategoryDto>(
-      'api/eventCategories/' + eventId
-    );
-  }
-
   createEventCategory(EventCategoryDto: EventCategoryDto) {
     return this.httpClient.post<EventCategoryDto>(
       'api/eventCategories',
@@ -26,7 +20,7 @@ export class EventCategoriesService {
     );
   }
 
-  deleteEventCategoryByEventCategoryId(id: number) {
-    return this.httpClient.delete<Response>('api/eventCategories/' + id);
+  deleteEventCategoryById(id: number) {
+    return this.httpClient.delete<Response>(`api/eventCategories/${id}`);
   }
 }

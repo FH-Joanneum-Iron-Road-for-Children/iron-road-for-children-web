@@ -14,6 +14,7 @@ export class ConfirmDialogComponent {
     | 'Starten'
     | 'Beenden'
     | undefined;
+  @Input() isDisabled = false;
 
   constructor(private dialogRef: MatDialogRef<ConfirmDialogComponent>) {}
 

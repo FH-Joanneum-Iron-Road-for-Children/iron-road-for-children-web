@@ -8,12 +8,6 @@ export interface PictureDto {
   altText: string;
   path: string | null;
 }
-export interface CreatePictureDto {
-  file: string;
-  altText: string;
-
-  fileType: string;
-}
 
 export interface EventInfoDto {
   eventInfoId?: number;
@@ -58,7 +52,7 @@ export interface VotingResultDto {
 export interface VotingDto {
   votingId: number;
   title: string;
-  events?: EventDto[];
+  events: EventDto[];
   votingResult?: VotingResultDto;
   active: boolean;
   editable: boolean;
@@ -67,4 +61,5 @@ export interface VotingDto {
 export type Item = {
   id: number;
   name: string;
+  isInUse: boolean;
 };
