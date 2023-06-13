@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { VotingDto } from '../../../models/models';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
+import { ConfirmDialogService } from '../../../services/shared/confirm-dialog.service';
 import { VotingAddEditComponent } from '../../add-edit/voting-add-edit.component';
 import { VotingService } from '../../../services/voting/voting.service';
 
@@ -31,10 +31,14 @@ export class VotingWrapperComponent {
   openDeleteVotingDialog(voting: VotingDto) {
     const msg = `<strong>${voting.title}</strong> wirklich löschen?`;
     const actionType = 'Löschen';
-    const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
+    const dialogRef = this.confirmDialogService.openDialog(
+      actionType,
+      msg,
+      false
+    );
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+    dialogRef.afterClosed().subscribe((isConfirmed) => {
+      if (isConfirmed) {
         this.votingService
           .deleteVoting(voting.votingId)
           .subscribe((result) => console.log(result));
@@ -49,10 +53,14 @@ export class VotingWrapperComponent {
     if (voting.active) {
       const msg = `<strong>${voting.title}</strong> wirklich starten? <br> <br>Nach Start des Votings können keine <br> neuen Bands mehr hinzugefügt werden.`;
       const actionType = 'Starten';
-      const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
+      const dialogRef = this.confirmDialogService.openDialog(
+        actionType,
+        msg,
+        false
+      );
 
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
+      dialogRef.afterClosed().subscribe((isConfirmed) => {
+        if (isConfirmed) {
           this.votingService
             .startVoting(voting.votingId)
             .subscribe((result) => console.log(result));
@@ -64,10 +72,14 @@ export class VotingWrapperComponent {
     } else {
       const msg = `<strong>${voting.title}</strong> wirklich beenden? <br> <br>Das Event mit den meisten Stimmen gewinnt.`;
       const actionType = 'Beenden';
-      const dialogRef = this.confirmDialogService.openDialog(actionType, msg);
+      const dialogRef = this.confirmDialogService.openDialog(
+        actionType,
+        msg,
+        false
+      );
 
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
+      dialogRef.afterClosed().subscribe((isConfirmed) => {
+        if (isConfirmed) {
           this.votingService
             .endVoting(voting.votingId)
             .subscribe((result) => console.log(result));

@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { User } from '../models/models';
-import { EventService } from '../services/event.service';
-import { EventLocationService } from '../services/event-location.service';
+import { EventService } from '../services/event/event.service';
+import { EventLocationService } from '../services/event/event-location.service';
 
 @Component({
   selector: 'app-login',

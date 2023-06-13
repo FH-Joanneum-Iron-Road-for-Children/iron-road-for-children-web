@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EventCategoryDto, EventDto } from '../../models/models';
-import { EventService } from '../../services/event.service';
-import { DateConverterService } from '../../services/date-converter.service';
-import { EventCategoriesService } from '../../services/event-categories.service';
+import { EventService } from '../../services/event/event.service';
+import { DateConverterService } from '../../services/shared/date-converter.service';
+import { EventCategoriesService } from '../../services/event/event-categories.service';
 
 @Component({
   selector: 'app-footer',
@@ -15,7 +15,7 @@ export class ProgramComponent implements OnInit {
   public categories: EventCategoryDto[] = [];
   private selectedCategoryChips: any = '';
   private selectedDateChips: any = 0;
-
+  isLoading = true;
   dates: number[] = [];
 
   constructor(
@@ -37,6 +37,8 @@ export class ProgramComponent implements OnInit {
       const endTimestamps = this.events.map((event) => event.endDateTimeInUTC);
       this.dates = startTimestamps.concat(endTimestamps);
       this.dates = this.getUniqueDates();
+
+      this.isLoading = false;
     });
 
     this.eventCategoryService

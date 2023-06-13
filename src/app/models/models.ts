@@ -52,7 +52,7 @@ export interface VotingResultDto {
 export interface VotingDto {
   votingId: number;
   title: string;
-  events?: EventDto[];
+  events: EventDto[];
   votingResult?: VotingResultDto;
   active: boolean;
   editable: boolean;
@@ -61,4 +61,5 @@ export interface VotingDto {
 export type Item = {
   id: number;
   name: string;
+  isInUse: boolean;
 };
