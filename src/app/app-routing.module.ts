@@ -11,7 +11,7 @@ import { EditEventComponent } from './program/edit/edit-event/edit-event.compone
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
+    component: ProgramComponent,
   },
   {
     path: 'program',
