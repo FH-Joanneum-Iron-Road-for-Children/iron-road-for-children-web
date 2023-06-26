@@ -20,7 +20,7 @@
     <app-voting-wrapper
       *ngIf="votingList"
       [votingList]="votingList"></app-voting-wrapper>
-    <div *ngIf="votingList?.length == 0">
+    <div *ngIf="votingList?.length == 0" class="center">
       <p>Keine Votings vorhanden.</p>
     </div>
   </ng-template>

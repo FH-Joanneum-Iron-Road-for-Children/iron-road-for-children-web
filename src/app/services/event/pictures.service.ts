@@ -7,8 +7,6 @@ import { map, Observable, Subject, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class PicturesService {
-  baseUrl = '';
-
   postSubject: Subject<PictureDto> = new Subject<PictureDto>();
 
   constructor(private httpClient: HttpClient) {}
@@ -31,14 +29,12 @@ export class PicturesService {
     formData.append('altText', name);
     formData.append('fileType', fileType);
 
-    return this.httpClient
-      .post<PictureDto>(this.baseUrl + 'api/pictures/', formData)
-      .pipe(
-        map((response) => {
-          return response;
-        }),
-        tap((response) => this.postSubject.next(response))
-      );
+    return this.httpClient.post<PictureDto>('api/pictures/', formData).pipe(
+      map((response) => {
+        return response;
+      }),
+      tap((response) => this.postSubject.next(response))
+    );
   }
 
   deletePicture(id: number) {
