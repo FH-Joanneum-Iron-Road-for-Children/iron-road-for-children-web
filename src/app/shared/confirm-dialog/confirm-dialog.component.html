@@ -7,7 +7,7 @@
     <button
       (click)="onConfirmClick()"
       color="{{ actionType == 'Löschen' ? 'warn' : 'accent' }}"
-      [disabled]="isDisabled"
+      [hidden]="isDisabled"
       mat-raised-button>
       {{ actionType }}
     </button>
