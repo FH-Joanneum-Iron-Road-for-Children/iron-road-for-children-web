@@ -47,6 +47,7 @@ import { VotingWrapperComponent } from './voting/view/voting-wrapper/voting-wrap
 import { EventListComponent } from './voting/add-edit/event-list/event-list.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NotFoundComponent } from './error/not-found/not-found.component';
 
 registerLocaleData(localeAt, 'de-AT');
 
@@ -72,6 +73,7 @@ registerLocaleData(localeAt, 'de-AT');
     ConfirmDialogComponent,
     VotingWrapperComponent,
     EventListComponent,
+    NotFoundComponent,
   ],
 
   imports: [
