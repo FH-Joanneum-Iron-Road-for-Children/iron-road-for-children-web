@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry } from '@angular/material/icon';
+import {Component, Inject} from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material/icon';
+import {AuthService} from '@auth0/auth0-angular';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'app-navigation',
@@ -10,11 +12,17 @@ import { MatIconRegistry } from '@angular/material/icon';
 export class NavigationComponent {
   constructor(
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    public auth: AuthService,
+    @Inject(DOCUMENT) public document: Document
   ) {
     this.matIconRegistry.addSvgIcon(
       'logo',
       this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo.svg')
     );
+  }
+
+  logout() {
+    this.auth.logout({logoutParams: {returnTo: document.location.origin}})
   }
 }

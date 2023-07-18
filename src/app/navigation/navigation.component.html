@@ -11,7 +11,9 @@
     </button>
   </div>
   <div class="spacer"></div>
-  <button class="logout-button" mat-button routerLink="/" hidden>
-    Abmelden
-  </button>
+  <ng-container *ngIf="auth.isAuthenticated$ | async">
+    <button mat-button (click)="logout()">
+      Abmelden
+    </button>
+  </ng-container>
 </mat-toolbar>
