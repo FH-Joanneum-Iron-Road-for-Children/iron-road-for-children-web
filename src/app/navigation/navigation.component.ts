@@ -21,4 +21,8 @@ export class NavigationComponent {
       this.domSanitizer.bypassSecurityTrustResourceUrl('assets/logo.svg')
     );
   }
+
+  logout() {
+    this.auth.logout({logoutParams: {returnTo: document.location.origin}})
+  }
 }

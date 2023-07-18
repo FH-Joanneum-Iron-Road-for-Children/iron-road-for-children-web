@@ -12,7 +12,7 @@
   </div>
   <div class="spacer"></div>
   <ng-container *ngIf="auth.isAuthenticated$ | async">
-    <button mat-button (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })">
+    <button mat-button (click)="logout()">
       Abmelden
     </button>
   </ng-container>
