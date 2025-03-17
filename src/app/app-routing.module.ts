@@ -1,19 +1,20 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 
-import type {Routes} from '@angular/router';
-import {RouterModule} from '@angular/router';
-import {AuthGuard} from '@auth0/auth0-angular';
-import {ProgramComponent} from './program/view/program.component';
-import {VotingComponent} from './voting/view/voting.component';
-import {AddEventComponent} from './program/add/add-event/add-event.component';
-import {EditEventComponent} from './program/edit/edit-event/edit-event.component';
-import {NotFoundComponent} from './error/not-found/not-found.component';
+import type { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { AuthGuard } from '@auth0/auth0-angular';
+import { ProgramComponent } from './program/view/program.component';
+import { VotingComponent } from './voting/view/voting.component';
+import { AddEventComponent } from './program/add/add-event/add-event.component';
+import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
+import { NotFoundComponent } from './error/not-found/not-found.component';
+import { NewsComponent } from './news-page/view/news.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/program',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'program',
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'voting',
     component: VotingComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'news',
+    component: NewsComponent,
     canActivate: [AuthGuard],
   },
   {
