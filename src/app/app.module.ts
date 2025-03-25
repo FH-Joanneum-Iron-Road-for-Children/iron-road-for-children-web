@@ -49,6 +49,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NotFoundComponent } from './error/not-found/not-found.component';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { NewsComponent } from './news-page/view/news.component';
+import { CountdownComponent } from './news-page/view/countdown/countdown/countdown.component';
 
 registerLocaleData(localeAt, 'de-AT');
 
@@ -75,6 +76,7 @@ registerLocaleData(localeAt, 'de-AT');
     EventListComponent,
     NotFoundComponent,
     NewsComponent,
+    CountdownComponent,
   ],
 
   imports: [

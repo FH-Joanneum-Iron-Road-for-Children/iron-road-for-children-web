@@ -1,0 +1,69 @@
+/* Countdown Row */
+.countdown-row {
+  display: flex;
+  justify-content: space-between; /* Ensure the columns take full available space */
+  width: 100%; /* Make the row take the full width of its container */
+  /* align-items: center; Vertically align items */
+  gap: 20px; /* Space between the columns */
+  /* border-bottom: 2px solid #ccc; Add a separator line */
+  padding-bottom: 5px; /*Add spacing below the separator */
+  padding-top: 5px; /*Add spacing below the separator */
+  /* padding-left: 10px; */
+  background-color: #eb5b5b;
+  border-radius: 3px;
+}
+
+/* Countdown Column */
+.countdown-column {
+  flex: 3; /* Takes up more space compared to the edit button column */
+  display: flex;
+  flex-direction: column; /* Stack countdown items vertically */
+  align-items: center;
+  padding-left: 10px;
+  gap: 10px; /* Space between countdown items */
+  color: #333; /* Add a default text color */
+}
+
+/* Edit Button Column */
+.edit-button-column {
+  flex: 1; /* Takes up less space compared to the countdown column */
+  display: flex;
+  justify-content: flex-end; /* Center the button horizontally */
+  align-items: top !important; /* Center the button vertically */
+  padding-right: 5px;
+}
+
+/* Countdown Item */
+.countdown-item {
+  text-align: center; /* Center-align text inside each countdown item */
+  color: #007bff; /* Add a color for countdown numbers and labels */
+}
+
+/* Countdown Number */
+.countdown-number {
+  font-size: 3rem; /* Large font size for numbers */
+  font-weight: bold; /* Bold font for emphasis */
+  color: #fff580; /* Add a specific color for numbers */
+}
+
+/* Countdown Label */
+.countdown-label {
+  font-size: 1.2rem; /* Slightly smaller font for labels */
+  text-transform: uppercase; /* Make labels uppercase */
+  margin-top: 5px; /* Add spacing above the label */
+  color: #fff580; /* Add a specific color for labels */
+}
+
+/* Target the button specifically in the edit-button-column */
+.edit-button-column button {
+  background-color: #fff580 !important; /* Override background color */
+  color: rgb(0, 0, 0) !important; /* Override text color */
+  font-size: 1.2rem; /* Increase font size */
+  border-radius: 3px 3px 3px 12px !important; /* Add rounded corners */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add a shadow */
+}
+
+/* Optional: Hover effect */
+.edit-button-column button:hover {
+  background-color: #fffbca !important; /* Darker shade on hover */
+}
