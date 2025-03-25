@@ -113,7 +113,7 @@
           <div class="file-info">
             <button
               (click)="removeFile(i)"
-              *ngIf="addPicturesList[i]"
+              *ngIf="addPicturesList[i] || filePaths[i] != null"
               mat-icon-button>
               <mat-icon>close</mat-icon>
             </button>
