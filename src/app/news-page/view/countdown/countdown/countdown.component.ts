@@ -1,4 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { EditTargetDateDialogComponent } from '../edit-target-date-dialog/edit-target-date-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-countdown',
@@ -12,6 +14,8 @@ export class CountdownComponent implements OnInit, OnDestroy {
   isEventRunning: boolean = false;
 
   countdownUnits: { value: number; label: string }[] = [];
+
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.startCountdown();
@@ -72,14 +76,17 @@ export class CountdownComponent implements OnInit, OnDestroy {
   }
 
   editTargetDate(): void {
-    const newDate = prompt(
-      'Enter new target date and time (YYYY-MM-DDTHH:mm):',
-      this.targetDate.toISOString().slice(0, 16)
-    );
-    if (newDate) {
-      this.targetDate = new Date(newDate);
-      this.startCountdown();
-    }
+    const dialogRef = this.dialog.open(EditTargetDateDialogComponent, {
+      width: '400px',
+      data: { targetDate: this.targetDate },
+    });
+
+    dialogRef.afterClosed().subscribe((result: string | null) => {
+      if (result) {
+        this.targetDate = new Date(result);
+        this.startCountdown();
+      }
+    });
   }
 
   ngOnDestroy(): void {
