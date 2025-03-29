@@ -51,6 +51,7 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { NewsComponent } from './news-page/view/news.component';
 import { CountdownComponent } from './news-page/view/countdown/countdown/countdown.component';
 import { EditTargetDateDialogComponent } from './news-page/view/countdown/edit-target-date-dialog/edit-target-date-dialog.component';
+import { VideoComponent } from './news-page/view/video/video/video.component';
 
 registerLocaleData(localeAt, 'de-AT');
 
@@ -79,6 +80,7 @@ registerLocaleData(localeAt, 'de-AT');
     NewsComponent,
     CountdownComponent,
     EditTargetDateDialogComponent,
+    VideoComponent,
   ],
 
   imports: [

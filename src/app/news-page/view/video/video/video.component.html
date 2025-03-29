@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intro-Video hochladen</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+        margin: 0;
+      }
+      h2 {
+        color: #333;
+      }
+      form {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+      }
+      input,
+      button {
+        margin: 10px 0;
+        padding: 10px;
+        width: 90%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        background-color: yellow;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: gold;
+      }
+      video {
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Intro-Video verwalten</h2>
+
+    <form id="uploadForm">
+      <input type="file" id="videoInput" accept="video/mp4" required />
+      <input type="text" id="altText" placeholder="Alternativtext" required />
+      <button type="submit">Hochladen</button>
+    </form>
+
+    <video
+      id="videoPlayer"
+      controls
+      style="display: none; width: 100%; max-width: 600px"></video>
+    <button id="deleteButton" style="display: none">Video löschen</button>
+
+    <script>
+      async function fetchVideo() {
+        const response = await fetch('/api/intro-video');
+        if (response.status === 200) {
+          const data = await response.json();
+          const videoPlayer = document.getElementById('videoPlayer');
+          videoPlayer.src = data.path;
+          videoPlayer.style.display = 'block';
+          document.getElementById('deleteButton').style.display = 'block';
+        }
+      }
+
+      document
+        .getElementById('uploadForm')
+        .addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          const fileInput = document.getElementById('videoInput');
+          const altTextInput = document.getElementById('altText');
+          if (!fileInput.files.length)
+            return alert('Bitte eine MP4-Datei auswählen.');
+
+          const formData = new FormData();
+          formData.append('file', fileInput.files[0]);
+          formData.append('altText', altTextInput.value);
+
+          const response = await fetch('/api/intro-video', {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (response.ok) {
+            alert('Video erfolgreich hochgeladen!');
+            fetchVideo();
+          } else {
+            alert('Fehler beim Hochladen.');
+          }
+        });
+
+      document
+        .getElementById('deleteButton')
+        .addEventListener('click', async () => {
+          const response = await fetch('/api/intro-video', {
+            method: 'DELETE',
+          });
+          if (response.ok) {
+            alert('Video gelöscht.');
+            document.getElementById('videoPlayer').style.display = 'none';
+            document.getElementById('deleteButton').style.display = 'none';
+          } else {
+            alert('Fehler beim Löschen.');
+          }
+        });
+
+      fetchVideo();
+    </script>
+  </body>
+</html>

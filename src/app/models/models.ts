@@ -58,6 +58,12 @@ export interface VotingDto {
   editable: boolean;
 }
 
+export interface VideoDto {
+  videoId: number;
+  altText: string;
+  path: string;
+}
+
 export type Item = {
   id: number;
   name: string;

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EventService } from '../../services/event/event.service';
 
 @Component({
   selector: 'app-news',
