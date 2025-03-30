@@ -1,0 +1,6 @@
+<div class="playlist">
+  <div *ngFor="let track of tracks" class="track">
+    <img [src]="track.image" [alt]="track.title" />
+    <h3>{{ track.title }}</h3>
+  </div>
+</div>

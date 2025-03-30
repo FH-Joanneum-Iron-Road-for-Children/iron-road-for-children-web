@@ -12,6 +12,12 @@
     <button mat-button routerLink="/news" routerLinkActive="active-link">
       News
     </button>
+    <button
+      mat-button
+      routerLink="/sharedContent"
+      routerLinkActive="active-link">
+      Shared Content
+    </button>
   </div>
   <div class="spacer"></div>
   <ng-container *ngIf="auth.isAuthenticated$ | async">

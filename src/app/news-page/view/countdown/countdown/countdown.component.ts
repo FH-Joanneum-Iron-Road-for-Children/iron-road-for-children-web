@@ -18,6 +18,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.targetDate = this.geTargetDateFromBackend(); // Fetch the target date from the server or local storage
     this.startCountdown();
   }
 
@@ -95,5 +96,13 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
   formatNumber(num: number): string {
     return num < 10 ? '0' + num : num.toString();
+  }
+
+  geTargetDateFromBackend(): Date {
+    return new Date(new Date().getTime() + 24 * 60 * 60 * 1000); // Replace with actual logic to fetch the target date from the server, after Backend Team has implemented the API
+  }
+
+  setargetDateToBackend(newDate: Date) {
+    return null; // Replace with actual logic to fetch the target date from the server or local storage, after Backend Team has implemented the API
   }
 }

@@ -9,6 +9,7 @@ import { AddEventComponent } from './program/add/add-event/add-event.component';
 import { EditEventComponent } from './program/edit/edit-event/edit-event.component';
 import { NotFoundComponent } from './error/not-found/not-found.component';
 import { NewsComponent } from './news-page/view/news.component';
+import { SharedContentPageComponent } from './shared-content/view/shared-content-page/shared-content-page.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
   {
     path: 'news',
     component: NewsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'sharedContent',
+    component: SharedContentPageComponent,
     canActivate: [AuthGuard],
   },
   {
