@@ -7,7 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./edit-target-date-dialog.component.css'],
 })
 export class EditTargetDateDialogComponent {
-  newTargetDate: Date;
+  newTargetDate: Date | null = null;
   formattedTargetTime: string = '';
 
   constructor(
@@ -15,9 +15,14 @@ export class EditTargetDateDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: { targetDate: Date }
   ) {
     this.newTargetDate = new Date(data.targetDate);
+    this.formattedTargetTime = this.getTimeFromDate(this.newTargetDate);
   }
 
   onSave(): void {
+    const [hours, minutes] = this.formattedTargetTime.split(':').map(Number);
+    if (this.newTargetDate) {
+      this.newTargetDate.setHours(hours, minutes);
+    }
     this.dialogRef.close(this.newTargetDate);
   }
 
@@ -26,6 +31,12 @@ export class EditTargetDateDialogComponent {
   }
 
   onTimeChange(newTime: string): void {
-    this.formattedTargetTime = newTime;
+    this.formattedTargetTime = newTime ? newTime : '00:00';
+  }
+
+  private getTimeFromDate(date: Date): string {
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
   }
 }

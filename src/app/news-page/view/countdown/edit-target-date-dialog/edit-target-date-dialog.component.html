@@ -1,32 +1,25 @@
 <h2 mat-dialog-title>Edit Target Date</h2>
 <mat-dialog-content>
-  <mat-form-field appearance="fill">
-    <mat-label>Target Date</mat-label>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="newTargetDate" />
+  <mat-form-field appearance="outline">
+    <mat-label>Pick a date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [(ngModel)]="newTargetDate"
+      name="date" />
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <!-- ----TODO DZ Better UI Version with TimePicker----- -->
-
-  <!-- <div class="col-2">
-    <mat-form-field>
-      <mat-label>Start</mat-label>
-      <input
-        [disabled]="false"
-        [ngxMatDatetimePicker]="picker"
-        formControlName="startDateTime"
-        matInput
-        placeholder="Start" />
-      <mat-datepicker-toggle
-        [for]="$any(picker)"
-        matSuffix></mat-datepicker-toggle>
-      <ngx-mat-datetime-picker #picker> </ngx-mat-datetime-picker>
-    </mat-form-field>
-  </div> -->
-
-  <!-- --------- -->
-</mat-dialog-content>
+  <!-- Time Picker -->
+  <mat-form-field appearance="outline">
+    <mat-label>Pick a time</mat-label>
+    <input
+      matInput
+      type="time"
+      [(ngModel)]="formattedTargetTime"
+      name="time" /> </mat-form-field></mat-dialog-content
+>>
 <mat-dialog-actions align="end">
   <button mat-button (click)="onCancel()">Cancel</button>
   <button mat-raised-button color="primary" (click)="onSave()">Save</button>
