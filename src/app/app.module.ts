@@ -52,6 +52,7 @@ import { NewsComponent } from './news-page/view/news.component';
 import { CountdownComponent } from './news-page/view/countdown/countdown/countdown.component';
 import { EditTargetDateDialogComponent } from './news-page/view/countdown/edit-target-date-dialog/edit-target-date-dialog.component';
 import { VideoComponent } from './news-page/view/video/video/video.component';
+import { SocialComponent } from './news-page/view/social/social.component';
 
 registerLocaleData(localeAt, 'de-AT');
 
@@ -81,6 +82,7 @@ registerLocaleData(localeAt, 'de-AT');
     CountdownComponent,
     EditTargetDateDialogComponent,
     VideoComponent,
+    SocialComponent,
   ],
 
   imports: [

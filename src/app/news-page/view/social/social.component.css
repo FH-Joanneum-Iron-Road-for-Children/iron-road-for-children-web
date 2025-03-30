@@ -1,3 +1,13 @@
+.social-links {
+  display: flex;
+  gap: 10px;
+}
+
+.social-links a img {
+  width: 32px;
+  height: 32px;
+}
+
 body {
   font-family: Arial, sans-serif;
   display: flex;
@@ -36,7 +46,7 @@ button {
 button:hover {
   background-color: gold;
 }
-video {
+social-links {
   margin-top: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

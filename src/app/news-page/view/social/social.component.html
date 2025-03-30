@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <link rel="stylesheet" href="social.component.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socials hochladen</title>
+  </head>
+  <body>
+    <h2>Socials hochladen</h2>
+
+    <form id="uploadForm">
+      <select matNativeControl required>
+        <option value="Facebook">Facebook</option>
+        <option value="Instagram">Instagram</option>
+      </select>
+      <input type="text" id="link" placeholder="Link" required />
+      <button type="submit">Hochladen</button>
+    </form>
+
+    <div class="social-links">
+      <img src="/src/assets/facebook-icon.png" alt="facebook icon" />
+      <a href="https://www.facebook.com/irfcfestival/"></a>
+      <img src="/src/assets/instagram-icon.png" alt="instagram icon" />
+      <a href="https://www.instagram.com/irfc_festival/"></a>
+    </div>
+  </body>
+</html>
