@@ -24,4 +24,8 @@ export class NewsService {
   deleteVideo() {
     return this.httpClient.delete<Response>(`api/intro-video`);
   }
+
+  postVideos(videoDto: VideoDto) {
+    return this.httpClient.post<VideoDto>('api/intro-video', videoDto);
+  }
 }
