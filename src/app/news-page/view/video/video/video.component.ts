@@ -13,35 +13,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./video.component.css'],
 })
 export class VideoComponent implements OnInit, OnDestroy {
-  @Input() video: VideoDto | undefined;
-  @Input() videoId: number | undefined;
-  isLoading = true;
-
-  constructor(private videoService: NewsService) {}
-
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
-
-  ngOnInit(): void {
-    this.videoService.getVideo().subscribe((video) => {
-      this.video = video;
-
-      this.isLoading = false;
-    });
-
-    this.videoService.getVideo().subscribe((video) => (this.video = video));
-  }
-}
-
-// TEST
-
-@Component({
-  selector: 'app-video-form',
-  templateUrl: './video.component.html',
-  styleUrls: ['./video.component.css'],
-})
-export class videoFormComponent implements OnInit, OnDestroy {
   @Input() video: VideoDto = {
     videoId: 0,
     altText: '',
@@ -49,6 +20,17 @@ export class videoFormComponent implements OnInit, OnDestroy {
   };
   @Input() videoPath = '';
   @Input() videoId = 0;
+  isLoading = true;
+
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    private videoService: NewsService
+  ) {}
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   videoFormGroup = new FormGroup({
     videoId: new FormControl(0, Validators.required),
@@ -58,13 +40,15 @@ export class videoFormComponent implements OnInit, OnDestroy {
 
   receivedVideo: VideoDto = this.video;
 
-  constructor(
-    private router: Router,
-    public dialog: MatDialog,
-    private videoService: NewsService
-  ) {}
-
   ngOnInit(): void {
+    this.videoService.getVideo().subscribe((video) => {
+      this.video = video;
+
+      this.isLoading = false;
+    });
+
+    this.videoService.getVideo().subscribe((video) => (this.video = video));
+
     if (this.videoId != undefined) {
       this.videoService.getVideo().subscribe((video: VideoDto) => {
         this.video = video;
@@ -182,9 +166,5 @@ export class videoFormComponent implements OnInit, OnDestroy {
         );
       }
     }
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }

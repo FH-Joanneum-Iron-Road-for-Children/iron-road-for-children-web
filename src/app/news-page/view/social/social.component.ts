@@ -10,12 +10,16 @@ export class SocialComponent {
     {
       name: 'Facebook',
       url: 'https://www.facebook.com/irfcfestival/',
-      icon: 'src/assets/facebook-icon.png',
+      icon: '../../../../assets/facebook-icon.png',
     },
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/irfc_festival/',
-      icon: 'src/assets/instagram-icon.png',
+      icon: '../../../../assets/instagram-icon.png',
     },
   ];
+
+  addSocialLink(name: string, url: string, icon: string) {
+    this.socialLinks.push({ name, url, icon });
+  }
 }

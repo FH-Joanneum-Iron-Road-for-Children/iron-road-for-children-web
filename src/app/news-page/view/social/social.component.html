@@ -5,24 +5,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Socials hochladen</title>
+    <script type="text/javascript" src="./social.component.js"></script>
   </head>
-  <body>
-    <h2>Socials hochladen</h2>
 
-    <form id="uploadForm">
-      <select matNativeControl required>
-        <option value="Facebook">Facebook</option>
-        <option value="Instagram">Instagram</option>
-      </select>
-      <input type="text" id="link" placeholder="Link" required />
-      <button type="submit">Hochladen</button>
-    </form>
+  <body>
+    <!--
+    <div class="social-links">
+      <img src="/src/assets/facebook-icon.png" href="https://www.facebook.com/irfcfestival/" alt="facebook icon" />
+      <img src="/src/assets/instagram-icon.png" href="https://www.instagram.com/irfc_festival/" alt="instagram icon" />
+    </div>
+    -->
 
     <div class="social-links">
-      <img src="/src/assets/facebook-icon.png" alt="facebook icon" />
-      <a href="https://www.facebook.com/irfcfestival/"></a>
-      <img src="/src/assets/instagram-icon.png" alt="instagram icon" />
-      <a href="https://www.instagram.com/irfc_festival/"></a>
+      <a *ngFor="let link of socialLinks" [href]="link.url" target="_blank">
+        <img [src]="link.icon" [alt]="link.name" />
+      </a>
+    </div>
+
+    <div class="add-link-form">
+      <input type="text" #name placeholder="Name" />
+      <input type="text" #url placeholder="URL" />
+      <input type="text" #icon placeholder="Icon-Pfad" />
+      <button (click)="addSocialLink(name.value, url.value, icon.value)">
+        Hinzufügen
+      </button>
     </div>
   </body>
 </html>

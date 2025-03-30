@@ -5,20 +5,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Intro-Video hochladen</title>
+    <script type="text/javascript" src="./video.component.js"></script>
   </head>
   <body>
     <h2>Intro-Video verwalten</h2>
 
     <form id="uploadForm">
       <input type="file" id="videoInput" accept="video/mp4" required />
-      <input type="text" id="altText" placeholder="Alternativtext" required />
+      <input type="text" id="altText" name="altText" required />
       <button type="submit">Hochladen</button>
     </form>
 
-    <video
-      id="videoPlayer"
-      controls
-      style="display: none; width: 100%; max-width: 600px"></video>
     <button id="deleteButton" style="display: none">Video löschen</button>
 
     <script>
@@ -37,6 +34,7 @@
         .getElementById('uploadForm')
         .addEventListener('submit', async (event) => {
           event.preventDefault();
+          console.log('POSTING');
 
           const fileInput = document.getElementById('videoInput');
           const altTextInput = document.getElementById('altText');
@@ -54,7 +52,7 @@
 
           if (response.ok) {
             alert('Video erfolgreich hochgeladen!');
-            fetchVideo();
+            await fetchVideo();
           } else {
             alert('Fehler beim Hochladen.');
           }
