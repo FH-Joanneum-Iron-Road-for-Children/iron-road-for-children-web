@@ -9,24 +9,16 @@
   </head>
 
   <body>
-    <!--
     <div class="social-links">
-      <img src="/src/assets/facebook-icon.png" href="https://www.facebook.com/irfcfestival/" alt="facebook icon" />
-      <img src="/src/assets/instagram-icon.png" href="https://www.instagram.com/irfc_festival/" alt="instagram icon" />
-    </div>
-    -->
-
-    <div class="social-links">
-      <a *ngFor="let link of socialLinks" [href]="link.url" target="_blank">
-        <img [src]="link.icon" [alt]="link.name" />
+      <a *ngFor="let link of socialLinks" [href]="link.link" target="_blank">
+        <p [id]="link.socialMediatId">{{ link.title }}</p>
       </a>
     </div>
 
     <div class="add-link-form">
-      <input type="text" #name placeholder="Name" />
-      <input type="text" #url placeholder="URL" />
-      <input type="text" #icon placeholder="Icon-Pfad" />
-      <button (click)="addSocialLink(name.value, url.value, icon.value)">
+      <input type="text" #title placeholder="title" />
+      <input type="text" #link placeholder="link" />
+      <button (click)="addSocialLink(title.value, link.value)">
         Hinzufügen
       </button>
     </div>

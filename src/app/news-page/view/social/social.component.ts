@@ -8,18 +8,22 @@ import { Component } from '@angular/core';
 export class SocialComponent {
   socialLinks = [
     {
-      name: 'Facebook',
-      url: 'https://www.facebook.com/irfcfestival/',
-      icon: '../../../../assets/facebook-icon.png',
+      socialMediatId: 0,
+      title: 'Facebook',
+      link: 'https://www.facebook.com/irfcfestival/',
     },
     {
-      name: 'Instagram',
-      url: 'https://www.instagram.com/irfc_festival/',
-      icon: '../../../../assets/instagram-icon.png',
+      socialMediatId: 1,
+      title: 'Instagram',
+      link: 'https://www.instagram.com/irfc_festival/',
     },
   ];
 
-  addSocialLink(name: string, url: string, icon: string) {
-    this.socialLinks.push({ name, url, icon });
+  addSocialLink(title: string, link: string) {
+    //get /api/socialMedias with id title link
+
+    const socialMediatId: number = this.socialLinks.length;
+
+    this.socialLinks.push({ socialMediatId, title, link });
   }
 }
