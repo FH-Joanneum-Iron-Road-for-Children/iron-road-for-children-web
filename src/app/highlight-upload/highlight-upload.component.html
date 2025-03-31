@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <div class="highlight-upload">
+      <input type="file" (change)="onFileSelected($event)" />
+      <input type="text" [(ngModel)]="altText" placeholder="Alt-Text" />
+      <input type="text" [(ngModel)]="description" placeholder="Beschreibung" />
+      <button (click)="uploadFile($event)">Hochladen</button>
+
+      <div *ngIf="imageUrl">
+        <a [href]="imageUrl" target="_blank">
+          <img
+            [src]="imageUrl"
+            alt="Hochgeladenes Bild"
+            style="max-width: 300px" />
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

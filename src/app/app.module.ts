@@ -56,6 +56,7 @@ import { SocialComponent } from './news-page/view/social/social.component';
 import { SharedContentPageComponent } from './shared-content/view/shared-content-page/shared-content-page.component';
 import { ImageGalleryComponent } from './shared-content/view/shared-content-page/image-gallery/image-gallery.component';
 import { PlaylistComponent } from './shared-content/view/shared-content-page/playlist/playlist.component';
+import { HighlightUploadComponent } from './highlight-upload/highlight-upload.component';
 
 registerLocaleData(localeAt, 'de-AT');
 
@@ -89,6 +90,7 @@ registerLocaleData(localeAt, 'de-AT');
     SharedContentPageComponent,
     ImageGalleryComponent,
     PlaylistComponent,
+    HighlightUploadComponent,
   ],
 
   imports: [
