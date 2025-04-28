@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { VideoDto } from 'src/app/models/models';
+import { HighlightDTO as HighlightDto, VideoDto } from 'src/app/models/models';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -27,5 +27,9 @@ export class NewsService {
 
   postVideos(videoDto: VideoDto) {
     return this.httpClient.post<VideoDto>('api/intro-video', videoDto);
+  }
+
+  createHighlight(formData: FormData) {
+    return this.httpClient.post<HighlightDto>('api/highlight', formData);
   }
 }

@@ -69,3 +69,9 @@ export type Item = {
   name: string;
   isInUse: boolean;
 };
+
+export interface HighlightDTO {
+  altText: string;
+  description: string;
+  path: string;
+}
