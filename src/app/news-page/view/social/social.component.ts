@@ -32,7 +32,7 @@ export class SocialComponent implements OnInit {
   // Add new social media link
   addSocialLink(title: string, link: string) {
     const newSocialMedia = {
-      socialMediaId: 0, // Let backend generate ID if possible
+      socialMediaId: 0,
       title,
       link,
     };

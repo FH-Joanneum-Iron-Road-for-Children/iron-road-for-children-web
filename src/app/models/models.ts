@@ -64,6 +64,11 @@ export interface VideoDto {
   path: string;
 }
 
+export interface VideoFileUploadDTO {
+  file: File | null;
+  altText: string;
+}
+
 export type Item = {
   id: number;
   name: string;
