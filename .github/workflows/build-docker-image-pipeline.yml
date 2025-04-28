@@ -6,6 +6,10 @@ on:
       - develop
       - fix-pipeline
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build-docker-image-job:
     runs-on: ubuntu-latest
