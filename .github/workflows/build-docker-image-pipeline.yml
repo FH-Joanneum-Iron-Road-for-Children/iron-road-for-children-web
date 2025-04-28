@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - develop
+      - fix-pipeline
 
 jobs:
   build-docker-image-job:
@@ -14,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Login to GitHub Container Registry
-        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build Image
         run: |
