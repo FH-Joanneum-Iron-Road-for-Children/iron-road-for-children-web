@@ -76,8 +76,26 @@ export interface VideoDto {
   path: string;
 }
 
+export interface VideoFileUploadDTO {
+  file: File | null;
+  altText: string;
+}
+
 export type Item = {
   id: number;
   name: string;
   isInUse: boolean;
 };
+
+export interface HighlightDTO {
+  highlightId: number;
+  altText: string;
+  description: string;
+  path: string;
+}
+
+export interface HighlightFileUploadDTO {
+  file: File | null;
+  altText: string;
+  description: string;
+}

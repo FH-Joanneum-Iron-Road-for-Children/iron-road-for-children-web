@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SocialMediaService } from '../../../services/social-media.service';
 
 @Component({
@@ -6,39 +6,45 @@ import { SocialMediaService } from '../../../services/social-media.service';
   templateUrl: './social.component.html',
   styleUrls: ['./social.component.css'],
 })
-export class SocialComponent {
+export class SocialComponent implements OnInit {
+  socialLinks: { socialMediaId: number; title: string; link: string }[] = [];
+
   constructor(private socialMediaService: SocialMediaService) {}
 
-  socialLinks = [
-    {
-      socialMediatId: 0,
-      title: 'Facebook',
-      link: 'https://www.facebook.com/irfcfestival/',
-    },
-    {
-      socialMediatId: 1,
-      title: 'Instagram',
-      link: 'https://www.instagram.com/irfc_festival/',
-    },
-  ];
+  ngOnInit() {
+    // Load all social media links when the component initializes
+    this.loadSocialLinks();
+  }
 
+  // Load all social media links from the backend
+  loadSocialLinks() {
+    this.socialMediaService.getAllSocialMedias().subscribe(
+      (data) => {
+        this.socialLinks = data; // Update the socialLinks array with fetched data
+        console.log('Loaded social links:', this.socialLinks);
+      },
+      (error) => {
+        console.error('Error loading social links:', error);
+      }
+    );
+  }
+
+  // Add new social media link
   addSocialLink(title: string, link: string) {
-    //get /api/socialMedias with id title link
-    //http://localhost:4200/api/socialMedias but returns 404
+    const newSocialMedia = {
+      socialMediaId: 0,
+      title,
+      link,
+    };
 
-    const socialMediatId: number = this.socialLinks.length;
-
-    this.socialLinks.push({ socialMediatId, title, link });
-
-    this.socialMediaService
-      .addSocialMedia({ socialMediatId, title, link })
-      .subscribe(
-        (response: any) => {
-          console.log('Social media added:', response);
-        },
-        (error: any) => {
-          console.error('Error adding social media:', error);
-        }
-      );
+    this.socialMediaService.addSocialMedia(newSocialMedia).subscribe(
+      (response: any) => {
+        console.log('Social media added:', response);
+        this.socialLinks.push(response); // Update the list with the newly added social media
+      },
+      (error: any) => {
+        console.error('Error adding social media:', error);
+      }
+    );
   }
 }
