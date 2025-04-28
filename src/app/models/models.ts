@@ -21,6 +21,12 @@ export interface EventInfoDto {
   pictures: PictureDto[];
 }
 
+export interface PlaylistDto {
+  playlistId?: number;
+  title: string;
+  spotifyPlaylistId: string;
+}
+
 export interface EventLocationDto {
   eventLocationId: number;
   name: string;
