@@ -28,7 +28,7 @@
     <div class="highlight-upload-entry">
       <div *ngIf="fileEntry.path">
         <div *ngIf="isVideo(fileEntry.path)">
-          <video width="300" controls>
+          <video width="300" height="200" controls>
             <source [src]="fileEntry.path" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -38,6 +38,7 @@
             [src]="fileEntry.path"
             alt="Image preview"
             style="
+              height: 200px;
               max-width: 300px;
               border-radius: 8px;
               box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
