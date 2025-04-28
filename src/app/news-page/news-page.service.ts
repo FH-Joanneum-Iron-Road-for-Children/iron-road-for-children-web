@@ -30,6 +30,14 @@ export class NewsService {
   }
 
   createHighlight(formData: FormData) {
-    return this.httpClient.post<HighlightDto>('api/highlight', formData);
+    return this.httpClient.post<HighlightDto>('api/highlights', formData);
+  }
+
+  getAllHighlights(): Observable<HighlightDto[]> {
+    return this.httpClient.get<HighlightDto[]>('api/highlights');
+  }
+
+  deleteHighlight(highlightId: number): Observable<Response> {
+    return this.httpClient.delete<Response>(`api/highlights/${highlightId}`);
   }
 }

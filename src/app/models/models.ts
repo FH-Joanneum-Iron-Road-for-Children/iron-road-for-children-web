@@ -71,7 +71,14 @@ export type Item = {
 };
 
 export interface HighlightDTO {
+  highlightId: number;
   altText: string;
   description: string;
   path: string;
+}
+
+export interface HighlightFileUploadDTO {
+  file: File | null;
+  altText: string;
+  description: string;
 }

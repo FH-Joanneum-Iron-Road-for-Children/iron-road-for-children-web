@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NewsService } from '../news-page/news-page.service';
+import { HighlightDTO, HighlightFileUploadDTO } from '../models/models';
 
 @Component({
   selector: 'app-highlight-upload',
@@ -8,44 +9,96 @@ import { NewsService } from '../news-page/news-page.service';
   styleUrls: ['./highlight-upload.component.css'],
 })
 export class HighlightUploadComponent {
-  imageUrl: string | ArrayBuffer | null = null;
-  imageLink = '';
-  altText = '';
-  description = '';
-  fileType = '';
-  selectedFile: File | null = null;
+  fileToUpload: HighlightFileUploadDTO = {
+    file: null,
+    altText: '',
+    description: '',
+  };
 
-  constructor(private newsServerice: NewsService) {}
+  existingFiles: HighlightDTO[] = [];
+
+  constructor(private newsService: NewsService) {}
+
+  ngOnInit(): void {
+    this.newsService.getAllHighlights().subscribe(
+      (highlights) => {
+        this.existingFiles = highlights;
+      },
+      (error) => {
+        console.error('Error fetching highlights:', error);
+      }
+    );
+  }
+
+  removeFileEntry(index: number): void {
+    this.newsService
+      .deleteHighlight(this.existingFiles[index].highlightId)
+      .subscribe(
+        (response) => {
+          alert('Datei erfolgreich gelöscht!');
+          this.existingFiles.splice(index, 1); // Remove the file from the list
+        },
+        (error) => {
+          alert('Fehler beim Löschen der Datei!');
+        }
+      );
+  }
 
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-    if (this.selectedFile) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.imageUrl = e.target!.result;
-      };
-      reader.readAsDataURL(this.selectedFile);
-      this.fileType = this.selectedFile.name.split('.').pop() || '';
+    const file = event.target.files[0];
+
+    if (file) {
+      this.fileToUpload.file = file;
+      this.fileToUpload.altText = file.name;
     }
   }
 
-  uploadFile(event: any) {
-    if (!event.target.files[0]) return;
-    this.selectedFile = event.target.files[0];
-
+  uploadFile(): void {
     const formData = new FormData();
-    formData.append('file', this.selectedFile!);
-    formData.append('altText', this.altText);
-    formData.append('description', this.description);
-    formData.append('fileType', this.fileType);
-
-    this.newsServerice.createHighlight(formData).subscribe(
-      (response) => {
-        this.imageUrl = response.path;
-      },
-      (error) => {
-        console.error('Error uploading file:', error);
+    if (this.fileToUpload?.file != null) {
+      formData.append(
+        'file',
+        this.fileToUpload.file,
+        this.fileToUpload.file.name
+      );
+      formData.append('altText', this.fileToUpload.altText);
+      formData.append('description', this.fileToUpload.description);
+      formData.append(
+        'fileType',
+        this.fileToUpload.file.name.split('.').pop()?.toUpperCase() || ''
+      );
+      if (this.isValidVideoFile()) {
+        this.newsService.createHighlight(formData).subscribe(
+          (response) => {
+            alert('Datei erfolgreich hochgeladen!');
+            this.existingFiles.push(response);
+          },
+          (error) => {
+            alert('Fehler beim Hochladen der Datei!');
+          }
+        );
+      } else {
+        alert('Maximale Dateigröße von 2MB überschritten');
       }
-    );
+    }
+  }
+
+  isValidVideoFile(): boolean {
+    if (this.fileToUpload.file) {
+      const allowedFormat = 'video/mp4';
+      const maxFileSize = 2 * 1024 * 1024; // 2MB
+
+      return (
+        allowedFormat.includes(this.fileToUpload.file.type) &&
+        this.fileToUpload.file.size <= maxFileSize
+      );
+    }
+    return false;
+  }
+
+  isVideo(filePath: string): boolean {
+    const videoExtensions = ['mp4'];
+    const extension = filePath.split('.').pop()?.toLowerCase() || '';
+    return videoExtensions.includes(extension);
   }
 }

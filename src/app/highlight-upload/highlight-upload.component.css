@@ -1,22 +1,20 @@
-body {
-  font-family: Arial, sans-serif;
+.highlight-upload-head {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #f4f4f4;
-  margin: 0;
+  align-items: center;
+  white-space: nowrap;
+  gap: 10px;
 }
-h2 {
-  color: #333;
-}
-form {
+
+.highlight-upload-entry {
+  display: flex;
+  flex-direction: column;
   background: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  align-items: center;
   width: 300px;
 }
 input,
@@ -36,8 +34,34 @@ button {
 button:hover {
   background-color: gold;
 }
-video {
-  margin-top: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+.highlight-upload-component-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  padding: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.highlight-upload-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  gap: 10px;
+}
+
+.highlight-text-field {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.highlight-label {
+  color: gray;
+  font-size: small;
 }
