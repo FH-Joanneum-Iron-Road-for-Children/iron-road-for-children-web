@@ -1,6 +1,8 @@
 .social-links {
   display: flex;
-  gap: 10px;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .social-links a img {
@@ -23,7 +25,7 @@ h2 {
 form {
   background: white;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 300px;
@@ -37,16 +39,17 @@ button {
   border-radius: 5px;
 }
 button {
-  background-color: yellow;
+  background-color: #EEDF7A;
   border: none;
   font-size: 16px;
   cursor: pointer;
+  font-weight: bold;
 }
 button:hover {
   background-color: gold;
 }
 social-links {
   margin-top: 20px;
-  border-radius: 8px;
+  border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
