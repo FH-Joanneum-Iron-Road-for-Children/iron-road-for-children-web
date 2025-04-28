@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ImageGalleryComponent } from './image-gallery.component';
+import { TestModule } from 'src/app/testing/test.module';
 
 describe('ImageGalleryComponent', () => {
   let component: ImageGalleryComponent;
@@ -9,6 +10,7 @@ describe('ImageGalleryComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ImageGalleryComponent],
+      imports: [TestModule], // Add any necessary imports here
     }).compileComponents();
 
     fixture = TestBed.createComponent(ImageGalleryComponent);
