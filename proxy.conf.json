@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://backend.irfc-test.fh-joanneum.at",
+    "target": "http://localhost:8080",
     "secure": true,
     "changeOrigin": true,
     "logLevel": "error"

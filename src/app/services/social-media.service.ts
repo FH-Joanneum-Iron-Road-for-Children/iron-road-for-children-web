@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 interface SocialMedia {
-  socialMediatId: number;
+  socialMediaId: number;
   title: string;
   link: string;
 }
@@ -12,11 +12,16 @@ interface SocialMedia {
   providedIn: 'root',
 })
 export class SocialMediaService {
-  private apiUrl = '/api/socialMedias';
+  private apiUrl = 'http://localhost:8080/api/socialMedias';
 
   constructor(private http: HttpClient) {}
 
-  // Method to send POST request
+  // Method to get all social media links
+  getAllSocialMedias(): Observable<SocialMedia[]> {
+    return this.http.get<SocialMedia[]>(this.apiUrl);
+  }
+
+  // Method to add a new social media link
   addSocialMedia(socialMedia: SocialMedia): Observable<SocialMedia> {
     return this.http.post<SocialMedia>(this.apiUrl, socialMedia);
   }
