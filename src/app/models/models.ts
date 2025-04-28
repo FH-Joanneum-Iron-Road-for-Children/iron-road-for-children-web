@@ -4,7 +4,7 @@ export interface User {
 }
 
 export interface PictureDto {
-  pictureId: number;
+  pictureId?: number;
   altText?: string;
   path?: string | null;
 }
