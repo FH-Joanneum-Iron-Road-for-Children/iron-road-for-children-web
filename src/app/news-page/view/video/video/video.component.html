@@ -12,7 +12,12 @@
 
     <form id="uploadForm">
       <input type="file" id="videoInput" accept="video/mp4" required />
-      <input type="text" id="altText" name="altText" required />
+      <input
+        type="text"
+        id="altText"
+        name="altText"
+        placeholder="Alternativtext"
+        required />
       <button type="submit">Hochladen</button>
     </form>
 
@@ -74,6 +79,11 @@
         });
 
       fetchVideo();
+      //add video player
     </script>
+    <!--<video width="320" height="240" controls>
+  <source src="irfc2023.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>-->
   </body>
 </html>
