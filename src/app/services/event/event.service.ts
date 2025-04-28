@@ -18,7 +18,7 @@ export class EventService {
   }
 
   updateEvent(id: number, eventDto: EventDto) {
-    return this.httpClient.put<EventDto>(`api/events/${id}`, { eventDto });
+    return this.httpClient.put<EventDto>(`api/events/${id}`, eventDto);
   }
 
   createEvent(eventDto: EventDto) {
