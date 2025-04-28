@@ -57,6 +57,8 @@ import { SharedContentPageComponent } from './shared-content/view/shared-content
 import { ImageGalleryComponent } from './shared-content/view/shared-content-page/image-gallery/image-gallery.component';
 import { PlaylistComponent } from './shared-content/view/shared-content-page/playlist/playlist.component';
 import { HighlightUploadComponent } from './highlight-upload/highlight-upload.component';
+import { ImageGalleryService } from './services/image-gallery.service';
+import { SafeUrlPipe } from './shared-content/view/shared-content-page/playlist/safe-url.pipe';
 
 registerLocaleData(localeAt, 'de-AT');
 
@@ -91,6 +93,7 @@ registerLocaleData(localeAt, 'de-AT');
     ImageGalleryComponent,
     PlaylistComponent,
     HighlightUploadComponent,
+    SafeUrlPipe,
   ],
 
   imports: [

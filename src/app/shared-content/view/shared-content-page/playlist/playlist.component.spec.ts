@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlaylistComponent } from './playlist.component';
+import { TestModule } from 'src/app/testing/test.module';
 
 describe('PlaylistComponent', () => {
   let component: PlaylistComponent;
@@ -9,6 +10,7 @@ describe('PlaylistComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PlaylistComponent],
+      imports: [TestModule], // Add any necessary imports here
     }).compileComponents();
 
     fixture = TestBed.createComponent(PlaylistComponent);

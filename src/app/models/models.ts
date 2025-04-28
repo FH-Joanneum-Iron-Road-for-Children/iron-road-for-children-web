@@ -9,10 +9,22 @@ export interface PictureDto {
   path?: string | null;
 }
 
+export interface GalleryDto {
+  galleryId?: number;
+  altText?: string;
+  path?: string | null;
+}
+
 export interface EventInfoDto {
   eventInfoId?: number;
   infoText: string | null;
   pictures: PictureDto[];
+}
+
+export interface PlaylistDto {
+  playlistId?: number;
+  title: string;
+  spotifyPlaylistId: string;
 }
 
 export interface EventLocationDto {

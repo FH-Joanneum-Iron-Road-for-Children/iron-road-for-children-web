@@ -2,14 +2,9 @@
 .countdown-row {
   display: flex;
   justify-content: space-between; /* Ensure the columns take full available space */
-  width: 100%; /* Make the row take the full width of its container */
-  /* align-items: center; Vertically align items */
-  gap: 20px; /* Space between the columns */
-  /* border-bottom: 2px solid #ccc; Add a separator line */
-  padding-bottom: 5px; /*Add spacing below the separator */
-  padding-top: 5px; /*Add spacing below the separator */
-  /* padding-left: 10px; */
-  background-color: #eb5b5b;
+  gap: 30px;
+  padding: 20px;
+  background-color: #A04747;
   border-radius: 3px;
 }
 
@@ -21,7 +16,7 @@
   align-items: center;
   padding-left: 10px;
   gap: 10px; /* Space between countdown items */
-  color: #333; /* Add a default text color */
+  color: #343131; /* Add a default text color */
 }
 
 /* Edit Button Column */
@@ -34,36 +29,50 @@
 }
 
 /* Countdown Item */
-.countdown-item {
-  text-align: center; /* Center-align text inside each countdown item */
-  color: #007bff; /* Add a color for countdown numbers and labels */
+.countdown-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
+.countdown-item {
+  text-align: center;
+}
 /* Countdown Number */
 .countdown-number {
   font-size: 3rem; /* Large font size for numbers */
   font-weight: bold; /* Bold font for emphasis */
-  color: #fff580; /* Add a specific color for numbers */
+  color: #EEDF7A; /* Add a specific color for numbers */
 }
 
 /* Countdown Label */
 .countdown-label {
-  font-size: 1.2rem; /* Slightly smaller font for labels */
+  font-size: 1rem; /* Slightly smaller font for labels */
   text-transform: uppercase; /* Make labels uppercase */
-  margin-top: 5px; /* Add spacing above the label */
-  color: #fff580; /* Add a specific color for labels */
+  color: #EEDF7A; /* Add a specific color for labels */
 }
 
 /* Target the button specifically in the edit-button-column */
 .edit-button-column button {
-  background-color: #fff580 !important; /* Override background color */
+  background-color: #EEDF7A !important; /* Override background color */
   color: rgb(0, 0, 0) !important; /* Override text color */
-  font-size: 1.2rem; /* Increase font size */
-  border-radius: 3px 3px 3px 12px !important; /* Add rounded corners */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add a shadow */
+  border-radius: 5px;
 }
 
 /* Optional: Hover effect */
 .edit-button-column button:hover {
   background-color: #fffbca !important; /* Darker shade on hover */
+}
+
+/* Target Date Display */
+.target-date-display {
+  margin-top: 10px; /* Add spacing above the target date display */
+  text-align: center; /* Center-align the text */
+  font-size: 1.2rem; /* Slightly larger font size */
+  color: #EEDF7A; /* Match the color scheme */
+  background-color: #333; /* Add a contrasting background */
+  padding: 10px; /* Add padding for better spacing */
+  border-radius: 5px; /* Add rounded corners */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add a shadow for emphasis */
 }

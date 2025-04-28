@@ -1,3 +1,55 @@
-<div class="gallery">
-  <img *ngFor="let image of images" [src]="image.src" [alt]="image.alt" />
+<div class="gallery-container" role="main">
+  <h2>Image Gallery</h2>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading" role="status">
+    Loading galleries...
+  </div>
+
+  <!-- No Galleries Message -->
+  <div
+    *ngIf="!isLoading && galleries.length === 0"
+    class="no-galleries"
+    role="alert">
+    <img src="assets/empty-gallery.png" alt="No galleries available" />
+    <p>No galleries available. Upload your first image!</p>
+  </div>
+
+  <!-- Gallery List -->
+  <div *ngIf="!isLoading && galleries.length > 0" class="gallery" role="list">
+    <div *ngFor="let gallery of galleries" class="gallery-item" role="listitem">
+      <img [src]="gallery.path" [alt]="gallery.altText" />
+      <h3>{{ gallery.altText }}</h3>
+      <button
+        (click)="deleteGallery(gallery.galleryId)"
+        class="delete-button"
+        title="Delete {{ gallery.altText }}">
+        Delete
+      </button>
+    </div>
+  </div>
+
+  <!-- Upload Form -->
+  <form (submit)="onUpload($event)" class="upload-form">
+    <label for="fileInput">Select Image</label>
+    <input id="fileInput" type="file" #fileInput accept="image/*" required />
+
+    <label for="titleInput">Title</label>
+    <input
+      id="titleInput"
+      type="text"
+      #titleInput
+      placeholder="Enter title"
+      required />
+
+    <label for="descriptionInput">Description</label>
+    <input
+      id="descriptionInput"
+      type="text"
+      #descriptionInput
+      placeholder="Enter description"
+      required />
+
+    <button type="submit">Upload</button>
+  </form>
 </div>

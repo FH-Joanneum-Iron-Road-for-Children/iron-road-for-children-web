@@ -1,6 +1,36 @@
-<div class="playlist">
-  <div *ngFor="let track of tracks" class="track">
-    <img [src]="track.image" [alt]="track.title" />
-    <h3>{{ track.title }}</h3>
+<div
+  *ngFor="let playlist of playlists; let i = index"
+  class="playlist-container">
+  <div>
+    <h3>{{ playlist.title }}</h3>
+    <iframe
+      style="border-radius: 12px"
+      [src]="
+        'https://open.spotify.com/embed/playlist/' + playlist.spotifyPlaylistId
+          | safeUrl
+      "
+      width="100%"
+      height="352"
+      frameBorder="0"
+      allowfullscreen=""
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
+    <button (click)="deletePlaylist(i)" class="delete-button">Delete</button>
   </div>
+</div>
+
+<div class="add-playlist-form">
+  <h3>Add a New Playlist</h3>
+  <input
+    type="text"
+    [(ngModel)]="newPlaylistTitle"
+    placeholder="Enter Playlist Title"
+    class="input-field" />
+  <input
+    type="text"
+    [(ngModel)]="newPlaylistUrl"
+    placeholder="Enter Spotify Playlist URL"
+    class="input-field" />
+  <button (click)="addPlaylist()" class="add-button">Add Playlist</button>
 </div>

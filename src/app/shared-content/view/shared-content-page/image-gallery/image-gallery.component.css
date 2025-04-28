@@ -1,13 +1,137 @@
-.gallery {
+/* Container for the entire gallery */
+.gallery-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  gap: 20px;
 }
 
-.gallery img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
+/* Grid layout for gallery items */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Individual gallery item styling */
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for gallery images */
+.gallery-item img {
+  max-width: 200px;
+  max-height: 250px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+/* Styling for gallery titles */
+.gallery-item h3 {
+  font-size: 16px;
+  margin: 0;
+  color: #333;
+}
+
+/* Delete button styling */
+.delete-button {
+  margin-top: 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #e60000;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .gallery-item {
+    padding: 8px;
+  }
+
+  .gallery-item h3 {
+    font-size: 14px;
+  }
+
+  .delete-button {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+}
+
+/* Styling for the upload form */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Styling for input fields */
+.upload-form input[type='file'],
+.upload-form input[type='text'] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Styling for the upload button */
+.upload-form button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.upload-form button:hover {
+  background-color: #45a049;
+}
+
+/* Styling for the form note */
+.upload-form .form-note {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  margin-top: 10px;
 }
