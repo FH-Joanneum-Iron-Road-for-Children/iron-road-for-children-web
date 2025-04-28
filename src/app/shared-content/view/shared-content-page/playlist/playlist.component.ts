@@ -10,8 +10,8 @@ import { PlaylistDto } from 'src/app/models/models';
 })
 export class PlaylistComponent {
   playlists: PlaylistDto[] = []; // List of playlist objects
-  newPlaylistUrl: string = ''; // URL for the new playlist
-  newPlaylistTitle: string = ''; // Title for the new playlist
+  newPlaylistUrl = ''; // URL for the new playlist
+  newPlaylistTitle = ''; // Title for the new playlist
 
   constructor(
     private playlistService: PlaylistService,

@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class EditTargetDateDialogComponent {
   newTargetDate: Date | null = null;
-  formattedTargetTime: string = '';
+  formattedTargetTime = '';
 
   constructor(
     public dialogRef: MatDialogRef<EditTargetDateDialogComponent>,

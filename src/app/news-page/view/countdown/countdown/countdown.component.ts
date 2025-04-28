@@ -14,8 +14,8 @@ import { EditTargetDateDialogComponent } from '../edit-target-date-dialog/edit-t
 export class CountdownComponent implements OnInit, OnDestroy {
   targetDate: Date = new Date(); // Default target date
   private intervalId: any;
-  private remainingTime: number = 0;
-  isEventRunning: boolean = false;
+  private remainingTime = 0;
+  isEventRunning = false;
 
   countdownUnits: { value: number; label: string }[] = [];
 
