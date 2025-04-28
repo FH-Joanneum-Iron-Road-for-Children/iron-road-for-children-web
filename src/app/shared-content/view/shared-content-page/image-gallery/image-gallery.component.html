@@ -1,3 +1,26 @@
-<div class="gallery">
-  <img *ngFor="let image of images" [src]="image.src" [alt]="image.alt" />
+<div class="gallery-container">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading">Loading images...</div>
+
+  <!-- No Images Message -->
+  <div *ngIf="!isLoading && images.length === 0" class="no-images">
+    No images available.
+  </div>
+
+  <!-- Image Gallery -->
+  <div *ngIf="!isLoading && images.length > 0" class="gallery">
+    <div *ngFor="let image of images" class="image-item">
+      <img [src]="image.path" [alt]="image.altText" />
+      <button (click)="deleteImage(image.id)" class="delete-button">
+        Delete
+      </button>
+    </div>
+  </div>
+
+  <!-- Upload Form -->
+  <form (submit)="onUpload($event)" class="upload-form">
+    <input type="file" #fileInput accept="image/*" required />
+    <input type="text" #altTextInput placeholder="Alt text" required />
+    <button type="submit">Upload</button>
+  </form>
 </div>

@@ -11,7 +11,12 @@
   <div class="edit-button-column">
     <button mat-raised-button (click)="editTargetDate()">
       <mat-icon>edit</mat-icon>
-      Edit
+      Edit Target Date
     </button>
   </div>
+</div>
+
+<!-- Target Date Display -->
+<div class="target-date-display">
+  <p>Target Date: {{ targetDate | date : 'medium' }}</p>
 </div>

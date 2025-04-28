@@ -1,6 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { EditTargetDateDialogComponent } from '../edit-target-date-dialog/edit-target-date-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import {
+  CountdownService,
+  CountdownDTO,
+} from 'src/app/services/countdown.service';
+import { EditTargetDateDialogComponent } from '../edit-target-date-dialog/edit-target-date-dialog.component';
 
 @Component({
   selector: 'app-countdown',
@@ -8,18 +12,103 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./countdown.component.css'],
 })
 export class CountdownComponent implements OnInit, OnDestroy {
-  targetDate: Date = new Date(new Date().getTime() + 24 * 60 * 60 * 1000); // Default: 24 hours from now
+  targetDate: Date = new Date(); // Default target date
   private intervalId: any;
   private remainingTime: number = 0;
   isEventRunning: boolean = false;
 
   countdownUnits: { value: number; label: string }[] = [];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private countdownService: CountdownService
+  ) {}
 
   ngOnInit(): void {
-    this.targetDate = this.geTargetDateFromBackend(); // Fetch the target date from the server or local storage
+    this.fetchTargetDate(); // Fetch the target date from the backend
     this.startCountdown();
+  }
+
+  /**
+   * Fetch the target date from the backend.
+   */
+  fetchTargetDate(): void {
+    const countdownId = 100; // Fixed ID for the single countdown
+    this.countdownService.getCountdown(countdownId).subscribe({
+      next: (data: CountdownDTO) => {
+        this.targetDate = new Date(data.endDateTimeInUTC); // Convert timestamp to Date
+        this.startCountdown(); // Start the countdown after fetching the target date
+      },
+      error: (err) => {
+        console.error('Error fetching target date:', err);
+        // Fallback to a default target date
+        this.targetDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        this.startCountdown(); // Start the countdown with the fallback target date
+      },
+    });
+  }
+
+  formatNumber(value: number): string {
+    return value < 10 ? '0' + value : value.toString();
+  }
+
+  /**
+   * Save the target date to the backend.
+   * @param newDate The new target date.
+   */
+  saveTargetDate(newDate: Date): void {
+    const countdownId = 100; // Fixed ID for the single countdown
+    const updatedCountdown: CountdownDTO = {
+      countdownId: countdownId,
+      endDateTimeInUTC: newDate.getTime(), // Convert Date to timestamp
+    };
+
+    // Check if the countdown exists
+    this.countdownService.getCountdown(countdownId).subscribe({
+      next: () => {
+        // If the countdown exists, update it
+        this.countdownService
+          .updateCountdown(countdownId, updatedCountdown)
+          .subscribe({
+            next: (data: CountdownDTO) => {
+              console.log('Countdown updated successfully:', data);
+            },
+            error: (err) => {
+              console.error('Error updating countdown:', err);
+            },
+          });
+      },
+      error: () => {
+        // If the countdown does not exist, create it
+        this.countdownService.createCountdown(updatedCountdown).subscribe({
+          next: (data: CountdownDTO) => {
+            console.log('Countdown created successfully:', data);
+          },
+          error: (err) => {
+            console.error('Error creating countdown:', err);
+          },
+        });
+      },
+    });
+  }
+
+  editTargetDate(): void {
+    const dialogRef = this.dialog.open(EditTargetDateDialogComponent, {
+      width: '400px',
+      data: { targetDate: this.targetDate },
+    });
+
+    dialogRef.afterClosed().subscribe((result: string | null) => {
+      if (result) {
+        this.targetDate = new Date(result);
+        this.saveTargetDate(this.targetDate); // Save the updated target date
+        this.startCountdown();
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId);
   }
 
   startCountdown(): void {
@@ -74,35 +163,5 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
   getSeconds(): number {
     return Math.floor((Math.abs(this.remainingTime) / 1000) % 60);
-  }
-
-  editTargetDate(): void {
-    const dialogRef = this.dialog.open(EditTargetDateDialogComponent, {
-      width: '400px',
-      data: { targetDate: this.targetDate },
-    });
-
-    dialogRef.afterClosed().subscribe((result: string | null) => {
-      if (result) {
-        this.targetDate = new Date(result);
-        this.startCountdown();
-      }
-    });
-  }
-
-  ngOnDestroy(): void {
-    clearInterval(this.intervalId);
-  }
-
-  formatNumber(num: number): string {
-    return num < 10 ? '0' + num : num.toString();
-  }
-
-  geTargetDateFromBackend(): Date {
-    return new Date(new Date().getTime() + 24 * 60 * 60 * 1000); // Replace with actual logic to fetch the target date from the server, after Backend Team has implemented the API
-  }
-
-  setargetDateToBackend(newDate: Date) {
-    return null; // Replace with actual logic to fetch the target date from the server or local storage, after Backend Team has implemented the API
   }
 }

@@ -67,3 +67,15 @@
 .edit-button-column button:hover {
   background-color: #fffbca !important; /* Darker shade on hover */
 }
+
+/* Target Date Display */
+.target-date-display {
+  margin-top: 10px; /* Add spacing above the target date display */
+  text-align: center; /* Center-align the text */
+  font-size: 1.2rem; /* Slightly larger font size */
+  color: #fff580; /* Match the color scheme */
+  background-color: #333; /* Add a contrasting background */
+  padding: 10px; /* Add padding for better spacing */
+  border-radius: 5px; /* Add rounded corners */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add a shadow for emphasis */
+}
