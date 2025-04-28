@@ -9,11 +9,18 @@
     <button mat-button routerLink="/voting" routerLinkActive="active-link">
       Voting
     </button>
+    <button mat-button routerLink="/news" routerLinkActive="active-link">
+      News
+    </button>
+    <button
+      mat-button
+      routerLink="/sharedContent"
+      routerLinkActive="active-link">
+      Shared Content
+    </button>
   </div>
   <div class="spacer"></div>
   <ng-container *ngIf="auth.isAuthenticated$ | async">
-    <button mat-button (click)="logout()">
-      Abmelden
-    </button>
+    <button mat-button (click)="logout()">Abmelden</button>
   </ng-container>
 </mat-toolbar>

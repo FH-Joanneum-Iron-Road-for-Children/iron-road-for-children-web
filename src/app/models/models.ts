@@ -9,10 +9,22 @@ export interface PictureDto {
   path?: string | null;
 }
 
+export interface GalleryDto {
+  galleryId?: number;
+  altText?: string;
+  path?: string | null;
+}
+
 export interface EventInfoDto {
   eventInfoId?: number;
   infoText: string | null;
   pictures: PictureDto[];
+}
+
+export interface PlaylistDto {
+  playlistId?: number;
+  title: string;
+  spotifyPlaylistId: string;
 }
 
 export interface EventLocationDto {
@@ -56,6 +68,12 @@ export interface VotingDto {
   votingResult?: VotingResultDto;
   active: boolean;
   editable: boolean;
+}
+
+export interface VideoDto {
+  videoId: number;
+  altText: string;
+  path: string;
 }
 
 export type Item = {

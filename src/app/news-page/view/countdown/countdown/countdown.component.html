@@ -1,0 +1,22 @@
+<div class="countdown-row">
+  <!-- Countdown Area -->
+  <div class="countdown-item" *ngFor="let unit of countdownUnits">
+    <div class="countdown-column">
+      <div class="countdown-number">{{ formatNumber(unit.value) }}</div>
+      <div class="countdown-label">{{ unit.label }}</div>
+    </div>
+  </div>
+
+  <!-- Edit Button Area -->
+  <div class="edit-button-column">
+    <button mat-raised-button (click)="editTargetDate()">
+      <mat-icon>edit</mat-icon>
+      Edit Target Date
+    </button>
+  </div>
+</div>
+
+<!-- Target Date Display -->
+<div class="target-date-display">
+  <p>Target Date: {{ targetDate | date : 'medium' }}</p>
+</div>

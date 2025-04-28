@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <link rel="stylesheet" href="video.component.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intro-Video hochladen</title>
+    <script type="text/javascript" src="./video.component.js"></script>
+  </head>
+  <body>
+    <h2>Intro-Video verwalten</h2>
+
+    <form id="uploadForm">
+      <input type="file" id="videoInput" accept="video/mp4" required />
+      <input
+        type="text"
+        id="altText"
+        name="altText"
+        placeholder="Alternativtext"
+        required />
+      <button type="submit">Hochladen</button>
+    </form>
+
+    <button id="deleteButton" style="display: none">Video löschen</button>
+
+    <script>
+      async function fetchVideo() {
+        const response = await fetch('/api/intro-video');
+        if (response.status === 200) {
+          const data = await response.json();
+          const videoPlayer = document.getElementById('videoPlayer');
+          videoPlayer.src = data.path;
+          videoPlayer.style.display = 'block';
+          document.getElementById('deleteButton').style.display = 'block';
+        }
+      }
+
+      document
+        .getElementById('uploadForm')
+        .addEventListener('submit', async (event) => {
+          event.preventDefault();
+          console.log('POSTING');
+
+          const fileInput = document.getElementById('videoInput');
+          const altTextInput = document.getElementById('altText');
+          if (!fileInput.files.length)
+            return alert('Bitte eine MP4-Datei auswählen.');
+
+          const formData = new FormData();
+          formData.append('file', fileInput.files[0]);
+          formData.append('altText', altTextInput.value);
+
+          const response = await fetch('/api/intro-video', {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (response.ok) {
+            alert('Video erfolgreich hochgeladen!');
+            await fetchVideo();
+          } else {
+            alert('Fehler beim Hochladen.');
+          }
+        });
+
+      document
+        .getElementById('deleteButton')
+        .addEventListener('click', async () => {
+          const response = await fetch('/api/intro-video', {
+            method: 'DELETE',
+          });
+          if (response.ok) {
+            alert('Video gelöscht.');
+            document.getElementById('videoPlayer').style.display = 'none';
+            document.getElementById('deleteButton').style.display = 'none';
+          } else {
+            alert('Fehler beim Löschen.');
+          }
+        });
+
+      fetchVideo();
+      //add video player
+    </script>
+    <!--<video width="320" height="240" controls>
+  <source src="irfc2023.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>-->
+  </body>
+</html>

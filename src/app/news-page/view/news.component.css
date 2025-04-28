@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+  align-items: center;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.section {
+  padding: 30px;
+  text-align: center;
+  font-size: 24px;
+  background-color: #fffcdb;
+  border-radius: 5px;
+}
