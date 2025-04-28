@@ -67,33 +67,17 @@ export class HighlightUploadComponent {
         'fileType',
         this.fileToUpload.file.name.split('.').pop()?.toUpperCase() || ''
       );
-      if (this.isValidVideoFile()) {
-        this.newsService.createHighlight(formData).subscribe(
-          (response) => {
-            alert('Datei erfolgreich hochgeladen!');
-            this.existingFiles.push(response);
-          },
-          (error) => {
-            alert('Fehler beim Hochladen der Datei!');
-          }
-        );
-      } else {
-        alert('Maximale Dateigröße von 2MB überschritten');
-      }
-    }
-  }
 
-  isValidVideoFile(): boolean {
-    if (this.fileToUpload.file) {
-      const allowedFormat = 'video/mp4';
-      const maxFileSize = 2 * 1024 * 1024; // 2MB
-
-      return (
-        allowedFormat.includes(this.fileToUpload.file.type) &&
-        this.fileToUpload.file.size <= maxFileSize
+      this.newsService.createHighlight(formData).subscribe(
+        (response) => {
+          alert('Datei erfolgreich hochgeladen!');
+          this.existingFiles.push(response);
+        },
+        (error) => {
+          alert('Fehler beim Hochladen der Datei!');
+        }
       );
     }
-    return false;
   }
 
   isVideo(filePath: string): boolean {
