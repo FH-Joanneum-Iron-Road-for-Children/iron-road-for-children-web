@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <link rel="stylesheet" href="social.component.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socials hochladen</title>
+    <script type="text/javascript" src="./social.component.js"></script>
+  </head>
+
+  <body>
+    <div class="social-links">
+      <a *ngFor="let link of socialLinks" [href]="link.link" target="_blank">
+        <p [id]="link.socialMediaId">{{ link.title }}</p>
+      </a>
+    </div>
+
+    <div class="add-link-form">
+      <input type="text" #title placeholder="title" />
+      <input type="text" #link placeholder="link" />
+      <button (click)="addSocialLink(title.value, link.value)">
+        Hinzufügen
+      </button>
+    </div>
+  </body>
+</html>

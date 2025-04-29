@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <link rel="stylesheet" href="video.component.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intro-Video hochladen</title>
+    <script type="text/javascript" src="./video.component.js"></script>
+  </head>
+  <body>
+    <h2>Intro-Video hochladen</h2>
+
+    <div class="video-upload-entry">
+      <input type="file" (change)="onFileSelected($event)" />
+      <input
+        [(ngModel)]="fileEntry.altText"
+        type="text"
+        id="altText"
+        name="altText"
+        placeholder="Alternativtext"
+        required />
+      <button (click)="uploadVideo($event)">Hochladen</button>
+    </div>
+
+    <div *ngIf="video?.path">
+      <video *ngIf="video?.path" controls>
+        <source [src]="video.path" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </body>
+</html>
