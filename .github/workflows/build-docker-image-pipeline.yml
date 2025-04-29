@@ -1,5 +1,5 @@
-name: Build and Push Docker Image
-run-name: ${{ github.actor }} builds web container
+name: Build, Push, and Deploy Docker Image
+run-name: ${{ github.actor }} builds and deploys web container
 on:
   push:
     branches:
@@ -10,36 +10,63 @@ permissions:
   contents: read
   packages: write
 jobs:
-  build-develop:
+  build-deploy-develop:
     if: startsWith(github.ref, 'refs/heads/develop')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      
       - name: Login to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      
       - name: Build Image
         run: |
           docker build -t ghcr.io/fh-joanneum-iron-road-for-children/iron-road-for-children-web/web:develop .
+      
       - name: Push Image
         run: |
           docker push ghcr.io/fh-joanneum-iron-road-for-children/iron-road-for-children-web/web:develop
+      
+      - name: Set up Kubeconfig
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG_TEST }}" > $HOME/.kube/config
+          chmod 600 $HOME/.kube/config
+      
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl rollout restart deployment/irfc-web -n irfc
   
-  build-release:
+  build-deploy-release:
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      
       - name: Extract version
         id: version
         run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      
       - name: Login to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      
       - name: Build Image
         run: |
           docker build -t ghcr.io/fh-joanneum-iron-road-for-children/iron-road-for-children-web/web:latest -t ghcr.io/fh-joanneum-iron-road-for-children/iron-road-for-children-web/web:${{ steps.version.outputs.version }} .
+      
       - name: Push Image
         run: |
           docker push ghcr.io/fh-joanneum-iron-road-for-children/iron-road-for-children-web/web:latest
           docker push ghcr.io/fh-joanneum-iron-road-for-children/iron-road-for-children-web/web:${{ steps.version.outputs.version }}
+      
+      - name: Set up Kubeconfig
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG_PROD }}" > $HOME/.kube/config
+          chmod 600 $HOME/.kube/config
+      
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl rollout restart deployment/irfc-web -n irfc
