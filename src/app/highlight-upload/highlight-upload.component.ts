@@ -25,7 +25,7 @@ export class HighlightUploadComponent {
         this.existingFiles = highlights;
       },
       (error) => {
-        console.error('Error fetching highlights:', error);
+        console.error('Fehler beim Highlights laden:', error);
       }
     );
   }

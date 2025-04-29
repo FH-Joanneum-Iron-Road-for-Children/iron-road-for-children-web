@@ -31,7 +31,7 @@ export class VideoComponent implements OnInit, OnDestroy {
         this.video = video;
       },
       (error) => {
-        console.error('Error fetching video:', error);
+        console.error('Fehler beim Video laden:', error);
       }
     );
   }
@@ -63,7 +63,6 @@ export class VideoComponent implements OnInit, OnDestroy {
   // Handle file selection
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-    console.log('onfileselected event:' + event);
     if (input?.files?.[0]) {
       this.fileEntry.file = input.files[0];
     }

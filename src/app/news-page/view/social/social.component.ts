@@ -21,10 +21,10 @@ export class SocialComponent implements OnInit {
     this.socialMediaService.getAllSocialMedias().subscribe(
       (data) => {
         this.socialLinks = data; // Update the socialLinks array with fetched data
-        console.log('Loaded social links:', this.socialLinks);
+        console.log('Sozial Links geladen:', this.socialLinks);
       },
       (error) => {
-        console.error('Error loading social links:', error);
+        console.error('Fehler beim Laden der Sozial Links:', error);
       }
     );
   }
@@ -39,11 +39,11 @@ export class SocialComponent implements OnInit {
 
     this.socialMediaService.addSocialMedia(newSocialMedia).subscribe(
       (response: any) => {
-        console.log('Social media added:', response);
+        console.log('Sozial Links hinzugefügt:', response);
         this.socialLinks.push(response); // Update the list with the newly added social media
       },
       (error: any) => {
-        console.error('Error adding social media:', error);
+        console.error('Fehler beim Hinzufügen der Sozial Links:', error);
       }
     );
   }

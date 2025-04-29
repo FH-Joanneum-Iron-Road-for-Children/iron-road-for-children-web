@@ -9,7 +9,6 @@
   </head>
   <body>
     <h2>Intro-Video hochladen</h2>
-
     <div class="video-upload-entry">
       <input type="file" (change)="onFileSelected($event)" />
       <input
@@ -20,6 +19,7 @@
         placeholder="Alternativtext"
         required />
       <button (click)="uploadVideo($event)">Hochladen</button>
+      <!--Add diaog options-->
     </div>
 
     <div *ngIf="video?.path">
