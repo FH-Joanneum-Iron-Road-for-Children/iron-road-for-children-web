@@ -47,4 +47,19 @@ export class SocialComponent implements OnInit {
       }
     );
   }
+
+  // delete social media link
+  removeFileEntry(index: number): void {
+    this.socialMediaService
+      .deleteSocialMedia(this.socialLinks[index].socialMediaId)
+      .subscribe(
+        (response) => {
+          alert('Datei erfolgreich gelöscht!');
+          this.socialLinks.splice(index, 1); // Remove the file from the list
+        },
+        (error) => {
+          alert('Fehler beim Löschen der Datei!');
+        }
+      );
+  }
 }

@@ -39,7 +39,7 @@ button {
   border-radius: 5px;
 }
 button {
-  background-color: #EEDF7A;
+  background-color: #eedf7a;
   border: none;
   font-size: 16px;
   cursor: pointer;
@@ -52,4 +52,28 @@ social-links {
   margin-top: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.social-text-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.social-text-field a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.social-text-field a:hover {
+  text-decoration: underline;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: red;
 }
