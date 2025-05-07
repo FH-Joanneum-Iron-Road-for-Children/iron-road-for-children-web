@@ -9,6 +9,9 @@
 
 mat-toolbar {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .logo-container {

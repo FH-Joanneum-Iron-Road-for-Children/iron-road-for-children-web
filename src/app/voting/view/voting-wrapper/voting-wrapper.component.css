@@ -11,7 +11,7 @@
 }
 
 .overflow-auto {
-  width: 93vw;
+  width: 100%;
   overflow: auto;
 }
 
