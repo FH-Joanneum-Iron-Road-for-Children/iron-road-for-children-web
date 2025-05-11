@@ -2,15 +2,29 @@
   <h3>Highlight hinzufügen / entfernen</h3>
   <div class="highlight-upload-entry">
     <input type="file" (change)="onFileSelected($event)" />
+    <div *ngIf="formSubmitted && !fileToUpload.file" style="color: red">
+      Datei ist erforderlich.
+    </div>
 
     <input
       type="text"
       [(ngModel)]="fileToUpload.altText"
       placeholder="Alt-Text" />
+    <div
+      *ngIf="formSubmitted && !fileToUpload.altText.trim()"
+      style="color: red">
+      Alt-Text ist erforderlich.
+    </div>
+
     <input
       type="text"
       [(ngModel)]="fileToUpload.description"
       placeholder="Beschreibung" />
+    <div
+      *ngIf="formSubmitted && !fileToUpload.description.trim()"
+      style="color: red">
+      Beschreibung ist erforderlich.
+    </div>
 
     <button (click)="uploadFile()">Datei hochladen</button>
   </div>

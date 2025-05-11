@@ -17,6 +17,7 @@ export class HighlightUploadComponent {
 
   existingFiles: HighlightDTO[] = [];
 
+  formSubmitted = false;
   constructor(private newsService: NewsService) {}
 
   ngOnInit(): void {
@@ -54,7 +55,17 @@ export class HighlightUploadComponent {
   }
 
   uploadFile(): void {
+    this.formSubmitted = true;
     const formData = new FormData();
+    if (
+      !this.fileToUpload.file ||
+      !this.fileToUpload.altText.trim() ||
+      !this.fileToUpload.description.trim()
+    ) {
+      console.error('All fields are required');
+      return;
+    }
+
     if (this.fileToUpload?.file != null) {
       formData.append(
         'file',
@@ -72,6 +83,7 @@ export class HighlightUploadComponent {
         (response) => {
           alert('Datei erfolgreich hochgeladen!');
           this.existingFiles.push(response);
+          this.formSubmitted = false;
         },
         (error) => {
           alert('Fehler beim Hochladen der Datei!');
