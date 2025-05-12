@@ -12,7 +12,7 @@ interface SocialMedia {
   providedIn: 'root',
 })
 export class SocialMediaService {
-  private apiUrl = 'http://localhost:8080/api/socialMedias';
+  private apiUrl = 'api/socialMedias';
 
   constructor(private http: HttpClient) {}
 
