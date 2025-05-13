@@ -1,27 +1,29 @@
 <app-navigation></app-navigation>
 <main>
-  <div class="voting-button">
-    <button
-      (click)="openAddVotingDialog()"
-      class="btn btn-primary"
-      mat-raised-button>
-      <mat-icon>add</mat-icon>
-      Neues Voting
-    </button>
-  </div>
-
-  <section *ngIf="isLoading; else content" class="center">
-    <mat-progress-spinner
-      diameter="50"
-      mode="indeterminate"
-      strokeWidth="3"></mat-progress-spinner>
-  </section>
-  <ng-template #content>
-    <app-voting-wrapper
-      *ngIf="votingList"
-      [votingList]="votingList"></app-voting-wrapper>
-    <div *ngIf="votingList?.length == 0" class="center">
-      <p>Keine Votings vorhanden.</p>
+  <div class="voting-content-wrapper">
+    <div class="voting-button">
+      <button
+        (click)="openAddVotingDialog()"
+        class="btn btn-primary"
+        mat-raised-button>
+        <mat-icon>add</mat-icon>
+        Neues Voting
+      </button>
     </div>
-  </ng-template>
+
+    <section *ngIf="isLoading; else content" class="center">
+      <mat-progress-spinner
+        diameter="50"
+        mode="indeterminate"
+        strokeWidth="3"></mat-progress-spinner>
+    </section>
+    <ng-template #content>
+      <app-voting-wrapper
+        *ngIf="votingList"
+        [votingList]="votingList"></app-voting-wrapper>
+      <div *ngIf="votingList?.length == 0" class="center">
+        <p>Keine Votings vorhanden.</p>
+      </div>
+    </ng-template>
+  </div>
 </main>

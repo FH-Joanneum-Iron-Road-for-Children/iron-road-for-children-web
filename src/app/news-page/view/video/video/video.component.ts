@@ -10,6 +10,7 @@ import { VideoDto, VideoFileUploadDTO } from '../../../../models/models';
 export class VideoComponent implements OnInit, OnDestroy {
   video: VideoDto = { videoId: 0, altText: '', path: '' };
   isLoading = true;
+  formSubmitted = false;
 
   fileEntry: { file: File | null; altText: string; path: string } = {
     file: null,
@@ -39,6 +40,13 @@ export class VideoComponent implements OnInit, OnDestroy {
   // Submit the video upload
   uploadVideo(event: Event): void {
     event.preventDefault();
+    this.formSubmitted = true;
+
+    if (!this.fileEntry.file || !this.fileEntry.altText.trim()) {
+      console.error('File and alt text are required');
+      return;
+    }
+
     const formData = new FormData();
     console.log(this.fileEntry.file, this.fileEntry.altText);
     if (this.fileEntry.file != null) {

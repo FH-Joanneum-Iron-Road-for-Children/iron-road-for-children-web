@@ -283,7 +283,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
     if (title == null || title == '') {
       title = '-';
     }
-    if (this.category && this.location && sentPicturesList) {
+    if (this.category && this.location && titlePicture) {
       const event: EventDto = {
         eventId: undefined,
         title: title,

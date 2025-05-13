@@ -10,6 +10,7 @@ import { ImageGalleryService } from 'src/app/services/image-gallery.service';
 export class ImageGalleryComponent implements OnInit {
   galleries: GalleryDto[] = [];
   isLoading = true;
+  formSubmitted = false;
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   @ViewChild('titleInput') titleInput!: ElementRef<HTMLInputElement>;
@@ -45,6 +46,7 @@ export class ImageGalleryComponent implements OnInit {
    */
   onUpload(event: Event): void {
     event.preventDefault();
+    this.formSubmitted = true;
 
     const file = this.fileInput.nativeElement.files?.[0];
     const title = this.titleInput.nativeElement.value.trim();
@@ -129,5 +131,6 @@ export class ImageGalleryComponent implements OnInit {
     this.fileInput.nativeElement.value = '';
     this.titleInput.nativeElement.value = '';
     this.descriptionInput.nativeElement.value = '';
+    this.formSubmitted = false;
   }
 }
