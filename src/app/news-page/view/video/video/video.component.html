@@ -9,7 +9,6 @@
   </head>
   <body>
     <h2>Intro-Video hochladen</h2>
-
     <div class="video-upload-entry">
       <input type="file" (change)="onFileSelected($event)" />
       <div *ngIf="formSubmitted && !fileEntry.file" style="color: red">

@@ -10,16 +10,29 @@
 
   <body>
     <h2>Social Media Link hinzufügen</h2>
-    <div class="social-links">
-      <a *ngFor="let link of socialLinks" [href]="link.link" target="_blank">
-        <p [id]="link.socialMediaId">{{ link.title }}</p>
+    <div
+      class="social-text-field"
+      *ngFor="let link of socialLinks; let i = index">
+      <a [href]="link.link" target="_blank" rel="noopener noreferrer">
+        {{ link.title }}
       </a>
+      <button
+        (click)="removeFileEntry(i)"
+        class="delete-button"
+        aria-label="Löschen">
+        ❌
+      </button>
     </div>
 
     <div class="add-link-form">
       <input type="text" #title placeholder="title" />
       <input type="text" #link placeholder="link" />
-      <button (click)="addSocialLink(title.value, link.value)">
+      <button
+        (click)="
+          addSocialLink(title.value, link.value);
+          title.value = '';
+          link.value = ''
+        ">
         Hinzufügen
       </button>
     </div>

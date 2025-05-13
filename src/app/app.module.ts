@@ -92,6 +92,7 @@ registerLocaleData(localeAt, 'de-AT');
     ImageGalleryComponent,
     PlaylistComponent,
     SafeUrlPipe,
+    VideoComponent,
   ],
 
   imports: [
