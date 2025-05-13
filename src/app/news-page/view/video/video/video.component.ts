@@ -43,9 +43,11 @@ export class VideoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // Fetch video on initialization
     this.fetchVideo();
   }
 
+  // Fetch video from API and update the video player
   fetchVideo() {
     this.newsService.getVideo().subscribe(
       (video) => {
@@ -93,6 +95,7 @@ export class VideoComponent implements OnInit, OnDestroy {
   // Handle file selection
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
+    console.log('onfileselected event:' + event);
     if (input?.files?.[0]) {
       this.fileEntry.file = input.files[0];
     }

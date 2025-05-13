@@ -11,18 +11,30 @@
     <h2>Intro-Video hochladen</h2>
     <div class="video-upload-entry">
       <input type="file" (change)="onFileSelected($event)" />
+      <div *ngIf="formSubmitted && !fileEntry.file" style="color: red">
+        Bitte wählen Sie ein Video aus.
+      </div>
+
       <input
         [(ngModel)]="fileEntry.altText"
         type="text"
         id="altText"
         name="altText"
+        maxlength="500"
         placeholder="Alternativtext"
         required />
+      <small>{{ fileEntry.altText?.length || 0 }}/500</small>
+      <div
+        *ngIf="formSubmitted && !fileEntry.altText.trim()"
+        style="color: red">
+        Alternativtext ist erforderlich.
+      </div>
+
       <button (click)="uploadVideo($event)">Hochladen</button>
     </div>
 
     <div *ngIf="video?.path">
-      <video *ngIf="video?.path" controls>
+      <video controls>
         <source [src]="video.path" type="video/mp4" />
         Your browser does not support the video tag.
       </video>

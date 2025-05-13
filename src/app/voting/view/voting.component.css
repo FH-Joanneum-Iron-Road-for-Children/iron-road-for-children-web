@@ -1,3 +1,9 @@
 .voting-button {
   margin-bottom: 20px;
 }
+
+.voting-content-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}

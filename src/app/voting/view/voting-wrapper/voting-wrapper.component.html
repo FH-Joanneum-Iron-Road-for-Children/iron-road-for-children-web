@@ -27,7 +27,7 @@
           </button>
           <button
             (click)="openDeleteVotingDialog(voting)"
-            [disabled]="!voting.editable"
+            [disabled]="voting.active"
             mat-icon-button>
             <mat-icon>delete</mat-icon>
           </button>

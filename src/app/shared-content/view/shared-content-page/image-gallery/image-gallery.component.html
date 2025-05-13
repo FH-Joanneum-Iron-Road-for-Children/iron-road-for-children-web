@@ -33,6 +33,9 @@
   <form (submit)="onUpload($event)" class="upload-form">
     <label for="fileInput">Select Image</label>
     <input id="fileInput" type="file" #fileInput accept="image/*" required />
+    <div *ngIf="formSubmitted && !fileInput.files?.length" style="color: red">
+      Please select an image.
+    </div>
 
     <label for="titleInput">Title</label>
     <input
@@ -40,7 +43,12 @@
       type="text"
       #titleInput
       placeholder="Enter title"
+      maxlength="500"
       required />
+    <small>{{ titleInput.value.length }}/500</small>
+    <div *ngIf="formSubmitted && !titleInput.value.trim()" style="color: red">
+      Title is required.
+    </div>
 
     <label for="descriptionInput">Description</label>
     <input
@@ -48,7 +56,14 @@
       type="text"
       #descriptionInput
       placeholder="Enter description"
+      maxlength="500"
       required />
+    <small>{{ descriptionInput.value.length }}/500</small>
+    <div
+      *ngIf="formSubmitted && !descriptionInput.value.trim()"
+      style="color: red">
+      Description is required.
+    </div>
 
     <button type="submit">Upload</button>
   </form>
