@@ -1,11 +1,8 @@
-import { Component, OnInit, OnDestroy, Input, Inject } from '@angular/core';
-import { NewsService } from '../../../news-page.service';
-import { VideoDto, VideoFileUploadDTO } from '../../../../models/models';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import type { OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
+import type { NewsService } from '../../../news-page.service';
+import type { VideoDto } from '../../../../models/models';
+import type { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
 
 export interface DialogData {
@@ -28,6 +25,7 @@ export class VideoComponent implements OnInit, OnDestroy {
   };
 
   confirmBool = false;
+  formSubmitted = false;
   constructor(private newsService: NewsService, public dialog: MatDialog) {}
 
   openDialog(): boolean {
@@ -61,6 +59,7 @@ export class VideoComponent implements OnInit, OnDestroy {
 
   // Submit the video upload
   uploadVideo(event: Event): void {
+    this.formSubmitted = true;
     // get confirmation first
     this.confirmBool = this.openDialog();
     console.log('after - result of popup: ', this.confirmBool);
@@ -101,5 +100,7 @@ export class VideoComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    console.log('To be Implemented, currently unused');
+  }
 }
