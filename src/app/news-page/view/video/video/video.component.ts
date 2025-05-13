@@ -1,6 +1,6 @@
 import type { OnInit, OnDestroy } from '@angular/core';
 import { Component } from '@angular/core';
-import type { NewsService } from '../../../news-page.service';
+import { NewsService } from '../../../news-page.service';
 import type { VideoDto } from '../../../../models/models';
 import type { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
