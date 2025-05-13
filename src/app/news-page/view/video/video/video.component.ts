@@ -2,7 +2,7 @@ import { OnInit, OnDestroy } from '@angular/core';
 import { Component } from '@angular/core';
 import { NewsService } from '../../../news-page.service';
 import { VideoDto } from '../../../../models/models';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
 
 export interface DialogData {
