@@ -1,8 +1,8 @@
-import type { OnInit, OnDestroy } from '@angular/core';
+import { OnInit, OnDestroy } from '@angular/core';
 import { Component } from '@angular/core';
 import { NewsService } from '../../../news-page.service';
-import type { VideoDto } from '../../../../models/models';
-import type { MatDialog } from '@angular/material/dialog';
+import { VideoDto } from '../../../../models/models';
+import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
 
 export interface DialogData {
