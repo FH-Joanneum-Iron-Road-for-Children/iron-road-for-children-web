@@ -1,15 +1,3 @@
-.social-links {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.social-links a img {
-  width: 32px;
-  height: 32px;
-}
-
 body {
   font-family: Arial, sans-serif;
   display: flex;
@@ -20,6 +8,7 @@ body {
   margin: 0;
 }
 h2 {
+  text-align: center;
   color: #333;
 }
 form {
@@ -47,33 +36,4 @@ button {
 }
 button:hover {
   background-color: gold;
-}
-social-links {
-  margin-top: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.social-text-field {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.social-text-field a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.social-text-field a:hover {
-  text-decoration: underline;
-}
-
-.delete-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-  color: red;
 }

@@ -25,4 +25,8 @@ export class SocialMediaService {
   addSocialMedia(socialMedia: SocialMedia): Observable<SocialMedia> {
     return this.http.post<SocialMedia>(this.apiUrl, socialMedia);
   }
+
+  deleteSocialMedia(socialMediaId: number): Observable<SocialMedia> {
+    return this.http.delete<SocialMedia>(`api/socialMedias/${socialMediaId}`);
+  }
 }

@@ -38,26 +38,26 @@
     </div>
 
     <label for="titleInput">Title</label>
-    <input
+    <textarea
       id="titleInput"
       type="text"
       #titleInput
       placeholder="Enter title"
       maxlength="500"
-      required />
+      required></textarea>
     <small>{{ titleInput.value.length }}/500</small>
     <div *ngIf="formSubmitted && !titleInput.value.trim()" style="color: red">
       Title is required.
     </div>
 
     <label for="descriptionInput">Description</label>
-    <input
+    <textarea
       id="descriptionInput"
       type="text"
       #descriptionInput
       placeholder="Enter description"
       maxlength="500"
-      required />
+      required></textarea>
     <small>{{ descriptionInput.value.length }}/500</small>
     <div
       *ngIf="formSubmitted && !descriptionInput.value.trim()"

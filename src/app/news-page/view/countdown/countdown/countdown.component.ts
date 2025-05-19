@@ -71,10 +71,10 @@ export class CountdownComponent implements OnInit, OnDestroy {
           .updateCountdown(countdownId, updatedCountdown)
           .subscribe({
             next: (data: CountdownDTO) => {
-              console.log('Countdown updated successfully:', data);
+              console.log('Countdown erfolgreich aktualisiert:', data);
             },
             error: (err) => {
-              console.error('Error updating countdown:', err);
+              console.error('Fehler beim Aktualisieren:', err);
             },
           });
       },
@@ -82,10 +82,10 @@ export class CountdownComponent implements OnInit, OnDestroy {
         // If the countdown does not exist, create it
         this.countdownService.createCountdown(updatedCountdown).subscribe({
           next: (data: CountdownDTO) => {
-            console.log('Countdown created successfully:', data);
+            console.log('Countdown erfolgreich hochgeladen:', data);
           },
           error: (err) => {
-            console.error('Error creating countdown:', err);
+            console.error('Fehler beim Hochladen:', err);
           },
         });
       },

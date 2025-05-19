@@ -9,21 +9,20 @@
   </head>
   <body>
     <h2>Intro-Video hochladen</h2>
-
     <div class="video-upload-entry">
       <input type="file" (change)="onFileSelected($event)" />
       <div *ngIf="formSubmitted && !fileEntry.file" style="color: red">
         Bitte wählen Sie ein Video aus.
       </div>
 
-      <input
+      <textarea
         [(ngModel)]="fileEntry.altText"
         type="text"
         id="altText"
         name="altText"
         maxlength="500"
         placeholder="Alternativtext"
-        required />
+        required></textarea>
       <small>{{ fileEntry.altText?.length || 0 }}/500</small>
       <div
         *ngIf="formSubmitted && !fileEntry.altText.trim()"

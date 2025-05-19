@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <h1>Wollen Sie mit dieser Aktion fortfahren?</h1>
+    <div mat-dialog-content>
+      <p>
+        Diese Aktion könnte Daten überschreiben, also stellen Sie sicher dass es
+        gesichert wurde.
+      </p>
+    </div>
+    <div mat-dialog-actions>
+      <div>
+        <button mat-button (click)="onYesClick()">Fortfahren</button>
+        <button mat-button (click)="onNoClick()">Zurück</button>
+      </div>
+    </div>
+  </body>
+</html>
