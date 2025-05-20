@@ -23,7 +23,7 @@
         maxlength="500"
         placeholder="Alternativtext"
         required></textarea>
-      <small>{{ fileEntry.altText?.length || 0 }}/500</small>
+      <small>{{ fileEntry.altText.length || 0 }}/500</small>
       <div
         *ngIf="formSubmitted && !fileEntry.altText.trim()"
         style="color: red">
