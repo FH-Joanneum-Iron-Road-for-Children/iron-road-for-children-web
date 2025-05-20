@@ -51,13 +51,13 @@
     </div>
 
     <label for="descriptionInput">Description</label>
-    <input
+    <textarea
       id="descriptionInput"
       type="text"
       #descriptionInput
       placeholder="Enter description"
       maxlength="500"
-      required />
+      required></textarea>
     <small>{{ descriptionInput.value.length }}/500</small>
     <div
       *ngIf="formSubmitted && !descriptionInput.value.trim()"

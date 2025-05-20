@@ -15,15 +15,15 @@
         Bitte wählen Sie ein Video aus.
       </div>
 
-      <input
+      <textarea
         [(ngModel)]="fileEntry.altText"
         type="text"
         id="altText"
         name="altText"
         maxlength="500"
         placeholder="Alternativtext"
-        required />
-      <small>{{ fileEntry.altText?.length || 0 }}/500</small>
+        required></textarea>
+      <small>{{ fileEntry.altText.length || 0 }}/500</small>
       <div
         *ngIf="formSubmitted && !fileEntry.altText.trim()"
         style="color: red">
