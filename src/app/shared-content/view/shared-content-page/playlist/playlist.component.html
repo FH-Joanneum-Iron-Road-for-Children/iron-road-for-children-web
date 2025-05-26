@@ -1,27 +1,22 @@
-<div
-  *ngFor="let playlist of playlists; let i = index"
-  class="playlist-container">
-  <div>
-    <h3>{{ playlist.title }}</h3>
-    <iframe
-      style="border-radius: 12px"
-      [src]="
-        'https://open.spotify.com/embed/playlist/' + playlist.spotifyPlaylistId
-          | safeUrl
-      "
-      width="100%"
-      height="352"
-      frameBorder="0"
-      allowfullscreen=""
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy">
-    </iframe>
-    <button (click)="deletePlaylist(i)" class="delete-button">Delete</button>
-  </div>
+<div *ngIf="playlist" class="playlist-container">
+  <h3>{{ playlist.title }}</h3>
+  <iframe
+    style="border-radius: 12px"
+    [src]="
+      'https://open.spotify.com/embed/playlist/' + playlist.spotifyPlaylistId
+        | safeUrl
+    "
+    width="100%"
+    height="352"
+    frameBorder="0"
+    allowfullscreen=""
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy">
+  </iframe>
 </div>
 
 <div class="add-playlist-form">
-  <h3>Add a New Playlist</h3>
+  <h3>{{ playlist ? 'Update Playlist' : 'Add a New Playlist' }}</h3>
   <input
     type="text"
     [(ngModel)]="newPlaylistTitle"
@@ -32,5 +27,7 @@
     [(ngModel)]="newPlaylistUrl"
     placeholder="Enter Spotify Playlist URL"
     class="input-field" />
-  <button (click)="addPlaylist()" class="add-button">Add Playlist</button>
+  <button (click)="addOrUpdatePlaylist()" class="add-button">
+    {{ playlist ? 'Update' : 'Add' }} Playlist
+  </button>
 </div>
