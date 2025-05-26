@@ -11,10 +11,16 @@
       <div class="col-1">
         <mat-form-field appearance="fill">
           <mat-label>Beschreibung</mat-label>
-          <input
+          <textarea
             formControlName="description"
             matInput
-            placeholder="Beschreibung" />
+            placeholder="Beschreibung"
+            maxlength="500"
+            rows="3">
+          </textarea>
+          <mat-hint align="end">
+            {{ eventFormGroup.get('description')?.value?.length || 0 }}/500
+          </mat-hint>
         </mat-form-field>
       </div>
 
