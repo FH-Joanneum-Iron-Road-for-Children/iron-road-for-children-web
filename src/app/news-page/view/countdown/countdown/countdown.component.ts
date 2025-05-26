@@ -16,6 +16,8 @@ export class CountdownComponent implements OnInit, OnDestroy {
   private intervalId: any;
   private remainingTime = 0;
   isEventRunning = false;
+  // We only allow the user to interact with a single countdown entry (ID 100)
+  private readonly SINGLETON_COUNTDOWN_ID = 100; // Fixed ID for the single countdown
 
   countdownUnits: { value: number; label: string }[] = [];
 
@@ -33,8 +35,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
    * Fetch the target date from the backend.
    */
   fetchTargetDate(): void {
-    const countdownId = 100; // Fixed ID for the single countdown
-    this.countdownService.getCountdown(countdownId).subscribe({
+    this.countdownService.getCountdown(this.SINGLETON_COUNTDOWN_ID).subscribe({
       next: (data: CountdownDTO) => {
         this.targetDate = new Date(data.endDateTimeInUTC); // Convert timestamp to Date
         this.startCountdown(); // Start the countdown after fetching the target date
@@ -57,18 +58,17 @@ export class CountdownComponent implements OnInit, OnDestroy {
    * @param newDate The new target date.
    */
   saveTargetDate(newDate: Date): void {
-    const countdownId = 100; // Fixed ID for the single countdown
     const updatedCountdown: CountdownDTO = {
-      countdownId: countdownId,
+      countdownId: this.SINGLETON_COUNTDOWN_ID,
       endDateTimeInUTC: newDate.getTime(), // Convert Date to timestamp
     };
 
     // Check if the countdown exists
-    this.countdownService.getCountdown(countdownId).subscribe({
+    this.countdownService.getCountdown(this.SINGLETON_COUNTDOWN_ID).subscribe({
       next: () => {
         // If the countdown exists, update it
         this.countdownService
-          .updateCountdown(countdownId, updatedCountdown)
+          .updateCountdown(this.SINGLETON_COUNTDOWN_ID, updatedCountdown)
           .subscribe({
             next: (data: CountdownDTO) => {
               console.log('Countdown erfolgreich aktualisiert:', data);

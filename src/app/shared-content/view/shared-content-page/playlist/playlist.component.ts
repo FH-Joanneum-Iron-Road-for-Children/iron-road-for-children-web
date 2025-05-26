@@ -9,7 +9,8 @@ import { PlaylistDto } from 'src/app/models/models';
   styleUrls: ['./playlist.component.css'],
 })
 export class PlaylistComponent {
-  playlists: PlaylistDto[] = []; // List of playlist objects
+  // playlists: PlaylistDto[] = []; // List of playlist objects
+  playlist: PlaylistDto | null = null; // For singleton UI
   newPlaylistUrl = ''; // URL for the new playlist
   newPlaylistTitle = ''; // Title for the new playlist
 
@@ -19,64 +20,93 @@ export class PlaylistComponent {
   ) {}
 
   ngOnInit() {
-    this.fetchPlaylists();
+    this.fetchPlaylist();
   }
 
-  fetchPlaylists(): void {
+  // fetchPlaylists(): void {
+  //   this.playlistService.getPlaylist().subscribe({
+  //     next: (fetchedPlaylist) => {
+  //       if (fetchedPlaylist) {
+  //         this.playlists = [fetchedPlaylist]; // Add the single playlist to the array
+  //         console.log('Playlist fetched successfully:', fetchedPlaylist);
+  //       }
+  //     },
+  //     error: (err) => console.error('Error fetching playlist', err),
+  //   });
+  // }
+
+  fetchPlaylist(): void {
     this.playlistService.getPlaylist().subscribe({
       next: (fetchedPlaylist) => {
-        if (fetchedPlaylist) {
-          this.playlists = [fetchedPlaylist]; // Add the single playlist to the array
-          console.log('Playlist fetched successfully:', fetchedPlaylist);
-        }
+        this.playlist = fetchedPlaylist;
       },
       error: (err) => console.error('Error fetching playlist', err),
     });
   }
 
-  addPlaylist() {
-    if (this.newPlaylistUrl.trim() && this.newPlaylistTitle.trim()) {
-      const spotifyPlaylistId = this.extractPlaylistId(
-        this.newPlaylistUrl.trim()
-      );
-      const newPlaylist: PlaylistDto = {
-        title: this.newPlaylistTitle.trim(),
-        spotifyPlaylistId: spotifyPlaylistId,
-      };
+  addOrUpdatePlaylist() {
+    const spotifyPlaylistId = this.extractPlaylistId(
+      this.newPlaylistUrl.trim()
+    );
+    const newPlaylist: PlaylistDto = {
+      title: this.newPlaylistTitle.trim(),
+      spotifyPlaylistId: spotifyPlaylistId,
+    };
 
-      // Send the new playlist to the backend
-      this.playlistService.savePlaylist(newPlaylist).subscribe({
-        next: (savedPlaylist) => {
-          // Add the saved playlist (with its ID) to the local list
-          this.playlists.push(savedPlaylist);
-          console.log('Playlist saved successfully:', savedPlaylist);
-        },
-        error: (err) => console.error('Error saving playlist', err),
-      });
+    this.playlistService.savePlaylist(newPlaylist).subscribe({
+      next: (savedPlaylist) => {
+        this.playlist = savedPlaylist;
+      },
+      error: (err) => console.error('Error saving playlist', err),
+    });
 
-      // Clear the input fields
-      this.newPlaylistUrl = '';
-      this.newPlaylistTitle = '';
-    }
+    this.newPlaylistUrl = '';
+    this.newPlaylistTitle = '';
   }
 
-  deletePlaylist(index: number) {
-    const playlistId = this.playlists[index].playlistId;
+  // addPlaylist() {
+  //   if (this.newPlaylistUrl.trim() && this.newPlaylistTitle.trim()) {
+  //     const spotifyPlaylistId = this.extractPlaylistId(
+  //       this.newPlaylistUrl.trim()
+  //     );
+  //     const newPlaylist: PlaylistDto = {
+  //       title: this.newPlaylistTitle.trim(),
+  //       spotifyPlaylistId: spotifyPlaylistId,
+  //     };
 
-    if (playlistId) {
-      this.playlistService.deletePlaylist(playlistId).subscribe({
-        next: () => {
-          // Remove the playlist from the local list
-          this.playlists.splice(index, 1);
-          console.log(`Playlist with ID ${playlistId} deleted successfully.`);
-        },
-        error: (err) =>
-          console.error(`Error deleting playlist with ID ${playlistId}`, err),
-      });
-    } else {
-      console.error('Cannot delete playlist: Missing playlistId');
-    }
-  }
+  //     // Send the new playlist to the backend
+  //     this.playlistService.savePlaylist(newPlaylist).subscribe({
+  //       next: (savedPlaylist) => {
+  //         // Add the saved playlist (with its ID) to the local list
+  //         this.playlists.push(savedPlaylist);
+  //         console.log('Playlist saved successfully:', savedPlaylist);
+  //       },
+  //       error: (err) => console.error('Error saving playlist', err),
+  //     });
+
+  //     // Clear the input fields
+  //     this.newPlaylistUrl = '';
+  //     this.newPlaylistTitle = '';
+  //   }
+  // }
+
+  // deletePlaylist(index: number) {
+  //   const playlistId = this.playlists[index].playlistId;
+
+  //   if (playlistId) {
+  //     this.playlistService.deletePlaylist(playlistId).subscribe({
+  //       next: () => {
+  //         // Remove the playlist from the local list
+  //         this.playlists.splice(index, 1);
+  //         console.log(`Playlist with ID ${playlistId} deleted successfully.`);
+  //       },
+  //       error: (err) =>
+  //         console.error(`Error deleting playlist with ID ${playlistId}`, err),
+  //     });
+  //   } else {
+  //     console.error('Cannot delete playlist: Missing playlistId');
+  //   }
+  // }
 
   // savePlaylists() {
   //   this.playlistService.savePlaylists(this.playlists).subscribe({
