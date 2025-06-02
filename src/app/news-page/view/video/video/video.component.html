@@ -8,8 +8,12 @@
     <script type="text/javascript" src="./video.component.js"></script>
   </head>
   <body>
-    <h2>Intro-Video hochladen</h2>
-    <div class="video-upload-entry">
+    <h2>Aktuelles Intro-Video</h2>
+
+    <!-- Intro-Video Editing logic deisabled due to problems with Uploading Files > 2mb (Server Problem) -->
+    <!-- For Documentation and possible later implementation of feature it is kept here -->
+
+    <!-- <div class="video-upload-entry">
       <input type="file" (change)="onFileSelected($event)" />
       <div *ngIf="formSubmitted && !fileEntry.file" style="color: red">
         Bitte wählen Sie ein Video aus.
@@ -31,7 +35,7 @@
       </div>
 
       <button (click)="uploadVideo($event)">Hochladen</button>
-    </div>
+    </div> -->
 
     <div *ngIf="video?.path">
       <video controls>
