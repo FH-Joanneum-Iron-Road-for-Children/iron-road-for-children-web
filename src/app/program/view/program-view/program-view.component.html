@@ -23,7 +23,11 @@
               {{ event.title }}
             </mat-card-title>
             <mat-card-subtitle>
-              {{ event.eventInfo.infoText }}
+              {{
+                calculateInfoTextLength(event.eventInfo.infoText) > 100
+                  ? (event.eventInfo.infoText | slice : 0 : 100) + '...'
+                  : event.eventInfo.infoText
+              }}
               <div>
                 <mat-chip
                   *ngIf="event.eventCategory.name != ''"

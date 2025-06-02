@@ -87,6 +87,10 @@ export class ProgramViewComponent {
     return null;
   }
 
+  calculateInfoTextLength(text: string | null) {
+    return text ? text?.length : 0;
+  }
+
   checkIfSameDate(startDateTimeUTC: number, endDateTimeUTC: number) {
     if (
       this.dateConverterService.getTimestampWithoutTime(startDateTimeUTC) ==
