@@ -24,12 +24,19 @@ export class VotingCardComponent {
     }
   }
 
-  getVotes(name: string | undefined): any {
-    if (name != undefined) {
-      const votingResult = this.voting?.votingResult?.partialResults?.find(
-        (result) => result.eventName === name
-      );
-      return votingResult ? `${votingResult.percentage}` : '';
+  getVotes(name: string | undefined): string {
+    if (!name || !this.voting?.votingResult?.partialResults) {
+      return '';
     }
+
+    const votingResult = this.voting.votingResult.partialResults.find(
+      (r) => r.eventName === name
+    );
+    if (!votingResult) {
+      return '';
+    }
+
+    const percentValue = (votingResult.percentage * 100).toFixed(1);
+    return `${percentValue} %`;
   }
 }
