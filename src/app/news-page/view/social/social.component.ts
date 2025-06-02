@@ -9,6 +9,13 @@ import { SocialMediaService } from '../../../services/social-media.service';
 export class SocialComponent implements OnInit {
   socialLinks: { socialMediaId: number; title: string; link: string }[] = [];
 
+  givenSocialLinks: { socialMediaId: number; title: string; link: string }[] = [
+    { socialMediaId: 0, title: 'Instagram', link: '' },
+    { socialMediaId: 1, title: 'Facebook', link: '' },
+    { socialMediaId: 2, title: 'LinkedIn', link: '' },
+    { socialMediaId: 3, title: 'Snapchat', link: '' },
+  ];
+
   constructor(private socialMediaService: SocialMediaService) {}
 
   ngOnInit() {
@@ -21,6 +28,11 @@ export class SocialComponent implements OnInit {
     this.socialMediaService.getAllSocialMedias().subscribe(
       (data) => {
         this.socialLinks = data; // Update the socialLinks array with fetched data
+        this.givenSocialLinks = this.givenSocialLinks.filter(
+          (given) =>
+            !this.socialLinks.some((existing) => existing.title === given.title)
+        );
+
         console.log('Sozial Links geladen:', this.socialLinks);
       },
       (error) => {
@@ -41,6 +53,10 @@ export class SocialComponent implements OnInit {
       (response: any) => {
         console.log('Sozial Links hinzugefügt:', response);
         this.socialLinks.push(response); // Update the list with the newly added social media
+        this.givenSocialLinks = this.givenSocialLinks.filter(
+          (given) =>
+            !this.socialLinks.some((existing) => existing.title === given.title)
+        );
       },
       (error: any) => {
         console.error('Fehler beim Hinzufügen der Sozial Links:', error);
@@ -55,7 +71,15 @@ export class SocialComponent implements OnInit {
       .subscribe(
         (response) => {
           alert('Datei erfolgreich gelöscht!');
-          this.socialLinks.splice(index, 1); // Remove the file from the list
+          const removedItem = this.socialLinks.splice(index, 1)[0]; // Remove and capture the item
+
+          if (
+            !this.givenSocialLinks.some(
+              (given) => given.title === removedItem.title
+            )
+          ) {
+            this.givenSocialLinks.push(removedItem);
+          }
         },
         (error) => {
           alert('Fehler beim Löschen der Datei!');
