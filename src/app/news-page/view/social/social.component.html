@@ -26,13 +26,11 @@
 
     <div class="add-link-form">
       <select placeholder="title" #title>
-        <div
-          class="social-text-field"
-          *ngFor="let option of givenSocialLinks; let i = index">
-          <option type="text" value="{{ option.title }}">
-            {{ option.title }}
-          </option>
-        </div>
+        <option
+          *ngFor="let option of givenSocialLinks; let i = index"
+          [value]="option.title">
+          {{ option.title }}
+        </option>
       </select>
       <input type="text" #link placeholder="link" />
       <button
