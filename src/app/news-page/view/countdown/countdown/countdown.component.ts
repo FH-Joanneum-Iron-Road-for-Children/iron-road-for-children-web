@@ -17,6 +17,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
   private remainingTime = 0;
   isEventRunning = false;
   // We only allow the user to interact with a single countdown entry (ID 100)
+  // xdocumentation
   private readonly SINGLETON_COUNTDOWN_ID = 100; // Fixed ID for the single countdown
 
   countdownUnits: { value: number; label: string }[] = [];
