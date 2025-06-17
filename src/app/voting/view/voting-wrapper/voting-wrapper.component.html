@@ -21,7 +21,7 @@
           </div>
           <button
             (click)="openEditVotingDialog(voting)"
-            [disabled]="true"
+            [disabled]="!voting.editable"
             mat-icon-button>
             <mat-icon>edit</mat-icon>
           </button>
