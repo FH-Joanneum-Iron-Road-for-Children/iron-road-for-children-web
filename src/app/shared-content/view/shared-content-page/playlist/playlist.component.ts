@@ -23,6 +23,8 @@ export class PlaylistComponent {
     this.fetchPlaylist();
   }
 
+  // Fetch the playlist from the backend solution for multiple playlists
+  // xdocumentation
   // fetchPlaylists(): void {
   //   this.playlistService.getPlaylist().subscribe({
   //     next: (fetchedPlaylist) => {
@@ -64,6 +66,8 @@ export class PlaylistComponent {
     this.newPlaylistTitle = '';
   }
 
+  // For multiple Playlists when they can be added and deleted
+  // xdocumentation
   // addPlaylist() {
   //   if (this.newPlaylistUrl.trim() && this.newPlaylistTitle.trim()) {
   //     const spotifyPlaylistId = this.extractPlaylistId(
@@ -90,6 +94,8 @@ export class PlaylistComponent {
   //   }
   // }
 
+  // For multiple Playlists when they can be added and deleted
+  // xdocumentation
   // deletePlaylist(index: number) {
   //   const playlistId = this.playlists[index].playlistId;
 
@@ -108,6 +114,8 @@ export class PlaylistComponent {
   //   }
   // }
 
+  // For multiple Playlists when they can be saved
+  // xdocumentation
   // savePlaylists() {
   //   this.playlistService.savePlaylists(this.playlists).subscribe({
   //     next: (updatedPlaylists) => {

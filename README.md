@@ -43,3 +43,7 @@ To gain access via new login credentials for the web application please write to
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+### Documentation Help
+
+> Within the Project there are multiple inline documentations which are mostly marked with `xdocumentation` for an easier search.
